@@ -4,9 +4,10 @@ var webpack = require('webpack');
 
 module.exports = {
 	entry: [
+			'babel-polyfill',
 			'webpack/hot/dev-server',
 			'webpack-dev-server/client?http://localhost:8080',
-      path.resolve(__dirname, 'app/App.js')
+      path.resolve(__dirname, 'app/index.js')
     ],
 	output: {
 		path: path.resolve(__dirname, 'public'),
@@ -36,6 +37,15 @@ module.exports = {
   plugins: [
     // new webpack.HotModuleReplacementPlugin()
 	],
+	resolve: {
+		alias: {
+      actions: path.resolve('./app/actions'),
+      reducers: path.resolve('./app/views'),
+			components: path.resolve('./app/components'),
+      styles: path.resolve('./app/styles')
+   }
+
+	},
 	module: {
 		loaders: [
 			{
@@ -43,6 +53,10 @@ module.exports = {
 				exclude: /(node_modules|bower_components)/,
 				loaders: ['react-hot', 'babel'],
 				include: path.join(__dirname, 'app')
+			},
+			{
+				test: /\.scss$/,
+				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
 			}
 		]
 	}

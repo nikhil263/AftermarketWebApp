@@ -30,13 +30,23 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
+    "css-loader": "^0.23.0",
+    "foundation-apps": "^1.2.0",
     "history": "^1.13.1",
+    "node-sass": "^3.4.2",
     "object-assign": "^2.1.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-foundation-apps": "^0.6.1",
     "react-responsive-mixin": "^0.3.5",
     "react-router": "^1.0.0",
-    "reactfire": "^0.5.1"
+    "reactfire": "^0.5.1",
+    "redux": "^3.0.5",
+    "redux-logger": "^2.2.1",
+    "redux-thunk": "^1.0.0",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "whatwg-fetch": "^0.10.1"
   }
 }
