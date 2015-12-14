@@ -1,21 +1,11 @@
-var React = require('react');
-var SearchGithub = require('./SearchGithub');
+import React, { PropTypes, Component } from 'react';
+export default class Main extends Component {
 
-var Main = React.createClass({
-  render: function(){
+  render() {
     return (
-      <div className="main-container">
-        <nav className="navbar navbar-default" role="navigation">
-          <div className="col-sm-7 col-sm-offset-2" style={{marginTop: 15}}>
-            <SearchGithub />
-          </div>
-        </nav>
-        <div className="container">
-            {this.props.children}
-        </div>
+      <div>
+        {this.props.children}
       </div>
     )
   }
-});
-
-module.exports = Main;
+}

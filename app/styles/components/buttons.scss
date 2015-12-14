@@ -1,0 +1,56 @@
+.conmet-button {
+	@include border-radius(10px);
+	@include button-style(
+	$background: rgba(211,17,69, 1), // Background color
+	$color: #fff, // Text color
+	$style: solid // Can be solid or hollow
+	);
+	cursor: pointer;
+
+	margin: 1.25rem;
+	padding: 1rem;
+	h4 {
+		color: #fff;
+		text-align: left;
+	}
+
+
+}
+.yes-no-button {
+	@include grid-block(expand);
+	h4 {
+		@include grid-content(3, 0);
+		text-transform: uppercase;
+		margin-bottom:0rem;
+		font-size: 2rem
+	}
+	p {
+		@include grid-content(8);
+		margin-bottom: 0rem;
+	}
+}
+.big-button {
+	h4 {
+		margin-right: 0px;
+		padding-right: 0px;
+	}
+	i {
+		float: right;
+		padding: 10px;
+		font-size: 2.5em;
+	}
+
+}
+.step-bar {
+	width: 100%;
+
+	.grid-content {
+		padding: 0px;
+		background: #333;
+		height: 39px;
+	}
+	.button-group {
+
+		@include border-radius(0px)
+	}
+}

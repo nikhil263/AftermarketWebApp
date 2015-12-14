@@ -1,2 +1,7 @@
-@import 'settings';
+@import 'overrides';
+@import 'mixins';
 @import '~foundation-apps/scss/foundation';
+@import 'component/icons';
+@import 'component/fonts';
+@import 'components/layout';
+@import 'components/buttons';

@@ -1,14 +1,11 @@
-var React = require('react');
-var Main  = require('../components/Main');
-var Home  = require('../components/Home');
-var Profile  = require('../components/Profile');
-var Router = require('react-router');
-var IndexRoute = Router.IndexRoute;
-var Route = Router.Route;
+import React from 'react'
+import Main from 'components/main'
+import Splash from 'components/splash'
+import {render} from 'react-dom'
+import { Router, Route, RouteHandler, Redirect, IndexRoute } from 'react-router';
 
 module.exports = (
 	<Route path="/" component={Main}>
-				<Route path="/profile/:username" component={Profile} />
-        <IndexRoute component={Home}/>
+				<IndexRoute component={Splash}/>
     </Route>
 );

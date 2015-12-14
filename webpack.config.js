@@ -39,6 +39,7 @@ module.exports = {
 	],
 	resolve: {
 		alias: {
+			config: path.resolve('./app/config'),
       actions: path.resolve('./app/actions'),
       reducers: path.resolve('./app/views'),
 			components: path.resolve('./app/components'),
@@ -57,6 +58,14 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+			},
+			{
+      	test: /\.(png|jpg)$/,
+      	loader: 'url?limit=25000'
+    	},
+			{
+				test: /\.(svg|eot|woff)$/,
+      	loader: 'file-loader'
 			}
 		]
 	}

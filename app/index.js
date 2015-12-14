@@ -1,8 +1,28 @@
-var React = require('react');
-var render = require('react-dom').render;
-var Router = require('react-router').Router;
-var routes = require('./config/routes');
+import React, { PropTypes, Component } from 'react';
+import {render} from 'react-dom'
 
-require('./styles/app.scss');
+import Root from 'components/root'
 
-render(<Router>{routes}</Router>, document.getElementById('app'))
+import 'styles/app.scss';
+
+
+// class Contact extends Component {
+//   render() {
+//     return <div>Contact</div>;
+//   }
+// }
+//
+// class About extends Component {
+//   render() {
+//     return ( <div>About</div> );
+//   }
+// }
+// class Root extends Component {
+//   render() {
+//     return (
+// 			<h2>Whats Up</h2>
+//     );
+//   }
+// }
+
+render(<Root />, document.getElementById('app'))

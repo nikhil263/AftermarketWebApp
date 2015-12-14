@@ -1,0 +1,21 @@
+.main-content {
+	margin-top: 2em;
+	h1,h2,h3,h4,h5,h6 {
+		text-align: center;
+	}
+}
+.title-bar.dark {
+	background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 15px,
+    rgba(255,255,255,.2) 15px,
+    rgba(255,255,255,.2) 16px
+  )
+}
+.grid-frame {
+	background: #222;
+	h1, h2,h3,h4,h5,h6 { 
+		color: #fff;
+	}
+}
