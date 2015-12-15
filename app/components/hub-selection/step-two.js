@@ -6,7 +6,7 @@ export default class extends Component {
 	render() {
 		return (
 			<HubSelection>
-				<h1>What are you looking for?</h1>
+				<h1>Do you know your hub's  assembly number?</h1>
 				<div className="conmet-button">
 					<Link to="/hub-selection/step-three" className="yes-no-button"><em>Yes</em>I know the hub assembly number.</Link>
 				</div>

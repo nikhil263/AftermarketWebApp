@@ -14,14 +14,14 @@ export default class extends Component {
 
 					<div className="conmet-button big-button">
 						<Link to="/hub-selection/step-two">
-						<h2>Replacement Hub</h2>
+						<h2>REPLACEMENT HUB</h2>
 						<i className="icon-angle-right"></i>
 						<p>Replace your hub with one of our kits</p>
 						</Link>
 					</div>
 					<div className="conmet-button big-button">
 						<Link to="/hub-selection/step-two">
-						<h2>Replacement Parts</h2>
+						<h2>REPLACEMENT PARTS</h2>
 						<i className="icon-angle-right" title="Right Arrow"></i>
 						<p>Replace your hub with one of our kits</p>
 						</Link>
