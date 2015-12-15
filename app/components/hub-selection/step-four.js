@@ -1,31 +1,22 @@
 import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection'
+import {Link} from 'react-router';
 
 export default class extends Component {
 	render() {
 		return (
 			<HubSelection>
-				<div className="grid-block align-center wrap">
-					<div className="grid-content small-12">
-							<h3>Do you know your hub's assembly number?</h3>
-					</div>
+				<h1>Success! The following ConMet PreSet hub(s) are recommended</h1>
+				<img className="product-image" src={require('../../images/hub-fpo.png')} alt="Hub FPO" width="200" height="200"/>
+				<h2>PreSet&#174; Plus&#8482; Hubs.<br />
+				#10032998
+				</h2>
+				<div className="conmet-button">
+					<Link to="/hub-selection/details" className="yes-no-button">See Details.</Link>
 				</div>
-				<div className="grid-block align-center wrap">
-					<div className="grid-content small-12">
-						<div className="conmet-button yes-no-button v-align">
-							<h4>Yes</h4>
-							<p className="align-center">I know the hub assembly number.</p>
-						</div>
-						<div className="conmet-button yes-no-button v-align">
-							<h4>No</h4>
-							<p className="align-center">Help me find the assembly number.</p>
-						</div>
-						<div className="conmet-button yes-no-button v-align">
-							<h4>No</h4>
-							<p className="align-center">Proceed without the number.</p>
-						</div>
-					</div>
-			</div>
+				{/*<div className="conmet-button">
+				<Link to="/hub-selection/step-three" className="yes-no-button">Find this Product</Link>
+				</div>*/}
 			</HubSelection>
 		)
 	}

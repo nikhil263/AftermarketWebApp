@@ -1,7 +1,7 @@
 .conmet-button {
 	@include border-radius(10px);
 	@include button-style(
-	$background: rgba(211,17,69, 1), // Background color
+	$background: $cm-red, // Background color
 	$color: #fff, // Text color
 	$style: solid // Can be solid or hollow
 	);
@@ -9,7 +9,7 @@
 
 	margin: 1.25rem;
 	padding: 1rem;
-	h4 {
+	h2 {
 		color: #fff;
 		text-align: left;
 	}
@@ -17,6 +17,14 @@
 		color: #fff;
 	}
 
+}
+.center {
+	text-align: center;
+	a {
+		text-transform: uppercase;
+		font-family: "Alt Gothic";
+		font-size: 1.5rem;
+	}
 }
 .yes-no-button {
 	text-align: left;
@@ -27,7 +35,7 @@
 	}
 	em {
 		font-family: "Alt Gothic";
-		border-right: 1px solid rgba(255,72,124,1);
+		border-right: 1px solid $cm-dark-red;
 		font-size: 2rem;
 		font-style: normal;
 		text-transform: uppercase;
@@ -74,7 +82,6 @@
 		height: 39px;
 	}
 	.button-group {
-
 		@include border-radius(0px)
 	}
 }

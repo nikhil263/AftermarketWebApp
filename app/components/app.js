@@ -14,20 +14,19 @@ export default class App extends Component {
 
 	render() {
 		return (
-				<div>
-					<Navigation />
-					<div className="grid-frame vertical">
-						<div className="grid-block vertical">
-							{this.props.children}
-						</div>
-					</div>
-					<div className="grid content">
-						Footer Sticks to the Bottom
-					</div>
+			<div className="grid-frame vertical">
+			<Navigation />
+			<div className="grid-block vertical align-center">
+				{this.props.children}
+			</div>
+			<div className="grid-block align-center footer shrink">
+				<div className="grid-content small-12">
+					<p className="">© 2015 ConMet <br />
+						<small><a href="http://www.conmet.com" target="_blank">www.ConMet.com</a></small>
+				</p>
 				</div>
-
-
-
-		)
+			</div>
+			</div>
+			)
 	}
 };

@@ -1,3 +1,22 @@
-$body-background: #000;
+$body-background: #1a1a1a;
 $button-radius: 4px;
 $primary-color: rgba(211,17,69, 1);
+
+$cm-dark-grey: #1A1A1A;
+$cm-mid-grey: #686868;
+$cm-light-grey: #F2F2F2;
+$cm-red: $primary-color;
+$cm-dark-red: darken($cm-red, 8%);
+$cm-copy-light: #fff;
+$cm-copy-dark: #000;
+$cm-table-desc: #9E9E9E;
+$cm-table-detail: $cm-mid-grey;
+$cm-error-color: #FBB03B;
+
+$cm-diagonal-background: #000 repeating-linear-gradient(
+	-45deg,
+	transparent,
+	transparent 15px,
+	rgba(255,255,255,.2) 15px,
+	rgba(255,255,255,.2) 16px
+)

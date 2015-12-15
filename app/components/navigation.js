@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
-import Logo from '../images/logo.svg';
-console.log(Logo)
+
 export default class extends Component {
   constructor(props) {
     super(props)

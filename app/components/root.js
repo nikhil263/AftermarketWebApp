@@ -8,6 +8,8 @@ import HubSelectionStart from 'components/hub-selection/step-one'
 import HubSelectionTwo from 'components/hub-selection/step-two'
 import HubSelectionThree from 'components/hub-selection/step-three'
 import HubSelectionFour from 'components/hub-selection/step-four'
+import HubSelectionDetails from 'components/hub-selection/details'
+import HubSelectionEmail from 'components/hub-selection/email'
 import About from 'components/about'
 import Contact from 'components/contact'
 
@@ -23,6 +25,8 @@ export default class Root extends Component {
           <Route path='hub-selection/step-two' component={HubSelectionTwo} />
           <Route path='hub-selection/step-three' component={HubSelectionThree} />
           <Route path='hub-selection/step-four' component={HubSelectionFour} />
+          <Route path='hub-selection/details' component={HubSelectionDetails} />
+          <Route path='hub-selection/email' component={HubSelectionEmail} />
         </Route>
       </Router>
     );

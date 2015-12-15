@@ -5,22 +5,14 @@ export default class extends Component {
 	render() {
 		return (
 			<HubSelection>
-				<div className="grid-block align-center small-12">
-					<div className="grid-content">
-							<h3>Enter your hub assembly number</h3>
-					</div>
+				<h1>Enter your hub assembly number</h1>
+				<div className="error">
+				 <p>Please enter a valid 8-digit assembly number</p>
 				</div>
-				<div className="grid-block align-center small-12">
-					<div className="grid-content">
-						<div className="error">
-						 <p>Please enter a valid 8-digit assembly number</p>
-						</div>
-						<form>
-							<input className="assembly-number" type="text" placeholder="8 digit assembly number" />
-							<button className="button large">Continue</button>
-						</form>
-					</div>
-			</div>
+				<form>
+					<input className="assembly-number" type="text" placeholder="8 digit assembly number" />
+					<button className="button large">Continue</button>
+				</form>
 			</HubSelection>
 		)
 	}
