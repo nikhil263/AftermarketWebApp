@@ -31,6 +31,7 @@ export default class Splash extends Component {
 			<div className="grid-block align-center shrink splash-footer">
 				<div id="logo"><img src={require('../images/logo.svg')} alt="ConMet"/></div>
 			</div>
+			<div className="grid-block align-center"></div>
 			</div>
 		)
 	}

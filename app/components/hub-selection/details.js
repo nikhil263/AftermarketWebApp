@@ -13,12 +13,10 @@ export default class extends Component {
 				<Meta />
 				<Description />
 				<Specs />
-				<div className="conmet-button">
-					<Link to="/hub-selection/email" className="yes-no-button">Email Results</Link>
-				</div>
-				<div className="conmet-button">
-					<Link to="/hub-selection/step-three" className="yes-no-button">Find this Product</Link>
-				</div>
+
+				<Link to="/hub-selection/email" className="general-button">Email Results</Link>
+				<Link to="/hub-selection/step-three" className="general-button">Find this Product</Link>
+				
 			</HubSelection>
 		)
 	}

@@ -11,7 +11,7 @@ export default class extends Component {
 				</div>
 				<form>
 					<input className="assembly-number" type="text" placeholder="8 digit assembly number" />
-					<button className="button large">Continue</button>
+					<button className="button general-button">Continue</button>
 				</form>
 			</HubSelection>
 		)

@@ -26,6 +26,24 @@
 		font-size: 1.5rem;
 	}
 }
+.general-button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Alt Gothic";
+	font-size: 1.7rem;
+	text-align: center;
+	@include border-radius(10px);
+	@include button-style(
+	$background: $cm-red, // Background color
+	$color: #fff, // Text color
+	$style: solid // Can be solid or hollow
+	);
+	cursor: pointer;
+
+	margin: 1.25rem;
+	padding: 1rem;
+}
 .yes-no-button {
 	text-align: left;
 	font-size: .9rem;
@@ -84,4 +102,8 @@
 	.button-group {
 		@include border-radius(0px)
 	}
+}
+.cm-button-group {
+	text-align: center;
+	margin-top: 1.5rem;
 }

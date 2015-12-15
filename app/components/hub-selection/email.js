@@ -14,7 +14,7 @@ export default class extends Component {
 				</div>
 				<form>
 					<input className="conmet-single-input" type="text" placeholder="Email Address" />
-					<button className="button large">Send</button>
+					<button className="button general-button">Send</button>
 				</form>
 			</HubSelection>
 		)

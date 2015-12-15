@@ -11,9 +11,9 @@ export default class extends Component {
 				<h2>PreSet&#174; Plus&#8482; Hubs.<br />
 				#10032998
 				</h2>
-				<div className="conmet-button">
-					<Link to="/hub-selection/details" className="yes-no-button">See Details.</Link>
-				</div>
+
+				<Link to="/hub-selection/details" className="general-button">See Details</Link>
+
 				{/*<div className="conmet-button">
 				<Link to="/hub-selection/step-three" className="yes-no-button">Find this Product</Link>
 				</div>*/}
