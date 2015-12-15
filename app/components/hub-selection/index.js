@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { Link } from 'react-router';
 import App from 'components/app'
 
 export default class extends Component {
@@ -8,19 +9,14 @@ export default class extends Component {
 				<div className="grid-block step-bar shrink">
 						<div className="grid-content noscroll">
 						<ul className="button-group">
-							<li><a href="#">Button I</a></li>
-							<li><a href="#">Button II</a></li>
-							<li><a href="#">Button III</a></li>
-							<li><a href="#">Button I</a></li>
+							<li><Link to="/hub-selection">Step 1</Link></li>
+							<li><Link to="/hub-selection/step-two">Step 2</Link></li>
+							<li><Link to="/hub-selection/step-two">Step 3</Link></li>
+							<li><Link to="/hub-selection/step-two">Step 4</Link></li>
 						</ul>
 						</div>
 					</div>
 					<div className="grid-block wrap align-center shrink wrap main-content">
-						<div className="grid-block align-center small-12">
-							<div className="grid-content medium-6">
-								<h2>Hub Selection</h2>
-							</div>
-						</div>
 						{this.props.children}
 					</div>
 			</App>

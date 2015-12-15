@@ -13,21 +13,45 @@
 		color: #fff;
 		text-align: left;
 	}
-
+	a {
+		color: #fff;
+	}
 
 }
 .yes-no-button {
-	@include grid-block(expand);
-	h4 {
-		@include grid-content(3, 0);
+	text-align: left;
+	font-size: .9rem;
+	a {
+		color: #fff !important;
+		font-size: .7rem;
+	}
+	em {
+		font-family: "Alt Gothic";
+		border-right: 1px solid rgba(255,72,124,1);
+		font-size: 2rem;
+		font-style: normal;
 		text-transform: uppercase;
-		margin-bottom:0rem;
-		font-size: 2rem
+		padding-right: 10px;
+		margin-right: 10px;
+		vertical-align: middle;
 	}
-	p {
-		@include grid-content(8);
-		margin-bottom: 0rem;
+	span {
+		white-space: nowrap;
 	}
+	// em {
+	//
+	// 	font-size: 2rem;
+	// 	font-style: normal;
+	// 	text-transform: uppercase;
+	//
+	// 	width: 30%;
+	// 	display: inline-block;
+	// }
+	// span {
+	// 	width: 70%;
+	// 	display: inline-block;
+	// 	vertical-align: top;
+	// }
 }
 .big-button {
 	h4 {

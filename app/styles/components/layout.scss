@@ -13,9 +13,23 @@
     rgba(255,255,255,.2) 16px
   )
 }
+.title-bar .center h2 {
+	color: #fff;
+}
 .grid-frame {
 	background: #222;
-	h1, h2,h3,h4,h5,h6 { 
+	h1, h2,h3,h4,h5,h6 {
+		color: #fff;
+	}
+}
+#logo {
+	img {
+		width: 150px;
+	}
+}
+
+a {
+	p,h1,h2,h3,h4,i {
 		color: #fff;
 	}
 }

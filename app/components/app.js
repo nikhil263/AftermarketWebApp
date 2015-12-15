@@ -16,14 +16,18 @@ export default class App extends Component {
 		return (
 				<div>
 					<Navigation />
-					<div className="grid-frame">
+					<div className="grid-frame vertical">
 						<div className="grid-block vertical">
 							{this.props.children}
 						</div>
 					</div>
+					<div className="grid content">
+						Footer Sticks to the Bottom
+					</div>
 				</div>
+
+
 
 		)
 	}
 };
-// TODO: FOOTER

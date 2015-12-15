@@ -2,6 +2,15 @@
 var path = require('path');
 var webpack = require('webpack');
 
+
+var svgoConfig = JSON.stringify({
+  plugins: [
+    {removeTitle: true},
+    {convertColors: {shorthex: false}},
+    {convertPathData: false}
+  ]
+});
+
 module.exports = {
 	entry: [
 			'babel-polyfill',
@@ -59,14 +68,25 @@ module.exports = {
 				test: /\.scss$/,
 				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
 			},
+
+
+			{ test: /\.eot(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/vnd.ms-fontobject' },
+      { test: /\.woff2(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/font-woff2' },
+      { test: /\.woff(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/font-woff' },
+      { test: /\.ttf(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/font-ttf' },
+			{ test: /\.svg\?(\S*)?$/, loader: 'url-loader?limit=100000&mimetype=image/svg+xml' },
 			{
-      	test: /\.(png|jpg)$/,
-      	loader: 'url?limit=25000'
-    	},
-			{
-				test: /\.(svg|eot|woff)$/,
-      	loader: 'file-loader'
-			}
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+    	}
+			//
+			// {
+			// 	test: /\.(svg)(\?[a-z0-9]+)?$/,
+      // 	loader: 'file-loader'
+			// }
 		]
 	}
 };
