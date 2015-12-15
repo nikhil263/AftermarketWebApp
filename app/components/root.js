@@ -2,18 +2,18 @@ import React, { PropTypes, Component } from 'react';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { Router, Route, Link, IndexRoute } from 'react-router';
 
-import Main from './components/container'
-import Splash from './components/splash'
-import HubSelectionStart from './components/hub-selection/step-one'
-import HubSelectionTwo from './components/hub-selection/step-two'
-import HubSelectionThree from './components/hub-selection/step-three'
-import HubSelectionFour from './components/hub-selection/step-four'
-import HubSelectionDetails from './components/hub-selection/details'
-import HubSelectionEmail from './components/hub-selection/email'
-import HubSelectionTruckType from './components/hub-selection/truck-type'
-import HubSelectionTruckMake from './components/hub-selection/truck-make'
-import About from './components/about'
-import Contact from './components/contact'
+import Main from 'components/container'
+import Splash from 'components/splash'
+import HubSelectionStart from 'components/hub-selection/step-one'
+import HubSelectionTwo from 'components/hub-selection/step-two'
+import HubSelectionThree from 'components/hub-selection/step-three'
+import HubSelectionFour from 'components/hub-selection/step-four'
+import HubSelectionDetails from 'components/hub-selection/details'
+import HubSelectionEmail from 'components/hub-selection/email'
+import HubSelectionTruckType from 'components/hub-selection/truck-type'
+import HubSelectionTruckMake from 'components/hub-selection/truck-make'
+import About from 'components/about'
+import Contact from 'components/contact'
 
 export default class Root extends Component {
   render() {
