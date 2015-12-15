@@ -16,7 +16,7 @@ export default class extends Component {
 
 				<Link to="/hub-selection/email" className="general-button">Email Results</Link>
 				<Link to="/hub-selection/step-three" className="general-button">Find this Product</Link>
-				
+
 			</HubSelection>
 		)
 	}
