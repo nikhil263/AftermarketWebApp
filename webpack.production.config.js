@@ -12,7 +12,15 @@ module.exports = {
 		publicPath: '/assets/',
 		filename: 'bundle.js'
 	},
-	plugins: [],
+	plugins: [
+		new webpack.optimize.DedupePlugin(),
+	  new webpack.optimize.UglifyJsPlugin({
+	    minimize: true,
+	    compress: {
+	      warnings: false
+	    }
+	  })
+	],
 	resolve: {
 		alias: {
 			config: path.resolve('./app/config'),
