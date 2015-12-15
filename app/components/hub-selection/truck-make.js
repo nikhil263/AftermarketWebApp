@@ -31,7 +31,7 @@ export default class extends Component {
 
 		var trucks = this.truckList.map((truck, index) => {
 			return <div className="grid-content small-6">
-			<a href="#" className="general-button" onClick={this.setTruckMake.bind(this, truck)} key={index}>{truck}</a>
+			<a href="#" className="general-button truck-make" onClick={this.setTruckMake.bind(this, truck)} key={index}>{truck}</a>
 			</div>
 		});
 
