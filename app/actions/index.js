@@ -1,48 +1,62 @@
-import fetch from 'isomorphic-fetch'
+import * as constants from '../config/constants'
+import _ from 'lodash'
 
-// export const REQUEST_POSTS = 'REQUEST_POSTS'
-// export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-// export const SELECT_REDDIT = 'SELECT_REDDIT'
-// export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
-//
-// export function selectReddit(reddit) {
-//   return {
-//     type: SELECT_REDDIT,
-//     reddit
-//   }
-// }
-//
-// export function invalidateReddit(reddit) {
-//   return {
-//     type: INVALIDATE_REDDIT,
-//     reddit
-//   }
-// }
-//
-// function requestPosts(reddit) {
-//   return {
-//     type: REQUEST_POSTS,
-//     reddit
-//   }
-// }
-//
-// function receivePosts(reddit, json) {
-//   return {
-//     type: RECEIVE_POSTS,
-//     reddit,
-//     posts: json.data.children.map(child => child.data),
-//     receivedAt: Date.now()
-//   }
-// }
-//
-// function fetchPosts(reddit) {
-//   return dispatch => {
-//     dispatch(requestPosts(reddit))
-//     return fetch(`http://www.reddit.com/r/${reddit}.json`)
-//       .then(response => response.json())
-//       .then(json => dispatch(receivePosts(reddit, json)))
-//   }
-// }
+
+export const updateFilters = (obj) => {
+  return Object.assign({type: constants.UPDATE_FILTER }, {update: obj});
+}
+
+export const resetFilters = (obj) => {
+  return updateFilters(obj)
+}
+
+export const updateLastPage = (path) => {
+  return {
+    type: constants.UPDATE_LAST_PAGE,
+    lastPath: path
+  }
+}
+
+export function fetchAssembly(assemblyNumber) {
+
+}
+
+export function requestAssembly(assemblyNumber) {
+
+}
+
+export function receiveAssembly(assemblyNumber, json) {
+
+}
+
+export function fetchParts(partNumber) {
+  return dispatch => {
+    dispatch(requestPosts(reddit))
+    return fetch(`http://www.reddit.com/r/${reddit}.json`)
+      .then(response => response.json())
+      .then(json => dispatch(receivePosts(reddit, json)))
+  }
+}
+
+export function requestParts(partNumber) {
+
+}
+
+export function recieveParts(partNumber, json) {
+
+}
+
+export function fetchDetails(assemblyNumber) {
+
+}
+
+export function requestDetails(assemblyNumber) {
+
+}
+
+export function receiveDetails(assemblyNumber, json) {
+
+}
 //
 // function shouldFetchPosts(state, reddit) {
 //   const posts = state.postsByReddit[reddit]

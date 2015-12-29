@@ -43,6 +43,7 @@ module.exports = {
       actions: path.resolve('./app/actions'),
       reducers: path.resolve('./app/views'),
 			components: path.resolve('./app/components'),
+			containers: path.resolve('./app/containers'),
       styles: path.resolve('./app/styles')
    }
 

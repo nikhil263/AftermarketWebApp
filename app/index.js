@@ -1,28 +1,17 @@
 import React, { PropTypes, Component } from 'react';
 import {render} from 'react-dom'
+import { Provider } from 'react-redux';
+import {createHistory } from 'history';
+import { syncReduxAndRouter } from 'redux-simple-router'
+import configureStore from 'config/store';
 
-import Root from 'components/root'
+const store = configureStore();
+const history = createHistory();
+
+syncReduxAndRouter(history, store)
+
+import Root from 'containers/root'
 
 import 'styles/app.scss';
 
-
-// class Contact extends Component {
-//   render() {
-//     return <div>Contact</div>;
-//   }
-// }
-//
-// class About extends Component {
-//   render() {
-//     return ( <div>About</div> );
-//   }
-// }
-// class Root extends Component {
-//   render() {
-//     return (
-// 			<h2>Whats Up</h2>
-//     );
-//   }
-// }
-
-render(<Root />, document.getElementById('app'))
+render(<Root store={store} history={history} />, document.getElementById('app'))
