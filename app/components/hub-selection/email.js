@@ -6,7 +6,7 @@ import {Link} from 'react-router';
 export default class extends Component {
 	render() {
 		return (
-			<HubSelection>
+			<div className="grid-container main-content">
 				<h1>Email Product</h1>
 				<Meta />
 				<div className="error">
@@ -16,7 +16,7 @@ export default class extends Component {
 					<input className="conmet-single-input" type="text" placeholder="Email Address" />
 					<button className="button general-button">Send</button>
 				</form>
-			</HubSelection>
+			</div>
 		)
 	}
 };

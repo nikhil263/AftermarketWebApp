@@ -1,43 +1,39 @@
 import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection';
+import * as constants from '../../config/constants';
+import { updateFilters } from 'actions';
+import { pushPath } from 'redux-simple-router'
+import { connect } from 'react-redux'
 
-import {Link} from 'react-router';
 
-export default class extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			truckType: 'heavyDuty',
-			brakeType: 'drumBrakes'
-		};
-	}
+ class TruckType extends Component {
 
-	setTruckType(val) {
-		this.setState({truckType: val});
-		console.log('here', this.state);
-	}
-
-	setBrakeType(val) {
-		this.setState({brakeType: val });
-		console.log(this.state);
+	setHub(key, val) {
+		const { hub, setHubState, dispatch } = this.props;
+		var newObj = {};
+		newObj[key] = val;
+		setHubState(newObj);
+		dispatch(pushPath('/hub-selection/truck-make'));
 	}
 
 	render() {
+		const { hub, setHubState } = this.props;
+		console.log('hub', hub);
 		return (
-			<HubSelection>
+			<div className="grid-container main-content">
 				<h1>Choose the Truck or Trailer Type</h1>
 
 				<div className="cm-button-group">
 					<h2>Truck Type</h2>
 						<ul className="button-group segmented" id="truckType">
-							<li className={this.state.truckType === 'heavyDuty' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setTruckType.bind(this, 'heavyDuty')} id="heavyDuty">Heavy-Duty</a>
+							<li className={hub.truckCompartmentIds === 1 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds', 1)} id="heavyDuty">Heavy-Duty</a>
 							</li>
-							<li className={this.state.truckType === 'mediumDuty' ? 'is-active' : ''}>
+							{/*}<li className={this.hub.truckMakeIds === 'mediumDuty' ? 'is-active' : ''}>
 								<a href="javascript: void(0);" onClick={this.setTruckType.bind(this, 'mediumDuty')} id="mediumDuty">Medium-Duty</a>
-							</li>
-							<li className={this.state.truckType === 'trailer' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setTruckType.bind(this, 'trailer')} id="trailer">Trailer</a>
+							</li>*/}
+							<li className={hub.truckCompartmentIds === 2 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds',2)} id="trailer">Trailer (no data)</a>
 							</li>
 						</ul>
 					</div>
@@ -46,18 +42,19 @@ export default class extends Component {
 					<div className="cm-button-group">
 					<h2>Brake Type</h2>
 						<ul className="button-group segmented">
-							<li className={this.state.brakeType === 'drumBrakes' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setBrakeType.bind(this, 'drumBrakes')}>Drum Brakes</a>
+							<li className={hub.brakeTypeIds  === 1 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'brakeTypeIds', 1)}>Drum Brakes</a>
 							</li>
-							<li className={this.state.brakeType === 'diskBrakes' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setBrakeType.bind(this, 'diskBrakes')}>Disk Brakes</a>
-							</li>
+							{/*<li className={hub.brakeTypeIds  === 2 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'brakeTypeIds', 2)}>Disk Brakes</a>
+							</li> */}
 						</ul>
 					</div>
 
+			</div>
 
 
-			</HubSelection>
 		)
 	}
 };
+export default connect()(TruckType);

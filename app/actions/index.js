@@ -1,64 +1,116 @@
+import * as constants from '../config/constants'
+import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
 
-// export const REQUEST_POSTS = 'REQUEST_POSTS'
-// export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-// export const SELECT_REDDIT = 'SELECT_REDDIT'
-// export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
-//
-// export function selectReddit(reddit) {
-//   return {
-//     type: SELECT_REDDIT,
-//     reddit
-//   }
-// }
-//
-// export function invalidateReddit(reddit) {
-//   return {
-//     type: INVALIDATE_REDDIT,
-//     reddit
-//   }
-// }
-//
-// function requestPosts(reddit) {
-//   return {
-//     type: REQUEST_POSTS,
-//     reddit
-//   }
-// }
-//
-// function receivePosts(reddit, json) {
-//   return {
-//     type: RECEIVE_POSTS,
-//     reddit,
-//     posts: json.data.children.map(child => child.data),
-//     receivedAt: Date.now()
-//   }
-// }
-//
-// function fetchPosts(reddit) {
-//   return dispatch => {
-//     dispatch(requestPosts(reddit))
-//     return fetch(`http://www.reddit.com/r/${reddit}.json`)
-//       .then(response => response.json())
-//       .then(json => dispatch(receivePosts(reddit, json)))
-//   }
-// }
-//
-// function shouldFetchPosts(state, reddit) {
-//   const posts = state.postsByReddit[reddit]
-//   if (!posts) {
-//     return true
-//   } else if (posts.isFetching) {
-//     return false
-//   } else {
-//     return posts.didInvalidate
-//   }
-// }
-//
-// export function fetchPostsIfNeeded(reddit) {
-//   return (dispatch, getState) => {
-//     if (shouldFetchPosts(getState(), reddit)) {
-//       return dispatch(fetchPosts(reddit))
-//     }
-//   }
-// }
+
+export const updateFilters = (obj) => {
+  return Object.assign({type: constants.UPDATE_FILTER }, {update: obj});
+}
+
+export const resetFilters = (obj) => {
+  return updateFilters(obj)
+}
+
+export const updateLastPage = (path) => {
+  return {
+    type: constants.UPDATE_LAST_PAGE,
+    lastPath: path
+  }
+}
+
+export const setSelectedTruckMake = (id) => {
+  return {
+    type: constants.SET_TRUCK_MAKE,
+    id: id
+  }
+}
+
+
+export function requestAssembly(hub) {
+  return {
+    type: constants.REQUEST_ASSEMBLIES,
+    hub: hub
+  }
+}
+
+export function receiveAssembly(hub, json, date = Date.now()) {
+  return {
+    type: constants.RECEIVE_ASSEMBLIES,
+    hub: hub,
+    assemblies: json,
+    receivedAt: date
+  }
+}
+
+export function fetchAssembly(hub) {
+  return dispatch => {
+    dispatch(requestAssembly(hub))
+    let searchArr = [
+      hub.aftermarketPartTypeIds,
+      hub.truckCompartmentIds,
+      hub.dutyRatingIds,
+      hub.brakeTypeIds,
+      hub.truckMakeIds,
+      hub.axlePositionIds,
+      hub.axleNameIds,
+      hub.grossAxleWeightRatingRangeIds,
+      hub.wheelTypeStudLengthIds
+    ]
+    let searchURL = searchArr.join('/');
+    cons
+    return fetch('https://aftermarketapi.conmetwheelends.com/filters/api/v1/filter/1/~/'+searchURL, {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': constants.SUBSCRIPTION_KEY
+      }
+    })
+    .then(response => response.json())
+    .then(json => dispatch(receiveAssembly(searchURL, json)))
+  }
+}
+
+
+export function requestHubs(partNumber) {
+  return {
+    type: constants.REQUEST_HUBS,
+    partNumber: partNumber
+  }
+}
+
+export function receiveHubs(partNumber, json) {
+  return {
+    type: constants.RECEIVE_HUBS,
+    partNumber: partNumber,
+    hubs: json
+  }
+}
+
+export function fetchHubs(partNumber) {
+  return dispatch => {
+    dispatch(requestHubs(partNumber))
+    return fetch('https://aftermarketapi.conmetwheelends.com/filters/api/v1/aftermarketpart/1/'+partNumber, {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': constants.SUBSCRIPTION_KEY
+      }
+    })
+    .then(response => response.json())
+    .then(json => dispatch(receiveHubs(partNumber, json)))
+  }
+}
+
+export function fetchDetails(assemblyNumber) {
+
+}
+
+export function requestDetails(assemblyNumber) {
+
+}
+
+export function receiveDetails(assemblyNumber, json) {
+
+}

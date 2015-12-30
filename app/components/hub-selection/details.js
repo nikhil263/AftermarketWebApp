@@ -8,16 +8,15 @@ import {Link} from 'react-router';
 export default class extends Component {
 	render() {
 		return (
-			<HubSelection>
+			<div className="grid-container main-content">
 				<h2>Product Details</h2>
 				<Meta />
-				<Description />
 				<Specs />
 
 				<Link to="/hub-selection/email" className="general-button">Email Results</Link>
 				<Link to="/hub-selection/step-three" className="general-button">Find this Product</Link>
 
-			</HubSelection>
+			</div>
 		)
 	}
 };

@@ -1,15 +1,7 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import createLogger from 'redux-logger'
-import rootReducer from './reducers'
-
-const loggerMiddleware = createLogger()
-
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware,
-  loggerMiddleware
-)(createStore)
-
-export default function configureStore(initialState) {
-  return createStoreWithMiddleware(rootReducer, initialState)
+// Use ProvidePlugin (Webpack) or loose-envify (Browserify)
+// together with Uglify to strip the dev branch in prod build.
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./store.prod');
+} else {
+  module.exports = require('./store.dev');
 }

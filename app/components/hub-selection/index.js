@@ -1,31 +1,51 @@
 import React, { PropTypes, Component } from 'react';
-import { Link } from 'react-router';
-import App from 'components/app'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
+import Step from 'components/hub-selection/step'
+import { updateFilters, fetchAssembly } from 'actions'
 
-export default class extends Component {
+class HubSelector extends Component {
+
 	render() {
+		const { dispatch, history, hub, truckMakes } = this.props;
+
+		const childProps = {
+			hub: hub,
+			truckMakes: truckMakes,
+			setHubState: filter => {
+				dispatch(updateFilters(filter))
+			},
+			searchForAssembly: () => {
+				console.log('Fetching');
+				dispatch(fetchAssembly(hub))
+			}
+		}
+
+
+		const childrenWithProps = React.Children.map(this.props.children,
+					function(child) {
+						return React.cloneElement(child, childProps);
+	        });
+
 		return (
-			<App>
-				<div className="step-bar grid-block small-12 large-12 wrap shrink ">
-
-				<div className="grid-content noscroll">
-					<ul className="button-group">
-							<li><Link to="/hub-selection">Step 1</Link></li>
-							<li><Link to="/hub-selection/step-two">Step 2</Link></li>
-							<li><Link to="/hub-selection/step-three">Step 3</Link></li>
-							<li><Link to="/hub-selection/step-four">Step 4</Link></li>
-					</ul>
-				</div>
-				</div>
-
+			<div className="grid-block vertical align-center">
+				<Step history={history}></Step>
 				<div className="grid-content">
 					<div className="grid-container main-content">
-					{this.props.children}
+					{childrenWithProps}
 					</div>
 				</div>
-
-
-			</App>
+			</div>
 		)
 	}
 };
+
+// Which props do we want to inject, given the global state?
+// Note: use https://github.com/faassen/reselect for better performance.
+function select(state) {
+  return {
+    hub: state.hubSelector,
+		truckMakes: state.truckMakes
+	}
+}
+export default connect(select)(HubSelector)
