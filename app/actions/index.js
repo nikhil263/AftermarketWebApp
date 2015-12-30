@@ -114,22 +114,3 @@ export function requestDetails(assemblyNumber) {
 export function receiveDetails(assemblyNumber, json) {
 
 }
-//
-// function shouldFetchPosts(state, reddit) {
-//   const posts = state.postsByReddit[reddit]
-//   if (!posts) {
-//     return true
-//   } else if (posts.isFetching) {
-//     return false
-//   } else {
-//     return posts.didInvalidate
-//   }
-// }
-//
-// export function fetchPostsIfNeeded(reddit) {
-//   return (dispatch, getState) => {
-//     if (shouldFetchPosts(getState(), reddit)) {
-//       return dispatch(fetchPosts(reddit))
-//     }
-//   }
-// }
