@@ -2,18 +2,22 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Step from 'components/hub-selection/step'
-import { updateFilters } from 'actions'
+import { updateFilters, fetchAssembly } from 'actions'
 
 class HubSelector extends Component {
 
 	render() {
-		const { dispatch, history, hub } = this.props;
+		const { dispatch, history, hub, truckMakes } = this.props;
 
 		const childProps = {
 			hub: hub,
+			truckMakes: truckMakes,
 			setHubState: filter => {
-				console.log('HERE', filter);
 				dispatch(updateFilters(filter))
+			},
+			searchForAssembly: () => {
+				console.log('Fetching');
+				dispatch(fetchAssembly(hub))
 			}
 		}
 
@@ -40,7 +44,8 @@ class HubSelector extends Component {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {
   return {
-    hub: state.hubSelector
-  }
+    hub: state.hubSelector,
+		truckMakes: state.truckMakes
+	}
 }
 export default connect(select)(HubSelector)

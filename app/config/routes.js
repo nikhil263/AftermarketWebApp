@@ -15,7 +15,7 @@ import HubSelectionDetails from 'components/hub-selection/details'
 import HubSelectionEmail from 'components/hub-selection/email'
 import HubSelectionTruckType from 'components/hub-selection/truck-type'
 import HubSelectionTruckMake from 'components/hub-selection/truck-make'
-import HubSelectionHubType from 'components/hub-selection/hub-type'
+import HubSelectionAxelType from 'components/hub-selection/axel-type'
 import HubSelectionGAWR from 'components/hub-selection/gawr'
 import HubSelectionWheelType from 'components/hub-selection/wheel-type'
 import About from 'components/about'
@@ -38,10 +38,10 @@ module.exports = (
 				<Route path='email' component={HubSelectionEmail} />
 				<Route path='truck-type' component={HubSelectionTruckType} />
 				<Route path='truck-make' component={HubSelectionTruckMake} />
-				<Route path='find-assembly' component={HubSelectionFindAssembly} />
-				<Route path='hub-type' component={HubSelectionHubType} />
+				<Route path='axel-type' component={HubSelectionAxelType} />
 				<Route path='gawr' component={HubSelectionGAWR} />
 				<Route path='wheel-type' component={HubSelectionWheelType} />
+				<Route path='find-assembly' component={HubSelectionFindAssembly} />
 			</Route>
 		</Route>
 		</Route>

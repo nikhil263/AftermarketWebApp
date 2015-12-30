@@ -5,7 +5,6 @@ import { updateFilters } from 'actions';
 import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 
-import {Link} from 'react-router';
 
  class TruckType extends Component {
 
@@ -27,14 +26,14 @@ import {Link} from 'react-router';
 				<div className="cm-button-group">
 					<h2>Truck Type</h2>
 						<ul className="button-group segmented" id="truckType">
-							<li className={hub.truckCompartmentIds === 'heavyDuty' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds', 'heavyDuty')} id="heavyDuty">Heavy-Duty</a>
+							<li className={hub.truckCompartmentIds === 1 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds', 1)} id="heavyDuty">Heavy-Duty</a>
 							</li>
 							{/*}<li className={this.hub.truckMakeIds === 'mediumDuty' ? 'is-active' : ''}>
 								<a href="javascript: void(0);" onClick={this.setTruckType.bind(this, 'mediumDuty')} id="mediumDuty">Medium-Duty</a>
 							</li>*/}
-							<li className={hub.truckCompartmentIds === 'trailer' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds','trailer')} id="trailer">Trailer</a>
+							<li className={hub.truckCompartmentIds === 2 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds',2)} id="trailer">Trailer (no data)</a>
 							</li>
 						</ul>
 					</div>
@@ -43,12 +42,12 @@ import {Link} from 'react-router';
 					<div className="cm-button-group">
 					<h2>Brake Type</h2>
 						<ul className="button-group segmented">
-							{/*}<li className={hub.brakeTypeIds  === 'drumBrakes' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'brakeTypeIds', 'drumBrakes')}>Drum Brakes</a>
-							</li> */}
-							<li className={hub.brakeTypeIds  === 'diskBrakes' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'brakeTypeIds', 'diskBrakes')}>Disk Brakes</a>
+							<li className={hub.brakeTypeIds  === 1 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'brakeTypeIds', 1)}>Drum Brakes</a>
 							</li>
+							{/*<li className={hub.brakeTypeIds  === 2 ? 'is-active' : ''}>
+								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'brakeTypeIds', 2)}>Disk Brakes</a>
+							</li> */}
 						</ul>
 					</div>
 

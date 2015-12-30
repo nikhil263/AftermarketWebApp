@@ -1,8 +1,15 @@
 import React, { PropTypes, Component } from 'react';
 import {Link} from 'react-router';
+import { connect } from 'react-redux'
 
 export default class extends Component {
+	componentDidMount(){
+		const { hub, searchForAssembly } = this.props
+		searchForAssembly();
+	}
+
 	render() {
+
 		return (
 			<div className="grid-container main-content">
 				<h1>Success! The following ConMet PreSet hub(s) are recommended</h1>

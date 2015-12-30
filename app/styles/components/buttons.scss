@@ -28,6 +28,9 @@
 		font-size: 1.5rem;
 	}
 }
+a.active {
+	background-color: $cm-mid-grey !important;
+}
 .general-button {
 	display: block;
 	margin-left: auto;
@@ -51,6 +54,7 @@
 	font-size: 1.3rem;
 	padding: .8rem;
 }
+
 .yes-no-button {
 	text-align: left;
 	font-size: .9rem;

@@ -1,47 +1,50 @@
 import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection';
+import { pushPath } from 'redux-simple-router'
+import { connect } from 'react-redux'
+import { setSelectedTruckMake } from 'actions'
 
-import {Link} from 'react-router';
+class TruckMake extends Component {
 
-export default class extends Component {
-	static contextTypes = {
-  	history: PropTypes.object,
-		store: PropTypes.object
-  };
+	render () {
+	 var { truck } = this.props
+	 var className = 'general-button truck-make'
+	 return (
+		 <div className="grid-content small-6">
+			 <a href="#" className={(truck.active) ? 'active ' + className :  className} onClick={this.props.onClick}>{truck.name}</a>
+		 </div>
+	 )
+ 	}
+}
 
-	constructor(props, context) {
-		super(props, context);
-	}
+class TruckMakes extends Component {
 
-	setTruckMake(val) {
-		this.state = this.setState('truckMake', val);
-		console.log(this.state);
-	}
-
-	setState(k, v){
-		var obj = {}
-		obj[k] = v;
-		return Object.assign({}, this.state, obj);
-	}
+	 setTruckMake(key, make) {
+		const { hub, setHubState, dispatch } = this.props;
+			var newObj = {};
+			make.id = 1; // TODO remove hard coded make id
+			newObj[key] = make.id;
+			setHubState(newObj);
+		dispatch(setSelectedTruckMake(make.id))
+	  dispatch(pushPath('/hub-selection/axel-type'));
+	 }
 
 	render() {
-		const { store } = this.context;
-		const state = store.getState();
+		const { hub, truckMakes } = this.props;
 
-		var trucks = state.truckTypes.map((truck, index) => {
-			return <div className="grid-content small-6">
-			<a href="#" className="general-button truck-make" onClick={this.setTruckMake.bind(this, truck)} key={index}>{truck}</a>
-			</div>
-		});
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Truck Make</h1>
 
 				<div className="grid-block">
-				{trucks}
+					{truckMakes.map((truck, index) => {
+						// console.log(truck)
+						var boundClick = this.setTruckMake.bind(this, 'truckMakeIds', truck);
+						return <TruckMake key={index} truck={truck}  onClick={boundClick}/>
+					})}
 				</div>
-
 			</div>
 		)
 	}
-};
+}
+export default connect()(TruckMakes)

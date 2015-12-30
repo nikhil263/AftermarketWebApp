@@ -1,7 +1,20 @@
 import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection'
+import {connect} from 'react-redux'
+import {fetchHubs} from 'actions'
 
-export default class extends Component {
+ class Results extends Component {
+
+	doSearch() {
+		const { dispatch } = this.props
+		dispatch(fetchHubs(11111))
+	}
+
+	componentDidMount() {
+		const { dispatch } = this.props
+		dispatch(fetchHubs(11111))
+	}
+
 	render() {
 		return (
 			<div className="grid-container main-content">
@@ -17,3 +30,5 @@ export default class extends Component {
 		)
 	}
 };
+
+export default connect()(Results)
