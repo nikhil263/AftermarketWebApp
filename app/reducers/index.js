@@ -39,8 +39,52 @@ export function hubSelector(state = constants.FILTERSTATE, action) {
 	}
 }
 
-export function hubAssemblies(state = [], action) {
-	return state;
+
+const mergeInDetails = (assemblies) => {
+	let detailsTpl = {
+		id: 0, image: 'hub-fpo.png', title: ''
+	}
+	return assemblies.map(assembly => {
+		var itemDetails = _.find(constants.AFTERMARKET_DETAILS, detail => {
+			return assembly.PartNumber === detail.id.toString();
+		})
+
+		return Object.assign(assembly, detailsTpl, itemDetails);
+	})
+
+}
+
+export function results(state = constants.RESULTS, action) {
+	switch(action.type) {
+		case constants.SHOW_PREVIOUS_RESULT:
+			var newIdx = state.selectedIdx - 1;
+			if (newIdx === 0) {
+				return state;
+			}
+			var newSelected = state.items[newIdx];
+			return Object.assign({}, state, {selectedIdx: newIdx, selected: newSelected})
+		case constants.SHOW_NEXT_RESULT:
+			var newIdx = state.selectedIdx + 1;
+			if (newIdx === (state.total - 1)) {
+				return state;
+			}
+			var newSelected = state.items[newIdx];
+			return Object.assign({}, state, { selectedIdx: newIdx, selected: newSelected})
+		case constants.SHOW_RESULT_AT_IDX:
+			return state;
+		case constants.RECEIVE_ASSEMBLIES:
+			let assemblies = mergeInDetails(action.assemblies);
+			return Object.assign({}, state, {
+					selected: assemblies[0],
+					selectedIdx: 0,
+					total: assemblies.length,
+					items: assemblies,
+					type: constants.ASSEMBLY_RESULT,
+					receivedAt: action.receivedAt
+			})
+		default:
+			return state;
+	}
 }
 
 function appState(state = constants.APPSTATE, action) {
@@ -54,7 +98,7 @@ function appState(state = constants.APPSTATE, action) {
 
 const rootReducer = combineReducers(Object.assign({}, {
   truckMakes,
-	hubAssemblies,
+	results,
   hubSelector,
 	appState
 }, {

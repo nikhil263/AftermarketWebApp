@@ -8,7 +8,10 @@ import {
   RECEIVE_ASSEMBLIES,
   INVALIDATE_ASSEMBLIES,
   RECEIVE_HUBS,
-  REQUEST_HUBS }
+  REQUEST_HUBS,
+  SHOW_PREVIOUS_RESULT,
+  SHOW_NEXT_RESULT,
+  SHOW_RESULT_AT_IDX}
   from '../../app/config/constants'
 
 
@@ -119,5 +122,29 @@ describe('actions', () => {
       receivedAt: dateNow
     }
     expect(actions.receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
+  })
+
+  it('should create an action to show previous result', () => {
+
+    const expectedAction = {
+      type: SHOW_PREVIOUS_RESULT
+    }
+    expect(actions.showPreviousResult()).to.eql(expectedAction)
+  })
+
+  it('should create an action to show next result', () => {
+
+    const expectedAction = {
+      type: SHOW_NEXT_RESULT
+    }
+    expect(actions.showNextResult()).to.eql(expectedAction)
+  })
+  it('should create an action to show next result', () => {
+    const idx = 2;
+    const expectedAction = {
+      type: SHOW_RESULT_AT_IDX,
+      idx: idx
+    }
+    expect(actions.showResultAtIndex(idx)).to.eql(expectedAction)
   })
 })

@@ -7,11 +7,12 @@ import { updateFilters, fetchAssembly } from 'actions'
 class HubSelector extends Component {
 
 	render() {
-		const { dispatch, history, hub, truckMakes } = this.props;
+		const { dispatch, history, hub, truckMakes, results } = this.props;
 
 		const childProps = {
 			hub: hub,
 			truckMakes: truckMakes,
+			results: results,
 			setHubState: filter => {
 				dispatch(updateFilters(filter))
 			},
@@ -45,7 +46,8 @@ class HubSelector extends Component {
 function select(state) {
   return {
     hub: state.hubSelector,
-		truckMakes: state.truckMakes
+		truckMakes: state.truckMakes,
+		results: state.results
 	}
 }
 export default connect(select)(HubSelector)

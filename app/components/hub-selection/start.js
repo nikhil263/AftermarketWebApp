@@ -29,12 +29,12 @@ export default class extends Component {
 						<p>Replace your hub with one of our kits</p>
 						</Link>
 					</div>
-					<div className="conmet-button big-button">
-						<Link to="/hub-selection/step-two" store={this.context.store}>
+					<div className="conmet-button big-button disabled">
+						<a href="javascript:void(0)" store={this.context.store}>
 						<h2>REPLACEMENT PARTS</h2>
 						<i className="icon-angle-right" title="Right Arrow"></i>
-						<p>Replace your hub with one of our kits</p>
-						</Link>
+						<p><strong>Coming Soon!</strong> <em>Replace your hub with one of our kits</em></p>
+						</a>
 					</div>
 
 

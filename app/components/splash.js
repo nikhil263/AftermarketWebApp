@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Router, Route, Link, IndexRoute } from 'react-router';
+import Spinner from './global/spinner'
 
 export default class Splash extends Component {
 	constructor(props) {
@@ -11,7 +12,7 @@ export default class Splash extends Component {
 		setTimeout(() => {
 			this.state.history.push('/hub-selection');
 			this.state.history.go();
-		}, 4000);
+		}, 1500);
 	}
 
 	render() {
@@ -22,9 +23,8 @@ export default class Splash extends Component {
 				<h3>Welcome to the</h3>
 				<h1 className="text-center">ConMet<br />Aftermarket</h1>
 				<h3>Service Parts & Replacement Hubs</h3>
-					<div className="conmet-button center show-for-medium">
-						<Link to="/hub-selection" className="yes-no-button">Enter</Link>
-					</div>
+				<Spinner />
+
 				</div>
 			</div>
 			<div className="grid-block align-center"></div>

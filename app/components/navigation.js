@@ -12,7 +12,7 @@ export default class extends Component {
     return (
       <div className="dark title-bar">
         <div className="left title">
-          <div id="logo"><img src={require('../images/logo.svg')} alt="ConMet"/></div>
+          <div id="logo"><Link to="/hub-selection"><img src={require('../images/logo.svg')} alt="ConMet"/></Link></div>
         </div>
         <span className="center">
           <h2>Hub Selection</h2>

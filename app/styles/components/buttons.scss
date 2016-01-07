@@ -31,7 +31,24 @@
 a.active {
 	background-color: $cm-mid-grey !important;
 }
+.disabled {
+	@include button-style(
+	$background: $cm-mid-grey, // Background color
+	$color: #fff, // Text color
+	$style: solid // Can be solid or hollow
+	);
 
+	h2 {
+		border-bottom: 2px solid $cm-dark-grey;
+	}
+	a {
+		pointer-events: none;
+   	cursor: default;
+	}
+}
+.disabled:hover {
+	background-color: $cm-mid-grey
+}
 .general-button {
 	display: block;
 	margin-left: auto;
@@ -141,4 +158,23 @@ a.active {
 	text-align: center;
 	margin-top: 1.5rem;
 
+}
+
+.result {
+	.prev-button, .next-button {
+		font-size: 2.8rem;
+		width: 10%;
+		vertical-align:middle;
+		padding-top: 40px;
+	}
+	.prev-button {
+		float: left;
+	}
+	.next-button {
+		float: left;
+	}
+	.details {
+		width: 80%;
+		float: left;
+	}
 }

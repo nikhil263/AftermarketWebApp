@@ -1,4 +1,4 @@
-export const SUBSCRIPTION_KEY='a4e3883a1745424c8682d29e2686c663';
+export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
 export const ADD_FILTER='ADD_FILTER';
 export const UPDATE_FILTER='UPDATE_FILTER';
 export const REMOVE_FILTER='REMOVE_FILTER';
@@ -10,6 +10,12 @@ export const RECEIVE_ASSEMBLIES='RECEIVE_ASSEMBLIES'
 export const INVALIDATE_ASSEMBLIES='INVALIDATE_ASSEMBLIES'
 export const RECEIVE_HUBS='RECEIVE_HUBS'
 export const REQUEST_HUBS='REQUEST_HUBS'
+export const SHOW_PREVIOUS_RESULT='SHOW_PREVIOUS_RESULT'
+export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
+export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
+export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
+export const PARTS_RESULT='PARTS_RESULT';
+
 
 
 // initial states
@@ -17,8 +23,16 @@ export const APPSTATE = {
 	isFetching: false,
 	lastPath: ''
 }
+export const RESULTS = {
+	receivedAt: '',
+	type: '',
+	selectedIdx: 0,
+	total: 0,
+	selected: {},
+	items: []
+}
 export const FILTERSTATE = {
-	filterId: '~',
+	filterId: 0,
 	partNumbers: '~',
 	aftermarketPartTypeIds: 1,
 	truckCompartmentIds: 1, //1 = Tractor
@@ -94,6 +108,147 @@ export const FILTER_VALUES = [
     'Name': 'Wheel Type / Stud Length',
     'Sort': 9
   }
+]
+
+export const AFTERMARKET_DETAILS = [
+	{
+		id: 10082200,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082201,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082202,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082203,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082204,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet FF Front',
+		image: 'IR-FF-0500.png'
+	},
+	{
+		id: 10082205,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet FF Front',
+		image: 'IR-FF-0500.png'
+	},
+	{
+		id: 10082206,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082207,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082208,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082209,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FF Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082210,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet FF Front',
+		image: 'IR-FF-0500.png'
+	},
+	{
+		id: 10082211,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet FF Front',
+		image: 'IR-FF-0500.png'
+	},
+	{
+		id: 10082212,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FL Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082213,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet FL Front',
+		image: 'AL-FF-0500.png'
+	},
+	{
+		id: 10082214,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet FL Front',
+		image: 'IR-FL-0500.png'
+	},
+	{
+		id: 10082215,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet FL Front',
+		image: 'IR-FL-0500.png'
+	},
+	{
+		id: 10082216,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet Rear Drive',
+		image: 'AL-DR-0500.png'
+	},
+	{
+		id: 10082217,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet Rear Drive',
+		image: 'AL-DR-0500.png'
+	},
+	{
+		id: 10082218,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet Rear Drive',
+		image: 'IR-DR-0500.png'
+	},
+	{
+		id: 10082219,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet Rear Drive',
+		image: 'IR-DR-0500.png'
+	},
+	{
+		id: 10082220,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet Rear Drive',
+		image: 'AL-DR-0500.png'
+	},
+	{
+		id: 10082221,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet Rear Drive',
+		image: 'AL-DR-0500.png'
+	},
+	{
+		id: 10082222,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet Rear Drive',
+		image: 'IR-DR-0500.png'
+	}
 ]
 
 // id = 1 {

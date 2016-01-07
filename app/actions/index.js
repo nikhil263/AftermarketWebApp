@@ -25,15 +25,32 @@ export const setSelectedTruckMake = (id) => {
   }
 }
 
+export const showNextResult = () => {
+  return {
+    type: constants.SHOW_NEXT_RESULT
+  }
+}
+export const showPreviousResult = () => {
+  return {
+    type: constants.SHOW_PREVIOUS_RESULT
+  }
+}
 
-export function requestAssembly(hub) {
+export const showResultAtIndex = (idx) => {
+  return {
+    type: constants.SHOW_RESULT_AT_IDX,
+    idx: idx
+  }
+}
+
+export const requestAssembly = (hub) => {
   return {
     type: constants.REQUEST_ASSEMBLIES,
     hub: hub
   }
 }
 
-export function receiveAssembly(hub, json, date = Date.now()) {
+export const receiveAssembly = (hub, json, date = Date.now()) => {
   return {
     type: constants.RECEIVE_ASSEMBLIES,
     hub: hub,
@@ -42,7 +59,7 @@ export function receiveAssembly(hub, json, date = Date.now()) {
   }
 }
 
-export function fetchAssembly(hub) {
+export const fetchAssembly = (hub) => {
   return dispatch => {
     dispatch(requestAssembly(hub))
     let searchArr = [
@@ -56,9 +73,9 @@ export function fetchAssembly(hub) {
       hub.grossAxleWeightRatingRangeIds,
       hub.wheelTypeStudLengthIds
     ]
-    let searchURL = searchArr.join('/');
-    cons
-    return fetch('https://aftermarketapi.conmetwheelends.com/filters/api/v1/filter/1/~/'+searchURL, {
+    let searchParams = searchArr.join('/');
+    let url = 'https://aftermarketapi.conmetwheelends.com/filters/api/v1/filter/0/~/'+searchParams;
+    return fetch(url, {
       method: 'get',
       headers: {
         'Accept': 'application/json',
@@ -67,19 +84,19 @@ export function fetchAssembly(hub) {
       }
     })
     .then(response => response.json())
-    .then(json => dispatch(receiveAssembly(searchURL, json)))
+    .then(json => dispatch(receiveAssembly(hub, json)))
   }
 }
 
 
-export function requestHubs(partNumber) {
+export const requestHubs = (partNumber) => {
   return {
     type: constants.REQUEST_HUBS,
     partNumber: partNumber
   }
 }
 
-export function receiveHubs(partNumber, json) {
+export const receiveHubs = (partNumber, json) => {
   return {
     type: constants.RECEIVE_HUBS,
     partNumber: partNumber,
@@ -87,7 +104,7 @@ export function receiveHubs(partNumber, json) {
   }
 }
 
-export function fetchHubs(partNumber) {
+export const fetchHubs = (partNumber) => {
   return dispatch => {
     dispatch(requestHubs(partNumber))
     return fetch('https://aftermarketapi.conmetwheelends.com/filters/api/v1/aftermarketpart/1/'+partNumber, {
@@ -103,14 +120,14 @@ export function fetchHubs(partNumber) {
   }
 }
 
-export function fetchDetails(assemblyNumber) {
+export const fetchDetails = (assemblyNumber) => {
 
 }
 
-export function requestDetails(assemblyNumber) {
+export const requestDetails = (assemblyNumber) => {
 
 }
 
-export function receiveDetails(assemblyNumber, json) {
+export const receiveDetails = (assemblyNumber, json) => {
 
 }
