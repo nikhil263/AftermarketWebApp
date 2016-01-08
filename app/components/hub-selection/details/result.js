@@ -12,7 +12,8 @@ class NextButton extends Component {
 	nextClass() {
 		let {idx, total, showButton} = this.props
 		let defaultClass = 'next-button'
-		defaultClass = (showButton) ? defaultClass + ' hidden': defaultClass;
+		console.log(showButton());
+		defaultClass = (showButton()) ? defaultClass + ' hidden': defaultClass;
 		if (idx === total-1) {
 			return defaultClass + ' disabled'
 		}
@@ -37,7 +38,7 @@ class PreviousButton extends Component {
 	previousClass() {
 		let {idx, total, showButton} = this.props
 		let defaultClass = 'prev-button'
-		defaultClass = (showButton) ? defaultClass + ' hidden': defaultClass;
+		defaultClass = (showButton()) ? defaultClass + ' hidden': defaultClass;
 		if (idx === 0) {
 			return defaultClass + ' disabled'
 		}

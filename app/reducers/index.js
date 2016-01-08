@@ -83,6 +83,7 @@ export function results(state = constants.RESULTS, action) {
 			return Object.assign({}, state, {isFetching: true})
 
 		case constants.RECEIVE_ASSEMBLIES:
+			
 			let assemblies = mergeInDetails(action.assemblies);
 			return Object.assign({}, state, {
 					selected: assemblies[0],

@@ -69,10 +69,11 @@ export const requestAssembly = (hub) => {
 }
 
 export const receiveAssembly = (hub, json, date = Date.now()) => {
+  let assemblies = json.Results
   return {
     type: constants.RECEIVE_ASSEMBLIES,
     hub: hub,
-    assemblies: json,
+    assemblies: assemblies,
     receivedAt: date
   }
 }
@@ -92,13 +93,14 @@ export const fetchAssembly = (hub) => {
       hub.wheelTypeStudLengthIds
     ]
     let searchParams = searchArr.join('/');
-    let url = 'https://aftermarketapi.conmetwheelends.com/filters/api/v1/filter/0/~/'+searchParams;
+    // old: 'https://aftermarketapi.conmetwheelends.com/filters/api/v1/filter/0/~/'
+    let url = 'https://apis.conmetwheelends.com/aftermarket/v2/filter/values/0/~/'+searchParams;
     return fetch(url, {
       method: 'get',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': constants.SUBSCRIPTION_KEY
+        'Ocp-Apim-Subscription-Key': constants.V2KEY
       }
     })
     .then(response => response.json())
