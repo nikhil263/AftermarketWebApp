@@ -130,19 +130,19 @@ describe('actions', () => {
   })
 
   it('should create an action to receieve assemblies', () => {
-    const json = [{
+    const json = {Results: [{
       OemHubassemblyNumber: '10031065',
       AftermarketPartdetails: [{
         AfterMarketPartNumber: '10082207',
         Description: 'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
         AfterMarketPartType: 'Complete Hub Assembly'
       }]
-    }]
+    }]}
     const dateNow = Date.now()
     const expectedAction = {
       type: RECEIVE_ASSEMBLIES,
       hub: hubFilter,
-      assemblies: json,
+      assemblies: json.Results,
       receivedAt: dateNow
     }
     expect(actions.receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
