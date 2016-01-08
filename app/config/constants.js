@@ -29,7 +29,8 @@ export const RESULTS = {
 	selectedIdx: 0,
 	total: 0,
 	selected: {},
-	items: []
+	items: [],
+	isFetching: false
 }
 export const FILTERSTATE = {
 	filterId: 0,

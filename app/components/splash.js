@@ -23,7 +23,7 @@ export default class Splash extends Component {
 				<h3>Welcome to the</h3>
 				<h1 className="text-center">ConMet<br />Aftermarket</h1>
 				<h3>Service Parts & Replacement Hubs</h3>
-				<Spinner />
+				<Spinner isFetching={true}/>
 
 				</div>
 			</div>

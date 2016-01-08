@@ -157,15 +157,19 @@ a.active {
 .cm-button-group {
 	text-align: center;
 	margin-top: 1.5rem;
-
 }
 
 .result {
+	@include clearfix;
 	.prev-button, .next-button {
 		font-size: 2.8rem;
 		width: 10%;
 		vertical-align:middle;
-		padding-top: 40px;
+		padding-top: 100px;
+	}
+	.disabled {
+		color: $cm-mid-grey !important;
+		background-color: transparent !important;
 	}
 	.prev-button {
 		float: left;
@@ -176,5 +180,24 @@ a.active {
 	.details {
 		width: 80%;
 		float: left;
+	}
+}
+.result-navigation {
+	margin-top: 40px;
+	text-align:center;
+	@include clearfix;
+	button {
+		@include button-style(
+		$background: $cm-dark-grey, // Background color
+		$color: #fff, // Text color
+		$style: solid // Can be solid or hollow
+		);
+		border-radius: 0px;
+		border: 1px solid #fff;
+
+		margin: 2px;
+	}
+	button.active {
+		background-color: $cm-dark-red;
 	}
 }

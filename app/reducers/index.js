@@ -58,20 +58,26 @@ export function results(state = constants.RESULTS, action) {
 	switch(action.type) {
 		case constants.SHOW_PREVIOUS_RESULT:
 			var newIdx = state.selectedIdx - 1;
-			if (newIdx === 0) {
+			if (newIdx < 0) {
 				return state;
 			}
 			var newSelected = state.items[newIdx];
 			return Object.assign({}, state, {selectedIdx: newIdx, selected: newSelected})
 		case constants.SHOW_NEXT_RESULT:
 			var newIdx = state.selectedIdx + 1;
-			if (newIdx === (state.total - 1)) {
+			if (newIdx > (state.total - 1)) {
 				return state;
 			}
 			var newSelected = state.items[newIdx];
 			return Object.assign({}, state, { selectedIdx: newIdx, selected: newSelected})
 		case constants.SHOW_RESULT_AT_IDX:
-			return state;
+			if (action.idx < 0 || action.idx >= state.items.length) {
+				return state;
+			}
+			var newSelected = state.items[action.idx];
+			return Object.assign({}, state, { selectedIdx: action.idx, selected: newSelected});
+		case constants.REQUEST_ASSEMBLIES:
+			return Object.assign({}, state, {isFetching: true})
 		case constants.RECEIVE_ASSEMBLIES:
 			let assemblies = mergeInDetails(action.assemblies);
 			return Object.assign({}, state, {
@@ -80,7 +86,8 @@ export function results(state = constants.RESULTS, action) {
 					total: assemblies.length,
 					items: assemblies,
 					type: constants.ASSEMBLY_RESULT,
-					receivedAt: action.receivedAt
+					receivedAt: action.receivedAt,
+					isFetching: false
 			})
 		default:
 			return state;
