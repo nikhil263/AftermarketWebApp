@@ -59,7 +59,7 @@
 	$color: #fff, // Text color
 	$style: solid // Can be solid or hollow
 	);
-
+	cursor: default;
 	h2 {
 		border-bottom: 2px solid scale-color($cm-dark-grey, $lightness: 30%);
 	}
@@ -191,10 +191,12 @@
 		width: 10%;
 		vertical-align:middle;
 		padding-top: 100px;
+		cursor: pointer;
 	}
 	.disabled {
 		color: $cm-mid-grey !important;
 		background-color: transparent !important;
+		cursor: default;
 	}
 	.prev-button {
 		float: left;
