@@ -2,13 +2,31 @@ import * as constants from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
 
-
 export const updateFilters = (obj) => {
   return Object.assign({type: constants.UPDATE_FILTER }, {update: obj});
 }
 
 export const resetFilters = (obj) => {
   return updateFilters(obj)
+}
+
+export const updateStep = (step) => {
+  return {
+    type: constants.UPDATE_STEP,
+    step: step
+  }
+}
+
+export const incrementStep = () => {
+  return {
+    type: constants.INCREMENT_STEP
+  }
+}
+
+export const decrementStep = () => {
+  return {
+    type: constants.DECREMENT_STEP
+  }
 }
 
 export const updateLastPage = (path) => {
@@ -88,6 +106,11 @@ export const fetchAssembly = (hub) => {
   }
 }
 
+export const invalidateAssembly = () => {
+  return {
+    type: constants.INVALIDATE_ASSEMBLIES,
+  }
+}
 
 export const requestHubs = (partNumber) => {
   return {
@@ -97,26 +120,46 @@ export const requestHubs = (partNumber) => {
 }
 
 export const receiveHubs = (partNumber, json) => {
+  // for now we need to usher the json into the following format
+  // we need a part number and ID
+  let hubs = []
+  const newFormat = json.Results.map( result => {
+    return Object.assign(result, {
+      AftermarketPartDetailSummaries: result.AftermarketPartDetailSummaries.map(detail => {
+        hubs.push(Object.assign(detail, {PartNumber: detail.AftermarketPartNumber}));
+        return Object.assign(detail, {PartNumber: detail.AftermarketPartNumber})
+      })
+    })
+  })
   return {
     type: constants.RECEIVE_HUBS,
     partNumber: partNumber,
-    hubs: json
+    hubs: hubs
   }
 }
 
 export const fetchHubs = (partNumber) => {
   return dispatch => {
     dispatch(requestHubs(partNumber))
-    return fetch('https://aftermarketapi.conmetwheelends.com/filters/api/v1/aftermarketpart/1/'+partNumber, {
+    ///1/'+partNumber
+    //https://apis.conmetwheelends.com/aftermarket/v1/summarydetails/~/10031065
+    //https://apis.conmetwheelends.com/parts/api/v2/details/~/10031065
+    return fetch('https://apis.conmetwheelends.com/aftermarket/v2/details/summary/1/10031065', {
       method: 'get',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': constants.SUBSCRIPTION_KEY
+        'Ocp-Apim-Subscription-Key': constants.V2KEY
       }
     })
     .then(response => response.json())
     .then(json => dispatch(receiveHubs(partNumber, json)))
+  }
+}
+
+export const invalidateHubs = () => {
+  return {
+    type: constants.INVALIDATE_HUBS,
   }
 }
 

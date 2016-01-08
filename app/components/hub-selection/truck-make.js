@@ -20,25 +20,25 @@ class TruckMake extends Component {
 class TruckMakes extends Component {
 
 	 setTruckMake(key, make) {
-		const { hub, setHubState, dispatch } = this.props;
+		const { hub, setHubState, dispatch, incrStep } = this.props;
 			var newObj = {};
-			make.id = 1; // TODO remove hard coded make id
 			newObj[key] = make.id;
 			setHubState(newObj);
 		dispatch(setSelectedTruckMake(make.id))
+		incrStep();
 	  dispatch(pushPath('/hub-selection/axel-type'));
 	 }
 
+
+
 	render() {
 		const { hub, truckMakes } = this.props;
-
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Truck Make</h1>
 
 				<div className="grid-block">
 					{truckMakes.map((truck, index) => {
-						// console.log(truck)
 						var boundClick = this.setTruckMake.bind(this, 'truckMakeIds', truck);
 						return <TruckMake key={index} truck={truck}  onClick={boundClick}/>
 					})}

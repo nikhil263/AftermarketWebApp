@@ -10,8 +10,9 @@ import Spinner from 'components/global/spinner'
 class NextButton extends Component {
 
 	nextClass() {
-		let {idx, total} = this.props
+		let {idx, total, showButton} = this.props
 		let defaultClass = 'next-button'
+		defaultClass = (showButton) ? defaultClass + ' hidden': defaultClass;
 		if (idx === total-1) {
 			return defaultClass + ' disabled'
 		}
@@ -22,6 +23,7 @@ class NextButton extends Component {
 
 	render() {
 		let { idx, total, handleClick } = this.props
+
 		return (
 			<div className={this.nextClass()} onClick={handleClick}>
 				<i className="icon-angle-right"></i>
@@ -33,8 +35,9 @@ class NextButton extends Component {
 class PreviousButton extends Component {
 
 	previousClass() {
-		let {idx, total} = this.props
+		let {idx, total, showButton} = this.props
 		let defaultClass = 'prev-button'
+		defaultClass = (showButton) ? defaultClass + ' hidden': defaultClass;
 		if (idx === 0) {
 			return defaultClass + ' disabled'
 		}
@@ -43,8 +46,6 @@ class PreviousButton extends Component {
 
 	render() {
 		let { idx, total, handleClick} = this.props
-
-		console.log(this.props)
 		return (
 			<div className={this.previousClass()} onClick={handleClick}>
 				<i className="icon-angle-left"></i>
@@ -67,9 +68,13 @@ class Result extends Component {
 	}
 
 	showNext(idx, total) {
-		console.log('here', idx, total)
 		const {dispatch} = this.props;
 		// dispatch(showNextResult());
+	}
+
+	renderButtons() {
+		let {idx, total} = this.props
+		return total === 1;
 	}
 
 	handleNextClick() {
@@ -82,28 +87,48 @@ class Result extends Component {
 		dispatch(showPreviousResult());
 	}
 
+	renderPreviousBtn() {
+		if (this.renderButtons()) {
 
+		}
+		return ''
+	}
 
+	renderNextBtn() {
+		if (this.renderButtons()) {
+
+		}
+		return ''
+	}
 
 	render () {
 	 let { idx, total, item, dispatch } = this.props
-	 console.log('ITEM', item);
-	 if (_.isUndefined(item) || item.id === 0) {
+
+	 if (_.isUndefined(item) || item.id === -1) {
 		 return (<Spinner />)
 	 }
 	 return (
  	 <div className="result">
 
-			<PreviousButton idx={idx} total={total} handleClick={this.handlePreviousClick.bind(this)}/>
+			<PreviousButton
+				idx={idx}
+				total={total}
+				handleClick={this.handlePreviousClick.bind(this)}
+				showButton={this.renderButtons.bind(this)}/>
 
 		 	<div className="details">
 				<img className="product-image" src={require('../../../images/'+item.image)} alt={item.title} width="200" height="200"/>
-				<h2>{item.title}<br />
+				<h2>{item.title || item.Description}<br />
 			 		#{item.PartNumber}
 			 	</h2>
 
 			</div>
-			<NextButton idx={idx} total={total} handleClick={this.handleNextClick.bind(this)}/>
+			<NextButton
+				idx={idx}
+				total={total}
+				handleClick={this.handleNextClick.bind(this)}
+				showButton={this.renderButtons.bind(this)}
+				/>
 
 		</div>
 	 )

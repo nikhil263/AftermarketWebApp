@@ -13,14 +13,18 @@ const FRONT = 2
 const TRAILER = 3
 
 class AxelType extends Component {
+
+
+
 	setAxel(axelNameId, axelPositionId) {
 		const key = 'axlePositionIds';
-		const { hub, setHubState, dispatch } = this.props;
+		const { hub, setHubState, dispatch, incrStep } = this.props;
 		var newObj = {
 			axlePositionIds: axelPositionId,
 			axleNameIds: axelNameId,
 		};
 		setHubState(newObj);
+		incrStep();
 		switch (axelNameId) {
 			case FF_FRONT, R_DRIVE: // ff front
 				dispatch(pushPath('/hub-selection/gawr'));
@@ -33,42 +37,51 @@ class AxelType extends Component {
 		}
 	}
 
+	setActive(selected) {
+		const {hub} = this.props;
+		const baseClass = 'conmet-button'
+		if (hub.axleNameIds === selected) {
+			return baseClass + ' active';
+		}
+		return baseClass;
+	}
+
 
 	render() {
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Hub Type by Bearing Part or Set Number:</h1>
 
-				<div className="conmet-button">
-					<a href="#" className="yes-no-button" onClick={this.setAxel.bind(this, FF_FRONT, FRONT)}>
+				<div className={this.setActive(FF_FRONT)}>
+					<button className="yes-no-button" onClick={this.setAxel.bind(this, FF_FRONT, FRONT)}>
 					<strong>FF FRONT AXLE</strong><br />
 						INNER BEARING - HM212011PS / HM212049 PS<br/>
 					(SET 427 OR SET 413)<br />
 				<br />
 				OUTER BEARING - 3720 PS / 3782 PS<br />
 						(SET 428 OR SET 406)
-					</a>
+					</button>
 				</div>
-				<div className="conmet-button">
-					<a href="#" className="yes-no-button" onClick={this.setAxel.bind(this, FL_FRONT, FRONT)}>
+				<div className={this.setActive(FL_FRONT)}>
+					<button className="yes-no-button" onClick={this.setAxel.bind(this, FL_FRONT, FRONT)}>
 						<strong>FL FRONT AXLE</strong><br />
 							INNER BEARING - HM212011PS / HM212049 PS<br />
 							(SET 427 OR SET 413)<br />
 					<br />
 						OUTER BEARING - 3720 PS / 3782 PS<br />
 						(SET 428 OR SET 406)
-					</a>
+					</button>
 				</div>
 
-				<div className="conmet-button">
-					<a href="#" className="yes-no-button" onClick={this.setAxel.bind(this, R_DRIVE, DRIVE)}>
+				<div className={this.setActive(R_DRIVE)}>
+					<button className="yes-no-button" onClick={this.setAxel.bind(this, R_DRIVE, DRIVE)}>
 						<strong>R DRIVE AXLE</strong><br />
 							INNER BEARING - HM212011PS / HM212049 PS<br />
 							(SET 427 OR SET 413)<br />
 					<br />
 						OUTER BEARING - 3720 PS / 3782 PS<br />
 						(SET 428 OR SET 406)
-					</a>
+					</button>
 				</div>
 			</div>
 		)

@@ -11,14 +11,20 @@ const TRAILER=2
  class TruckType extends Component {
 
 	setHub(key, val) {
-		const { hub, setHubState, dispatch } = this.props;
+		const { hub, setHubState, dispatch, incrStep} = this.props;
 		var newObj = {};
 		newObj[key] = val;
 		setHubState(newObj);
+
+	}
+
+  componentDidMount() {
+		const {setStep} = this.props;
 	}
 
   goToNext() {
-    const { hub, setHubState, dispatch } = this.props;
+    const { hub, setHubState, dispatch, incrStep } = this.props;
+    incrStep()
     if (hub.truckCompartmentIds === TRAILER) {
       setHubState({truckMakeIds: '~'})
       dispatch(pushPath('/hub-selection/wheel-type'));
@@ -50,9 +56,9 @@ const TRAILER=2
 						</ul>
 					</div>
 
-          <div className="conmet-button">
-  					<a href="#" onClick={this.goToNext.bind(this)}><strong>Continue</strong> <i className="icon-angle-right"></i></a>
-  				</div>
+
+  				<p className="center"><button className="small-conmet-button" onClick={this.goToNext.bind(this)}><strong>Continue</strong> <i className="icon-angle-right"></i></button></p>
+
 
 
 					{/* <div className="cm-button-group">

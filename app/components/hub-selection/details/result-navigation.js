@@ -12,7 +12,6 @@ class ResultButton extends Component {
 			<button className={(idx === currentIdx) ? 'active' : ''} onClick={handleClick}>{idx+1}</button>
 		)
 	}
-
 }
 
 class ResultNavigation extends Component {
@@ -29,7 +28,6 @@ class ResultNavigation extends Component {
 		for (var i=0; i < total; i++) {
 			buttons.push(<ResultButton key={i} idx={i} currentIdx={currentIdx} handleClick={this.handleClick.bind(this, i )}/>);
 		}
-		console.log(buttons);
 		return (
 			<div className="result-navigation">
 				{buttons}

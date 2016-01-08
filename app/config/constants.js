@@ -1,27 +1,32 @@
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
+export const V2KEY='558c6251756c44ce9eacda5f6ffe34ca';
 export const ADD_FILTER='ADD_FILTER';
 export const UPDATE_FILTER='UPDATE_FILTER';
 export const REMOVE_FILTER='REMOVE_FILTER';
 export const REQUEST_HUB='REQUEST_HUB';
 export const UPDATE_LAST_PAGE='UPDATE_LAST_PAGE';
+export const UPDATE_STEP='UPDATE_STEP';
+export const INCREMENT_STEP='INCREMENT_STEP';
+export const DECREMENT_STEP='DECREMENT_STEP';
 export const SET_TRUCK_MAKE='SET_TRUCK_MAKE';
 export const REQUEST_ASSEMBLIES='REQUEST_ASSEMBLIES'
 export const RECEIVE_ASSEMBLIES='RECEIVE_ASSEMBLIES'
 export const INVALIDATE_ASSEMBLIES='INVALIDATE_ASSEMBLIES'
 export const RECEIVE_HUBS='RECEIVE_HUBS'
 export const REQUEST_HUBS='REQUEST_HUBS'
+export const INVALIDATE_HUBS='INVALIDATE_HUBS'
 export const SHOW_PREVIOUS_RESULT='SHOW_PREVIOUS_RESULT'
 export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
 export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
 export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
+export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
 export const PARTS_RESULT='PARTS_RESULT';
-
-
 
 // initial states
 export const APPSTATE = {
 	isFetching: false,
-	lastPath: ''
+	lastPath: '',
+	step: 0
 }
 export const RESULTS = {
 	receivedAt: '',
@@ -50,8 +55,8 @@ export const FILTERSTATE = {
 export const TRUCKMAKES = [
 		{ id: 1, name: 'Freightliner', active: false},
 		{ id: 2, name: 'Western Star', active: false},
-		{ id: 3, name:  'Sterling', active: false},
-		{ id: 4, name:  'Kenworth', active: false},
+		{ id: 3, name: 'Sterling', active: false},
+		{ id: 4, name: 'Kenworth', active: false},
 		{ id: 5, name: 'Peterbilt', active: false},
 		{ id: 6, name: 'Volvo', active: false},
 		{ id: 7, name: 'Mack', active: false},
@@ -110,7 +115,11 @@ export const FILTER_VALUES = [
     'Sort': 9
   }
 ]
-
+export const DETAILS_TPL = {
+	id: -1,
+	image: 'hub-fpo.png',
+	title: ''
+}
 export const AFTERMARKET_DETAILS = [
 	{
 		id: 10082200,

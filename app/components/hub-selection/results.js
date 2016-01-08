@@ -7,6 +7,16 @@ import Spinner from 'components/global/spinner'
 import Result from './details/result'
 import ResultNavigation from './details/result-navigation'
 
+class NoResults extends Component {
+	render(){
+		return (
+			<div className="grid-container main-content">
+				<h1>Sorry. No results were found.</h1>
+			</div>
+		)
+	}
+}
+
 class Waiting extends Component {
 	render() {
 		return (
@@ -21,18 +31,15 @@ class Waiting extends Component {
 
 
 export default class extends Component {
-	componentDidMount(){
-		const { hub, searchForAssembly, results } = this.props
-		searchForAssembly();
-	}
-
-
 
 	render() {
 		const { results } = this.props
-		console.log(results);
+
 		if (results.isFetching) {
 			return (<Waiting />)
+		}
+		if (results.items.length === 0) {
+			return (<NoResults />)
 		}
 		return (
 			<div className="grid-container main-content">

@@ -9,6 +9,7 @@ import {
   INVALIDATE_ASSEMBLIES,
   RECEIVE_HUBS,
   REQUEST_HUBS,
+  INVALIDATE_HUBS,
   SHOW_PREVIOUS_RESULT,
   SHOW_NEXT_RESULT,
   SHOW_RESULT_AT_IDX}
@@ -96,11 +97,34 @@ describe('actions', () => {
 
   it('should create an action to receive hubs', () => {
     const partNumber = 11111
-    const json = { name: 'test', id: 1}
+    const json = {
+      'Status':'OK',
+      'Results':[
+        {
+          'OemHubassemblyNumber':'10031065',
+          'AftermarketPartDetailSummaries':[
+            {
+              'AftermarketPartNumber':'10082207',
+              'Description':'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
+              'AftermarketPartType':'Complete Hub Assembly',
+              'HubCastingMaterialType':'Aluminum',
+              'HubAssemblyType':'PreSet Hub Assembly (Aftermarket)'
+            }
+          ]
+        }
+      ]
+    }
     const expectedAction = {
       type: RECEIVE_HUBS,
       partNumber: partNumber,
-      hubs: json
+      hubs: [{
+        'PartNumber':'10082207',
+        'AftermarketPartNumber':'10082207',
+        'Description':'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
+        'AftermarketPartType':'Complete Hub Assembly',
+        'HubCastingMaterialType':'Aluminum',
+        'HubAssemblyType':'PreSet Hub Assembly (Aftermarket)'
+      }]
     }
     expect(actions.receiveHubs(partNumber, json)).to.eql(expectedAction)
   })
@@ -124,6 +148,20 @@ describe('actions', () => {
     expect(actions.receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
   })
 
+  it('should create an action to invalidate assemblies', () => {
+    const expectedAction = {
+      type: INVALIDATE_ASSEMBLIES
+    }
+    expect(actions.invalidateAssembly()).to.eql(expectedAction);
+  })
+
+  it('should create an action to invalidate hubs', () => {
+    const expectedAction = {
+      type: INVALIDATE_HUBS
+    }
+    expect(actions.invalidateHubs()).to.eql(expectedAction);
+  })
+
   it('should create an action to show previous result', () => {
 
     const expectedAction = {
@@ -139,6 +177,7 @@ describe('actions', () => {
     }
     expect(actions.showNextResult()).to.eql(expectedAction)
   })
+
   it('should create an action to show next result', () => {
     const idx = 2;
     const expectedAction = {

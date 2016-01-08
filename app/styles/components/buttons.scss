@@ -6,19 +6,44 @@
 	$style: solid // Can be solid or hollow
 	);
 	cursor: pointer;
-
+	border: none;
 	margin: 1.25rem;
-	padding: 1rem;
+
+	a, button {
+		padding: 1rem;
+		width: 100%;
+		background: none;
+		border: none;
+	}
+
 	h2 {
 		color: #fff;
 		text-align: left;
-	  border-bottom: 2px solid #ff487c;
+	  border-bottom: 2px solid scale-color($cm-red, $lightness: 30%);
 		font-size: 2.4rem;
 	}
 	a {
 		color: #fff;
 	}
 
+}
+
+.active {
+	background-color: $cm-mid-grey !important;
+}
+
+.small-conmet-button {
+	@include border-radius(10px);
+	@include button-style(
+	$background: $cm-red, // Background color
+	$color: #fff, // Text color
+	$style: solid // Can be solid or hollow
+	);
+	cursor: pointer;
+	margin: 1.25rem;
+	padding: 1rem;
+	border: none;
+	text-align: center;
 }
 .center {
 	text-align: center;
@@ -28,9 +53,6 @@
 		font-size: 1.5rem;
 	}
 }
-a.active {
-	background-color: $cm-mid-grey !important;
-}
 .disabled {
 	@include button-style(
 	$background: $cm-mid-grey, // Background color
@@ -39,7 +61,7 @@ a.active {
 	);
 
 	h2 {
-		border-bottom: 2px solid $cm-dark-grey;
+		border-bottom: 2px solid scale-color($cm-dark-grey, $lightness: 30%);
 	}
 	a {
 		pointer-events: none;
@@ -117,6 +139,9 @@ a.active {
 		margin-right: 0px;
 		padding-right: 0px;
 	}
+	p {
+		text-align: left;
+	}
 	i {
 		float: right;
 		padding-top: 0px;
@@ -181,6 +206,11 @@ a.active {
 		width: 80%;
 		float: left;
 	}
+	.hidden {
+		i {
+			display:none;
+		}
+	}
 }
 .result-navigation {
 	margin-top: 40px;
@@ -198,6 +228,6 @@ a.active {
 		margin: 2px;
 	}
 	button.active {
-		background-color: $cm-dark-red;
+		background-color: $cm-dark-red !important;
 	}
 }
