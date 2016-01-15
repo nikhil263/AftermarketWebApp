@@ -42,7 +42,7 @@ export const FILTERSTATE = {
 	filterId: 0,
 	partNumbers: '~',
 	aftermarketPartTypeIds: 1,
-	truckCompartmentIds: 0, //1 = Tractor
+	truckCompartmentIds: 1, //1 = Tractor
 	dutyRatingIds: 1, // 1 = Heavy Duty
 	brakeTypeIds: 1, // 1 = Drum Brakes,
 	truckMakeIds: 1, // 1 = Freightliner
