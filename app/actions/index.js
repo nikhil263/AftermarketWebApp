@@ -69,12 +69,17 @@ export const requestAssembly = (hub) => {
 }
 
 export const receiveAssembly = (hub, json, date = Date.now()) => {
-  let assemblies = json.Results
+
+  let assemblies = []
+  if (json.Status != 'ZERO_RESULTS') {
+    assemblies = json.Results;
+  }
   return {
     type: constants.RECEIVE_ASSEMBLIES,
     hub: hub,
     assemblies: assemblies,
-    receivedAt: date
+    receivedAt: date,
+    status: json.status
   }
 }
 
@@ -93,7 +98,6 @@ export const fetchAssembly = (hub) => {
       hub.wheelTypeStudLengthIds
     ]
     let searchParams = searchArr.join('/');
-    // old: 'https://aftermarketapi.conmetwheelends.com/filters/api/v1/filter/0/~/'
     let url = 'https://apis.conmetwheelends.com/aftermarket/v2/filter/values/0/~/'+searchParams;
     return fetch(url, {
       method: 'get',
@@ -130,18 +134,22 @@ export const receiveHubs = (partNumber, json) => {
   // for now we need to usher the json into the following format
   // we need a part number and ID
   let hubs = []
-  const newFormat = json.Results.map( result => {
-    return Object.assign(result, {
-      AftermarketPartDetailSummaries: result.AftermarketPartDetailSummaries.map(detail => {
-        hubs.push(Object.assign(detail, {PartNumber: detail.AftermarketPartNumber}));
-        return Object.assign(detail, {PartNumber: detail.AftermarketPartNumber})
+  if (json.Status != 'ZERO_RESULTS') {
+    const newFormat = json.Results.map( result => {
+      return Object.assign(result, {
+        AftermarketPartDetailSummaries: result.AftermarketPartDetailSummaries.map(detail => {
+          hubs.push(Object.assign(detail, {PartNumber: detail.AftermarketPartNumber}));
+          return Object.assign(detail, {PartNumber: detail.AftermarketPartNumber})
+        })
       })
     })
-  })
+  }
+
   return {
     type: constants.RECEIVE_HUBS,
     partNumber: partNumber,
-    hubs: hubs
+    hubs: hubs,
+    status: json.status
   }
 }
 

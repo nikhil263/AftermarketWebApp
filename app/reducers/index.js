@@ -99,6 +99,7 @@ export function results(state = constants.RESULTS, action) {
 			return Object.assign({}, state, {isFetching: true})
 
 		case constants.RECEIVE_HUBS:
+			console.log('RECEIVE_HUBS here');
 			let hubs = mergeInDetails(action.hubs);
 			return Object.assign({}, state, {
 					selected: hubs[0],
