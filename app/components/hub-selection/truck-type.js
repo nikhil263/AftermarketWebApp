@@ -15,17 +15,17 @@ const TRAILER=2
 		var newObj = {};
 		newObj[key] = val;
 		setHubState(newObj);
-
+    this.goToNext(newObj)
 	}
 
   componentDidMount() {
 		const {setStep} = this.props;
 	}
 
-  goToNext() {
+  goToNext(updatedObject) {
     const { hub, setHubState, dispatch, incrStep } = this.props;
     incrStep()
-    if (hub.truckCompartmentIds === TRAILER) {
+    if (updatedObject.truckCompartmentIds === TRAILER) {
       setHubState({truckMakeIds: '~'})
       dispatch(pushPath('/hub-selection/wheel-type'));
     } else {
@@ -34,6 +34,15 @@ const TRAILER=2
 
   }
 
+  setActive(selected) {
+		const {hub} = this.props;
+		const baseClass = 'conmet-button'
+		if (hub.truckCompartmentIds === selected) {
+			return baseClass + ' active';
+		}
+		return baseClass;
+	}
+
 	render() {
 		const { hub, setHubState } = this.props;
 
@@ -41,23 +50,21 @@ const TRAILER=2
 			<div className="grid-container main-content">
 				<h1>Are you looking for a hub for your</h1>
 
-				<div className="cm-button-group">
+			    <div className={this.setActive(HEAVY_DUTY_TRUCK)}>
+            <button className="yes-no-button" onClick={this.setHub.bind(this, 'truckCompartmentIds', HEAVY_DUTY_TRUCK)}>
+              <strong>Truck</strong>
+            </button>
+          </div>
 
-						<ul className="button-group segmented" id="truckType">
-							<li className={hub.truckCompartmentIds === 1 ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds', HEAVY_DUTY_TRUCK)} id="heavyDuty">Heavy-Duty</a>
-							</li>
-							{/*}<li className={this.hub.truckMakeIds === 'mediumDuty' ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setTruckType.bind(this, 'mediumDuty')} id="mediumDuty">Medium-Duty</a>
-							</li>*/}
-							<li className={hub.truckCompartmentIds === 2 ? 'is-active' : ''}>
-								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds',TRAILER)} id="trailer">Trailer</a>
-							</li>
-						</ul>
-					</div>
+          <div className={this.setActive(TRAILER)}>
+            <button className="yes-no-button" onClick={this.setHub.bind(this, 'truckCompartmentIds', TRAILER)}>
+              <strong>Trailer</strong>
+            </button>
+          </div>
 
 
-  				<p className="center"><button className="small-conmet-button" onClick={this.goToNext.bind(this)}><strong>Continue</strong> <i className="icon-angle-right"></i></button></p>
+
+
 
 
 
