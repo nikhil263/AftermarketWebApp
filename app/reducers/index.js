@@ -40,7 +40,7 @@ export function hubSelector(state = constants.FILTERSTATE, action) {
 }
 
 
-const mergeInDetails = (assemblies) => {
+const mergeInDetails = (assemblies = []) => {
 
 	return assemblies.map(assembly => {
 		var itemDetails = _.find(constants.AFTERMARKET_DETAILS, detail => {
@@ -83,7 +83,7 @@ export function results(state = constants.RESULTS, action) {
 			return Object.assign({}, state, {isFetching: true})
 
 		case constants.RECEIVE_ASSEMBLIES:
-			
+
 			let assemblies = mergeInDetails(action.assemblies);
 			return Object.assign({}, state, {
 					selected: assemblies[0],

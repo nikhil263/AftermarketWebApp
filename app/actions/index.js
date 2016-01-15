@@ -103,7 +103,12 @@ export const fetchAssembly = (hub) => {
         'Ocp-Apim-Subscription-Key': constants.V2KEY
       }
     })
-    .then(response => response.json())
+    .then(
+      response => response.json(),
+      err => {
+        console.log('API Error', err);
+      }
+    )
     .then(json => dispatch(receiveAssembly(hub, json)))
   }
 }
@@ -154,7 +159,11 @@ export const fetchHubs = (partNumber) => {
         'Ocp-Apim-Subscription-Key': constants.V2KEY
       }
     })
-    .then(response => response.json())
+    .then(
+      response => response.json(),
+      err => {
+        console.log('API Error', err);
+    })
     .then(json => dispatch(receiveHubs(partNumber, json)))
   }
 }
