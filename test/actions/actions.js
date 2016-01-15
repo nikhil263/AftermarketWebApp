@@ -124,13 +124,16 @@ describe('actions', () => {
         'AftermarketPartType':'Complete Hub Assembly',
         'HubCastingMaterialType':'Aluminum',
         'HubAssemblyType':'PreSet Hub Assembly (Aftermarket)'
-      }]
+      }],
+      status: json.Status
     }
     expect(actions.receiveHubs(partNumber, json)).to.eql(expectedAction)
   })
 
   it('should create an action to receieve assemblies', () => {
-    const json = {Results: [{
+    const json = {
+      Status: 'OK',
+      Results: [{
       OemHubassemblyNumber: '10031065',
       AftermarketPartdetails: [{
         AfterMarketPartNumber: '10082207',
@@ -143,7 +146,21 @@ describe('actions', () => {
       type: RECEIVE_ASSEMBLIES,
       hub: hubFilter,
       assemblies: json.Results,
-      receivedAt: dateNow
+      receivedAt: dateNow,
+      status: json.Status
+    }
+    expect(actions.receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
+  })
+
+  it('should return an empty array if there is a status of ZERO_RESULTS', () => {
+    const json = {Status: 'ZERO_RESULTS' }
+    const dateNow = Date.now()
+    const expectedAction = {
+      type: RECEIVE_ASSEMBLIES,
+      hub: hubFilter,
+      assemblies: [],
+      receivedAt: dateNow,
+      status: json.Status
     }
     expect(actions.receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
   })

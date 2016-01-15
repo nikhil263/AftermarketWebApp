@@ -79,7 +79,7 @@ export const receiveAssembly = (hub, json, date = Date.now()) => {
     hub: hub,
     assemblies: assemblies,
     receivedAt: date,
-    status: json.status
+    status: json.Status
   }
 }
 
@@ -149,7 +149,7 @@ export const receiveHubs = (partNumber, json) => {
     type: constants.RECEIVE_HUBS,
     partNumber: partNumber,
     hubs: hubs,
-    status: json.status
+    status: json.Status
   }
 }
 
