@@ -16,6 +16,10 @@ class FindAssembly extends Component {
 				<h1>Do you know your hub's  assembly number?</h1>
 
 				<iframe width="100%" height="300px" src="https://www.youtube.com/embed/q0RggNhTSiY?frameborder=0&allowfullscreen=true" ></iframe>
+					<div className="conmet-button">
+						<button onClick={this.handleClick.bind(this,'/hub-selection/find-assembly-detail')} className="yes-no-button"><em>Read</em> More about finding your assembly number.</button>
+					</div>
+
 				<div className="conmet-button">
 					<button onClick={this.handleClick.bind(this,'/hub-selection/search')} className="yes-no-button"><em>Yes</em>I know my number now.</button>
 				</div>

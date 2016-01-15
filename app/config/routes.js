@@ -9,6 +9,7 @@ import HubSelectionWrapper from 'components/hub-selection'
 import HubSelectionStart from 'components/hub-selection/start'
 import HubSelectionChoosePath from 'components/hub-selection/choose-path'
 import HubSelectionFindAssembly from 'components/hub-selection/find-assembly'
+import HubSelectionFindAssemblyDetail from 'components/hub-selection/find-assembly-detail'
 import HubSelectionSearch from 'components/hub-selection/search'
 import HubSelectionResults from 'components/hub-selection/results'
 import HubSelectionDetails from 'components/hub-selection/details'
@@ -42,6 +43,7 @@ module.exports = (
 				<Route path='gawr' component={HubSelectionGAWR} />
 				<Route path='wheel-type' component={HubSelectionWheelType} />
 				<Route path='find-assembly' component={HubSelectionFindAssembly} />
+				<Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail} />
 			</Route>
 		</Route>
 		</Route>
