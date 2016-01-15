@@ -54,7 +54,7 @@
     "open-iconic": "^1.1.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-foundation-apps": "https://github.com/synap-collaboration/react-foundation-apps/tarball/master",
+    "react-foundation-apps": "https://github.com/synap-collaboration/react-foundation-apps",
     "react-responsive-mixin": "^0.3.5",
     "react-router": "^1.0.0",
     "reactfire": "^0.5.1",

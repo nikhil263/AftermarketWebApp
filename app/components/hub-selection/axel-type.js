@@ -26,10 +26,10 @@ class AxelType extends Component {
 		setHubState(newObj);
 		incrStep();
 		switch (axelNameId) {
-			case FF_FRONT, R_DRIVE: // ff front
+			case FF_FRONT:  // ff front
 				dispatch(pushPath('/hub-selection/gawr'));
 				break;
-			case FL_FRONT:
+			case FL_FRONT, R_DRIVE:
 				return dispatch(pushPath('/hub-selection/wheel-type'));
 				break;
 			default:

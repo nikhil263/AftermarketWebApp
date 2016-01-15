@@ -21,7 +21,7 @@ import { pushPath } from 'redux-simple-router'
 				 <p>Please enter a valid 8-digit assembly number</p>
 				</div>
 
-					<input id="assemblyNumber" value="10031065" className="assembly-number" type="text" placeholder="8 digit assembly number (10031065)" />
+					<input id="assemblyNumber" value="" className="assembly-number" type="text" placeholder="8 digit assembly number (10031065)" />
 					<button className="button general-button" onClick={this.doSearch.bind(this)}>Continue</button>
 
 			</div>

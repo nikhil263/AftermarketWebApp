@@ -39,10 +39,10 @@ const TRAILER=2
 
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Truck or Trailer Type</h1>
+				<h1>Are you looking for a hub for your</h1>
 
 				<div className="cm-button-group">
-					<h2>Truck Type</h2>
+
 						<ul className="button-group segmented" id="truckType">
 							<li className={hub.truckCompartmentIds === 1 ? 'is-active' : ''}>
 								<a href="javascript: void(0);" onClick={this.setHub.bind(this, 'truckCompartmentIds', HEAVY_DUTY_TRUCK)} id="heavyDuty">Heavy-Duty</a>
