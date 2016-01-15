@@ -34,6 +34,8 @@ export function hubSelector(state = constants.FILTERSTATE, action) {
 	switch(action.type) {
 		case constants.UPDATE_FILTER:
 			return Object.assign({}, state, action.update);
+		case constants.RESET_FILTER:
+			return constants.FILTERSTATE;
 		default:
 			return state;
 	}
@@ -110,6 +112,9 @@ export function results(state = constants.RESULTS, action) {
 					receivedAt: action.receivedAt,
 					isFetching: false
 			})
+		case constants.INVALIDATE_HUBS:
+		case constants.INVALIDATE_ASSEMBLIES:
+			return Object.assign({}, state, constants.RESULTS)
 		default:
 			return state;
 	}

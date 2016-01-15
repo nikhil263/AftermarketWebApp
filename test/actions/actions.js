@@ -12,7 +12,8 @@ import {
   INVALIDATE_HUBS,
   SHOW_PREVIOUS_RESULT,
   SHOW_NEXT_RESULT,
-  SHOW_RESULT_AT_IDX}
+  SHOW_RESULT_AT_IDX,
+  RESET_FILTER}
   from '../../app/config/constants'
 
 
@@ -51,16 +52,8 @@ describe('actions', () => {
     }
 		expect(actions.updateFilters(addedObject)).to.eql(expectedAction)
   })
-	it('should create an action to reset filters', () => {
-		const addedObject = { dutyRatingIds: '~' }
-		const expectedAction = {
-      type: UPDATE_FILTER,
-      update: addedObject
-    }
-		expect(actions.resetFilters(addedObject)).to.eql(expectedAction)
-  })
 
-	it('should create an action to update last page', () => {
+  it('should create an action to update last page', () => {
 		const path = 'hub-selection/step-two'
 		const expectedAction = {
       type: UPDATE_LAST_PAGE,
@@ -202,5 +195,12 @@ describe('actions', () => {
       idx: idx
     }
     expect(actions.showResultAtIndex(idx)).to.eql(expectedAction)
+  })
+
+  it('should create and action to reset filter state and invalidate results', () => {
+    const expectedAction = {
+      type: RESET_FILTER
+    }
+    expect(actions.resetFilters()).to.eql(expectedAction)
   })
 })

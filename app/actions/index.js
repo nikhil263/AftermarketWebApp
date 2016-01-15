@@ -7,8 +7,21 @@ export const updateFilters = (obj) => {
 }
 
 export const resetFilters = (obj) => {
-  return updateFilters(obj)
+  return {
+      type: constants.RESET_FILTER
+    }
 }
+
+export const resetState = (obj) => {
+  return dispatch => {
+    dispatch(invalidateHubs())
+    dispatch(invalidateAssembly())
+    dispatch(resetFilters())
+  }
+
+}
+
+
 
 export const updateStep = (step) => {
   return {

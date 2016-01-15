@@ -1,16 +1,25 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
-
+import {connect} from 'react-redux'
+import { pushPath } from 'redux-simple-router'
+import {resetFilters} from 'actions'
 import Trigger from 'react-foundation-apps/lib/trigger';
 import Offcanvas from 'react-foundation-apps/lib/offcanvas';
 
-export default class extends Component {
+class Navigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
 
     }
   }
+
+  goHome() {
+    const {dispatch} = this.props
+    dispatch(resetFilters())
+    dispatch(pushPath('/hub-selection'))
+  }
+
   render() {
     return (
       <div>
@@ -34,7 +43,7 @@ export default class extends Component {
 
 
           <div className="left title">
-            <div id="logo"><Link to="/hub-selection"><img src={require('../images/logo.svg')} alt="ConMet"/></Link></div>
+            <div id="logo"><a href="#" onClick={this.goHome.bind(this)}><img src={require('../images/logo.svg')} alt="ConMet"/></a></div>
           </div>
           <span className="center">
             <h2>Hub Selection</h2>
@@ -50,3 +59,4 @@ export default class extends Component {
     );
   }
 };
+export default connect()(Navigation)

@@ -21,6 +21,7 @@ export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
 export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
 export const PARTS_RESULT='PARTS_RESULT';
+export const RESET_FILTER='RESET_FILTER';
 
 // initial states
 export const APPSTATE = {
