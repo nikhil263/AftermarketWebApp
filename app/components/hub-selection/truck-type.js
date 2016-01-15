@@ -27,7 +27,7 @@ const TRAILER=2
     incrStep()
     if (updatedObject.truckCompartmentIds === TRAILER) {
       setHubState({truckMakeIds: '~'})
-      dispatch(pushPath('/hub-selection/wheel-type'));
+      dispatch(pushPath('/hub-selection/axel-type'));
     } else {
       dispatch(pushPath('/hub-selection/truck-make'));
     }
