@@ -26,7 +26,7 @@ export default class extends Component {
 						</div>
 
 						<div className="grid-content no-scroll right small-6">
-							{this.showStepDisplay()}
+							{/*this.showStepDisplay()*/}
 						</div>
 					</div>
 				)
