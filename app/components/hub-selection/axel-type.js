@@ -32,6 +32,8 @@ class AxelType extends Component {
 				break;
 			case FL_FRONT:
 			case R_DRIVE:
+			case TN_TRAILER:
+			case TP_TRAILER:
 				dispatch(pushPath('/hub-selection/wheel-type'));
 				break;
 			default:
