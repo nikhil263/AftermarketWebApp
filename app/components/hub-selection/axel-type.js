@@ -22,6 +22,7 @@ class AxelType extends Component {
 		var newObj = {
 			axlePositionIds: axelPositionId,
 			axleNameIds: axelNameId,
+			grossAxleWeightRatingRangeIds: '~'
 		};
 		setHubState(newObj);
 		incrStep();
@@ -29,8 +30,9 @@ class AxelType extends Component {
 			case FF_FRONT:  // ff front
 				dispatch(pushPath('/hub-selection/gawr'));
 				break;
-			case FL_FRONT, R_DRIVE:
-				return dispatch(pushPath('/hub-selection/wheel-type'));
+			case FL_FRONT:
+			case R_DRIVE:
+				dispatch(pushPath('/hub-selection/wheel-type'));
 				break;
 			default:
 				dispatch(pushPath('/hub-selection/gawr'));

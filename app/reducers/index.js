@@ -56,6 +56,15 @@ const mergeInDetails = (assemblies = []) => {
 
 }
 
+export const materialFilter = (state = constants.MATERIAL_ALL, action) => {
+	switch(action.type) {
+		case constants.SET_MATERIAL_FILTER:
+			return action.filter
+		default:
+			return state
+	}
+}
+
 export function results(state = constants.RESULTS, action) {
 	switch(action.type) {
 		case constants.SHOW_PREVIOUS_RESULT:
@@ -139,7 +148,8 @@ const rootReducer = combineReducers(Object.assign({}, {
   truckMakes,
 	results,
   hubSelector,
-	appState
+	appState,
+	materialFilter
 }, {
   routing: routeReducer
 }))

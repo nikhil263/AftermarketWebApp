@@ -23,6 +23,9 @@ class ResultNavigation extends Component {
 
 	render() {
 		const { idx, currentIdx, total } = this.props
+		if (total < 2) {
+			return (<div></div>);
+		}
 		var buttons = [];
 		// if currentIdx <
 		for (var i=0; i < total; i++) {

@@ -27,9 +27,6 @@ class WheelType extends Component {
 		};
 		let searchHub = Object.assign(hub, newObj)
 		setHubState(newObj);
-		console.log('SEARCHING', hub, searchHub);
-		// incrStep();
-		// searchForAssembly(newHub);
 		dispatch(fetchAssembly(searchHub))
 		dispatch(pushPath('/hub-selection/results'));
 	}

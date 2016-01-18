@@ -21,7 +21,12 @@ export const resetState = (obj) => {
 
 }
 
-
+export const materialFilter = (filter) => {
+  return {
+    type: constants.SET_MATERIAL_FILTER,
+    filter: filter
+  }
+}
 
 export const updateStep = (step) => {
   return {

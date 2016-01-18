@@ -44,13 +44,21 @@
 	padding: 1rem;
 	border: none;
 	text-align: center;
+	a, button {
+		text-align:center;
+		padding: 1rem;
+		width: 100%;
+		background: none;
+		border: none;
+	}
 }
 .center {
 	text-align: center;
-	a {
+	a,button {
 		text-transform: uppercase;
 		font-family: "Alt Gothic";
 		font-size: 1.5rem;
+		text-align: center;
 	}
 }
 .disabled {
@@ -194,7 +202,7 @@
 		cursor: pointer;
 	}
 	.disabled {
-		color: $cm-mid-grey !important;
+		color: $cm-dark-grey !important;
 		background-color: transparent !important;
 		cursor: default;
 	}
@@ -208,9 +216,9 @@
 		width: 80%;
 		float: left;
 	}
-	.hidden {
+	.hide-button {
 		i {
-			display:none;
+			color: $cm-dark-grey;
 		}
 	}
 }

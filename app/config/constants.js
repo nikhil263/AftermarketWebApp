@@ -22,7 +22,7 @@ export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
 export const PARTS_RESULT='PARTS_RESULT';
 export const RESET_FILTER='RESET_FILTER';
-
+export const SET_MATERIAL_FILTER='SET_MATERIAL_FILTER';
 // initial states
 export const APPSTATE = {
 	isFetching: false,
@@ -45,13 +45,17 @@ export const FILTERSTATE = {
 	truckCompartmentIds: 1, //1 = Tractor
 	dutyRatingIds: 1, // 1 = Heavy Duty
 	brakeTypeIds: 1, // 1 = Drum Brakes,
-	truckMakeIds: 1, // 1 = Freightliner
+	truckMakeIds: '~', // 1 = Freightliner
 	axlePositionIds: '~',
 	axleNameIds: '~',
 	grossAxleWeightRatingRangeIds: '~',
 	wheelTypeStudLengthIds: '~',
 	searchText: ''
 }
+
+export const MATERIAL_ALL=0;
+export const MATERIAL_ALUMINUM=1;
+export const MATERIAL_IRON=2;
 
 export const TRUCKMAKES = [
 		{ id: 1, name: 'Freightliner', active: false},

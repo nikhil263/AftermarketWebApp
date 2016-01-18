@@ -12,12 +12,13 @@ import { updateFilters,
 class HubSelector extends Component {
 
 	render() {
-		const { dispatch, history, hub, truckMakes, results, app} = this.props;
+		const { dispatch, history, hub, truckMakes, results, app, materialFilter} = this.props;
 
 		const childProps = {
 			hub: hub,
 			truckMakes: truckMakes,
 			results: results,
+			materialFilter, materialFilter,
 			setHubState: filter => {
 				dispatch(updateFilters(filter))
 			},
@@ -65,7 +66,8 @@ function select(state) {
 		app: state.appState,
     hub: state.hubSelector,
 		truckMakes: state.truckMakes,
-		results: state.results
+		results: state.results,
+		materialFilter: state.materialFilter
 	}
 }
 export default connect(select)(HubSelector)

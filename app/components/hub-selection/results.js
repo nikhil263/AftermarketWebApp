@@ -2,6 +2,9 @@ import React, { PropTypes, Component } from 'react';
 import {Link} from 'react-router';
 import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
+import { MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
+import {materialFilter} from 'actions'
+import _ from 'lodash'
 
 
 import Result from './details/result'
@@ -28,31 +31,117 @@ class Waiting extends Component {
 	}
 }
 
+class MaterialType extends Component {
+	setFilter(filter) {
+		const {dispatch} = this.props;
+		dispatch(materialFilter(filter))
+	}
+	setActive(filter) {
+		const {materialFilter} = this.props;
+		const baseClass = 'conmet-button'
+		if (materialFilter === filter) {
+			return baseClass + ' active';
+		}
+		return baseClass;
+	}
+	render() {
+
+		return (
+			<div className="grid-container main-content">
+				<h1>Choose the Material</h1>
+
+				<div className={this.setActive(MATERIAL_IRON)}>
+					<button className="yes-no-button" onClick={this.setFilter.bind(this, MATERIAL_IRON)}><strong>Iron</strong>
+					</button>
+				</div>
+
+				<div className={this.setActive(MATERIAL_ALUMINUM)}>
+				<button className="yes-no-button" onClick={this.setFilter.bind(this, MATERIAL_ALUMINUM)}><strong>Aluminum</strong>
+				</button>
+				</div>
+			</div>
+		)
+
+	}
+}
+class ResetMaterial extends Component {
+	resetMaterialFilter() {
+		const {dispatch} = this.props
+		dispatch(materialFilter(MATERIAL_ALL))
+	}
+	render() {
+		const {total} = this.props;
+
+		if (total < 2) {
+			return (<div></div>)
+		}
+		return (
+			<div className="small-conmet-button center">
+			<button className="yes-no-button" onClick={this.resetMaterialFilter.bind(this)}>
+				<strong>Change Material</strong>
+			</button>
+			</div>
+		)
+	}
+}
 
 
-export default class extends Component {
+const getFilteredResults = (results,filter) => {
+	let filtered = {
+		items: [],
+		total: 0
+	}
+	switch (filter) {
+		case MATERIAL_ALL:
+			return results;
+		case MATERIAL_ALUMINUM:
+			filtered.items = _.filter(results.items, r => r.HubCastingMaterialType === 'Aluminum')
+			filtered.total = filtered.items.length;
+			return Object.assign({},results,filtered);
+		case MATERIAL_IRON:
+			filtered.items = _.filter(results.items, r => {
+				console.log(r)
+				return r.HubCastingMaterialType === 'Iron'
+			})
+			filtered.total = filtered.items.length;
+
+			return Object.assign({},results,filtered);
+	}
+}
+
+class Results extends Component {
+
 
 	render() {
-		const { results } = this.props
+		const { results, materialFilter, dispatch } = this.props
 
-		if (results.isFetching) {
+		const filteredResults = getFilteredResults(results, materialFilter)
+		console.log(filteredResults, results)
+		if (filteredResults.isFetching) {
 			return (<Waiting />)
 		}
-		if (results.items.length === 0) {
+		if (filteredResults.items.length === 0) {
 			return (<NoResults />)
 		}
+		if (materialFilter === MATERIAL_ALL && filteredResults.items.length > 1) {
+			return <MaterialType dispatch={dispatch}/>
+		}
+
+
+
 		return (
 			<div className="grid-container main-content">
 				<h1>Success! The following ConMet PreSet hub(s) are recommended</h1>
 
 
-					{results.items.map((item, index) => {
-						if (index === results.selectedIdx) {
-							return <Result idx={results.selectedIdx} total={results.total} key={index} item={item} />
+					{filteredResults.items.map((item, index) => {
+						if (index === filteredResults.selectedIdx) {
+							return <Result idx={filteredResults.selectedIdx} total={filteredResults.total} key={index} item={item} />
 						}
 					})}
 
-					<ResultNavigation total={results.total} currentIdx={results.selectedIdx}/>
+					<ResultNavigation total={filteredResults.total} currentIdx={filteredResults.selectedIdx}/>
+					<ResetMaterial dispatch={dispatch} total={results.total}/>
 
 				{/*
 
@@ -66,3 +155,4 @@ export default class extends Component {
 		)
 	}
 };
+export default connect()(Results)
