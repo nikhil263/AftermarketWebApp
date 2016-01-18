@@ -37,9 +37,9 @@ const TRAILER=2
   setActive(selected) {
 		const {hub} = this.props;
 		const baseClass = 'conmet-button'
-		if (hub.truckCompartmentIds === selected) {
-			return baseClass + ' ';
-		}
+		// if (hub.truckCompartmentIds === selected) {
+		// 	return baseClass + ' active';
+		// }
 		return baseClass;
 	}
 

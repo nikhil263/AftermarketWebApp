@@ -36,7 +36,6 @@ class HubSelector extends Component {
 				} else {
 					dispatch(fetchAssembly(hub))
 				}
-
 			}
 		}
 
