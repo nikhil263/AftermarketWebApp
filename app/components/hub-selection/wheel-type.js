@@ -3,6 +3,7 @@ import HubSelection from 'components/hub-selection'
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router'
+import {fetchAssembly} from 'actions'
 
 const STEEL = 1
 const ALUMINUM = 2
@@ -21,13 +22,16 @@ class WheelType extends Component {
 
 	setWheelType(wheelTypeId) {
 		const { hub, setHubState, dispatch, searchForAssembly, incrStep } = this.props;
-		var newObj = {
+		let newObj = {
 			wheelTypeStudLengthIds: wheelTypeId
 		};
+		let searchHub = Object.assign(hub, newObj)
 		setHubState(newObj);
+		console.log('SEARCHING', hub, searchHub);
+		// incrStep();
+		// searchForAssembly(newHub);
+		dispatch(fetchAssembly(searchHub))
 		dispatch(pushPath('/hub-selection/results'));
-		incrStep();
-		searchForAssembly();
 	}
 
 	render() {
