@@ -68,52 +68,38 @@ class AxelType extends Component {
 				<div className={this.setActive(FF_FRONT)}>
 					<button className="yes-no-button" onClick={this.setAxel.bind(this, FF_FRONT, FRONT)}>
 					<strong>FF FRONT AXLE</strong><br />
-						INNER BEARING - HM212011PS / HM212049 PS<br/>
-					(SET 427 OR SET 413)<br />
-				<br />
-				OUTER BEARING - 3720 PS / 3782 PS<br />
-						(SET 428 OR SET 406)
+						Inner Bearing - HM212011PS / HM212049 PS (Set 427 or 413)<br />
+						Outer Bearing - 3720 PS / 3782 PS (Set 428 or 406)
 					</button>
 				</div>
 				<div className={this.setActive(FL_FRONT)}>
 					<button className="yes-no-button" onClick={this.setAxel.bind(this, FL_FRONT, FRONT)}>
 						<strong>FL FRONT AXLE</strong><br />
-							INNER BEARING - HM212011PS / HM212049 PS<br />
-							(SET 427 OR SET 413)<br />
-					<br />
-						OUTER BEARING - 3720 PS / 3782 PS<br />
-						(SET 428 OR SET 406)
+							Inner Bearing - 6420 PS / 6461A PS (set 423)<br />
+							Outer Bearing - 552A PS / 555S PS (set 424)
 					</button>
 				</div>
 
 				<div className={this.setActive(R_DRIVE)}>
 					<button className="yes-no-button" onClick={this.setAxel.bind(this, R_DRIVE, DRIVE)}>
 						<strong>R DRIVE AXLE</strong><br />
-							INNER BEARING - HM212011PS / HM212049 PS<br />
-							(SET 427 OR SET 413)<br />
-					<br />
-						OUTER BEARING - 3720 PS / 3782 PS<br />
-						(SET 428 OR SET 406)
+							Inner Bearing - 592A PS / 594A PS (set 403)<br />
+							Outer Bearing - 572 PS / 580 PS (set 401)
 					</button>
 				</div>
 
 				<div className={this.setActive(TN_TRAILER)}>
 					<button className="yes-no-button" onClick={this.setAxel.bind(this, TN_TRAILER, TRAILER)}>
 						<strong>TN TRAILER AXLE</strong><br />
-
-						INNER BEARING
-						CUP HM218210 - CONE HM218248 SET 414<br />
-					<br />
-						OUTER BEARING
-						CUP HM212011 - CONE HM212049 SET 413
+						Inner Bearing Cup HM218210 - Cone HM218248 (set 414)<br />
+						Outer Bearing Cup HM212011 - Cone HM212049 (set 413)
 					</button>
 				</div>
 
 				<div className={this.setActive(TP_TRAILER)}>
 					<button className="yes-no-button" onClick={this.setAxel.bind(this, TP_TRAILER, TRAILER)}>
 						<strong>TP TRAILER AXLE</strong><br />
-						INNER & OUTER BEARINGS
-						CUP HM518410 - CONE HM518445 SET 415
+						Inner & Outer Bearings Cup HM518410 - Cone HM518445 (set 415)
 					</button>
 				</div>
 

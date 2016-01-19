@@ -30,13 +30,13 @@ class GAWR extends Component {
 
 				<div className={this.setActive(1)}>
 					<button className="yes-no-button" onClick={this.setGAWR.bind(this, 1)}><strong>12,000 - 13,200 lbs.</strong><br />
-						(540 - 600 kg)
+						(5,440 - 6,000 kg)
 					</button>
 				</div>
 
 				<div className={this.setActive(2)}>
-					<button className="yes-no-button" onClick={this.setGAWR.bind(this, 2)}><strong>More than 13,200 lbs.</strong><br />
-						(More than 600 kg)
+					<button className="yes-no-button" onClick={this.setGAWR.bind(this, 2)}><strong>13,200 - 14,700 lbs.</strong><br />
+						(6,000 - 6,668 kg)
 					</button>
 				</div>
 

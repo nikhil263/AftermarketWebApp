@@ -1,6 +1,7 @@
 /* global module */
 var path = require('path');
 var webpack = require('webpack');
+var WebpackStrip = require('strip-loader');
 
 module.exports = {
 	entry: [
@@ -13,6 +14,9 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+    	ENVIRONMENT: JSON.stringify(process.env.NODE_ENV)
+		}),
 		new webpack.optimize.DedupePlugin(),
 	  new webpack.optimize.UglifyJsPlugin({
 	    minimize: true,
@@ -45,6 +49,8 @@ module.exports = {
 				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
 			},
 
+
+      { test: /\.js$/, loader: 'strip-loader?strip[]=debug,strip[]=console.log' },
 
 			{ test: /\.eot(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/vnd.ms-fontobject' },
       { test: /\.woff2(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/font-woff2' },

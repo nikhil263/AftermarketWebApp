@@ -13,7 +13,7 @@ class FindAssembly extends Component {
 	render() {
 		return (
 			<div className="grid-container main-content">
-				<h1>Do you know your hub's  assembly number?</h1>
+				<h1>Do you know your hub assembly number?</h1>
 
 				<iframe width="100%" height="300px" src="https://www.youtube.com/embed/q0RggNhTSiY?frameborder=0&allowfullscreen=true" ></iframe>
 					<div className="conmet-button">

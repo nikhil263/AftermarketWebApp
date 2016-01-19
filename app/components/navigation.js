@@ -46,7 +46,7 @@ class Navigation extends Component {
             <div id="logo"><a href="#" onClick={this.goHome.bind(this)}><img src={require('../images/logo.svg')} alt="ConMet"/></a></div>
           </div>
           <span className="center">
-            <h2>Hub Selection</h2>
+            <h2>Wheel End Aftermarket</h2>
           </span>
           <span className="right">
             <Trigger open="top-offcanvas">

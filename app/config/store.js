@@ -1,7 +1,7 @@
 // Use ProvidePlugin (Webpack) or loose-envify (Browserify)
 // together with Uglify to strip the dev branch in prod build.
-console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === 'production') {
+console.log(ENVIRONMENT);
+if (ENVIRONMENT === 'production') {
   module.exports = require('./store.prod');
 } else {
   module.exports = require('./store.dev');

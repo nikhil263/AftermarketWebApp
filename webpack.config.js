@@ -2,6 +2,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
+
 module.exports = {
 	entry: [
 			'babel-polyfill',
@@ -35,6 +36,9 @@ module.exports = {
     port: process.env.PORT
   },
   plugins: [
+		new webpack.DefinePlugin({
+    	ENVIRONMENT: JSON.stringify(process.env.NODE_ENV)
+		})
     // new webpack.HotModuleReplacementPlugin()
 	],
 	resolve: {
@@ -60,7 +64,6 @@ module.exports = {
 				test: /\.scss$/,
 				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
 			},
-
 
 			{ test: /\.eot(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/vnd.ms-fontobject' },
       { test: /\.woff2(\?\S*)?$/, loader: 'url-loader?limit=100000&mimetype=application/font-woff2' },

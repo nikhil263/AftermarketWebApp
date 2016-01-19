@@ -48,7 +48,7 @@ class MaterialType extends Component {
 
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Material</h1>
+				<h1>Choose the Hub Material</h1>
 
 				<div className={this.setActive(MATERIAL_IRON)}>
 					<button className="yes-no-button" onClick={this.setFilter.bind(this, MATERIAL_IRON)}><strong>Iron</strong>
@@ -65,20 +65,26 @@ class MaterialType extends Component {
 	}
 }
 class ResetMaterial extends Component {
-	resetMaterialFilter() {
+	resetMaterialFilter(filter) {
 		const {dispatch} = this.props
-		dispatch(materialFilter(MATERIAL_ALL))
+		dispatch(materialFilter(filter))
 	}
-	render() {
-		const {total} = this.props;
 
+	render() {
+		const {total, materialFilter} = this.props;
+		let label = 'View Iron Hubs'
+		let filter = MATERIAL_IRON
+		if (materialFilter === MATERIAL_IRON) {
+			label = 'View Aluminum Hubs'
+			filter = MATERIAL_ALUMINUM
+		}
 		if (total < 2) {
 			return (<div></div>)
 		}
 		return (
-			<div className="small-conmet-button center">
-			<button className="yes-no-button" onClick={this.resetMaterialFilter.bind(this)}>
-				<strong>Change Material</strong>
+			<div className="conmet-button center">
+			<button className="yes-no-button" onClick={this.resetMaterialFilter.bind(this, filter)}>
+				<strong>{label}</strong>
 			</button>
 			</div>
 		)
@@ -100,7 +106,6 @@ const getFilteredResults = (results,filter) => {
 			return Object.assign({},results,filtered);
 		case MATERIAL_IRON:
 			filtered.items = _.filter(results.items, r => {
-				console.log(r)
 				return r.HubCastingMaterialType === 'Iron'
 			})
 			filtered.total = filtered.items.length;
@@ -116,7 +121,7 @@ class Results extends Component {
 		const { results, materialFilter, dispatch } = this.props
 
 		const filteredResults = getFilteredResults(results, materialFilter)
-		console.log(filteredResults, results)
+
 		if (filteredResults.isFetching) {
 			return (<Waiting />)
 		}
@@ -141,7 +146,7 @@ class Results extends Component {
 					})}
 
 					<ResultNavigation total={filteredResults.total} currentIdx={filteredResults.selectedIdx}/>
-					<ResetMaterial dispatch={dispatch} total={results.total}/>
+					<ResetMaterial dispatch={dispatch} total={results.total} materialFilter={materialFilter}/>
 
 				{/*
 
