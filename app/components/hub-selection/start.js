@@ -25,13 +25,12 @@ class Start extends Component {
 
 			<div className="grid-container main-content">
 				<h1>What are you looking for?</h1>
-				<h3>Replace your hub with one of our OEM approved hub assemblies</h3>
 
 				<div className="conmet-button big-button">
 					<button onClick={this.handleClick.bind(this,'/hub-selection/choose-path')} store={this.context.store}>
 					<h2>REPLACEMENT HUB</h2>
 					<i className="icon-angle-right"></i>
-					<p>Replace your hub with one of our kits</p>
+					<p>Replace your hub with one of our OEM approved hub assemblies</p>
 					</button>
 				</div>
 				<div className="conmet-button big-button disabled">

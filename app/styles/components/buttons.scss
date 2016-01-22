@@ -7,7 +7,7 @@
 	);
 	cursor: pointer;
 	border: none;
-	margin: 1.25rem;
+	margin: 1.25rem 0;
 
 	a, button {
 		padding: 1rem;
@@ -92,13 +92,12 @@
 	);
 	cursor: pointer;
 
-	margin: 1.25rem;
-	padding: 1rem;
+	margin: 1.25rem 0;
+	padding: 1rem .8rem;
 }
 
 .truck-make {
 	font-size: 1.3rem;
-	padding: .8rem;
 }
 
 .yes-no-button {
@@ -119,7 +118,7 @@
 		margin-right: 10px;
 		vertical-align: middle;
 	}
-	span {
+	span.yes {
 		display: inline-block;
     width: 60%;
     vertical-align: middle;
