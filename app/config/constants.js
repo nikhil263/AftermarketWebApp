@@ -263,7 +263,56 @@ export const AFTERMARKET_DETAILS = [
 		material: 'Ductile Iron',
 		title: 'Iron PreSet Rear Drive',
 		image: 'IR-DR-0500.png'
+	},
+	{
+		id: 10082224,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet TN Trailer',
+		image: 'AL-TN-0500.png'
+	},
+	{
+		id: 10082226,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet TN Trailer',
+		image: 'IR-TN-0500.png'
+	},
+	{
+		id: 10082249,
+		material: 'Aluminum',
+		title: 'Aluminum Conventional TN Trailer',
+		image: 'AL-TN-0500.png'
+	},
+	{
+		id: 10082251,
+		material: 'Ductile Iron',
+		title: 'Iron Conventional TN Trailer',
+		image: 'IR-TN-0500.png'
+	},
+	{
+		id: 10082228,
+		material: 'Aluminum',
+		title: 'Aluminum PreSet TP Trailer',
+		image: 'AL-TP-0500.png'
+	},
+	{
+		id: 10082253,
+		material: 'Aluminum',
+		title: 'Aluminum Conventional TP Trailer',
+		image: 'AL-TP-0500.png'
+	},
+	{
+		id: 10082230,
+		material: 'Ductile Iron',
+		title: 'Iron PreSet TP Trailer',
+		image: 'IR-TP-0500.png'
+	},
+	{
+		id: 10082255,
+		material: 'Ductile Iron',
+		title: 'Iron Conventional TP Trailer',
+		image: 'IR-TP-0500.png'
 	}
+
 ]
 
 // id = 1 {
