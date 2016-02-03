@@ -155,7 +155,7 @@ export const receiveHubs = (partNumber, json) => {
   if (json.Status != 'ZERO_RESULTS') {
     const newFormat = json.Results.map( result => {
       return Object.assign(result, {
-        AftermarketPartDetailSummaries: result.AftermarketPartDetailSummaries.map(detail => {
+        AftermarketPartDetailSummaries: result.AftermarketPartdetails.map(detail => {
           hubs.push(Object.assign(detail, {PartNumber: detail.AftermarketPartNumber}));
           return Object.assign(detail, {PartNumber: detail.AftermarketPartNumber})
         })
