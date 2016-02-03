@@ -95,7 +95,7 @@ describe('actions', () => {
       'Results':[
         {
           'OemHubassemblyNumber':'10031065',
-          'AftermarketPartDetailSummaries':[
+          'AftermarketPartdetails':[
             {
               'AftermarketPartNumber':'10082207',
               'Description':'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
