@@ -59,7 +59,7 @@ const TRAILER=2
           </div>
           <div className="conmet-button disabled">
   					<button className="yes-no-button">
-              <strong>Trucks with Drum Brakes</strong>
+              <strong>Trucks with Disk Brakes</strong>
   					</button>
   				</div>
 
