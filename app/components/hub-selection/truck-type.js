@@ -54,12 +54,12 @@ const TRAILER=2
           <div className="grid-content small-6">
           <div className={this.setActive(HEAVY_DUTY_TRUCK)}>
             <button className="yes-no-button" onClick={this.setHub.bind(this, 'truckCompartmentIds', HEAVY_DUTY_TRUCK)}>
-              <strong>Trucks with Drum Brakes</strong>
+              <strong>Heavy-Duty Truck with Drum Brakes</strong>
             </button>
           </div>
           <div className="conmet-button disabled">
   					<button className="yes-no-button">
-              <strong>Trucks with Disk Brakes</strong>
+              <strong>Heavy-Duty Truck with Disc Brakes</strong>
   					</button>
   				</div>
 
@@ -67,13 +67,13 @@ const TRAILER=2
           <div className="grid-content small-6">
             <div className={this.setActive(TRAILER)}>
               <button className="yes-no-button" onClick={this.setHub.bind(this, 'truckCompartmentIds', TRAILER)}>
-                <strong>Trailers with Drum Brakes</strong>
+                <strong>Trailer with Drum Brakes</strong>
               </button>
             </div>
 
           <div className="conmet-button disabled">
   					<button className="yes-no-button">
-              <strong>Trailers with Disc Brakes</strong>
+              <strong>Trailer with Disc Brakes</strong>
   					</button>
   				</div>
         </div>
