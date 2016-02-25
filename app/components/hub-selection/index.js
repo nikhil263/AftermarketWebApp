@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Step from 'components/hub-selection/step'
+import {fetchCategories} from 'actions/categories'
 import { updateFilters,
 				fetchAssembly,
 				fetchHubs,
@@ -13,12 +14,16 @@ class HubSelector extends Component {
 
 	render() {
 		const { dispatch, history, hub, truckMakes, results, app, materialFilter} = this.props;
-
+		
 		const childProps = {
+			app: app,
 			hub: hub,
 			truckMakes: truckMakes,
 			results: results,
 			materialFilter, materialFilter,
+			updateAndProceed: (id, value) => {
+				dispatch(updateFilterAndNext(id, value))
+			},
 			setHubState: filter => {
 				dispatch(updateFilters(filter))
 			},

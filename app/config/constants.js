@@ -1,3 +1,4 @@
+export const API = 'https://apis.conmetwheelends.com/aftermarket3/v3';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
 export const V2KEY='558c6251756c44ce9eacda5f6ffe34ca';
 export const ADD_FILTER='ADD_FILTER';
@@ -22,13 +23,53 @@ export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
 export const PARTS_RESULT='PARTS_RESULT';
 export const RESET_FILTER='RESET_FILTER';
+export const RECIEVE_FILTERS='RECIEVE_FILTERS'
 export const SET_MATERIAL_FILTER='SET_MATERIAL_FILTER';
+export const INVALIDATE_FILTERS='INVALIDATE_FILTERS';
+export const REQUEST_FILTERS='REQUEST_FILTERS';
+export const UPDATE_FILTER_ID='UPDATE_FILTER_ID';
+export const RECIEVE_CATEGORIES='RECIEVE_CATEGORIES';
+export const REQUEST_CATEGORIES='REQUEST_CATEGORIES';
+export const INVALIDATE_CATEGORIES='INVALIDATE_CATEGORIES';
+export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
+
+export const ZERO_RESULTS = 'ZERO_RESULTS';
+export const SUCCESS = 'SUCCESS';
+export const OK = 'OK';
 // initial states
 export const APPSTATE = {
 	isFetching: false,
+	needsFetch: true,
 	lastPath: '',
-	step: 0
+	step: 0,
+	categories: [],
+	filterId: 2,
+	currentIndex: 2,
+	filterResults: [],
+	filterState: [
+		'~', 	//aftermarketHubAssemblyNumbers
+		'~', 	//truckCompartmentIds
+		'~', 	//truckMakeIds
+		'~', 	//axleNameIds
+		'~', 	//grossAxleWeightRatingRangeIds
+		'~', 	//axleStudThreadIds
+		'~', 	//wheelMaterialStudLengthClassIds
+		'~', 	//hubCastingMaterialTypeIds
+		'~'		//hubAssemblyTypeIds
+	]
 }
+
+export const STEP_NAVIGATION = [
+	{ id: 2, path: '/hub-selection/truck-type'},
+	{ id: 5, path: '/hub-selection/truck-make'},
+	{ id: 7, path: '/hub-selection/axel-type'},
+	{ id: 8, path: '/hub-selection/gawr'},
+	{ id: 12, path: '/hub-selection/axel-stud-thread'},
+	{ id: 9, path: '/hub-selection/wheel-type'},
+	{ id: 10, path: '/hub-selection/hub-material'},
+	{ id: 11, path: '/hub-selection/hub-material'}
+]
+
 export const RESULTS = {
 	receivedAt: '',
 	type: '',
@@ -38,6 +79,7 @@ export const RESULTS = {
 	items: [],
 	isFetching: false
 }
+
 export const FILTERSTATE = {
 	filterId: 0,
 	partNumbers: '~',
@@ -314,137 +356,3 @@ export const AFTERMARKET_DETAILS = [
 	}
 
 ]
-
-// id = 1 {
-//     "Id": 1,
-//     "Name": "Complete Hub Assembly"
-//   },
-// {
-//     "Id": 7,
-//     "Name": "PreSet Hub Assembly Complete Rebuild Kit (D Flat)"
-//   },
-//   {
-//     "Id": 3,
-//     "Name": "PreSet Hub Assembly Complete Rebuild Kit (Keyway)"
-//   },
-//   {
-//     "Id": 2,
-//     "Name": "PreSet/PresSet+ Rebuild Kit"
-//   }
-
-// id 2 = [
-//   {
-//     "Id": 0,
-//     "Name": "—"
-//   },
-//   {
-//     "Id": 1,
-//     "Name": "Tractor"
-//   }
-// ]
-
-// id 3 =[
-//   {
-//     "Id": 0,
-//     "Name": "—"
-//   },
-//   {
-//     "Id": 1,
-//     "Name": "Heavy Duty"
-//   }
-// ]
-
-// id 4 = [
-//   {
-//     "Id": 0,
-//     "Name": "—"
-//   },
-//   {
-//     "Id": 1,
-//     "Name": "Drum Brakes"
-//   }
-// ]
-
-// id 5 = [
-//   {
-//     "Id": 0,
-//     "Name": "—"
-//   },
-//   {
-//     "Id": 1,
-//     "Name": "Freightliner"
-//   }
-// ]
-
-// id 6 = [
-//   {
-//     "Id": 0,
-//     "Name": "—"
-//   },
-//   {
-//     "Id": 1,
-//     "Name": "Drive"
-//   },
-//   {
-//     "Id": 2,
-//     "Name": "Front"
-//   },
-//   {
-//     "Id": 3,
-//     "Name": "Trailer"
-//   }
-// ]
-
-// id 7 = [
-//   {
-//     "Id": 0,
-//     "Name": "—"
-//   },
-//   {
-//     "Id": 1,
-//     "Name": "FF Front"
-//   },
-//   {
-//     "Id": 2,
-//     "Name": "FL Front"
-//   },
-//   {
-//     "Id": 3,
-//     "Name": "R Drive"
-//   },
-//   {
-//     "Id": 4,
-//     "Name": "TN Trailer"
-//   },
-//   {
-//     "Id": 5,
-//     "Name": "TP Trailer"
-//   }
-// ]
-
-// id = 8 {
-//     "Id": 1,
-//     "GawrRange": "12,000 — 13,200 pounds\n(540 — 600 kg)"
-//   },
-//   {
-//     "Id": 2,
-//     "GawrRange": "More than 13,200 pounds\r\n(More than 600 kg)"
-//   }
-
-// Id 9 =[
-//   {
-//     "Id": 0,
-//     "WheelType": "—",
-//     "StudLength": "—"
-//   },
-//   {
-//     "Id": 2,
-//     "WheelType": "Aluminum Wheels",
-//     "StudLength": "Long Studs"
-//   },
-//   {
-//     "Id": 1,
-//     "WheelType": "Steel Wheels",
-//     "StudLength": "Short Studs"
-//   }
-// ]

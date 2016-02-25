@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { routeReducer } from 'redux-simple-router'
 import * as constants from '../config/constants'
+import _ from 'lodash'
 
 export function truckMake(state = {}, action) {
 	switch(action.type) {
@@ -139,6 +140,32 @@ function appState(state = constants.APPSTATE, action) {
 			return Object.assign({}, state, { step: state.step + 1 })
 		case constants.UPDATE_LAST_PAGE:
 			return Object.assign({}, state, {lastPath: action.lastPath})
+		case constants.RECIEVE_CATEGORIES:
+			return Object.assign({}, state, {categories: action.categories, isFetching: false})
+		case constants.INVALIDATE_CATEGORIES:
+			return Object.assign({}, state, {categories: []})
+		case constants.REQUEST_CATEGORIES:
+			return Object.assign({}, state, {isFetching: true})
+
+		case constants.RECIEVE_FILTERS:
+			return Object.assign({}, state, {filterResults: action.filters, isFetching: false, needsFetch: false})
+		case constants.INVALIDATE_FILTERS:
+			return Object.assign({}, state, {categories: action.categories, isFetching: false})
+		case constants.REQUEST_FILTERS:
+			return Object.assign({}, state, {isFetching: true, needsFetch: false})
+
+		case constants.UPDATE_FILTER_VALUE:
+			const newIndex = state.currentIndex + 1;
+			const newFilterState = [
+				...state.filterState.slice(0, state.currentIndex),
+    		action.value,
+    		...state.filterState.slice(state.currentIndex + 1)
+			];
+			const newId = state.categories[newIndex].Id;
+			return Object.assign(
+					{},
+					state,
+					{isFetching: true, needsFetch: true, filterId: newId, currentIndex: newIndex, filterState: newFilterState})
 		default:
 			return state;
 	}

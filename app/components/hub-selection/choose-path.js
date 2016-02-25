@@ -2,6 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection'
 import {Link} from 'react-router';
 import { updateFilters } from 'actions'
+import { fetchCategories } from 'actions/categories'
+import { fetchFilters } from 'actions/filters'
 import { connect } from 'react-redux'
 import { pushPath } from 'redux-simple-router'
 
@@ -17,8 +19,10 @@ class ChoosePath extends Component {
 	}
 
 	handleClick(path) {
-		const { dispatch, incrStep } = this.props;
+		const { app, dispatch, incrStep } = this.props;
 		incrStep()
+		dispatch(fetchCategories())
+		dispatch(fetchFilters(app.filterId, app.filterState))
 		dispatch(pushPath(path))
 	}
 
@@ -38,7 +42,7 @@ class ChoosePath extends Component {
 					</button>
 				</div>
 				<div className="conmet-button">
-					<button onClick={this.handleClick.bind(this, '/hub-selection/truck-type')} className="yes-no-button">
+					<button onClick={this.handleClick.bind(this, '/hub-selection/finder')} className="yes-no-button">
 						<em>No</em>Proceed without the number.
 					</button>
 				</div>
