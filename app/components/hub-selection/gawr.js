@@ -20,7 +20,6 @@ class GAWR extends Component {
 				grossAxleWeightRatingRangeIds: gawrId
 			};
 			setHubState(newObj);
-			incrStep();
 			dispatch(pushPath('/hub-selection/wheel-type'));
 	}
 	render() {

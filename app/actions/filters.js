@@ -20,10 +20,10 @@ export const setActiveFilterId = (filterId) => {
 	}
 }
 
-export const setActiveFilterValue = (id, value) => {
+export const setActiveFilterValue = (idx, value) => {
 	return {
 		type: UPDATE_FILTER_VALUE,
-		id: id,
+		idx: idx,
 		value: value
 	}
 }
@@ -64,11 +64,19 @@ export const invalidateFilters = () => {
 // with the response set filterState, set idx, set results
 // do away with the ID and just use filter categories order with the index
 
-export const fetchFilters = (idx, filterState) => {
+export const fetchFilters = (idx, state) => {
   return dispatch => {
     dispatch(requestFilters(id))
-    let searchParams = filterState.join('/');
-    let url = API+'/hubassembly/filtervalues/'+'/'+id+'/'+searchParams;
+		var id = 0;
+		console.log(state.filterState.length, idx)
+		if (state.filterState.length > idx) {
+			console.log(idx, state.categories[idx])
+			id = state.categories[idx].Id
+
+		}
+    let searchParams = state.filterState.join('/');
+
+    let url = API+'/hubassembly/filtervalues/'+id+'/'+searchParams;
     return fetch(url, {
       method: 'get',
       headers: {

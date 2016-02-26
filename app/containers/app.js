@@ -1,10 +1,12 @@
 import React, { PropTypes, Component, Children } from 'react';
 import { Router, Route, Link, IndexRoute } from 'react-router';
+import {fetchCategories} from 'actions/categories'
+import {connect} from 'react-redux'
 
 
 import Navigation from 'components/navigation'
 
-export default class App extends Component {
+class App extends Component {
 
 	static contextTypes = {
 		store: PropTypes.object,
@@ -14,6 +16,13 @@ export default class App extends Component {
 	updateAppState() {
 		//update the local history with the new history
 	}
+
+	componentDidMount() {
+		console.log('Loading App');
+		const { dispatch } = this.props
+		dispatch(fetchCategories())
+	}
+
 
 	render() {
 		const { store, history} = this.context;
@@ -33,3 +42,4 @@ export default class App extends Component {
 			)
 	}
 };
+export default connect()(App)

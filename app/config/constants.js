@@ -37,27 +37,7 @@ export const ZERO_RESULTS = 'ZERO_RESULTS';
 export const SUCCESS = 'SUCCESS';
 export const OK = 'OK';
 // initial states
-export const APPSTATE = {
-	isFetching: false,
-	needsFetch: true,
-	lastPath: '',
-	step: 0,
-	categories: [],
-	filterId: 2,
-	currentIndex: 2,
-	filterResults: [],
-	filterState: [
-		'~', 	//aftermarketHubAssemblyNumbers
-		'~', 	//truckCompartmentIds
-		'~', 	//truckMakeIds
-		'~', 	//axleNameIds
-		'~', 	//grossAxleWeightRatingRangeIds
-		'~', 	//axleStudThreadIds
-		'~', 	//wheelMaterialStudLengthClassIds
-		'~', 	//hubCastingMaterialTypeIds
-		'~'		//hubAssemblyTypeIds
-	]
-}
+
 
 export const STEP_NAVIGATION = [
 	{ id: 2, path: '/hub-selection/truck-type'},
@@ -113,55 +93,81 @@ export const TRUCKMAKES = [
 export const FILTER_VALUES = [
   {
     Id: 0,
-    Name: 'Part Number | Description | Part Type',
-    Sort: 0
+    Name: 'Hub Assembly Number | Aftermarket Description',
+    Sort: 0,
+    UrlParameterName: 'aftermarketHubAssemblyNumbers'
   },
   {
-    'Id': 1,
-    'Name': 'Part Type',
-    'Sort': 1
+    Id: 2,
+    Name: 'Truck Compartment',
+    Sort: 1,
+    UrlParameterName: 'truckCompartmentIds'
   },
   {
-    'Id': 2,
-    'Name': 'Truck Compartment',
-    'Sort': 2
+    Id: 5,
+    Name: 'Truck Make',
+    Sort: 2,
+    UrlParameterName: 'truckMakeIds'
   },
   {
-    'Id': 3,
-    'Name': 'Duty Rating',
-    'Sort': 3
+    Id: 7,
+    Name: 'Axle Name',
+    Sort: 3,
+    UrlParameterName: 'axleNameIds'
   },
   {
-    'Id': 4,
-    'Name': 'Brake Type',
-    'Sort': 4
+    Id: 8,
+    Name: 'Gross Axle Weight Rating (GAWR) Range',
+    Sort: 4,
+    UrlParameterName: 'grossAxleWeightRatingRangeIds'
   },
   {
-    'Id': 5,
-    'Name': 'Truck Make',
-    'Sort': 5
+    Id: 12,
+    Name: 'Axle Stud Thread Diameter',
+    Sort: 5,
+    UrlParameterName: 'axleStudThreadIds'
   },
   {
-    'Id': 6,
-    'Name': 'Axle Position',
-    'Sort': 6
+    Id: 9,
+    Name: 'Wheel Material / Stud Length',
+    Sort: 6,
+    UrlParameterName: 'wheelMaterialStudLengthClassIds'
   },
   {
-    'Id': 7,
-    'Name': 'Axle Name',
-    'Sort': 7
+    Id: 10,
+    Name: 'Hub Casting Material Type',
+    Sort: 7,
+    UrlParameterName: 'hubCastingMaterialTypeIds'
   },
   {
-    'Id': 8,
-    'Name': 'Gross Axle Weight Rating (GAWR) Range',
-    'Sort': 8
-  },
-  {
-    'Id': 9,
-    'Name': 'Wheel Type / Stud Length',
-    'Sort': 9
+    Id: 11,
+    Name: 'Hub Assembly Type',
+    Sort: 8,
+  	UrlParameterName: 'hubAssemblyTypeIds'
   }
 ]
+
+export const APPSTATE = {
+	isFetching: false,
+	needsFetch: true,
+	lastPath: '',
+	step: 0,
+	categories: FILTER_VALUES,
+	currentIndex: 2,
+	filterResults: [],
+	filterState: [
+		'~', 	//aftermarketHubAssemblyNumbers
+		'~', 	//truckCompartmentIds
+		'~', 	//truckMakeIds
+		'~', 	//axleNameIds
+		'~', 	//grossAxleWeightRatingRangeIds
+		'~', 	//axleStudThreadIds
+		'~', 	//wheelMaterialStudLengthClassIds
+		'~', 	//hubCastingMaterialTypeIds
+		'~'		//hubAssemblyTypeIds
+	]
+}
+
 export const DETAILS_TPL = {
 	id: -1,
 	image: 'hub-fpo.png',

@@ -1,9 +1,10 @@
-import React, { PropTypes, Component } from 'react';
-import HubSelection from 'components/hub-selection';
-import Spinner from 'components/global/spinner';
-import * as constants from '../../config/constants';
-import { updateFilters } from 'actions';
-import { setActiveFilterValue, fetchFilters } from 'actions/filters';
+import React, { PropTypes, Component } from 'react'
+import HubSelection from 'components/hub-selection'
+import Spinner from 'components/global/spinner'
+import * as constants from '../../config/constants'
+import { updateFilters } from 'actions'
+import {fetchCategories} from 'actions/categories'
+import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 import _ from 'lodash'
@@ -27,9 +28,13 @@ class Result extends Component {
 
 class Finder extends Component {
 
-	componentWillReceiveProps(nextProps) {
-		
+	componentDidMount() {
+		console.log('HERE');
+		const { app, dispatch } = this.props;
+		dispatch(fetchFilters(app.currentIndex, app))
 	}
+
+
 	setFilterValue(value) {
 		const {app, dispatch} = this.props;
 		const lastId = _.clone(app.filterId);

@@ -150,22 +150,24 @@ function appState(state = constants.APPSTATE, action) {
 		case constants.RECIEVE_FILTERS:
 			return Object.assign({}, state, {filterResults: action.filters, isFetching: false, needsFetch: false})
 		case constants.INVALIDATE_FILTERS:
-			return Object.assign({}, state, {categories: action.categories, isFetching: false})
+			return Object.assign({}, state, {filterResults: [], isFetching: false})
 		case constants.REQUEST_FILTERS:
 			return Object.assign({}, state, {isFetching: true, needsFetch: false})
 
 		case constants.UPDATE_FILTER_VALUE:
-			const newIndex = state.currentIndex + 1;
+			const idx = action.idx;
+			const newIndex = idx + 1;
+
 			const newFilterState = [
-				...state.filterState.slice(0, state.currentIndex),
+				...state.filterState.slice(0, idx),
     		action.value,
-    		...state.filterState.slice(state.currentIndex + 1)
+    		...state.filterState.slice(idx + 1)
 			];
 			const newId = state.categories[newIndex].Id;
 			return Object.assign(
 					{},
 					state,
-					{isFetching: true, needsFetch: true, filterId: newId, currentIndex: newIndex, filterState: newFilterState})
+					{isFetching: true, needsFetch: true, currentIndex: newIndex, filterState: newFilterState})
 		default:
 			return state;
 	}

@@ -13,6 +13,11 @@ class ChoosePath extends Component {
   	history: PropTypes.object
   };
 
+	componentDidMount() {
+		const { app, dispatch } = this.props;
+
+	}
+
 	updateState(obj) {
 		const {store} = this.context;
 		store.dispatch(updateFilters(obj))
@@ -20,9 +25,6 @@ class ChoosePath extends Component {
 
 	handleClick(path) {
 		const { app, dispatch, incrStep } = this.props;
-		incrStep()
-		dispatch(fetchCategories())
-		dispatch(fetchFilters(app.filterId, app.filterState))
 		dispatch(pushPath(path))
 	}
 
@@ -42,7 +44,7 @@ class ChoosePath extends Component {
 					</button>
 				</div>
 				<div className="conmet-button">
-					<button onClick={this.handleClick.bind(this, '/hub-selection/finder')} className="yes-no-button">
+					<button onClick={this.handleClick.bind(this, '/hub-selection/truck-type')} className="yes-no-button">
 						<em>No</em>Proceed without the number.
 					</button>
 				</div>

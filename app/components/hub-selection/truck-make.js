@@ -2,16 +2,20 @@ import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection';
 import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
-import { setSelectedTruckMake } from 'actions'
+import Spinner from 'components/global/spinner'
+import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
+const FILTERIDX=2
 class TruckMake extends Component {
 
+
+
 	render () {
-	 var { truck } = this.props
+	 var { truck, active, onClick } = this.props
 	 var className = 'general-button truck-make'
 	 return (
 		 <div className="grid-content small-6">
-			 <a href="#" className={(truck.active) ? 'active ' + className :  className} onClick={this.props.onClick}>{truck.name}</a>
+			 <a href="#" className={active()} onClick={onClick}>{truck.Name}</a>
 		 </div>
 	 )
  	}
@@ -19,28 +23,41 @@ class TruckMake extends Component {
 
 class TruckMakes extends Component {
 
-	 setTruckMake(key, make) {
-		const { hub, setHubState, dispatch, incrStep } = this.props;
-			var newObj = {};
-			newObj[key] = make.id;
-			setHubState(newObj);
-		dispatch(setSelectedTruckMake(make.id))
-		incrStep();
-	  dispatch(pushPath('/hub-selection/axel-type'));
+	componentDidMount() {
+		const { dispatch, app } = this.props
+		dispatch(fetchFilters(FILTERIDX, app))
+	}
+
+	 setTruckMake(id) {
+		const { dispatch } = this.props;
+		if (id) {
+			dispatch(setActiveFilterValue(FILTERIDX, id))
+		}
+
+		dispatch(pushPath('/hub-selection/axel-type'));
 	 }
 
+	setActive(selected) {
+ 		const { app } = this.props;
+ 		const baseClass = 'general-button truck-make'
+ 		if (app.filterState[FILTERIDX] === selected) {
+ 		    return baseClass + ' active';
+ 		}
+ 		return baseClass;
+ 	}
 
 
 	render() {
-		const { hub, truckMakes } = this.props;
+		const { app } = this.props;
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Truck Make</h1>
-
+				<Spinner isFetching={app.isFetching} />
 				<div className="grid-block">
-					{truckMakes.map((truck, index) => {
-						var boundClick = this.setTruckMake.bind(this, 'truckMakeIds', truck);
-						return <TruckMake key={index} truck={truck}  onClick={boundClick}/>
+					{app.filterResults.map((result, index) => {
+						var boundClick = this.setTruckMake.bind(this, result.Id);
+						var boundActive = this.setActive.bind(this, result.Id);
+						return <TruckMake key={result.Id} app={app} truck={result} active={boundActive} onClick={boundClick}/>
 					})}
 				</div>
 			</div>

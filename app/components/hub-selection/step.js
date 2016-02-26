@@ -13,7 +13,6 @@ export default class extends Component {
 
 	handleBackClick() {
 		const {decrStep, history } = this.props
-		decrStep()
 		history.goBack()
 	}
 

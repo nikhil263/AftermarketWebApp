@@ -1,45 +1,28 @@
-import React, { PropTypes, Component } from 'react';
-import HubSelection from 'components/hub-selection';
-import * as constants from '../../config/constants';
-import { updateFilters } from 'actions';
+import React, { PropTypes, Component } from 'react'
+import HubSelection from 'components/hub-selection'
+import * as constants from '../../config/constants'
 import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
+import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
 const HEAVY_DUTY_TRUCK=1
 const TRAILER=2
+const FILTERIDX=1
 
  class TruckType extends Component {
 
-	setHub(key, val) {
-		const { hub, setHubState, dispatch, incrStep} = this.props;
-		var newObj = {};
-		newObj[key] = val;
-		setHubState(newObj);
-    this.goToNext(newObj)
+  setTruckType(val) {
+		const { dispatch } = this.props;
+		dispatch(setActiveFilterValue(FILTERIDX, val))
+    dispatch(pushPath('/hub-selection/truck-make'));
 	}
-
-  componentDidMount() {
-		const {setStep} = this.props;
-	}
-
-  goToNext(updatedObject) {
-    const { hub, setHubState, dispatch, incrStep } = this.props;
-    incrStep()
-    if (updatedObject.truckCompartmentIds === TRAILER) {
-      setHubState({truckMakeIds: '~'})
-      dispatch(pushPath('/hub-selection/axel-type'));
-    } else {
-      dispatch(pushPath('/hub-selection/truck-make'));
-    }
-
-  }
 
   setActive(selected) {
-		const {hub} = this.props;
+		const { app } = this.props;
 		const baseClass = 'conmet-button'
-		// if (hub.truckCompartmentIds === selected) {
-		// 	return baseClass + ' active';
-		// }
+		if (app.filterState[FILTERIDX] === selected) {
+		    return baseClass + ' active';
+		}
 		return baseClass;
 	}
 
@@ -53,7 +36,7 @@ const TRAILER=2
         <div className="grid-block">
           <div className="grid-content small-6">
           <div className={this.setActive(HEAVY_DUTY_TRUCK)}>
-            <button className="yes-no-button" onClick={this.setHub.bind(this, 'truckCompartmentIds', HEAVY_DUTY_TRUCK)}>
+            <button className="yes-no-button" onClick={this.setTruckType.bind(this, HEAVY_DUTY_TRUCK)}>
               <strong>Heavy-Duty Truck with Drum Brakes</strong>
             </button>
           </div>
@@ -66,7 +49,7 @@ const TRAILER=2
           </div>
           <div className="grid-content small-6">
             <div className={this.setActive(TRAILER)}>
-              <button className="yes-no-button" onClick={this.setHub.bind(this, 'truckCompartmentIds', TRAILER)}>
+              <button className="yes-no-button" onClick={this.setTruckType.bind(this, TRAILER)}>
                 <strong>Trailer with Drum Brakes</strong>
               </button>
             </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Step from 'components/hub-selection/step'
 import {fetchCategories} from 'actions/categories'
+
 import { updateFilters,
 				fetchAssembly,
 				fetchHubs,
@@ -12,9 +13,11 @@ import { updateFilters,
 
 class HubSelector extends Component {
 
+	
+
 	render() {
 		const { dispatch, history, hub, truckMakes, results, app, materialFilter} = this.props;
-		
+
 		const childProps = {
 			app: app,
 			hub: hub,
@@ -26,15 +29,6 @@ class HubSelector extends Component {
 			},
 			setHubState: filter => {
 				dispatch(updateFilters(filter))
-			},
-			setStep: step => {
-				dispatch(updateStep(step))
-			},
-			incrStep: () => {
-				dispatch(incrementStep())
-			},
-			decrStep: () => {
-				dispatch(decrementStep())
 			},
 			searchForAssembly: (partNumber) => {
 				if (partNumber) {
@@ -53,7 +47,7 @@ class HubSelector extends Component {
 
 		return (
 			<div className="grid-block vertical align-center">
-				<Step history={history} step={app.step} max={hub.truckCompartmentIds === 2 ? 3 : 5} decrStep={childProps.decrStep}></Step>
+				<Step history={history} step={app.step} max={hub.truckCompartmentIds === 2 ? 3 : 5} ></Step>
 				<div className="grid-content">
 					<div className="grid-container main-content">
 					{childrenWithProps}

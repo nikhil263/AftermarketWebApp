@@ -2,12 +2,18 @@ import React, { PropTypes, Component } from 'react';
 
 import Navigation from 'components/navigation'
 
+import {fetchCategories} from 'actions/categories'
+import {connect} from 'react-redux'
 
-export default class Main extends Component {
+
+
+class Main extends Component {
   static childContextTypes = {
     store: PropTypes.object,
     history: PropTypes.object
   }
+
+  
 
   getChildContext() {
     return {
@@ -40,3 +46,4 @@ export default class Main extends Component {
     )
   }
 }
+export default connect()(Main)

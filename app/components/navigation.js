@@ -1,10 +1,11 @@
-import React, { PropTypes, Component } from 'react';
-import { Link } from 'react-router';
+import React, { PropTypes, Component } from 'react'
+import { Link } from 'react-router'
 import {connect} from 'react-redux'
 import { pushPath } from 'redux-simple-router'
 import {resetFilters} from 'actions'
-import Trigger from 'react-foundation-apps/lib/trigger';
-import Offcanvas from 'react-foundation-apps/lib/offcanvas';
+import Trigger from 'react-foundation-apps/lib/trigger'
+import Offcanvas from 'react-foundation-apps/lib/offcanvas'
+
 
 class Navigation extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Navigation extends Component {
     this.state = {
 
     }
+
   }
 
   goHome() {
@@ -45,7 +47,7 @@ class Navigation extends Component {
           <div className="left title">
             <div id="logo"><a href="#" onClick={this.goHome.bind(this)}><img src={require('../images/logo.svg')} alt="ConMet"/></a></div>
           </div>
-          
+
           <span className="right">
             <Trigger open="top-offcanvas">
               <a className="button"><i className="icon-menu" title="Menu"></i></a>
