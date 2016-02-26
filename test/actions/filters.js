@@ -41,21 +41,23 @@ const FAIL_MOCK = {
 
 describe('Filter Actions', () => {
   it('should receive filters choices after fetch', () => {
-		const filterId = 2
+		const idx = 2
 		const expectedAction = {
       type: RECIEVE_FILTERS,
-			filterId: filterId,
+			idx,
 			filters: SUCCESS_MOCK.Results
 		}
-    expect(receiveFilters(filterId, SUCCESS_MOCK)).to.eql(expectedAction)
+    expect(receiveFilters(idx, SUCCESS_MOCK)).to.eql(expectedAction)
 	})
 
 	it('should handle receiving zero results', () => {
+		const idx = 2
     const expectedAction = {
       type: RECIEVE_FILTERS,
+			idx,
 			filters: []
 		}
-    expect(receiveFilters(FAIL_MOCK)).to.eql(expectedAction)
+    expect(receiveFilters(idx, FAIL_MOCK)).to.eql(expectedAction)
 	})
 
 	it('should handle request filters notification', () => {
@@ -84,14 +86,14 @@ describe('Filter Actions', () => {
 	})
 
 	it('should set the value at the filterId index', () => {
-		const filterValue = 2;
-		const filterId = 1;
+		const value = 2;
+		const idx = 1;
 		const expectedAction = {
 			type: UPDATE_FILTER_VALUE,
-			id: id,
+			idx,
 			value: value
 		}
-		expect(setActiveFilterValue(filterId, filterValue)).to.eql(expectedAction)
+		expect(setActiveFilterValue(idx, value)).to.eql(expectedAction)
 	})
 
 	//TODO: How do you test async network request

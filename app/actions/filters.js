@@ -32,14 +32,14 @@ export const setActiveFilterValue = (idx, value) => {
 
 
 
-export const receiveFilters = (id, json) => {
+export const receiveFilters = (idx, json) => {
   let filters = [];
   if (json.Status != ZERO_RESULTS) {
     filters = json.Results;
   }
   return {
     type: RECIEVE_FILTERS,
-		filterId: id,
+		idx: idx,
     filters: filters
   }
 }
@@ -91,6 +91,6 @@ export const fetchFilters = (idx, state) => {
         console.log('API Error', err);
       }
     )
-    .then(json => dispatch(receiveFilters(id, json)))
+    .then(json => dispatch(receiveFilters(idx, json)))
   }
 }
