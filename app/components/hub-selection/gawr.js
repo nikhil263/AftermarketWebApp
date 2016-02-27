@@ -6,8 +6,9 @@ import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
 const FILTERIDX=4
+const NEXT_FILTER_PATH = '/hub-selection/axle-stud'
 
-class GAWRDisplay extends Component {
+class Result extends Component {
 	convertToKg() {
 		const { result } = this.props
 		var maxKg, minKg
@@ -39,39 +40,21 @@ class GAWR extends Component {
 
 	componentDidMount() {
 		const { dispatch, app } = this.props
-		console.log('HERE');
 		dispatch(fetchFilters(FILTERIDX, app))
-	}
-
-	setActive(selected) {
-		const { app } = this.props;
- 		const baseClass = 'conmet-button'
- 		if (app.filterState[FILTERIDX] === selected) {
- 		    return baseClass + ' active';
- 		}
- 		return baseClass;
-	}
-
-	setGAWR(id) {
-		const { dispatch } = this.props;
-		if (id) {
-			dispatch(setActiveFilterValue(FILTERIDX, id))
-		}
-		dispatch(pushPath('/hub-selection/wheel-type'));
 	}
 
 
 	render() {
-		const {app} = this.props
+		const {app,setFilter, setActive} = this.props
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the GAWR <br />(Gross Axle Weight Rating):</h1>
 				<Spinner isFetching={app.isFetching} />
 
 					{app.filterResults.map((result, index) => {
-						var boundClick = this.setGAWR.bind(this, result.Id);
-						var boundActive = this.setActive.bind(this, result.Id);
-						return <GAWRDisplay key={index} result={result} onClick={boundClick} active={boundActive} />
+						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, NEXT_FILTER_PATH);
+						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
+						return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
 
 					})}
 

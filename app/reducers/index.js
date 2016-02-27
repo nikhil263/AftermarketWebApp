@@ -147,6 +147,9 @@ function appState(state = constants.APPSTATE, action) {
 		case constants.REQUEST_CATEGORIES:
 			return Object.assign({}, state, {isFetching: true})
 
+		case constants.PREVIOUS_FILTER_INDEX:
+			const newIdx = (0 !== state.currentIndex) ? state.currentIndex - 1 : state.currentIndex;
+			return Object.assign({}, state, {currentIndex: newIdx, filterResults: [], isFetching: false})
 		case constants.RECIEVE_FILTERS:
 			return Object.assign({}, state, {filterResults: action.filters, isFetching: false, needsFetch: false})
 		case constants.INVALIDATE_FILTERS:
@@ -156,7 +159,7 @@ function appState(state = constants.APPSTATE, action) {
 
 		case constants.UPDATE_FILTER_VALUE:
 			const idx = action.idx;
-			const newIndex = idx + 1;
+			const newIndex = (state.filterState.length > idx + 1) ? idx + 1 : idx;
 
 			const newFilterState = [
 				...state.filterState.slice(0, idx),

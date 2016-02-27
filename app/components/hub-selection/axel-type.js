@@ -13,11 +13,13 @@ const TP_TRAILER = 5
 const DRIVE = 1
 const FRONT = 2
 const TRAILER = 3
+
 const FILTERIDX=3
+const NEXT_FILTER_PATH = '/hub-selection/gawr'
 
 
 
-class AxelDisplay extends Component {
+class Result extends Component {
 
 	render() {
 		const META = [
@@ -58,7 +60,7 @@ class AxelDisplay extends Component {
 			<button className="yes-no-button" onClick={onClick}>
 			<strong>{result.Name}</strong><br />
 				{details.map((item, index) => {
-					return item.text
+					return <span key={index}>{item.text}</span>
 				})
 				}
 			</button>
@@ -74,34 +76,16 @@ class AxelType extends Component {
 		dispatch(fetchFilters(FILTERIDX, app))
 	}
 
-	setAxel(id) {
-		const { dispatch } = this.props;
- 		if (id) {
- 			dispatch(setActiveFilterValue(FILTERIDX, id))
- 		}
-		dispatch(pushPath('/hub-selection/gawr'));
-	}
-
-	setActive(selected) {
-		const {app} = this.props
-		let baseClass = 'conmet-button'
-		if (app.filterState[FILTERIDX] === selected) {
- 		    return baseClass + ' active';
- 		}
- 		return baseClass;
-	}
-
-
 	render() {
-		const {app} = this.props
+		const {app, setFilter, setActive } = this.props
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Hub Type by Bearing Part or Set Number:</h1>
 				<Spinner isFetching={app.isFetching} />
 				{app.filterResults.map((result, index) => {
-					var boundClick = this.setAxel.bind(this, result.Id);
-					var boundActive = this.setActive.bind(this, result.Id);
-					return <AxelDisplay key={index} result={result} onClick={boundClick} active={boundActive} />
+					var boundClick = setFilter.bind(this, FILTERIDX, result.Id, NEXT_FILTER_PATH);
+					var boundActive = setActive.bind(this, FILTERIDX, result.Id);
+					return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
 
 				})}
 

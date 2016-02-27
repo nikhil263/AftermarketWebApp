@@ -8,26 +8,12 @@ import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 const HEAVY_DUTY_TRUCK=1
 const TRAILER=2
 const FILTERIDX=1
+const NEXT_FILTER_PATH = '/hub-selection/truck-make'
 
  class TruckType extends Component {
 
-  setTruckType(val) {
-		const { dispatch } = this.props;
-		dispatch(setActiveFilterValue(FILTERIDX, val))
-    dispatch(pushPath('/hub-selection/truck-make'));
-	}
-
-  setActive(selected) {
-		const { app } = this.props;
-		const baseClass = 'conmet-button'
-		if (app.filterState[FILTERIDX] === selected) {
-		    return baseClass + ' active';
-		}
-		return baseClass;
-	}
-
-	render() {
-		const { hub, setHubState } = this.props;
+  render() {
+		const { app, setFilter, setActive } = this.props;
 
 		return (
 			<div className="grid-container main-content">
@@ -35,8 +21,8 @@ const FILTERIDX=1
 
         <div className="grid-block">
           <div className="grid-content small-6">
-          <div className={this.setActive(HEAVY_DUTY_TRUCK)}>
-            <button className="yes-no-button" onClick={this.setTruckType.bind(this, HEAVY_DUTY_TRUCK)}>
+          <div className={setActive(FILTERIDX, HEAVY_DUTY_TRUCK)}>
+            <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, HEAVY_DUTY_TRUCK, NEXT_FILTER_PATH)}>
               <strong>Heavy-Duty Truck with Drum Brakes</strong>
             </button>
           </div>
@@ -48,8 +34,8 @@ const FILTERIDX=1
 
           </div>
           <div className="grid-content small-6">
-            <div className={this.setActive(TRAILER)}>
-              <button className="yes-no-button" onClick={this.setTruckType.bind(this, TRAILER)}>
+            <div className={setActive(FILTERIDX, TRAILER)}>
+              <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, TRAILER, NEXT_FILTER_PATH)}>
                 <strong>Trailer with Drum Brakes</strong>
               </button>
             </div>

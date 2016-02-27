@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Step from 'components/hub-selection/step'
 import {fetchCategories} from 'actions/categories'
+import { setActiveFilterValue, checkFilterStatus, nextFilter, previousFilter } from 'actions/filters'
 
 import { updateFilters,
 				fetchAssembly,
@@ -13,7 +14,7 @@ import { updateFilters,
 
 class HubSelector extends Component {
 
-	
+
 
 	render() {
 		const { dispatch, history, hub, truckMakes, results, app, materialFilter} = this.props;
@@ -24,11 +25,18 @@ class HubSelector extends Component {
 			truckMakes: truckMakes,
 			results: results,
 			materialFilter, materialFilter,
-			updateAndProceed: (id, value) => {
-				dispatch(updateFilterAndNext(id, value))
+			setFilter: (filterId, id, url) => {
+				dispatch(setActiveFilterValue(filterId, id))
+				dispatch(nextFilter(url))
 			},
-			setHubState: filter => {
-				dispatch(updateFilters(filter))
+			setActive: (filterId, selected, baseClass = 'conmet-button') => {
+				if (app.filterState[filterId] === selected) {
+				    return baseClass + ' active';
+				}
+				return baseClass;
+			},
+			goBack: (app) => {
+				dispatch(previousFilter(app))
 			},
 			searchForAssembly: (partNumber) => {
 				if (partNumber) {
@@ -44,10 +52,12 @@ class HubSelector extends Component {
 					function(child) {
 						return React.cloneElement(child, childProps);
 	        });
-
+		const backClick = childProps.goBack.bind(this, app);
 		return (
+
 			<div className="grid-block vertical align-center">
-				<Step history={history} step={app.step} max={hub.truckCompartmentIds === 2 ? 3 : 5} ></Step>
+
+				<Step history={history} dispatch={dispatch} app={app} onClick={backClick}></Step>
 				<div className="grid-content">
 					<div className="grid-container main-content">
 					{childrenWithProps}

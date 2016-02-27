@@ -8,7 +8,7 @@ import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
 const FILTERIDX=6
-
+const NEXT_FILTER_PATH='/hub-selection/material'
 const STEEL = 1
 const ALUMINUM = 2
 
@@ -28,38 +28,20 @@ class Result extends Component {
 class WheelType extends Component {
 
 	componentDidMount() {
-		const { dispatch, app } = this.props
-		console.log('HERE');
+		const { dispatch, app, checkForReload } = this.props
 		dispatch(fetchFilters(FILTERIDX, app))
 	}
 
-	setActive(selected) {
-		const { app } = this.props;
- 		const baseClass = 'conmet-button'
- 		if (app.filterState[FILTERIDX] === selected) {
- 		    return baseClass + ' active';
- 		}
- 		return baseClass;
-	}
-
-	setFilter(id) {
-		const { dispatch } = this.props;
-		if (id) {
-			dispatch(setActiveFilterValue(FILTERIDX, id))
-		}
-		dispatch(pushPath('/hub-selection/results'));
-	}
-
 	render() {
-		const {app} = this.props
+		const {app, setFilter, setActive } = this.props
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Wheel Type<br />(Determine Wheel Stud Length):</h1>
 				<Spinner isFetching={app.isFetching} />
 
 					{app.filterResults.map((result, index) => {
-						var boundClick = this.setFilter.bind(this, result.Id);
-						var boundActive = this.setActive.bind(this, result.Id);
+						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, NEXT_FILTER_PATH);
+						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
 						return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
 
 					})}

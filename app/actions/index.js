@@ -151,21 +151,11 @@ export const receiveAssembly = (hub, json, date = Date.now()) => {
 
 
 
-export const fetchAssembly = (hub) => {
+export const fetchAssembly = (state) => {
   return dispatch => {
-    dispatch(requestAssembly(hub))
-    let searchArr = [
-      hub.aftermarketPartTypeIds,
-      hub.truckCompartmentIds,
-      hub.dutyRatingIds,
-      hub.brakeTypeIds,
-      hub.truckMakeIds,
-      hub.axlePositionIds,
-      hub.axleNameIds,
-      hub.grossAxleWeightRatingRangeIds,
-      hub.wheelTypeStudLengthIds
-    ]
-    let searchParams = searchArr.join('/');
+    dispatch(requestAssembly(state))
+
+    let searchParams = state.filterState.join('/');
     let url = constants.API+'/filter/values/0/~/'+searchParams;
     return fetch(url, {
       method: 'get',
@@ -181,7 +171,7 @@ export const fetchAssembly = (hub) => {
         console.log('API Error', err);
       }
     )
-    .then(json => dispatch(receiveAssembly(hub, json)))
+    .then(json => dispatch(receiveAssembly(state, json)))
   }
 }
 

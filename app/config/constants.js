@@ -32,22 +32,25 @@ export const RECIEVE_CATEGORIES='RECIEVE_CATEGORIES';
 export const REQUEST_CATEGORIES='REQUEST_CATEGORIES';
 export const INVALIDATE_CATEGORIES='INVALIDATE_CATEGORIES';
 export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
+export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
 
 export const ZERO_RESULTS = 'ZERO_RESULTS';
 export const SUCCESS = 'SUCCESS';
 export const OK = 'OK';
 // initial states
 
+export const FINDER_START = '/hub-selection/truck-type'
 
 export const STEP_NAVIGATION = [
+	{ id: 0, path: '/hub-selection/choose-path'},
 	{ id: 2, path: '/hub-selection/truck-type'},
 	{ id: 5, path: '/hub-selection/truck-make'},
-	{ id: 7, path: '/hub-selection/axel-type'},
+	{ id: 7, path: '/hub-selection/axle-type'},
 	{ id: 8, path: '/hub-selection/gawr'},
-	{ id: 12, path: '/hub-selection/axel-stud-thread'},
+	{ id: 12, path: '/hub-selection/axle-stud'},
 	{ id: 9, path: '/hub-selection/wheel-type'},
-	{ id: 10, path: '/hub-selection/hub-material'},
-	{ id: 11, path: '/hub-selection/hub-material'}
+	{ id: 10, path: '/hub-selection/material'},
+	{ id: 11, path: '/hub-selection/hub-type'}
 ]
 
 export const RESULTS = {
