@@ -117,9 +117,9 @@ class Result extends Component {
 				showButton={this.renderButtons.bind(this)}/>
 
 		 	<div className="details">
-				<img className="product-image" src={require('../../../images/'+item.image)} alt={item.title} width="200" height="200"/>
-				<h2>{item.title || item.Description}<br />
-			 		#{item.PartNumber}
+				<img className="product-image" src={require('../../../images/'+item.image)} alt={item.HubAssemblyNumber} width="200" height="200"/>
+				<h2>{item.title || item.AftermarketDescription}<br />
+			 		#{item.HubAssemblyNumber}
 			 	</h2>
 
 			</div>

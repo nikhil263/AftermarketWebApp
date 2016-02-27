@@ -123,7 +123,8 @@ class Results extends Component {
 	render() {
 		const { results, materialFilter, dispatch } = this.props
 
-		const filteredResults = getFilteredResults(results, materialFilter)
+		// const filteredResults = getFilteredResults(results, materialFilter)
+		const filteredResults = results
 
 		if (filteredResults.isFetching) {
 			return (<Waiting />)

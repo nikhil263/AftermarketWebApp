@@ -156,7 +156,7 @@ export const fetchAssembly = (state) => {
     dispatch(requestAssembly(state))
 
     let searchParams = state.filterState.join('/');
-    let url = constants.API+'/filter/values/0/~/'+searchParams;
+    let url = constants.API+'/hubassembly/filtervalues/0/'+searchParams;
     return fetch(url, {
       method: 'get',
       headers: {
