@@ -78,12 +78,14 @@ class AxelType extends Component {
 
 	render() {
 		const {app, setFilter, setActive } = this.props
+		if (app.isFetching || app.filterResults.length < 1) {
+			return <Spinner isFetching={app.isFetching} />
+		}
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Hub Type by Bearing Part or Set Number:</h1>
-				<Spinner isFetching={app.isFetching} />
 				{app.filterResults.map((result, index) => {
-					var boundClick = setFilter.bind(this, FILTERIDX, result.Id, NEXT_FILTER_PATH);
+					var boundClick = setFilter.bind(this, FILTERIDX, result.Id, app);
 					var boundActive = setActive.bind(this, FILTERIDX, result.Id);
 					return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
 

@@ -3,7 +3,7 @@ import HubSelection from 'components/hub-selection'
 import * as constants from '../../config/constants'
 import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
-import { setActiveFilterValue, fetchFilters } from 'actions/filters'
+import { setActiveFilterValue, fetchFilters, resetAppState } from 'actions/filters'
 
 const HEAVY_DUTY_TRUCK=1
 const TRAILER=2
@@ -12,7 +12,15 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
 
  class TruckType extends Component {
 
+
+   componentDidMount() {
+     const {dispatch } = this.props
+     dispatch(resetAppState())
+   }
+
   render() {
+
+
 		const { app, setFilter, setActive } = this.props;
 
 		return (
@@ -22,7 +30,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
         <div className="grid-block">
           <div className="grid-content small-6">
           <div className={setActive(FILTERIDX, HEAVY_DUTY_TRUCK)}>
-            <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, HEAVY_DUTY_TRUCK, NEXT_FILTER_PATH)}>
+            <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, HEAVY_DUTY_TRUCK, app)}>
               <strong>Heavy-Duty Truck with Drum Brakes</strong>
             </button>
           </div>
@@ -35,7 +43,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
           </div>
           <div className="grid-content small-6">
             <div className={setActive(FILTERIDX, TRAILER)}>
-              <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, TRAILER, NEXT_FILTER_PATH)}>
+              <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, TRAILER, app)}>
                 <strong>Trailer with Drum Brakes</strong>
               </button>
             </div>

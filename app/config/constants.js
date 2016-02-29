@@ -28,16 +28,19 @@ export const SET_MATERIAL_FILTER='SET_MATERIAL_FILTER';
 export const INVALIDATE_FILTERS='INVALIDATE_FILTERS';
 export const REQUEST_FILTERS='REQUEST_FILTERS';
 export const UPDATE_FILTER_ID='UPDATE_FILTER_ID';
+export const RESET_APP_STATE='RESET_APP_STATE';
 export const RECIEVE_CATEGORIES='RECIEVE_CATEGORIES';
 export const REQUEST_CATEGORIES='REQUEST_CATEGORIES';
 export const INVALIDATE_CATEGORIES='INVALIDATE_CATEGORIES';
 export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
 export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
+export const RECIEVE_ASSEMBLY_DETAILS='RECIEVE_ASSEMBLY_DETAILS'
+export const REQUEST_ASSEMBLY_DETAILS='REQUEST_ASSEMBLY_DETAILS'
+export const INVALIDATE_ASSEMBLY_DETAILS='INVALIDATE_ASSEMBLY_DETAILS'
 
 export const ZERO_RESULTS = 'ZERO_RESULTS';
 export const SUCCESS = 'SUCCESS';
 export const OK = 'OK';
-// initial states
 
 export const FINDER_START = '/hub-selection/truck-type'
 
@@ -50,7 +53,8 @@ export const STEP_NAVIGATION = [
 	{ id: 12, path: '/hub-selection/axle-stud'},
 	{ id: 9, path: '/hub-selection/wheel-type'},
 	{ id: 10, path: '/hub-selection/material'},
-	{ id: 11, path: '/hub-selection/hub-type'}
+	{ id: 11, path: '/hub-selection/hub-type'},
+	{ id: 12, path: '/hub-selection/results'}
 ]
 
 export const RESULTS = {
@@ -81,17 +85,6 @@ export const FILTERSTATE = {
 export const MATERIAL_ALL=0;
 export const MATERIAL_ALUMINUM=1;
 export const MATERIAL_IRON=2;
-
-export const TRUCKMAKES = [
-		{ id: 1, name: 'Freightliner', active: false},
-		{ id: 2, name: 'Western Star', active: false},
-		{ id: 3, name: 'Sterling', active: false},
-		{ id: 4, name: 'Kenworth', active: false},
-		{ id: 5, name: 'Peterbilt', active: false},
-		{ id: 6, name: 'Volvo', active: false},
-		{ id: 7, name: 'Mack', active: false},
-		{ id: 8, name: 'Navistar', active: false}
-];
 
 export const FILTER_VALUES = [
   {
@@ -151,12 +144,13 @@ export const FILTER_VALUES = [
 ]
 
 export const APPSTATE = {
+	goingBack: false,
 	isFetching: false,
 	needsFetch: true,
 	lastPath: '',
-	step: 0,
+	step: 1,
 	categories: FILTER_VALUES,
-	currentIndex: 2,
+	currentIndex: 1,
 	filterResults: [],
 	filterState: [
 		'~', 	//aftermarketHubAssemblyNumbers

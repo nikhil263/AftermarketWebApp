@@ -30,16 +30,18 @@ class TruckMakes extends Component {
 		dispatch(fetchFilters(FILTERIDX, app))
 	}
 
-	
+
 	render() {
 		const { app, setFilter, setActive } = this.props;
+		if (app.isFetching || app.filterResults.length < 1) {
+			return <Spinner isFetching={app.isFetching} />
+		}
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Truck Make</h1>
-				<Spinner isFetching={app.isFetching} />
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, NEXT_FILTER_PATH);
+						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id, 'general-button truck-make');
 						return <Result key={index} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}

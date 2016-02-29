@@ -20,7 +20,7 @@ class Result extends Component {
 			</button>
  		</div>
 		</div>
-		 
+
 	 )
  	}
 }
@@ -34,13 +34,15 @@ class Material extends Component {
 
 	render() {
 		const { app, setFilter, setActive } = this.props;
+		if (app.isFetching || app.filterResults.length < 1) {
+			return <Spinner isFetching={app.isFetching} />
+		}
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Hub Material</h1>
-				<Spinner isFetching={app.isFetching} />
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, NEXT_FILTER_PATH);
+						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
 						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}

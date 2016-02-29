@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection'
 import { previousFilter } from 'actions/filters'
-
+import { Link } from 'react-router';
 export default class extends Component {
 	showStepDisplay() {
 
@@ -12,17 +12,22 @@ export default class extends Component {
 		}
 	}
 
-	handleBackClick() {
-		const { dispatch, app } = this.props
-		dispatch(previousFilter(app))
-	}
+
 
 	render() {
-		const { onClick } = this.props
+		const { onClick, app } = this.props
+		let link = <a href="javascript:void(0)" onClick={onClick} className="back-btn"> <i className="icon-angle-left"></i>Back</a>
+
+		if (location.pathname === '/hub-selection') {
+			link = null
+		}
+		else if (app.currentIndex === 0) {
+			link = <Link to="/hub-selection" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
+		}
 		return (
 				 <div className="step-bar grid-block small-12 large-12 wrap shrink ">
 						<div className="grid-content no-scroll small-6">
-							<a href="javascript:void(0)" onClick={onClick} className="back-btn"> <i className="icon-angle-left"></i>Back</a>
+							{link}
 						</div>
 
 						<div className="grid-content no-scroll right small-6">

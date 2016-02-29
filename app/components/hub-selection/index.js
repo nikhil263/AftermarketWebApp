@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Step from 'components/hub-selection/step'
 import {fetchCategories} from 'actions/categories'
-import { setActiveFilterValue, checkFilterStatus, nextFilter, previousFilter } from 'actions/filters'
+import { setActiveFilterValue, checkFilterStatus, previousFilter } from 'actions/filters'
 
 import { updateFilters,
 				fetchAssembly,
@@ -17,17 +17,14 @@ class HubSelector extends Component {
 
 
 	render() {
-		const { dispatch, history, hub, truckMakes, results, app, materialFilter} = this.props;
-
+		const { dispatch, history, assembly, truckMakes, results, app, params} = this.props;
 		const childProps = {
-			app: app,
-			hub: hub,
-			truckMakes: truckMakes,
-			results: results,
-			materialFilter, materialFilter,
-			setFilter: (filterId, id, url) => {
-				dispatch(setActiveFilterValue(filterId, id))
-				dispatch(nextFilter(url))
+			params,
+			app,
+			assembly,
+			results,
+			setFilter: (filterId, id, app) => {
+				dispatch(setActiveFilterValue(filterId, id, app))
 			},
 			setActive: (filterId, selected, baseClass = 'conmet-button') => {
 				if (app.filterState[filterId] === selected) {
@@ -60,6 +57,7 @@ class HubSelector extends Component {
 				<Step history={history} dispatch={dispatch} app={app} onClick={backClick}></Step>
 				<div className="grid-content">
 					<div className="grid-container main-content">
+
 					{childrenWithProps}
 					</div>
 				</div>
@@ -73,7 +71,7 @@ class HubSelector extends Component {
 function select(state) {
   return {
 		app: state.appState,
-    hub: state.hubSelector,
+    assembly: state.assembly,
 		truckMakes: state.truckMakes,
 		results: state.results,
 		materialFilter: state.materialFilter

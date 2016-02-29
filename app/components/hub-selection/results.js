@@ -123,7 +123,6 @@ class Results extends Component {
 	render() {
 		const { results, materialFilter, dispatch } = this.props
 
-		// const filteredResults = getFilteredResults(results, materialFilter)
 		const filteredResults = results
 
 		if (filteredResults.isFetching) {
@@ -150,7 +149,7 @@ class Results extends Component {
 					})}
 
 					<ResultNavigation total={filteredResults.total} currentIdx={filteredResults.selectedIdx}/>
-					<ResetMaterial dispatch={dispatch} total={results.total} materialFilter={materialFilter}/>
+
 
 				{/*
 

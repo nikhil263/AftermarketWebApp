@@ -9,11 +9,19 @@ import {
 	UPDATE_FILTER_VALUE,
 	PREVIOUS_FILTER_INDEX,
 	FINDER_START,
-	STEP_NAVIGATION
+	STEP_NAVIGATION,
+	RESET_APP_STATE
 } from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
 import { pushPath } from 'redux-simple-router'
+
+
+export const resetAppState = () => {
+	return {
+		type: RESET_APP_STATE
+	}
+}
 
 export const checkFilterStatus = (app) => {
 	if (app.filterState[1] !== '~' ) {
@@ -28,16 +36,27 @@ export const setActiveFilterId = (filterId) => {
 	}
 }
 
-export const setActiveFilterValue = (idx, value) => {
+export const setActiveFilterValue = (idx, value, state) => {
+	return dispatch => {
+		dispatch(setVal(idx, value))
+		dispatch(nextFilter(idx, state))
+	}
+
+}
+
+export const setVal = (idx, value) => {
 	return {
 		type: UPDATE_FILTER_VALUE,
 		idx: idx,
-		value: value
+		value: value,
+		back: false
 	}
 }
 
 
-export const nextFilter = (url) => {
+export const nextFilter = (idx, state) => {
+	const nextIndex = (STEP_NAVIGATION.length > idx + 1) ? idx+1 : idx
+	const url = STEP_NAVIGATION[nextIndex].path
 	return dispatch => {
 		dispatch(invalidateFilters())
 		dispatch(pushPath(url))
@@ -45,10 +64,11 @@ export const nextFilter = (url) => {
 }
 
 
-export const previousFilter = (app) => {
-	const prevIndex = (0 !== app.currentIndex) ? app.currentIndex-1 : 0
+export const previousFilter = (state) => {
+	const idx = state.currentIndex;
+	const prevIndex = (-1 !== idx) ? idx-1 : -1
 	const url = STEP_NAVIGATION[prevIndex].path
-	
+
 	return dispatch => {
 		dispatch(decreaseIndex())
 		dispatch(pushPath(url))
@@ -58,19 +78,35 @@ export const previousFilter = (app) => {
 export const decreaseIndex = () => {
 	return {
 		type: PREVIOUS_FILTER_INDEX,
+		back: true,
 	}
 }
 
-export const receiveFilters = (idx, json) => {
+export const receiveFilters = (idx, json, state) => {
   let filters = [];
   if (json.Status != ZERO_RESULTS) {
     filters = json.Results;
   }
-  return {
+	const recieve = {
     type: RECIEVE_FILTERS,
 		idx: idx,
     filters: filters
   }
+	return dispatch => {
+		if(json.Results.length === 1) { // don't set on going back
+			console.log('FOUND ONLY 1')
+			if (state.goingBack === true) { // go skip and don't set
+				dispatch(previousFilter(state))
+			} else {
+				dispatch(setActiveFilterValue(idx, filters[0].Id, state))
+			}
+
+		} else {
+			dispatch(recieve)
+		}
+
+	}
+  return
 }
 export const requestFilters = (id) => {
   return {
@@ -105,11 +141,14 @@ export const fetchFilters = (idx, state) => {
 						console.log(idx, state.categories[idx])
 						id = state.categories[idx].Id
 					}
-					const searchFilterState = [
-						...state.filterState.slice(0, idx),
-						'~',
-		    		...state.filterState.slice(idx + 1)
-					];
+
+					const searchFilterState = state.filterState.map(function(item, index){
+						console.log(index,item, idx)
+						if (index < idx) {
+							return item
+						}
+						return '~'
+					})
 
 					let searchParams = searchFilterState.join('/');
 
@@ -128,7 +167,10 @@ export const fetchFilters = (idx, state) => {
 							console.log('API Error', err);
 						}
 					)
-					.then(json => dispatch(receiveFilters(idx, json)))
+					.then(json => {
+
+						dispatch(receiveFilters(idx, json, state))
+					})
 
 			}
 		}

@@ -39,7 +39,7 @@ module.exports = (
 				<Route path='choose-path' component={HubSelectionChoosePath} />
 				<Route path='search' component={HubSelectionSearch} />
 				<Route path='results' component={HubSelectionResults} />
-				<Route path='details' component={HubSelectionDetails} />
+				<Route path='details/:id' component={HubSelectionDetails} />
 				<Route path='email' component={HubSelectionEmail} />
 				<Route path='finder' component={HubFinder} />
 				<Route path='truck-type' component={HubSelectionTruckType} />
@@ -50,6 +50,7 @@ module.exports = (
 				<Route path='wheel-type' component={HubSelectionWheelType} />
 				<Route path='material' component={HubSelectionMaterial} />
 				<Route path='hub-type' component={HubSelectionType} />
+
 				<Route path='find-assembly' component={HubSelectionFindAssembly} />
 				<Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail} />
 			</Route>

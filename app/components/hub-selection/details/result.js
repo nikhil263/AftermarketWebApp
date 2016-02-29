@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import HubSelection from 'components/hub-selection';
 import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
+import {Link} from 'react-router';
 import {showPreviousResult, showNextResult} from 'actions'
 import { AFTERMARKET_DETAILS } from 'config/constants'
 import _ from 'lodash'
@@ -121,7 +122,7 @@ class Result extends Component {
 				<h2>{item.title || item.AftermarketDescription}<br />
 			 		#{item.HubAssemblyNumber}
 			 	</h2>
-
+				<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
 			</div>
 			<NextButton
 				idx={idx}

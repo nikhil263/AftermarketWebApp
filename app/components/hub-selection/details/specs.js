@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 export default class extends Component {
 	render() {
+		const {result} = this.props
 		return (
 				<div className="specs">
 					<h2>Product Specs</h2>
@@ -8,47 +9,47 @@ export default class extends Component {
 						<tbody>
 						<tr>
 							<td>Material</td>
-							<td>Aluminum</td>
+							<td>{result.Material}</td>
 						</tr>
 						<tr>
 							<td>Axle Position</td>
-							<td>Front</td>
+							<td>{result.AxlePosition}</td>
 						</tr>
 						<tr>
-							<td>Axle Spindle</td>
-							<td>D Flat</td>
+							<td>Axle</td>
+							<td>{result.Axle}</td>
 						</tr>
-						<tr>
+						{/*}<tr>
 							<td>Spindle Lock Configuration</td>
 							<td>D FLAT</td>
-						</tr>
+						</tr>*/}
 						<tr>
 							<td>Assembly Type</td>
-							<td>PreSet Plus</td>
+							<td>{result.HubAssemblyType}</td>
 						</tr>
 						<tr>
 							<td>Compatible Brake Type</td>
-							<td>Drum</td>
+							<td>{result.BrakeType}</td>
 						</tr>
 						<tr>
 							<td>Hub Mounting System</td>
-							<td>HP10</td>
+							<td>{result.HubMountingSystem}</td>
 						</tr>
 						<tr>
 							<td>Wheel Stud Standout (in.)</td>
-							<td>2.92</td>
+							<td>{result.WheelStudStandout}</td>
 						</tr>
 						<tr>
 							<td>Wheel Material</td>
-							<td>Any</td>
+							<td>{result.WheelMaterial}</td>
 						</tr>
 						<tr>
 							<td>Flange Offset</td>
-							<td>5.06</td>
+							<td>{result.FlangeOffsetInch}</td>
 						</tr>
 						<tr>
 							<td>Weight (lbs.)</td>
-							<td>38.26</td>
+							<td>{result.WeightPound}</td>
 						</tr>
 						</tbody>
 					</table>
