@@ -195,3 +195,12 @@ img.product-image {
 .hidden {
 	display:none !important;
 }
+
+div.disclaimer {
+  margin-top: 30px;
+  p{
+    font-size: .75rem;
+    color: $cm-mid-grey;
+  }
+
+}
