@@ -23,8 +23,9 @@ class Splash extends Component {
 	render() {
 		return (
 			<div className="grid-frame vertical splash">
-			<div className="grid-block align-center shrink">
+			<div className="grid-block align-center">
 				<div className="grid-container splash-title">
+					<div className="grid-content">
 				<h3>Welcome to the</h3>
 				<h1 className="text-center">ConMet<br />Aftermarket</h1>
 				<h3>Service Parts & Replacement Hubs</h3>
@@ -36,6 +37,7 @@ class Splash extends Component {
 				<p>CAUTION: As you are guided through the app, it is important that you verify your responses. Failure to do so could result in the wrong service part or hub assembly recommendation. Wheel hubs are a safety critical component and installing the wrong component or assembly on a vehicle can result in premature failure.</p>
 				<Link to="/hub-selection" className="general-button">I Accept</Link>
 
+				</div>
 				</div>
 				</div>
 			</div>
