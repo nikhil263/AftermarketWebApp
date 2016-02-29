@@ -10,8 +10,7 @@ import { pushPath } from 'redux-simple-router'
     e.preventDefault();
 		const { dispatch } = this.props
     let part = document.getElementById('assemblyNumber').value;
-    dispatch(pushPath('/hub-selection/results'));
-		dispatch(fetchHubs(part))
+    dispatch(pushPath('/hub-selection/search/'+part));
 	}
 
 	render() {

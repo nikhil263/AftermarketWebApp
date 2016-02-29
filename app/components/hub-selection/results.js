@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
-import {materialFilter, fetchAssembly} from 'actions'
+import {materialFilter, fetchAssembly, fetchHubs} from 'actions'
 import _ from 'lodash'
 
 
@@ -116,8 +116,14 @@ const getFilteredResults = (results,filter) => {
 
 class Results extends Component {
 	componentDidMount() {
-		const {dispatch, app} = this.props
-		dispatch(fetchAssembly(app))
+		const {dispatch, app, params} = this.props
+		console.log(params)
+		if (params.id) {
+			dispatch(fetchHubs(params.id))
+		} else {
+			dispatch(fetchAssembly(app))
+		}
+
 	}
 
 	render() {

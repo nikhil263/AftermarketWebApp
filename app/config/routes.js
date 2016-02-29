@@ -38,6 +38,7 @@ module.exports = (
 				<IndexRoute component={HubSelectionStart} />
 				<Route path='choose-path' component={HubSelectionChoosePath} />
 				<Route path='search' component={HubSelectionSearch} />
+				<Route path='search/:id' component={HubSelectionResults} />
 				<Route path='results' component={HubSelectionResults} />
 				<Route path='details/:id' component={HubSelectionDetails} />
 				<Route path='email' component={HubSelectionEmail} />

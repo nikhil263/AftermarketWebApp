@@ -94,16 +94,12 @@ describe('actions', () => {
       'Status':'OK',
       'Results':[
         {
-          'OemHubassemblyNumber':'10031065',
-          'AftermarketPartdetails':[
-            {
-              'AftermarketPartNumber':'10082207',
-              'Description':'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
-              'AftermarketPartType':'Complete Hub Assembly',
-              'HubCastingMaterialType':'Aluminum',
-              'HubAssemblyType':'PreSet Hub Assembly (Aftermarket)'
-            }
-          ]
+          'PartNumber':'10082207',
+          'AftermarketPartNumber':'10082207',
+          'Description':'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
+          'AftermarketPartType':'Complete Hub Assembly',
+          'HubCastingMaterialType':'Aluminum',
+          'HubAssemblyType':'PreSet Hub Assembly (Aftermarket)'
         }
       ]
     }
