@@ -193,15 +193,18 @@ export const receiveHubs = (partNumber, json) => {
   // we need a part number and ID
   let hubs = []
   if (json.Status != constants.ZERO_RESULTS) {
-    hubs = json.Results;
-    // const newFormat = json.Results.map( result => {
-    //   return Object.assign(result, {
-    //     AftermarketPartDetailSummaries: result.AftermarketParts.map(detail => {
-    //       hubs.push(detail);
-    //       return Object.assign(detail, {PartNumber: detail.PartNumber})
-    //     })
-    //   })
-    // })
+    // hubs = json.Results;
+    const newFormat = json.Results.map( result => {
+    return Object.assign(result, {
+        AftermarketPartDetailSummaries: result.AftermarketParts.map(detail => {
+          hubs.push({
+            HubAssemblyNumber: detail.PartNumber,
+            HubAssemblyDescription: detail.Description
+          });
+          return Object.assign(detail, {PartNumber: detail.PartNumber})
+        })
+      })
+    })
   }
 
   return {
@@ -213,12 +216,13 @@ export const receiveHubs = (partNumber, json) => {
 }
 
 export const fetchHubs = (partNumber) => {
+  const afterMarketHubPartType = 115
   return dispatch => {
     dispatch(requestHubs(partNumber))
     ///1/'+partNumber
     //https://apis.conmetwheelends.com/aftermarket/v1/summarydetails/~/10031065
     //https://apis.conmetwheelends.com/parts/api/v2/details/~/10031065
-    return fetch(constants.API+'/aftermarketparts/'+partNumber+'/~', {
+    return fetch(constants.API+'/aftermarketparts/'+partNumber+'/'+afterMarketHubPartType, {
       method: 'get',
       headers: {
         'Accept': 'application/json',

@@ -92,27 +92,21 @@ describe('actions', () => {
     const partNumber = 11111
     const json = {
       'Status':'OK',
-      'Results':[
-        {
-          'PartNumber':'10082207',
-          'AftermarketPartNumber':'10082207',
-          'Description':'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
-          'AftermarketPartType':'Complete Hub Assembly',
-          'HubCastingMaterialType':'Aluminum',
-          'HubAssemblyType':'PreSet Hub Assembly (Aftermarket)'
-        }
-      ]
+      Results: [{
+        HubAssemblyNumber:'10031065',
+        HubAssemblyDescription:'Aluminum PreSet FF Front',
+        AftermarketParts:[{
+          PartNumber:'10082207',
+          Description: 'Aluminum PreSet FF Front',
+          TypeId:115,
+          Ranking:1}]}]
     }
     const expectedAction = {
       type: RECEIVE_HUBS,
       partNumber: partNumber,
       hubs: [{
-        'PartNumber':'10082207',
-        'AftermarketPartNumber':'10082207',
-        'Description':'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
-        'AftermarketPartType':'Complete Hub Assembly',
-        'HubCastingMaterialType':'Aluminum',
-        'HubAssemblyType':'PreSet Hub Assembly (Aftermarket)'
+        HubAssemblyNumber:'10082207',
+        HubAssemblyDescription: 'Aluminum PreSet FF Front'
       }],
       status: json.Status
     }
@@ -123,13 +117,15 @@ describe('actions', () => {
     const json = {
       Status: 'OK',
       Results: [{
-      OemHubassemblyNumber: '10031065',
-      AftermarketPartdetails: [{
-        AfterMarketPartNumber: '10082207',
-        Description: 'ASSY PRESET AFMKT PREMIUM FF FR HP10 ABS',
-        AfterMarketPartType: 'Complete Hub Assembly'
-      }]
-    }]}
+        HubAssemblyNumber:'10031065',
+        HubAssemblyDescription:'Aluminum PreSet FF Front',
+        AftermarketParts:[{
+          PartNumber:'10082207',
+          Description: 'Aluminum PreSet FF Front',
+          TypeId:115,
+          Ranking:1}]}]
+
+    }
     const dateNow = Date.now()
     const expectedAction = {
       type: RECEIVE_ASSEMBLIES,
