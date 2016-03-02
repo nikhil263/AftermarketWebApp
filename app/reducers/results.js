@@ -21,11 +21,12 @@ const mergeInDetails = (assemblies = []) => {
 
 	return assemblies.map(assembly => {
 		var itemDetails = _.find(AFTERMARKET_DETAILS, detail => {
-			return assembly.PartNumber === detail.id.toString();
+			return assembly.HubAssemblyNumber === detail.id.toString();
 		})
 		if (!itemDetails) {
 			itemDetails = { id: parseInt(assembly.PartNumber,10) }
 		}
+
 		return Object.assign(assembly, DETAILS_TPL, itemDetails);
 	})
 
