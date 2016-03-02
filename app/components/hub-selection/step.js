@@ -34,7 +34,7 @@ export default class extends Component {
 		if (window.location.pathname.indexOf('/details/') > -1) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
-		console.log(history);
+		
 		return (
 				 <div className="step-bar grid-block small-12 large-12 wrap shrink ">
 						<div className="grid-content no-scroll small-6">

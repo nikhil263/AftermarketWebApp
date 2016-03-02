@@ -29,7 +29,6 @@ class Result extends Component {
 class Finder extends Component {
 
 	componentDidMount() {
-		console.log('HERE');
 		const { app, dispatch } = this.props;
 		dispatch(fetchFilters(app.currentIndex, app))
 	}
