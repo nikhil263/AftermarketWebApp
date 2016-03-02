@@ -6,7 +6,7 @@ export default class extends Component {
 		const { result } = this.props
 		return (
 				<div className="meta">
-					<img className="product-image" src={require('../../../images/hub-fpo.png')} alt="Hub FPO" width="100" height="100"/>
+					{/*}<img className="product-image" src={require('../../../images/hub-fpo.png')} alt="Hub FPO" width="100" height="100"/> */}
 					{result.Description}<br />
 				<em>#{result.PartNumber}</em>
 				</div>
