@@ -1,7 +1,7 @@
 import * as constants from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
-import {fetchImages} from 'actions/images'
+import {fetchImages} from './images'
 
 export const updateFilters = (obj) => {
   return Object.assign({type: constants.UPDATE_FILTER }, {update: obj});
@@ -90,32 +90,31 @@ export const requestHubs = (partNumber) => {
 export const receiveHubs = (partNumber, json) => {
   // for now we need to usher the json into the following format
   // we need a part number and ID
-  return dispatch => {
-    let hubs = []
-    if (json.Status != constants.ZERO_RESULTS) {
-      // hubs = json.Results;
-      const newFormat = json.Results.map( result => {
-      return result.AftermarketParts.map(detail => {
-            let mainImage = _.find(detail.Images, {ImageTypeId: 1})
-            if (mainImage) {
-              hubs.push(Object.assign(detail, {mainImageId: mainImage.ImageId}));
-            } else {
-              hubs.push(Object.assign(detail, {mainImageId: null}));
-            }
+  let hubs = []
+  if (json.Status != constants.ZERO_RESULTS) {
+    // hubs = json.Results;
+    const newFormat = json.Results.map( result => {
+    return result.AftermarketParts.map(detail => {
+          let mainImage = _.find(detail.Images, {ImageTypeId: 1})
+          if (mainImage) {
+            hubs.push(Object.assign(detail, {mainImageId: mainImage.ImageId}));
+          } else {
+            hubs.push(Object.assign(detail, {mainImageId: null}));
+          }
 
-            return Object.assign(detail, {PartNumber: detail.PartNumber})
-          })
+          return Object.assign(detail, {PartNumber: detail.PartNumber})
         })
+      })
 
-    }
-
-    dispatch({
-      type: constants.RECEIVE_HUBS,
-      partNumber: partNumber,
-      hubs: hubs,
-      status: json.Status
-    })
   }
+
+  return {
+    type: constants.RECEIVE_HUBS,
+    partNumber: partNumber,
+    hubs: hubs,
+    status: json.Status
+  }
+
 
 }
 

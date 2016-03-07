@@ -13,23 +13,29 @@ import {
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
 import { pushPath } from 'redux-simple-router'
-import {fetchImages} from 'actions/images'
+import {fetchImages} from './images'
 
 export const receiveAssemblyDetails = (id, json) => {
-  let results = [];
+	var results = [];
   if (json.Status !== ZERO_RESULTS) {
     const newFormat = json.Results.map( detail => {
 					let mainImage = _.find(detail.Images, {ImageTypeId: 1}) || null
 
 					if (mainImage) {
 						results.push(Object.assign(detail, {
-							mainImageId: mainImage.ImageId,
-						}));
+							mainImageId: mainImage.ImageId
+						}))
+					} else {
+						results.push(detail)
 					}
 
 
+
+
 				})
+
 	}
+
   return {
     type: RECIEVE_ASSEMBLY_DETAILS,
 		id: id,

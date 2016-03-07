@@ -26,7 +26,7 @@ const SUCCESS_MOCK = {
 							HubAssemblyType:'PreSet',
 							BrakeType:'Drum',
 							HubMountingSystem:'HP10',
-							WheelStudStandout:'2.92',
+							WheelStudStandoutInch:'2.92',
 							WheelMaterial:'Aluminum Wheels',
 							FlangeOffsetInch:'5.44',
 							WeightPound:'37.8',
@@ -49,7 +49,7 @@ describe('Assembly Actions', () => {
 			id,
 			results: SUCCESS_MOCK.Results
 		}
-    expect(receiveAssemblyDetails(id, SUCCESS_MOCK)).to.eql(expectedAction)
+		expect(receiveAssemblyDetails(id, SUCCESS_MOCK)).to.eql(expectedAction)
 	})
 
 	it('should handle receiving zero results', () => {

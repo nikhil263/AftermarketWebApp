@@ -1,5 +1,6 @@
 import {expect} from 'chai'
 import * as actions from '../../app/actions'
+import {requestAssembly, receiveAssembly, invalidateAssembly} from '../../app/actions/assembly'
 import {
   UPDATE_FILTER,
   UPDATE_LAST_PAGE,
@@ -76,7 +77,7 @@ describe('actions', () => {
       type: REQUEST_ASSEMBLIES,
       hub: hubFilter
     }
-    expect(actions.requestAssembly(hubFilter)).to.eql(expectedAction)
+    expect(requestAssembly(hubFilter)).to.eql(expectedAction)
   })
 
   it('should create an action to request hubs', () => {
@@ -105,8 +106,11 @@ describe('actions', () => {
       type: RECEIVE_HUBS,
       partNumber: partNumber,
       hubs: [{
-        HubAssemblyNumber:'10082207',
-        HubAssemblyDescription: 'Aluminum PreSet FF Front'
+        PartNumber:'10082207',
+        Description: 'Aluminum PreSet FF Front',
+        TypeId: 115,
+        Ranking: 1,
+        mainImageId: null
       }],
       status: json.Status
     }
@@ -134,7 +138,7 @@ describe('actions', () => {
       receivedAt: dateNow,
       status: json.Status
     }
-    expect(actions.receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
+    expect(receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
   })
 
   it('should return an empty array if there is a status of ZERO_RESULTS', () => {
@@ -147,14 +151,14 @@ describe('actions', () => {
       receivedAt: dateNow,
       status: json.Status
     }
-    expect(actions.receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
+    expect(receiveAssembly(hubFilter, json, dateNow)).to.eql(expectedAction)
   })
 
   it('should create an action to invalidate assemblies', () => {
     const expectedAction = {
       type: INVALIDATE_ASSEMBLIES
     }
-    expect(actions.invalidateAssembly()).to.eql(expectedAction);
+    expect(invalidateAssembly()).to.eql(expectedAction);
   })
 
   it('should create an action to invalidate hubs', () => {
