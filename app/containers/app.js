@@ -18,7 +18,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log('Loading App');
+		// console.log('Loading App');
 		const { dispatch } = this.props
 		dispatch(fetchCategories())
 	}

@@ -118,7 +118,7 @@ const getFilteredResults = (results,filter) => {
 class Results extends Component {
 	componentDidMount() {
 		const {dispatch, app, params} = this.props
-		console.log(params)
+		// console.log(params)
 		if (params.id) {
 			dispatch(fetchHubs(params.id))
 		} else {

@@ -137,7 +137,7 @@ export const fetchHubs = (partNumber) => {
     .then(
       response => response.json(),
       err => {
-        console.log('API Error', err);
+        // console.log('API Error', err);
     })
     .then(json => dispatch(receiveHubs(partNumber, json)))
   }

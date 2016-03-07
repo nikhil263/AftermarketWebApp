@@ -137,7 +137,7 @@ export const fetchAssembly = (state) => {
     .then(
       response => response.json(),
       err => {
-        console.log('API Error', err);
+        // console.log('API Error', err);
       }
     )
     .then(json => dispatch(receiveAssembly(state, json)))

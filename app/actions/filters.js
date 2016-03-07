@@ -95,7 +95,7 @@ export const receiveFilters = (idx, json, state) => {
   }
 	return dispatch => {
 		if(json.Results.length === 1) { // don't set on going back
-			console.log('FOUND ONLY 1')
+			// console.log('FOUND ONLY 1')
 			if (state.goingBack === true) { // go skip and don't set
 				dispatch(previousFilter(state))
 			} else {
@@ -139,12 +139,12 @@ export const fetchFilters = (idx, state) => {
 
 					var id = 0;
 					if (state.filterState.length > idx) {
-						console.log(idx, state.categories[idx])
+						// console.log(idx, state.categories[idx])
 						id = state.categories[idx].Id
 					}
 
 					const searchFilterState = state.filterState.map(function(item, index){
-						console.log(index,item, idx)
+						// console.log(index,item, idx)
 						if (index < idx) {
 							return item
 						}
@@ -165,7 +165,7 @@ export const fetchFilters = (idx, state) => {
 					.then(
 						response => response.json(),
 						err => {
-							console.log('API Error', err);
+							// console.log('API Error', err);
 						}
 					)
 					.then(json => {

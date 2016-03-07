@@ -6,19 +6,19 @@ import { connect } from 'react-redux'
 class Meta extends Component {
 	componentDidMount() {
 		const { dispatch, result, images } = this.props;
-		console.log("Result", result);
+		// console.log("Result", result);
 		dispatch(fetchImages(result.mainImageId, images));
 	}
 	render() {
 		const { result, images } = this.props
-		console.log(images)
+		// console.log(images)
 		return (
 				<div className="meta">
 					{
 						images.cache.map((image, index) => {
-							console.log(image)
+							// console.log(image)
 							if (image.id == result.mainImageId) {
-								console.log(result)
+								// console.log(result)
 								return <img className="product-image"  src={image.Base64EncodedImage}  key={index} alt={result.PartNumber} width="100" height="100" />
 							}
 

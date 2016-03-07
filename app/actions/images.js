@@ -57,7 +57,7 @@ var imageInCache = (id, state) => {
 export const fetchImages = (id, state) => {
 
 		return dispatch => {
-			console.log(id)
+			// console.log(id)
 			dispatch(requestImages(id))
 			if (imageInCache(id,state)) {
 				dispatch(inCache(id))
@@ -74,7 +74,7 @@ export const fetchImages = (id, state) => {
 				.then(
 					response => response.json(),
 					err => {
-						console.log('API Error', err);
+						// console.log('API Error', err);
 					}
 				)
 				.then(json => {
