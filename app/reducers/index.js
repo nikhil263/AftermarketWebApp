@@ -4,6 +4,7 @@ import * as constants from '../config/constants'
 import _ from 'lodash'
 import { assembly } from './assembly'
 import { results } from './results'
+import { images } from './images'
 
 
 function appState(state = constants.APPSTATE, action) {
@@ -62,10 +63,9 @@ function appState(state = constants.APPSTATE, action) {
 }
 
 const rootReducer = combineReducers(Object.assign({}, {
-  // truckMakes,
 	results,
-  // hubSelector,
 	assembly,
+	images,
 	appState
 }, {
   routing: routeReducer

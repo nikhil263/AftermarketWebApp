@@ -1,9 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component, Image } from 'react';
 import HubSelection from 'components/hub-selection';
 import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 import {Link} from 'react-router';
 import {showPreviousResult, showNextResult} from 'actions'
+import {fetchImages} from 'actions/images'
 import { AFTERMARKET_DETAILS } from 'config/constants'
 import _ from 'lodash'
 import Spinner from 'components/global/spinner'
@@ -61,6 +62,11 @@ class Result extends Component {
 		this.itemDetails = {};
 	}
 
+	componentDidMount() {
+		const { dispatch, item, images } = this.props;
+		dispatch(fetchImages(item.mainImageId, images));
+	}
+
 	showPrevious(idx, total) {
 		const {dispatch } = this.props;
 		if (idx !== 0) {
@@ -103,26 +109,36 @@ class Result extends Component {
 	}
 
 	render () {
-	 let { idx, total, item, dispatch } = this.props
+	 let { idx, total, item, dispatch, images } = this.props
 
 	 if (_.isUndefined(item) || item.id === -1) {
 		 return (<Spinner />)
 	 }
-	 return (
+
+
+	return (
  	 <div className="result">
 
 			<PreviousButton
 				idx={idx}
 				total={total}
 				handleClick={this.handlePreviousClick.bind(this)}
-				showButton={this.renderButtons.bind(this)}/>
+				showButton={this.renderButtons.bind(this)} />
 
 		 	<div className="details">
-				<img className="product-image" src={require('../../../images/'+item.image)} alt={item.HubAssemblyNumber} width="200" height="200"/>
-				<h2>{item.title || item.AftermarketDescription}<br />
-			 		#{item.HubAssemblyNumber}
+				{
+					images.cache.map((image, index) => {
+						if (image.id == item.mainImageId) {
+							return <img className="product-image"  src={image.Base64EncodedImage}  key={index} alt={item.PartNumber} width="200" height="200" />
+						}
+
+					})
+				}
+
+				<h2>{item.title || item.Description}<br />
+			 		#{item.PartNumber}
 			 	</h2>
-				<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
+				<Link to={'/hub-selection/details/'+item.PartNumber} className="general-button">See Details</Link>
 			</div>
 			<NextButton
 				idx={idx}

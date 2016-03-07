@@ -3,7 +3,7 @@ import HubSelection from 'components/hub-selection'
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router'
-import {fetchAssembly} from 'actions'
+import {fetchAssembly} from 'actions/assembly'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 

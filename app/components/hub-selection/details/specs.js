@@ -37,7 +37,7 @@ export default class extends Component {
 						</tr>
 						<tr>
 							<td>Wheel Stud Standout (in.)</td>
-							<td>{result.WheelStudStandout}</td>
+							<td>{result.WheelStudStandoutInch}</td>
 						</tr>
 						<tr>
 							<td>Wheel Material</td>

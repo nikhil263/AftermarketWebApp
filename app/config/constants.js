@@ -1,4 +1,5 @@
 export const API = 'https://apis.conmetwheelends.com/aftermarket3/v3';
+export const APITEMP = 'https://apis.conmetwheelends.com/aftermarkettemp/v3';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
 export const V2KEY='558c6251756c44ce9eacda5f6ffe34ca';
 export const ADD_FILTER='ADD_FILTER';
@@ -37,7 +38,10 @@ export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
 export const RECIEVE_ASSEMBLY_DETAILS='RECIEVE_ASSEMBLY_DETAILS'
 export const REQUEST_ASSEMBLY_DETAILS='REQUEST_ASSEMBLY_DETAILS'
 export const INVALIDATE_ASSEMBLY_DETAILS='INVALIDATE_ASSEMBLY_DETAILS'
-
+export const RECIEVE_IMAGES='RECIEVE_IMAGES'
+export const REQUEST_IMAGES='REQUEST_IMAGES'
+export const INVALIDATE_IMAGES='INVALIDATE_IMAGES'
+export const INCACHE_IMAGE='INCACHE_IMAGE'
 export const ZERO_RESULTS = 'ZERO_RESULTS';
 export const SUCCESS = 'SUCCESS';
 export const OK = 'OK';

@@ -4,9 +4,8 @@ import { createSelector } from 'reselect'
 import Step from 'components/hub-selection/step'
 import {fetchCategories} from 'actions/categories'
 import { setActiveFilterValue, checkFilterStatus, previousFilter } from 'actions/filters'
-
+import { fetchAssembly } from 'actions/assembly'
 import { updateFilters,
-				fetchAssembly,
 				fetchHubs,
 				updateStep,
 			 	incrementStep,
@@ -17,10 +16,11 @@ class HubSelector extends Component {
 
 
 	render() {
-		const { dispatch, history, assembly, truckMakes, results, app, params} = this.props;
+		const { dispatch, history, assembly, truckMakes, results, app, params, images} = this.props;
 		const childProps = {
 			params,
 			app,
+			images,
 			assembly,
 			results,
 			setFilter: (filterId, id, app) => {
@@ -71,6 +71,7 @@ class HubSelector extends Component {
 function select(state) {
   return {
 		app: state.appState,
+		images: state.images,
     assembly: state.assembly,
 		truckMakes: state.truckMakes,
 		results: state.results,

@@ -16,7 +16,7 @@ class Details extends Component {
 		dispatch(fetchAssemblyDetails(params.id))
 	}
 	render() {
-		const {app, assembly } = this.props
+		const {app, assembly, images } = this.props
 
 		let display = <Spinner isFetching={assembly.isFetching} />
 		if (!assembly.isFetching) {
@@ -24,7 +24,7 @@ class Details extends Component {
 
 					return (
 						<div key={index}>
-							<Meta result={result}/>
+							<Meta result={result} images={images}/>
 							<Specs result={result}/>
 						</div>
 					)

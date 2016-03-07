@@ -62,7 +62,8 @@ export function results(state = RESULTS, action) {
 
 		case RECEIVE_ASSEMBLIES:
 
-			let assemblies = mergeInDetails(action.assemblies);
+			// let assemblies = mergeInDetails(action.assemblies);
+			let assemblies = action.assemblies;
 			return Object.assign({}, state, {
 					selected: assemblies[0],
 					selectedIdx: 0,
@@ -77,7 +78,7 @@ export function results(state = RESULTS, action) {
 			return Object.assign({}, state, {isFetching: true})
 
 		case RECEIVE_HUBS:
-			let hubs = mergeInDetails(action.hubs);
+			let hubs = action.hubs;
 			return Object.assign({}, state, {
 					selected: hubs[0],
 					selectedIdx: 0,

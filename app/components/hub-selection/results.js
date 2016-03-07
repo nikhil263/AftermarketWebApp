@@ -3,7 +3,8 @@ import {Link} from 'react-router';
 import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
-import {materialFilter, fetchAssembly, fetchHubs} from 'actions'
+import {fetchAssembly} from 'actions/assembly'
+import {materialFilter, fetchHubs} from 'actions'
 import _ from 'lodash'
 
 
@@ -127,7 +128,7 @@ class Results extends Component {
 	}
 
 	render() {
-		const { results, materialFilter, dispatch } = this.props
+		const { results, materialFilter, dispatch, images } = this.props
 
 		const filteredResults = results
 
@@ -150,7 +151,7 @@ class Results extends Component {
 
 					{filteredResults.items.map((item, index) => {
 						if (index === filteredResults.selectedIdx) {
-							return <Result idx={filteredResults.selectedIdx} total={filteredResults.total} key={index} item={item} />
+							return <Result idx={filteredResults.selectedIdx} total={filteredResults.total} key={index} item={item} images={images} />
 						}
 					})}
 

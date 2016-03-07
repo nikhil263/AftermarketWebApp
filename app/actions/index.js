@@ -1,6 +1,7 @@
 import * as constants from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
+import {fetchImages} from 'actions/images'
 
 export const updateFilters = (obj) => {
   return Object.assign({type: constants.UPDATE_FILTER }, {update: obj});
@@ -79,108 +80,6 @@ export const showResultAtIndex = (idx) => {
   }
 }
 
-
-export const receiveFilters = (json) => {
-  let filters = [];
-  if (json.Status != constants.ZERO_RESULTS) {
-    filters = json.Results;
-  }
-  return {
-    type: constants.RECIEVE_FILTERS,
-    filters: filters
-  }
-}
-export const requestFilters = (filterId) => {
-  return {
-    type: constants.REQUEST_FILTERS,
-    filterId: filterId
-  }
-}
-
-export const invalidateFilters = () => {
-  return {
-    type: constants.INVALIDATE_FILTERS,
-  }
-}
-
-export const fetchFilters = (filterId, filterState) => {
-  return dispatch => {
-    dispatch(requestFilters(filterId))
-    let searchParams = filterState.join('/');
-    let url = constants.API+'/hubassembly/filtervalues/'+searchParams;
-    return fetch(url, {
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': constants.V2KEY
-      }
-    })
-    .then(
-      response => response.json(),
-      err => {
-        console.log('API Error', err);
-      }
-    )
-    .then(json => dispatch(receiveFilters(json)))
-  }
-}
-
-export const requestAssembly = (hub) => {
-  return {
-    type: constants.REQUEST_ASSEMBLIES,
-    hub: hub
-  }
-}
-
-
-export const receiveAssembly = (hub, json, date = Date.now()) => {
-
-  let assemblies = []
-  if (json.Status != constants.ZERO_RESULTS) {
-    assemblies = json.Results;
-  }
-  return {
-    type: constants.RECEIVE_ASSEMBLIES,
-    hub: hub,
-    assemblies: assemblies,
-    receivedAt: date,
-    status: json.Status
-  }
-}
-
-
-
-export const fetchAssembly = (state) => {
-  return dispatch => {
-    dispatch(requestAssembly(state))
-
-    let searchParams = state.filterState.join('/');
-    let url = constants.API+'/hubassembly/filtervalues/0/'+searchParams;
-    return fetch(url, {
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': constants.V2KEY
-      }
-    })
-    .then(
-      response => response.json(),
-      err => {
-        console.log('API Error', err);
-      }
-    )
-    .then(json => dispatch(receiveAssembly(state, json)))
-  }
-}
-
-export const invalidateAssembly = () => {
-  return {
-    type: constants.INVALIDATE_ASSEMBLIES,
-  }
-}
-
 export const requestHubs = (partNumber) => {
   return {
     type: constants.REQUEST_HUBS,
@@ -191,28 +90,33 @@ export const requestHubs = (partNumber) => {
 export const receiveHubs = (partNumber, json) => {
   // for now we need to usher the json into the following format
   // we need a part number and ID
-  let hubs = []
-  if (json.Status != constants.ZERO_RESULTS) {
-    // hubs = json.Results;
-    const newFormat = json.Results.map( result => {
-    return Object.assign(result, {
-        AftermarketPartDetailSummaries: result.AftermarketParts.map(detail => {
-          hubs.push({
-            HubAssemblyNumber: detail.PartNumber,
-            HubAssemblyDescription: detail.Description
-          });
-          return Object.assign(detail, {PartNumber: detail.PartNumber})
+  return dispatch => {
+    let hubs = []
+    if (json.Status != constants.ZERO_RESULTS) {
+      // hubs = json.Results;
+      const newFormat = json.Results.map( result => {
+      return result.AftermarketParts.map(detail => {
+            let mainImage = _.find(detail.Images, {ImageTypeId: 1})
+            if (mainImage) {
+              hubs.push(Object.assign(detail, {mainImageId: mainImage.ImageId}));
+            } else {
+              hubs.push(Object.assign(detail, {mainImageId: null}));
+            }
+
+            return Object.assign(detail, {PartNumber: detail.PartNumber})
+          })
         })
-      })
+
+    }
+
+    dispatch({
+      type: constants.RECEIVE_HUBS,
+      partNumber: partNumber,
+      hubs: hubs,
+      status: json.Status
     })
   }
 
-  return {
-    type: constants.RECEIVE_HUBS,
-    partNumber: partNumber,
-    hubs: hubs,
-    status: json.Status
-  }
 }
 
 export const fetchHubs = (partNumber) => {
@@ -222,7 +126,7 @@ export const fetchHubs = (partNumber) => {
     ///1/'+partNumber
     //https://apis.conmetwheelends.com/aftermarket/v1/summarydetails/~/10031065
     //https://apis.conmetwheelends.com/parts/api/v2/details/~/10031065
-    return fetch(constants.API+'/aftermarketparts/'+partNumber+'/'+afterMarketHubPartType, {
+    return fetch(constants.APITEMP+'/aftermarketparts/'+partNumber+'/'+afterMarketHubPartType, {
       method: 'get',
       headers: {
         'Accept': 'application/json',
