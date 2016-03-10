@@ -28,11 +28,7 @@ class TruckMakes extends Component {
 	componentDidMount() {
 
 		const { dispatch, app, checkForReload,  setFilter} = this.props
-		if (app.filterState[FILTERIDX-1] === 2) {
-			setFilter(FILTERIDX, '~', app)
-		} else {
-			dispatch(fetchFilters(FILTERIDX, app))
-		}
+		dispatch(fetchFilters(FILTERIDX, app))
 
 	}
 
