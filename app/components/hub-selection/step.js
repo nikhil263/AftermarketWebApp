@@ -13,7 +13,6 @@ export default class extends Component {
 	}
 
 
-
 	render() {
 		const { onClick, app, params, history } = this.props
 		let link = <a href="javascript:void(0)" onClick={onClick} className="back-btn"> <i className="icon-angle-left"></i>Back</a>
@@ -34,7 +33,7 @@ export default class extends Component {
 		if (window.location.pathname.indexOf('/details/') > -1) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
-		
+
 		return (
 				 <div className="step-bar grid-block small-12 large-12 wrap shrink ">
 						<div className="grid-content no-scroll small-6">
@@ -42,7 +41,7 @@ export default class extends Component {
 						</div>
 
 						<div className="grid-content no-scroll right small-6">
-							{/*this.showStepDisplay()*/}
+							<Link to="/hub-selection" className="home-btn right">Home</Link>
 						</div>
 					</div>
 				)

@@ -65,55 +65,6 @@ class MaterialType extends Component {
 
 	}
 }
-class ResetMaterial extends Component {
-	resetMaterialFilter(filter) {
-		const {dispatch} = this.props
-		dispatch(materialFilter(filter))
-	}
-
-	render() {
-		const {total, materialFilter} = this.props;
-		let label = 'View Iron Hubs'
-		let filter = MATERIAL_IRON
-		if (materialFilter === MATERIAL_IRON) {
-			label = 'View Aluminum Hubs'
-			filter = MATERIAL_ALUMINUM
-		}
-		if (total < 2) {
-			return (<div></div>)
-		}
-		return (
-			<div className="conmet-button center">
-			<button className="yes-no-button" onClick={this.resetMaterialFilter.bind(this, filter)}>
-				<strong>{label}</strong>
-			</button>
-			</div>
-		)
-	}
-}
-
-
-const getFilteredResults = (results,filter) => {
-	let filtered = {
-		items: [],
-		total: 0
-	}
-	switch (filter) {
-		case MATERIAL_ALL:
-			return results;
-		case MATERIAL_ALUMINUM:
-			filtered.items = _.filter(results.items, r => r.HubCastingMaterialType === 'Aluminum')
-			filtered.total = filtered.items.length;
-			return Object.assign({},results,filtered);
-		case MATERIAL_IRON:
-			filtered.items = _.filter(results.items, r => {
-				return r.HubCastingMaterialType === 'Iron'
-			})
-			filtered.total = filtered.items.length;
-
-			return Object.assign({},results,filtered);
-	}
-}
 
 class Results extends Component {
 	componentDidMount() {
@@ -132,13 +83,13 @@ class Results extends Component {
 
 		const filteredResults = results
 
-		if (filteredResults.isFetching) {
+		if (results.isFetching) {
 			return (<Waiting />)
 		}
-		if (filteredResults.items.length === 0) {
+		if (results.items.length === 0) {
 			return (<NoResults />)
 		}
-		if (materialFilter === MATERIAL_ALL && filteredResults.items.length > 1) {
+		if (materialFilter === MATERIAL_ALL && results.items.length > 1) {
 			return <MaterialType dispatch={dispatch}/>
 		}
 
@@ -149,23 +100,16 @@ class Results extends Component {
 				<h1>Success! The following ConMet PreSet hub(s) are recommended</h1>
 
 
-					{filteredResults.items.map((item, index) => {
-						if (index === filteredResults.selectedIdx) {
-							return <Result idx={filteredResults.selectedIdx} total={filteredResults.total} key={index} item={item} images={images} />
+					{results.items.map((item, index) => {
+						if (index === results.selectedIdx) {
+							return <Result idx={results.selectedIdx} total={results.total} key={index} item={item} images={images} />
 						}
 					})}
 
-					<ResultNavigation total={filteredResults.total} currentIdx={filteredResults.selectedIdx}/>
-
-
-				{/*
+					<ResultNavigation total={results.total} currentIdx={results.selectedIdx}/>
 
 
 
-					<Link to="/hub-selection/details" className="general-button">See Details</Link>
-					<div className="conmet-button">
-				<Link to="/hub-selection/step-three" className="yes-no-button">Find this Product</Link>
-				</div>*/}
 			</div>
 		)
 	}

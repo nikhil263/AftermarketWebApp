@@ -41,6 +41,7 @@ export const RECIEVE_IMAGES='RECIEVE_IMAGES'
 export const REQUEST_IMAGES='REQUEST_IMAGES'
 export const INVALIDATE_IMAGES='INVALIDATE_IMAGES'
 export const INCACHE_IMAGE='INCACHE_IMAGE'
+export const NO_IMAGE='NO_IMAGE'
 export const ZERO_RESULTS = 'ZERO_RESULTS';
 export const SUCCESS = 'SUCCESS';
 export const OK = 'OK';

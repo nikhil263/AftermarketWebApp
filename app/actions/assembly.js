@@ -98,17 +98,13 @@ export const receiveAssembly = (hub, json, date = Date.now()) => {
   let assemblies = []
   if (json.Status != ZERO_RESULTS) {
 		const newFormat = json.Results.map( detail => {
-					let mainImage = _.find(detail.Images, {ImageTypeId: 1}) || null
 
-					if (mainImage) {
+
+
 						assemblies.push(Object.assign(detail, {
-							mainImageId: mainImage.ImageId,
 							Description: detail.AftermarketDescription,
 							PartNumber: detail.HubAssemblyNumber
 						}));
-					} else {
-						assemblies.push(Object.assign(detail, {mainImageId: null}));
-					}
 
 
 				})

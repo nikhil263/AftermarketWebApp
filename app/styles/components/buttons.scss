@@ -160,13 +160,17 @@
 .step-bar {
 	width: 100%;
 
-	a.back-btn, .step-number {
+	a.back-btn, .step-number, .home-btn{
 		color: #fff !important;
 		margin-top:5px !important;
 		padding-top:4px !important;
 		display: block;
 		font-weight: bold;
 		vertical-align: center;
+	}
+	.home-btn {
+		text-align: right !important;
+		padding-right: 20px;
 	}
 
 	.grid-content {

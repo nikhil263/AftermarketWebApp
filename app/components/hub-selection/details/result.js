@@ -64,7 +64,7 @@ class Result extends Component {
 
 	componentDidMount() {
 		const { dispatch, item, images } = this.props;
-		dispatch(fetchImages(item.mainImageId, images));
+		dispatch(fetchImages(item.Images, images));
 	}
 
 	showPrevious(idx, total) {
@@ -127,11 +127,8 @@ class Result extends Component {
 
 		 	<div className="details">
 				{
-					images.cache.map((image, index) => {
-						if (image.id == item.mainImageId) {
+					images.selected.map((image, index) => {
 							return <img className="product-image"  src={image.Base64EncodedImage}  key={index} alt={item.PartNumber} width="200" height="200" />
-						}
-
 					})
 				}
 

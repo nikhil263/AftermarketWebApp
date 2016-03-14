@@ -6,7 +6,8 @@ import {
 	RECIEVE_IMAGES,
 	REQUEST_IMAGES,
 	INVALIDATE_IMAGES,
-	INCACHE_IMAGE
+	INCACHE_IMAGE,
+	NO_IMAGE
 } from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
@@ -15,11 +16,13 @@ import { pushPath } from 'redux-simple-router'
 
 export const receiveImages = (id, json, state) => {
 	let images = []
+	console.log('recieved json', json);
 	if (json.Status != ZERO_RESULTS) {
 		json.Results.map(image => {
 			images.push(Object.assign(image, {id: id}))
 		})
   }
+	console.log('received', images);
 	return  {
     type: RECIEVE_IMAGES,
 		id,
@@ -40,27 +43,34 @@ export const invalidateImages = () => {
   }
 }
 
-export const inCache = (id) => {
+export const inCache = (id, found) => {
 	return {
 		type: INCACHE_IMAGE,
-		id: id
+		id: id,
+		images: found
 	}
 }
 
 var imageInCache = (id, state) => {
-	if (_.find(state.cache, {id: id})) {
-		return true
+	const images = _.find(state.cache, {id: id});
+	if (images) {
+		return images
 	}
 	return false
 }
 
-export const fetchImages = (id, state) => {
+export const fetchImages = (images, state) => {
+		const mainImage = images[0] || null
+		console.log('First Image', mainImage)
+		if (mainImage) {
+			const id = mainImage.ImageId
 
 		return dispatch => {
-			// console.log(id)
+			console.log('images id', id)
 			dispatch(requestImages(id))
-			if (imageInCache(id,state)) {
-				dispatch(inCache(id))
+			const checkCache = imageInCache(id,state)
+			if (checkCache) {
+				dispatch(inCache(id, checkCache))
 			} else {
 				let url = API+'/images/'+id;
 				return fetch(url, {
@@ -78,10 +88,15 @@ export const fetchImages = (id, state) => {
 					}
 				)
 				.then(json => {
+					console.log('before received', json);
 					dispatch(receiveImages(id, json, state))
 				})
 			}
+		}
 
-
+	} else {
+		return {
+			type: NO_IMAGE
+		}
 	}
 }

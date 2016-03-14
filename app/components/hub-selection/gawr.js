@@ -20,15 +20,23 @@ class Result extends Component {
 	}
 	render() {
 		const {active, onClick, result} = this.props
-		var min, max
-		if (result.MinGawrPound && result.MaxGawrPound) {
+		var min, max, display
+
+
 			min = result.MinGawrPound.toLocaleString()
 			max = result.MaxGawrPound.toLocaleString()
-		}
+			if (min === '0') {
+				display = 'Up to '+max+' lbs.'
+			} else {
+				display = min +' - ' + max+' lbs.'
+			}
+
+
+
 
 		return (
 			<div className={active()}>
-				<button className="yes-no-button" onClick={onClick}><strong>{min} - {max} lbs.</strong><br />
+				<button className="yes-no-button" onClick={onClick}><strong>{display}</strong><br />
 					{this.convertToKg()}
 				</button>
 			</div>

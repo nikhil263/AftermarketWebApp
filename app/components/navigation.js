@@ -22,6 +22,13 @@ class Navigation extends Component {
     dispatch(pushPath('/hub-selection'))
   }
 
+  goDisclaimer() {
+    const {dispatch} = this.props
+    dispatch(resetFilters())
+    dispatch(pushPath('/'))
+  }
+
+
   render() {
     return (
       <div>
@@ -35,6 +42,7 @@ class Navigation extends Component {
             <li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
             <li><a href="http://store.conmet.com/locator/">Dealer Locator</a></li>
             <li><a href="http://store.conmet.com/">Product Showroom</a></li>
+            <li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
           </ul>
 
             <Trigger close="">
