@@ -1,6 +1,5 @@
 import {
 	API,
-	APITEMP,
 	V2KEY,
 	ZERO_RESULTS,
 	RECIEVE_FILTERS,
@@ -153,7 +152,7 @@ export const fetchFilters = (idx, state) => {
 
 					let searchParams = searchFilterState.join('/');
 
-					let url = APITEMP+'/hubassembly/filtervalues/'+id+'/'+searchParams;
+					let url = API+'/hubassembly/filtervalues/'+id+'/'+searchParams;
 					return fetch(url, {
 						method: 'get',
 						headers: {

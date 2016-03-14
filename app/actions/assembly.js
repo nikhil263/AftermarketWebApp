@@ -1,6 +1,5 @@
 import {
 	API,
-	APITEMP,
 	V2KEY,
 	ZERO_RESULTS,
 	INVALIDATE_ASSEMBLIES,
@@ -62,7 +61,7 @@ export const fetchAssemblyDetails = (id, state) => {
 				return dispatch => {
 					dispatch(requestAssemblyDetails(id))
 
-					let url = APITEMP+'/hubassemblydetails/'+id;
+					let url = API+'/hubassemblydetails/'+id;
 					return fetch(url, {
 						method: 'get',
 						headers: {
@@ -131,7 +130,7 @@ export const fetchAssembly = (state) => {
     dispatch(requestAssembly(state))
 
     let searchParams = state.filterState.join('/');
-    let url = APITEMP+'/hubassembly/filtervalues/0/'+searchParams;
+    let url = API+'/hubassembly/filtervalues/0/'+searchParams;
     return fetch(url, {
       method: 'get',
       headers: {
