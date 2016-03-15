@@ -15,9 +15,8 @@ class Result extends Component {
 		 <div className="grid-content small-6">
 		 <div className={active()}>
  			<button className="yes-no-button" onClick={onClick}>
- 				<strong>Designation: {result.Designation}</strong><br />
-				Diameter: {result.NominalDiameter+'"'}
- 			</button>
+ 				<strong>{result.NominalDiameter+'"'}</strong>
+			</button>
  		</div>
 		</div>
 
