@@ -85,7 +85,7 @@ export const decreaseIndex = () => {
 export const receiveFilters = (idx, json, state) => {
   let filters = [];
   if (json.Status != ZERO_RESULTS) {
-    filters = json.Results;
+    filters = _.reject(json.Results, {Id:0, Name:'—'});
   }
 	const recieve = {
     type: RECIEVE_FILTERS,
