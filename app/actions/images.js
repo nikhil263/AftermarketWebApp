@@ -64,11 +64,8 @@ export const fetchImages = (images, state) => {
 			const id = mainImage.ImageId
 
 		return dispatch => {
-			console.log('images id', id)
 			dispatch(requestImages(id))
-
 			const checkCache = imageInCache(id,state)
-			console.log('found cache', checkCache, _.filter(state.cache, {ImageId: id}))
 			if (checkCache.length > 0) {
 				dispatch(inCache(id, checkCache))
 			} else {

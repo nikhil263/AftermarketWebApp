@@ -6,40 +6,34 @@ import Meta from 'components/hub-selection/details/meta';
 import Spinner from 'components/global/spinner'
 import {Link} from 'react-router';
 import { fetchAssemblyDetails } from 'actions/assembly'
+import { invalidateImages } from 'actions/images'
 import { connect } from 'react-redux'
 
 
 class Details extends Component {
 
 	componentDidMount() {
-		const { app, dispatch, params } = this.props
-		dispatch(fetchAssemblyDetails(params.id))
+		const { app, dispatch, params, images } = this.props
+		dispatch(fetchAssemblyDetails(params.id, images))
 	}
 	render() {
 		const {app, assembly, images } = this.props
 
-		let display = <Spinner isFetching={assembly.isFetching} />
-		if (!assembly.isFetching) {
-			display = assembly.result.map((result, index) => {
-
-					return (
-						<div key={index}>
-							<Meta result={result} images={images}/>
-							<Specs result={result}/>
-						</div>
-					)
-				})
-
-		}
 		return (
 			<div className="grid-container main-content">
 				<h2>Product Details</h2>
+					<Spinner isFetching={assembly.isFetching} />
+					{assembly.result.map((r, index) => {
 
-				{display}
+							return (
+								<div key={index}>
+									<Meta result={r} images={images} />
+									<Specs result={r}/>
+								</div>
+							)
+						})}
 
 				<Link to="/hub-selection/results" className="general-button">Return</Link>
-				{/*}<Link to="/hub-selection/email" className="general-button">Email Results</Link>
-				<Link to="/hub-selection/step-three" className="general-button">Find this Product</Link>*/}
 
 			</div>
 		)

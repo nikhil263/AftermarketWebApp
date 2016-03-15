@@ -14,18 +14,26 @@ import fetch from 'isomorphic-fetch'
 import { pushPath } from 'redux-simple-router'
 import {fetchImages} from './images'
 
-export const receiveAssemblyDetails = (id, json) => {
+export const receiveAssemblyDetails = (id, json, images) => {
 	var results = [];
+	var needsImage = false;
   if (json.Status !== ZERO_RESULTS) {
     const newFormat = json.Results.map( detail => {
 					let mainImage = _.find(detail.Images, {ImageTypeId: 1}) || null
+					needsImage = (detail.Images.length > 0)
+
 
 					if (mainImage) {
 						results.push(Object.assign(detail, {
-							mainImageId: mainImage.ImageId
+							mainImageId: mainImage.ImageId,
+							image: []
 						}))
+
 					} else {
-						results.push(detail)
+						results.push(Object.assign(detail, {
+							mainImageId: null,
+							image: []
+						}))
 					}
 
 
@@ -34,12 +42,15 @@ export const receiveAssemblyDetails = (id, json) => {
 				})
 
 	}
+	return dispatch => {
+		dispatch({
+	    type: RECIEVE_ASSEMBLY_DETAILS,
+			id: id,
+	    results: results
+	  })
+		dispatch(fetchImages(results[0].Images, images))
+	}
 
-  return {
-    type: RECIEVE_ASSEMBLY_DETAILS,
-		id: id,
-    results: results
-  }
 }
 export const requestAssemblyDetails = (id) => {
   return {
@@ -54,7 +65,7 @@ export const invalidateAssemblyDetails = () => {
   }
 }
 
-export const fetchAssemblyDetails = (id, state) => {
+export const fetchAssemblyDetails = (id, images) => {
 
 				//10082201
 
@@ -77,7 +88,7 @@ export const fetchAssemblyDetails = (id, state) => {
 						}
 					)
 					.then(json => {
-							dispatch(receiveAssemblyDetails(id, json))
+							dispatch(receiveAssemblyDetails(id, json, images))
 						}
 					)
 
