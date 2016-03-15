@@ -16,7 +16,7 @@ class Result extends Component {
 		 <div className={active()}>
  			<button className="yes-no-button" onClick={onClick}>
  				<strong>Designation: {result.Designation}</strong><br />
-				Diameter:{result.DiameterInch}
+				Diameter: {result.NominalDiameter+'"'}
  			</button>
  		</div>
 		</div>
@@ -40,7 +40,7 @@ class AxelStud extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Axle Diameter</h1>
+				<h1>Choose the Axle Stud Diameter</h1>
 
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
