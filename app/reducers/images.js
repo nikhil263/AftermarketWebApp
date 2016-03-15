@@ -23,7 +23,7 @@ export const images = (state = defaultState, action) => {
 		case INVALIDATE_IMAGES:
 			return Object.assign({}, state, {isFetching: true, needsFetch: false})
 		case INCACHE_IMAGE:
-			return Object.assign({}, state, {cache: newCache, selected: action.images})
+			return Object.assign({}, state, {selected: action.images})
 		default:
 			return state
 	}

@@ -52,11 +52,9 @@ export const inCache = (id, found) => {
 }
 
 var imageInCache = (id, state) => {
-	const images = _.find(state.cache, {id: id});
-	if (images) {
-		return images
-	}
-	return false
+	console.log('checking cache', state)
+	const images = _.filter(state.cache, {ImageId: id});
+	return images
 }
 
 export const fetchImages = (images, state) => {
@@ -68,8 +66,10 @@ export const fetchImages = (images, state) => {
 		return dispatch => {
 			console.log('images id', id)
 			dispatch(requestImages(id))
+
 			const checkCache = imageInCache(id,state)
-			if (checkCache) {
+			console.log('found cache', checkCache, _.filter(state.cache, {ImageId: id}))
+			if (checkCache.length > 0) {
 				dispatch(inCache(id, checkCache))
 			} else {
 				let url = API+'/images/'+id;

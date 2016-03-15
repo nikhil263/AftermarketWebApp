@@ -144,6 +144,7 @@ export const fetchFilters = (idx, state) => {
 
 					const searchFilterState = state.filterState.map(function(item, index){
 						// console.log(index,item, idx)
+
 						if (index < idx) {
 							return item
 						}
