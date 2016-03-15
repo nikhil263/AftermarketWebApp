@@ -4,7 +4,6 @@ import {
 	INVALIDATE_IMAGES,
 	INCACHE_IMAGE
 } from '../config/constants'
-import {invalidateImages} from 'actions/images'
 import _ from 'lodash'
 
 const defaultState = {
