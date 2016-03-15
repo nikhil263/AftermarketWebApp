@@ -85,12 +85,12 @@ export const decreaseIndex = () => {
 export const receiveFilters = (idx, json, state) => {
   let filters = [];
   if (json.Status != ZERO_RESULTS) {
-    filters = _.reject(json.Results, {Id:0, Name:'—'});
+    filters = json.Results
   }
 	const recieve = {
     type: RECIEVE_FILTERS,
 		idx: idx,
-    filters: filters
+    filters: _.reject(json.Results, {Id:0, Name:'—'})
   }
 	return dispatch => {
 		if(json.Results.length === 1) { // don't set on going back
