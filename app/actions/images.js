@@ -85,9 +85,8 @@ export const fetchImages = (images, state) => {
 					}
 				)
 				.then(json => {
-					console.log('before received', json);
-					dispatch(receiveImages(id, json, state))
-				})
+					dispatch(receiveImages(id, json, state));
+				});
 			}
 		}
 
