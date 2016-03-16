@@ -17,7 +17,8 @@ class Details extends Component {
 		dispatch(fetchAssemblyDetails(params.id, images))
 	}
 	render() {
-		const {app, assembly, images } = this.props
+		const {app, assembly, images, history } = this.props
+
 
 		return (
 			<div className="grid-container main-content">
@@ -33,7 +34,7 @@ class Details extends Component {
 							)
 						})}
 
-				<Link to="/hub-selection/results" className="general-button">Return</Link>
+				<a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="general-button">Return to results</a>
 
 			</div>
 		)
