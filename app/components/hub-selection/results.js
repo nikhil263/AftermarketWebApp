@@ -92,23 +92,26 @@ class Results extends Component {
 		if (materialFilter === MATERIAL_ALL && results.items.length > 1) {
 			return <MaterialType dispatch={dispatch}/>
 		}
-		var title = ''
-		if (_.isUndefined(app.lastChoice.Name)) {
-			title = 'Success! The following ConMet hub is recommended'
-		} else {
-			if (results.items.length > 1) {
-				title = 'Success! The following ConMet hubs are recommended'
-			} else {
-				title = 'Success! The following ConMet '+app.lastChoice.Name+' hub is recommended'
-			}
 
-		}
 
 
 		return (
 			<div className="grid-container main-content">
-				<h1>{title}</h1>
+				{results.items.map((item, index) => {
+					if (index === 0) {
 
+
+					var title = ''
+					if (results.items.length > 1) {
+						title = 'Success! The following ConMet hubs are recommended'
+					} else if (_.isUndefined(app.lastChoice.Name)) {
+						title = 'Success! The following ConMet hub is recommended'
+					} else {
+						title = 'Success! The following ConMet '+app.lastChoice.Name+' hub is recommended'
+					}
+					return <h1>{title}</h1>
+					}
+				})}
 
 					{results.items.map((item, index) => {
 						if (index === results.selectedIdx) {
