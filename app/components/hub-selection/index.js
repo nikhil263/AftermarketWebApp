@@ -24,6 +24,7 @@ class HubSelector extends Component {
 			assembly,
 			results,
 			setFilter: (filterId, id, app) => {
+				console.log('Setting', app)
 				dispatch(setActiveFilterValue(filterId, id, app))
 			},
 			setActive: (filterId, selected, baseClass = 'conmet-button') => {

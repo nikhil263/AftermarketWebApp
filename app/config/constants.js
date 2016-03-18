@@ -156,6 +156,7 @@ export const APPSTATE = {
 	categories: FILTER_VALUES,
 	currentIndex: 1,
 	filterResults: [],
+	lastChoice: {},
 	filterState: [
 		'~', 	//aftermarketHubAssemblyNumbers
 		'~', 	//truckCompartmentIds

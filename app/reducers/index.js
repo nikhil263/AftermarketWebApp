@@ -40,12 +40,18 @@ function appState(state = constants.APPSTATE, action) {
 		case constants.UPDATE_FILTER_VALUE:
 			const idx = action.idx;
 			const newIndex = (state.filterState.length > idx + 1) ? idx + 1 : idx;
-
+			console.log('update filter value', action.value)
 			const newFilterState = [
 				...state.filterState.slice(0, idx),
     		action.value,
     		...state.filterState.slice(idx + 1)
 			];
+			console.log('update filter value state', state)
+			console.log('update filter value', action.value, newFilterState)
+			var choice = {};
+			if (state.filterResults.length) {
+				choice = _.find(state.filterResults, {Id: action.value})
+			}
 			const newId = state.categories[newIndex].Id;
 			return Object.assign(
 					{},
@@ -55,7 +61,8 @@ function appState(state = constants.APPSTATE, action) {
 						isFetching: true,
 						needsFetch: true,
 						currentIndex: newIndex,
-						filterState: newFilterState
+						filterState: newFilterState,
+						lastChoice: choice
 					})
 		default:
 			return state;

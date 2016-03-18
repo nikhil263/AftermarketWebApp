@@ -79,7 +79,7 @@ class Results extends Component {
 	}
 
 	render() {
-		const { results, materialFilter, dispatch, images } = this.props
+		const { results, materialFilter, dispatch, images, app } = this.props
 
 		const filteredResults = results
 
@@ -92,12 +92,22 @@ class Results extends Component {
 		if (materialFilter === MATERIAL_ALL && results.items.length > 1) {
 			return <MaterialType dispatch={dispatch}/>
 		}
+		var title = ''
+		if (_.isUndefined(app.lastChoice.Name)) {
+			title = 'Success! The following ConMet hub is recommended'
+		} else {
+			if (results.items.length > 1) {
+				title = 'Success! The following ConMet hubs are recommended'
+			} else {
+				title = 'Success! The following ConMet '+app.lastChoice.Name+' hub is recommended'
+			}
 
+		}
 
 
 		return (
 			<div className="grid-container main-content">
-				<h1>Success! The following ConMet PreSet hub(s) are recommended</h1>
+				<h1>{title}</h1>
 
 
 					{results.items.map((item, index) => {
