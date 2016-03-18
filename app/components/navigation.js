@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 import {connect} from 'react-redux'
 import { pushPath } from 'redux-simple-router'
 import {resetFilters} from 'actions'
-import Trigger from 'react-foundation-apps/lib/trigger'
-import Offcanvas from 'react-foundation-apps/lib/offcanvas'
+import {slide} from 'react-burger-menu';
 
+var Menu = slide
 
 class Navigation extends Component {
   constructor(props) {
@@ -32,22 +32,16 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <Offcanvas id="top-offcanvas" position="top" className="global-navigation">
-          <Trigger close="">
-            <a className="close-button"><i className="icon-angle-up"></i></a>
-          </Trigger>
-
+        <Menu className="global-navigation" right>
+          <p>More Information</p>
           <ul>
             <li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>
             <li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
             <li><a href="http://store.conmet.com/">Product Showroom</a></li>
             <li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
           </ul>
+        </Menu>
 
-            <Trigger close="">
-              <a className='button'>Close <i className="icon-angle-up"></i></a>
-            </Trigger>
-        </Offcanvas>
         <div className="dark title-bar">
 
 
@@ -56,9 +50,7 @@ class Navigation extends Component {
           </div>
 
           <span className="right">
-            <Trigger open="top-offcanvas">
-              <a className="button"><i className="icon-menu" title="Menu"></i></a>
-            </Trigger>
+
           </span>
         </div>
       </div>

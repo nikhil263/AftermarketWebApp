@@ -35,7 +35,7 @@ export default class extends Component {
 		}
 
 		return (
-				 <div className="step-bar grid-block small-12 large-12 wrap shrink ">
+				 <div className="step-bar grid-block small-12 wrap shrink ">
 						<div className="grid-content no-scroll small-6">
 							{link}
 						</div>

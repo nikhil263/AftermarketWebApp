@@ -17,9 +17,10 @@ body.rotate {
 	text-align: center;
 	ul {
 		margin-left: 0;
+    list-style: none;
 	}
 	li {
-		list-style: none;
+		list-style: none !important;
 
 	}
 }

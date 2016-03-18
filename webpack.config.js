@@ -1,6 +1,7 @@
 /* global module */
 var path = require('path');
 var webpack = require('webpack');
+require('babel-polyfill');
 
 
 module.exports = {
