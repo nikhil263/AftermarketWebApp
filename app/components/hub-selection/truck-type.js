@@ -36,7 +36,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
           </div>
           <div className="conmet-button disabled">
   					<button className="yes-no-button">
-              <strong>Heavy-Duty Truck with Disc Brakes</strong>
+              <strong>Heavy-Duty Truck with Disc Brakes</strong><br />Coming Soon
   					</button>
   				</div>
 
@@ -50,7 +50,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
 
           <div className="conmet-button disabled">
   					<button className="yes-no-button">
-              <strong>Trailer with Disc Brakes</strong>
+              <strong>Trailer with Disc Brakes</strong><br />Coming Soon
   					</button>
   				</div>
         </div>
