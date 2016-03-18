@@ -40,7 +40,6 @@ class Navigation extends Component {
           <ul>
             <li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>
             <li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
-            <li><a href="http://store.conmet.com/locator/">Dealer Locator</a></li>
             <li><a href="http://store.conmet.com/">Product Showroom</a></li>
             <li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
           </ul>
