@@ -20,7 +20,7 @@ export default class extends Component {
 		if (location.pathname === '/hub-selection') {
 			link = null
 		}
-		else if (app.currentIndex === 0) {
+		else if (!app || app.currentIndex === 0) {
 			link = <Link to="/hub-selection" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
 		}
 		if (window.location.pathname.indexOf('/search/') > -1) {
@@ -33,6 +33,7 @@ export default class extends Component {
 		if (window.location.pathname.indexOf('/details/') > -1) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
+
 
 		return (
 				 <div className="step-bar grid-block small-12 wrap shrink ">

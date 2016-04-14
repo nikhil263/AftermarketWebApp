@@ -71,7 +71,7 @@ class HubSelector extends Component {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {
   return {
-		app: state.appState,
+		app: state.app,
 		images: state.images,
     assembly: state.assembly,
 		truckMakes: state.truckMakes,
