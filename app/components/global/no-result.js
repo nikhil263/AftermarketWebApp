@@ -19,7 +19,7 @@ class NoResults extends Component {
 
 				</div>
 
-				<Link to={'https://vdm.conmet.com/HubCatalog/'} className="general-button">ConMet Online Parts Catalog</Link>
+				<a href="https://vdm.conmet.com/HubCatalog/" className="general-button">ConMet Online Parts Catalog</a>
 
 			</div>
 		)
