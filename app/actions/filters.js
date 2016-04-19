@@ -65,19 +65,20 @@ export const nextFilter = (idx, state) => {
 
 
 export const previousFilter = (state) => {
+
 	const idx = state.currentIndex;
-
-	const url = STEP_NAVIGATION[idx].path
-
+	const newIdx = (-1 !== state.currentIndex) ? state.currentIndex - 1 : -1;
+	const url = STEP_NAVIGATION[newIdx].path
 	return dispatch => {
-		dispatch(decreaseIndex())
+		dispatch(decreaseIndex(newIdx))
 		dispatch(pushPath(url))
 	}
 }
 
-export const decreaseIndex = () => {
+export const decreaseIndex = (idx) => {
 	return {
 		type: PREVIOUS_FILTER_INDEX,
+		idx: idx,
 		back: true,
 	}
 }

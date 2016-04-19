@@ -33,11 +33,11 @@ class Start extends Component {
 					<p>Replace your hub with one of our OEM approved hub assemblies</p>
 					</button>
 				</div>
-				<div className="conmet-button big-button disabled">
-					<button store={this.context.store}>
+				<div className="conmet-button big-button">
+					<button onClick={this.handleClick.bind(this,'/parts/search')} store={this.context.store}>
 					<h2>REPLACEMENT PARTS</h2>
 					<i className="icon-angle-right" title="Right Arrow"></i>
-					<p><strong>Coming Soon!</strong> <em>Service your hub with genuine ConMet service parts</em></p>
+					<p>Service your hub with genuine ConMet service parts</p>
 					</button>
 				</div>
 

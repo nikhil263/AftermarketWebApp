@@ -4,7 +4,7 @@ import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 import HelpDetail from '../global/help-detail'
 
-class FindAssemblyDetail extends Component {
+class SearchHelpDetail extends Component {
 
 	handleClick(path) {
 		const { dispatch } = this.props;
@@ -15,13 +15,9 @@ class FindAssemblyDetail extends Component {
 		return (
 			<div className="grid-container main-content">
 				<HelpDetail></HelpDetail>
-				
+
 		<div className="conmet-button">
-			<button onClick={this.handleClick.bind(this,'/hub-selection/search')} className="yes-no-button"><em>Yes</em>I know my number now.</button>
-		</div>
-		<div className="conmet-button">
-			<button onClick={this.handleClick.bind(this, '/hub-selection/truck-type')} className="yes-no-button">
-				<em>No</em>I still don't know, proceed without it.</button>
+			<button onClick={this.handleClick.bind(this,'/parts/search')} className="yes-no-button"><em>Yes</em>I know my number now.</button>
 		</div>
 
 
@@ -30,4 +26,4 @@ class FindAssemblyDetail extends Component {
 	}
 };
 
-export default connect()(FindAssemblyDetail);
+export default connect()(SearchHelpDetail);

@@ -1,15 +1,17 @@
 export const API = 'https://apis.conmetwheelends.com/aftermarket/v3';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
 export const V2KEY='558c6251756c44ce9eacda5f6ffe34ca';
-export const ADD_FILTER='ADD_FILTER';
-export const UPDATE_FILTER='UPDATE_FILTER';
-export const REMOVE_FILTER='REMOVE_FILTER';
 export const REQUEST_HUB='REQUEST_HUB';
 export const UPDATE_LAST_PAGE='UPDATE_LAST_PAGE';
 export const UPDATE_STEP='UPDATE_STEP';
 export const INCREMENT_STEP='INCREMENT_STEP';
 export const DECREMENT_STEP='DECREMENT_STEP';
 export const SET_TRUCK_MAKE='SET_TRUCK_MAKE';
+export const PARTS_RESULT='PARTS_RESULT';
+export const UPDATE_FILTER_ID='UPDATE_FILTER_ID';
+export const RESET_APP_STATE='RESET_APP_STATE';
+
+//HUBS AND ASSEMBLIES
 export const REQUEST_ASSEMBLIES='REQUEST_ASSEMBLIES'
 export const RECEIVE_ASSEMBLIES='RECEIVE_ASSEMBLIES'
 export const INVALIDATE_ASSEMBLIES='INVALIDATE_ASSEMBLIES'
@@ -21,26 +23,41 @@ export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
 export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
 export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
-export const PARTS_RESULT='PARTS_RESULT';
+
+//CATEGORIES
+export const RECIEVE_CATEGORIES='RECIEVE_CATEGORIES';
+export const REQUEST_CATEGORIES='REQUEST_CATEGORIES';
+export const INVALIDATE_CATEGORIES='INVALIDATE_CATEGORIES';
+
+//FILTERS
+export const ADD_FILTER='ADD_FILTER';
+export const UPDATE_FILTER='UPDATE_FILTER';
+export const REMOVE_FILTER='REMOVE_FILTER';
+export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
+export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
 export const RESET_FILTER='RESET_FILTER';
 export const RECIEVE_FILTERS='RECIEVE_FILTERS'
 export const SET_MATERIAL_FILTER='SET_MATERIAL_FILTER';
 export const INVALIDATE_FILTERS='INVALIDATE_FILTERS';
 export const REQUEST_FILTERS='REQUEST_FILTERS';
-export const UPDATE_FILTER_ID='UPDATE_FILTER_ID';
-export const RESET_APP_STATE='RESET_APP_STATE';
-export const RECIEVE_CATEGORIES='RECIEVE_CATEGORIES';
-export const REQUEST_CATEGORIES='REQUEST_CATEGORIES';
-export const INVALIDATE_CATEGORIES='INVALIDATE_CATEGORIES';
-export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
-export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
+
+//DETAILS
 export const RECIEVE_ASSEMBLY_DETAILS='RECIEVE_ASSEMBLY_DETAILS'
 export const REQUEST_ASSEMBLY_DETAILS='REQUEST_ASSEMBLY_DETAILS'
 export const INVALIDATE_ASSEMBLY_DETAILS='INVALIDATE_ASSEMBLY_DETAILS'
+
+// PARTS
+export const RECIEVE_PARTS='RECIEVE_PARTS'
+export const REQUEST_PARTS='REQUEST_PARTS'
+export const INVALIDATE_PARTS='INVALIDATE_PARTS'
+
+// IMAGES
 export const RECIEVE_IMAGES='RECIEVE_IMAGES'
 export const REQUEST_IMAGES='REQUEST_IMAGES'
 export const INVALIDATE_IMAGES='INVALIDATE_IMAGES'
 export const INCACHE_IMAGE='INCACHE_IMAGE'
+
+// STATUS
 export const NO_IMAGE='NO_IMAGE'
 export const ZERO_RESULTS = 'ZERO_RESULTS';
 export const SUCCESS = 'SUCCESS';
@@ -175,6 +192,60 @@ export const DETAILS_TPL = {
 	image: 'hub-fpo.png',
 	title: ''
 }
+
+export const PARTTYPES = [
+  {
+    'PartTypeId': 115,
+    'AftermarketPartTypeName': 'Complete Hub Assembly',
+    'InternalPartTypeName': 'Hub Assembly'
+  },
+  {
+    'PartTypeId': 217,
+    'AftermarketPartTypeName': 'PreSet Complete Hub Rebuild Kit (Keyway)',
+    'InternalPartTypeName': 'PreSet Complete Hub Rebuild Kit (Keyway)'
+  },
+  {
+    'PartTypeId': 218,
+    'AftermarketPartTypeName': 'PreSet Complete Hub Rebuild Kit (D Flat)',
+    'InternalPartTypeName': 'PreSet Complete Hub Rebuild Kit (D Flat)'
+  },
+  {
+    'PartTypeId': 219,
+    'AftermarketPartTypeName': 'PreSet / PreSet Plus Seal & Spacer Kit',
+    'InternalPartTypeName': 'PreSet / PreSet Plus Seal & Spacer Kit'
+  },
+  {
+    'PartTypeId': 220,
+    'AftermarketPartTypeName': 'Oil Seal Kit',
+    'InternalPartTypeName': 'Oil Seal Kit'
+  },
+  {
+    'PartTypeId': 221,
+    'AftermarketPartTypeName': 'Wheel Seal and Spacer Kit',
+    'InternalPartTypeName': 'Wheel Seal and Spacer Kit'
+  },
+  {
+    'PartTypeId': 222,
+    'AftermarketPartTypeName': 'PreSet Spindle Nut Kit (D Flat)',
+    'InternalPartTypeName': 'PreSet Spindle Nut Kit (D Flat)'
+  },
+  {
+    'PartTypeId': 223,
+    'AftermarketPartTypeName': 'PreSet Spindle Nut Kit (Keyway)',
+    'InternalPartTypeName': 'PreSet Spindle Nut Kit (Keyway)'
+  },
+  {
+    'PartTypeId': 226,
+    'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (D Flat)',
+    'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (D Flat)'
+  },
+  {
+    'PartTypeId': 227,
+    'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)',
+    'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)'
+  }
+]
+
 export const AFTERMARKET_DETAILS = [
 	{
 		id: 10082200,
