@@ -177,6 +177,8 @@ img.product-image {
   h2 {
 		color: $cm-red !important;
 		text-align: left;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
 	}
   table {
 		display: table;
@@ -184,18 +186,21 @@ img.product-image {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
+
 		tbody {
 			display: table;
 			width: 100%;
+      border-bottom: 1px solid #ccc;
 		}
 		tr {
-			td:first-child {
+      border-top: 1px solid #ccc;
+      td:first-child {
 				color: $cm-table-desc;
         width: 100%;
 			}
 
 		}
-		
+
 	}
 }
 

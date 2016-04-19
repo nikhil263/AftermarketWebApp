@@ -195,6 +195,31 @@ export const DETAILS_TPL = {
 
 export const PARTTYPES = [
   {
+    'PartTypeId': 5,
+    'AftermarketPartTypeName': 'Wheel Stud',
+    'InternalPartTypeName': 'Wheel Stud'
+  },
+  {
+    'PartTypeId': 6,
+    'AftermarketPartTypeName': 'Axle Stud',
+    'InternalPartTypeName': 'Double-Ended Stud'
+  },
+  {
+    'PartTypeId': 7,
+    'AftermarketPartTypeName': 'ABS Tone Ring',
+    'InternalPartTypeName': 'ABS Tone Ring'
+  },
+  {
+    'PartTypeId': 8,
+    'AftermarketPartTypeName': 'Fill Plug',
+    'InternalPartTypeName': 'Port Plug'
+  },
+  {
+    'PartTypeId': 101,
+    'AftermarketPartTypeName': 'Bearing Set Kit',
+    'InternalPartTypeName': 'Bearing Cup & Cone Assembly'
+  },
+  {
     'PartTypeId': 115,
     'AftermarketPartTypeName': 'Complete Hub Assembly',
     'InternalPartTypeName': 'Hub Assembly'

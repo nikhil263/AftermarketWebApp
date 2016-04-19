@@ -8,6 +8,11 @@ import NoResults from '../global/no-result'
 import Waiting from '../global/waiting'
 import _ from 'lodash'
 
+const FULLREPLACE = [115]
+const SERVICEPARTS = [220]
+const SERVICEKITS = [217, 218, 219, 221]
+const SPINDLENUTS = [222, 223, 226, 227]
+
 class Results extends Component {
 	componentDidMount() {
 		const {dispatch, app, params} = this.props
@@ -20,6 +25,18 @@ class Results extends Component {
 
 	}
 
+	showHeader(allowed = []) {
+		const { parts } = this.props
+		let found = false;
+		parts.AftermarketParts.map((item, index) => {
+			console.log(allowed, item)
+			 if (-1 !== allowed.indexOf(item.TypeId)) {
+				 found  = true;
+			 }
+		})
+		return found;
+	}
+
 	render() {
 		const { parts, dispatch, images, app, history } = this.props
 
@@ -30,19 +47,35 @@ class Results extends Component {
 			return (<NoResults />)
 		}
 
+		let replacementHeader, serviceKitHeader, servicePartHeader, spindleNutsHeader = null
+		parts.AftermarketParts.map((item, index) => {
 
+			 if (-1 !== FULLREPLACE.indexOf(item.TypeId)) {
+				 replacementHeader = <h2>Full Replacement Hub</h2>
+			 }
 
+			 if (-1 !== SERVICEKITS.indexOf(item.TypeId)) {
+				 serviceKitHeader = <h2>Service & Rebuild Kits</h2>
+			 }
+
+			 if (-1 !== SERVICEPARTS.indexOf(item.TypeId)) {
+				 servicePartHeader = <h2>Service Parts</h2>
+			 }
+
+			 if (-1 !== SPINDLENUTS.indexOf(item.TypeId)) {
+				 spindleNutsHeader = <h2>Spindle Nut Kits</h2>
+			 }
+		})
 		return (
 			<div className="grid-container main-content">
 				<h2>Hub Components Search Results for:</h2>
 				<h2 className="partsSubHead">{parts.HubAssemblyDescription} <span className="number">#{parts.HubAssemblyNumber}</span></h2>
 				<div className="parts">
-					<h2>Full Replacement Hub</h2>
+					{replacementHeader}
 					<table>
 						<tbody>
 						{PARTTYPES.map((item, index) => {
-							let allowed = [115]
-							if (-1 < allowed.indexOf(item.PartTypeId)) {
+							if (-1 < FULLREPLACE.indexOf(item.PartTypeId)) {
 								let part = _.find(parts.AftermarketParts, {TypeId: item.PartTypeId})
 								if (part) {
 								return (
@@ -65,12 +98,13 @@ class Results extends Component {
 						</tbody>
 					</table>
 
-					<h2>Service & Rebuild Kits</h2>
+					{serviceKitHeader}
+
+
 					<table>
 						<tbody>
 							{PARTTYPES.map((item, index) => {
-								let allowed = [217, 218, 219, 221]
-								if (-1 < allowed.indexOf(item.PartTypeId)) {
+								if (-1 < SERVICEKITS.indexOf(item.PartTypeId)) {
 								let part = _.find(parts.AftermarketParts, {TypeId: item.PartTypeId})
 								if (part) {
 								return (
@@ -93,13 +127,13 @@ class Results extends Component {
 						</tbody>
 					</table>
 
-					<h2>Service Parts</h2>
+					{servicePartHeader}
+
 
 					<table>
 						<tbody>
 							{PARTTYPES.map((item, index) => {
-								let allowed = [220]
-								if (-1 < allowed.indexOf(item.PartTypeId)) {
+								if (-1 < SERVICEPARTS.indexOf(item.PartTypeId)) {
 								let part = _.find(parts.AftermarketParts, {TypeId: item.PartTypeId})
 								if (part) {
 								return (
@@ -122,12 +156,13 @@ class Results extends Component {
 					</tbody>
 				</table>
 
-			<h2>Spindle Nut Kits</h2>
+				{spindleNutsHeader}
+
 			<table>
 				<tbody>
 					{PARTTYPES.map((item, index) => {
-						let allowed = [222, 223, 226, 227]
-						if (-1 < allowed.indexOf(item.PartTypeId)) {
+
+						if (-1 < SPINDLENUTS.indexOf(item.PartTypeId)) {
 						let part = _.find(parts.AftermarketParts, {TypeId: item.PartTypeId})
 						if (part) {
 						return (
