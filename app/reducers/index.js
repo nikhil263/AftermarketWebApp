@@ -6,12 +6,14 @@ import { assembly } from './assembly'
 import { results } from './results'
 import { images } from './images'
 import { app } from './app'
+import { parts } from './parts'
 
 const rootReducer = combineReducers(Object.assign({}, {
 	results,
 	assembly,
 	images,
-	app
+	app,
+	parts
 }, {
   routing: routeReducer
 }))

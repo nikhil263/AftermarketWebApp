@@ -72,6 +72,7 @@ class HubSelector extends Component {
 function select(state) {
   return {
 		app: state.app,
+		parts: state.parts,
 		images: state.images,
     assembly: state.assembly,
 		truckMakes: state.truckMakes,

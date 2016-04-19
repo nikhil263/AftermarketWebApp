@@ -27,6 +27,11 @@ import About from 'components/about'
 import Contact from 'components/contact'
 
 
+import PartsWrapper from 'components/parts'
+import PartsSearch from 'components/parts/search'
+import PartsResults from 'components/parts/results'
+import PartsHelp from 'components/parts/help'
+import PartsHelpDetail from 'components/parts/help-detail'
 
 module.exports = (
 		<Route path='/' component={Main}>
@@ -54,6 +59,14 @@ module.exports = (
 
 				<Route path='find-assembly' component={HubSelectionFindAssembly} />
 				<Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail} />
+			</Route>
+			<Route path='parts' component={PartsWrapper}>
+				<Route path='search' component={PartsSearch} />
+				<Route path='search/:id' component={PartsResults} />
+				<Route path='help' component={PartsHelp}>
+					<Route path='detail' component={PartsHelpDetail} />
+				</Route>
+
 			</Route>
 		</Route>
 		</Route>

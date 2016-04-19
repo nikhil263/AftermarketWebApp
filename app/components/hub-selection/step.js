@@ -26,13 +26,20 @@ export default class extends Component {
 		if (window.location.pathname.indexOf('/search/') > -1) {
 			link = <Link to="/hub-selection/search" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
 		}
-		if (window.location.pathname.indexOf('/search/') > -1) {
-
+		if (window.location.pathname.indexOf('/hub-selection/search/') > -1) {
 			link = <Link to="/hub-selection/search" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
+		}
+		if (window.location.pathname.indexOf('/parts/search/') > -1) {
+
+			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
 		if (window.location.pathname.indexOf('/details/') > -1) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
+		if (window.location.pathname.indexOf('/help') > -1) {
+			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
+		}
+
 
 
 		return (

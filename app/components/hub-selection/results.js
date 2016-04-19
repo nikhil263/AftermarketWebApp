@@ -1,50 +1,17 @@
 import React, { PropTypes, Component } from 'react';
 import {Link} from 'react-router';
 import { connect } from 'react-redux'
-import Spinner from 'components/global/spinner'
+import Waiting from 'components/global/waiting'
 import { MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
 import {fetchAssembly} from 'actions/assembly'
 import {materialFilter, fetchHubs} from 'actions'
 import _ from 'lodash'
-
+import NoResults from '../global/no-result'
 
 import Result from './details/result'
 import ResultNavigation from './details/result-navigation'
 
-class NoResults extends Component {
-	render(){
-		return (
-			<div className="grid-container main-content">
-				<h1>Sorry. No results were found.</h1>
-				<div className="not-found">
-				<p>
-					This app is not all inclusive. The part number you entered is not referenced in this database,
-					please verify that you’ve entered the correct assembly number. If you get the same result,
-					please click on the link below to access our more extensive engineering hub catalog or
-					call <a href="tel://1-800-547-9473">1-800-547-9473</a> and speak directly to one of our customer service professionals to identify
-					the replacement hub part  number (service part) you need.
-				</p>
 
-
-				</div>
-
-				<Link to={'https://vdm.conmet.com/HubCatalog/'} className="general-button">ConMet Online Parts Catalog</Link>
-
-			</div>
-		)
-	}
-}
-
-class Waiting extends Component {
-	render() {
-		return (
-			<div className="grid-container main-content">
-				<h1>Receiving results</h1>
-				<Spinner isFetching={true} />
-			</div>
-		)
-	}
-}
 
 class MaterialType extends Component {
 	setFilter(filter) {
