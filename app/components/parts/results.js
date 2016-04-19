@@ -51,13 +51,13 @@ class Results extends Component {
 										<td>{part.PartNumber}</td>
 									</tr>
 								)
-								} else {
+								/*} else {
 								return (
 									<tr key={index}>
 										<td>{item.AftermarketPartTypeName}</td>
 										<td>N/A</td>
 									</tr>
-								)
+								)*/
 								}
 							}
 
@@ -65,7 +65,7 @@ class Results extends Component {
 						</tbody>
 					</table>
 
-					<h2>Service Parts</h2>
+					<h2>Service & Rebuild Kits</h2>
 					<table>
 						<tbody>
 							{PARTTYPES.map((item, index) => {
@@ -79,13 +79,13 @@ class Results extends Component {
 										<td>{part.PartNumber}</td>
 									</tr>
 								)
-								} else {
+								/*} else {
 								return (
 									<tr key={index}>
 										<td>{item.AftermarketPartTypeName}</td>
 										<td>N/A</td>
 									</tr>
-								)
+								)*/
 								}
 							}
 
@@ -93,7 +93,7 @@ class Results extends Component {
 						</tbody>
 					</table>
 
-					<h2>Service Kits</h2>
+					<h2>Service Parts</h2>
 
 					<table>
 						<tbody>
@@ -108,13 +108,13 @@ class Results extends Component {
 										<td>{part.PartNumber}</td>
 									</tr>
 								)
-								} else {
+								/*} else {
 								return (
 									<tr key={index}>
 										<td>{item.AftermarketPartTypeName}</td>
 										<td>N/A</td>
 									</tr>
-								)
+								)*/
 								}
 							}
 
@@ -136,13 +136,13 @@ class Results extends Component {
 								<td>{part.PartNumber}</td>
 							</tr>
 						)
-						} else {
+						/*} else {
 						return (
 							<tr key={index}>
 								<td>{item.AftermarketPartTypeName}</td>
 								<td>N/A</td>
 							</tr>
-						)
+						)*/
 						}
 					}
 
