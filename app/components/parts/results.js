@@ -9,7 +9,7 @@ import Waiting from '../global/waiting'
 import _ from 'lodash'
 
 const FULLREPLACE = [115]
-const SERVICEPARTS = [220]
+const SERVICEPARTS = [220, 5, 6, 7, 8, 101]
 const SERVICEKITS = [217, 218, 219, 221]
 const SPINDLENUTS = [222, 223, 226, 227]
 
