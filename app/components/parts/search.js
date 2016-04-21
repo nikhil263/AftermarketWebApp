@@ -24,7 +24,7 @@ class PartsSearch extends Component {
 					<input id="assemblyNumber" defaultValue="" className="assembly-number" type="text" placeholder="6 or 8 digit assembly number (10031065)" />
 					<button type="submit" className="button general-button">Continue</button>
           </form>
-					<Link to={'/parts/help'} className="general-button">Help me find my hubs number</Link>
+					<Link to={'/parts/help'} className="general-button">Help me find my hub assembly number</Link>
 			</div>
 		)
 	}
