@@ -1,7 +1,6 @@
 import * as constants from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
-import {fetchImages} from './images'
 
 export const updateFilters = (obj) => {
   return Object.assign({type: constants.UPDATE_FILTER }, {update: obj});

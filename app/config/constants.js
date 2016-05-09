@@ -1,6 +1,9 @@
-export const API = 'https://apis.conmetwheelends.com/aftermarket/v3';
+// export const API = 'https://apis.conmetwheelends.com/aftermarket/v3';
+export const API = 'https://api.conmetwheelends.com/aftermarket/v3';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
-export const V2KEY='558c6251756c44ce9eacda5f6ffe34ca';
+export const IMAGE_CDN = 'https://conmetaftermarketimages.azureedge.net/images/';
+// export const V2KEY='558c6251756c44ce9eacda5f6ffe34ca';
+export const V2KEY='de21c7db30a94f659cf8a8665805acba';
 export const REQUEST_HUB='REQUEST_HUB';
 export const UPDATE_LAST_PAGE='UPDATE_LAST_PAGE';
 export const UPDATE_STEP='UPDATE_STEP';

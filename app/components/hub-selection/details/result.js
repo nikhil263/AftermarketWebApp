@@ -4,8 +4,7 @@ import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 import {Link} from 'react-router';
 import {showPreviousResult, showNextResult} from 'actions'
-import {fetchImages} from 'actions/images'
-import { AFTERMARKET_DETAILS } from 'config/constants'
+import { AFTERMARKET_DETAILS, IMAGE_CDN } from 'config/constants'
 import _ from 'lodash'
 import Spinner from 'components/global/spinner'
 
@@ -64,7 +63,7 @@ class Result extends Component {
 
 	componentDidMount() {
 		const { dispatch, item, images } = this.props;
-		dispatch(fetchImages(item.Images, images));
+		// dispatch(fetchImages(item.Images, images));
 	}
 
 	showPrevious(idx, total) {
@@ -114,7 +113,7 @@ class Result extends Component {
 	 if (_.isUndefined(item) || item.id === -1) {
 		 return (<Spinner />)
 	 }
-
+	 console.log(item)
 
 	return (
  	 <div className="result">
@@ -127,8 +126,8 @@ class Result extends Component {
 
 		 	<div className="details">
 				{
-					images.selected.map((image, index) => {
-							return <img className="product-image"  src={image.Base64EncodedImage}  key={index} alt={item.PartNumber} width="200" height="200" />
+					item.Images.map((image, index) => {
+							return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.PartNumber} width="200" height="200" />
 					})
 				}
 

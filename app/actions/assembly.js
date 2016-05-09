@@ -7,12 +7,12 @@ import {
 	RECEIVE_ASSEMBLIES,
 	RECIEVE_ASSEMBLY_DETAILS,
 	REQUEST_ASSEMBLY_DETAILS,
-	INVALIDATE_ASSEMBLY_DETAILS
+	INVALIDATE_ASSEMBLY_DETAILS,
+	IMAGE_CDN
 } from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
 import { pushPath } from 'redux-simple-router'
-import {fetchImages} from './images'
 
 export const receiveAssemblyDetails = (id, json, images) => {
 	var results = [];
@@ -25,14 +25,13 @@ export const receiveAssemblyDetails = (id, json, images) => {
 
 					if (mainImage) {
 						results.push(Object.assign(detail, {
-							mainImageId: mainImage.ImageId,
-							image: []
+							mainImageId: IMAGE_CDN+'/'+mainImage.ImageGuid
+
 						}))
 
 					} else {
 						results.push(Object.assign(detail, {
-							mainImageId: null,
-							image: []
+							mainImageId: null
 						}))
 					}
 
@@ -48,7 +47,7 @@ export const receiveAssemblyDetails = (id, json, images) => {
 			id: id,
 	    results: results
 	  })
-		dispatch(fetchImages(results[0].Images, images))
+
 	}
 
 }

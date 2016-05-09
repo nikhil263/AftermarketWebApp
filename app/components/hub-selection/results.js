@@ -90,7 +90,7 @@ class Results extends Component {
 					} else {
 						title = 'Success! The following ConMet '+app.lastChoice.Name+' hub is recommended'
 					}
-					return <h1>{title}</h1>
+					return <h1 key={index}>{title}</h1>
 					}
 				})}
 
