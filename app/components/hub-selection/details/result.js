@@ -106,7 +106,21 @@ class Result extends Component {
 		}
 		return ''
 	}
+	addLinks(str, links) {
+		let matches = str.match(/{{(.*?)}}/g) || []
 
+		matches = matches.map(function(n, idx) {
+			if (links.length > 0){
+
+					return [n, n.replace('{{', '<a href="'+links[idx]+'">').replace('}}', '</a>')]
+
+			}
+		});
+		matches.forEach(item => {
+			str = str.replace(item[0], item[1])
+		});
+		return str;
+	}
 	render () {
 	 let { idx, total, item, dispatch, images } = this.props
 
@@ -134,6 +148,7 @@ class Result extends Component {
 				<h2>{item.title || item.Description}<br />
 			 		#{item.PartNumber}
 			 	</h2>
+				<p dangerouslySetInnerHTML={{__html: this.addLinks(item.GawrNote.Text, item.GawrNote.Links)}}></p>
 				<Link to={'/hub-selection/details/'+item.PartNumber} className="general-button">See Details</Link>
 			</div>
 			<NextButton

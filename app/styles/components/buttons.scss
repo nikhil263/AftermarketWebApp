@@ -216,6 +216,11 @@
 	.details {
 		width: 80%;
 		float: left;
+		p {
+		text-align: center;
+		color: $cm-mid-grey;
+		font-size: .9rem;
+		}
 	}
 	.hide-button {
 		i {
