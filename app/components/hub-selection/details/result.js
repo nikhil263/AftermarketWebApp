@@ -108,7 +108,7 @@ class Result extends Component {
 	}
 	addLinks(str, links) {
 		if (str === undefined) {
-			return null;
+			return null
 		}
 		let matches = str.match(/{{(.*?)}}/g) || []
 
@@ -122,7 +122,7 @@ class Result extends Component {
 		matches.forEach(item => {
 			str = str.replace(item[0], item[1])
 		});
-		return (<p>{str}</p>);
+		return <p dangerouslySetInnerHTML={{__html: str}}></p>;
 	}
 	render () {
 	 let { idx, total, item, dispatch, images } = this.props
