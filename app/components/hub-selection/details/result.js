@@ -107,6 +107,9 @@ class Result extends Component {
 		return ''
 	}
 	addLinks(str, links) {
+		if (str === undefined) {
+			return null;
+		}
 		let matches = str.match(/{{(.*?)}}/g) || []
 
 		matches = matches.map(function(n, idx) {
@@ -119,7 +122,7 @@ class Result extends Component {
 		matches.forEach(item => {
 			str = str.replace(item[0], item[1])
 		});
-		return str;
+		return (<p>{str}</p>);
 	}
 	render () {
 	 let { idx, total, item, dispatch, images } = this.props
@@ -127,7 +130,10 @@ class Result extends Component {
 	 if (_.isUndefined(item) || item.id === -1) {
 		 return (<Spinner />)
 	 }
-	 console.log(item)
+	 let note = null;
+	 if (!_.isUndefined(item.GawrNote)) {
+		 note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
+	 }
 
 	return (
  	 <div className="result">
@@ -148,7 +154,7 @@ class Result extends Component {
 				<h2>{item.title || item.Description}<br />
 			 		#{item.PartNumber}
 			 	</h2>
-				<p dangerouslySetInnerHTML={{__html: this.addLinks(item.GawrNote.Text, item.GawrNote.Links)}}></p>
+				{note}
 				<Link to={'/hub-selection/details/'+item.PartNumber} className="general-button">See Details</Link>
 			</div>
 			<NextButton
