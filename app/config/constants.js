@@ -220,7 +220,12 @@ export const PARTTYPES = [
   {
     'PartTypeId': 101,
     'AftermarketPartTypeName': 'Bearing Set',
-    'InternalPartTypeName': 'Bearing Cup & Cone Assembly'
+    'InternalPartTypeName': 'Bearing Cup & Cone Assembly',
+		'Usages': [
+			'',
+			' (Inner)',
+			' (Outer)'
+		]
   },
   {
     'PartTypeId': 115,
