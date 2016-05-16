@@ -47,14 +47,29 @@ class Results extends Component {
 			if (item.Usages && item.Usages.length > 0) {
 				appendStr = item.Usages[part.UsageId]
 			}
-			return (
-				<tr key={index}>
-					<td>{item.AftermarketPartTypeName+appendStr}</td>
-					<td>{part.PartNumber}</td>
-				</tr>
-			)
+
+			if (viewArray.length > 1 && part.TypeId === 115) {
+				if (part.Description.indexOf('PreSet') > -1) {
+					return (
+						<tr key={index}>
+							<td>{item.AftermarketPartTypeName+appendStr}</td>
+							<td>{part.PartNumber}</td>
+						</tr>
+					)
+				}
+			} else {
+				return (
+					<tr key={index}>
+						<td>{item.AftermarketPartTypeName+appendStr}</td>
+						<td>{part.PartNumber}</td>
+					</tr>
+				)
+			}
+
+
 		})
-			return view
+
+		return view
 	}
 
 	render() {
