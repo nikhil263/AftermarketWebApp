@@ -59,10 +59,12 @@ class Result extends Component {
 		<div className={active()}>
 			<button className="yes-no-button" onClick={onClick}>
 			<strong>{result.Name}</strong><br />
-				{details.map((item, index) => {
+			<span>Inner Bearing - {result.BearingNumberInboard} (set {result.SetNumberInboard})<br/>
+			Outer Bearing - {result.BearingNumberOutboard} (set {result.SetNumberOutboard})</span>
+				{/*{details.map((item, index) => {
 					return <span key={index}>{item.text}</span>
 				})
-				}
+				}*/}
 			</button>
 		</div>
 	)
