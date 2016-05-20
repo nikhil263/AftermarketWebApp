@@ -249,8 +249,8 @@ export const PARTTYPES = [
   },
   {
     'PartTypeId': 220,
-    'AftermarketPartTypeName': 'Oil Seal Kit',
-    'InternalPartTypeName': 'Oil Seal Kit'
+    'AftermarketPartTypeName': 'Wheel Seal',
+    'InternalPartTypeName': 'Wheel Seal'
   },
   {
     'PartTypeId': 221,

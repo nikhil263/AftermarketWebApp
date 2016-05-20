@@ -42,9 +42,10 @@ class Start extends Component {
 				</div>
 
 
+
 			</div>
 		)
 	}
 };
-
+//this.handleClick.bind(this,'/parts/search')
 export default connect()(Start)
