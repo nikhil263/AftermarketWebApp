@@ -7,6 +7,7 @@ import Part from './part'
 import NoResults from '../global/no-result'
 import Waiting from '../global/waiting'
 import _ from 'lodash'
+import {Link} from 'react-router';
 
 const FULLREPLACE = [115]
 const SERVICEPARTS = [220, 5, 6, 7, 8, 101]
@@ -52,18 +53,28 @@ class Results extends Component {
 				if (part.Description.indexOf('PreSet') > -1) {
 					return (
 						<tr key={index}>
-							<td>{item.AftermarketPartTypeName+appendStr}</td>
+							<td><Link to={'/hub-selection/details/'+part.PartNumber} >{item.AftermarketPartTypeName+appendStr}</Link></td>
 							<td>{part.PartNumber}</td>
 						</tr>
 					)
 				}
 			} else {
-				return (
-					<tr key={index}>
-						<td>{item.AftermarketPartTypeName+appendStr}</td>
-						<td>{part.PartNumber}</td>
-					</tr>
-				)
+				if (part.TypeId === 115) {
+					return (
+						<tr key={index}>
+							<td><Link to={'/hub-selection/details/'+part.PartNumber} >{item.AftermarketPartTypeName+appendStr}</Link></td>
+							<td>{part.PartNumber}</td>
+						</tr>
+					)
+				} else {
+					return (
+						<tr key={index}>
+							<td>{item.AftermarketPartTypeName+appendStr}</td>
+							<td>{part.PartNumber}</td>
+						</tr>
+					)
+				}
+
 			}
 
 

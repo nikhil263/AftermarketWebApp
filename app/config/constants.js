@@ -1,20 +1,18 @@
-// export const API = 'https://apis.conmetwheelends.com/aftermarket/v3';
+// API
 export const API = 'https://api.conmetwheelends.com/aftermarket/v3';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
 export const IMAGE_CDN = 'https://conmetaftermarketimages.azureedge.net/images/';
-// export const V2KEY='558c6251756c44ce9eacda5f6ffe34ca';
 export const V2KEY='de21c7db30a94f659cf8a8665805acba';
-export const REQUEST_HUB='REQUEST_HUB';
+
+// APP
 export const UPDATE_LAST_PAGE='UPDATE_LAST_PAGE';
 export const UPDATE_STEP='UPDATE_STEP';
 export const INCREMENT_STEP='INCREMENT_STEP';
 export const DECREMENT_STEP='DECREMENT_STEP';
-export const SET_TRUCK_MAKE='SET_TRUCK_MAKE';
-export const PARTS_RESULT='PARTS_RESULT';
-export const UPDATE_FILTER_ID='UPDATE_FILTER_ID';
 export const RESET_APP_STATE='RESET_APP_STATE';
 
 //HUBS AND ASSEMBLIES
+export const REQUEST_HUB='REQUEST_HUB';
 export const REQUEST_ASSEMBLIES='REQUEST_ASSEMBLIES'
 export const RECEIVE_ASSEMBLIES='RECEIVE_ASSEMBLIES'
 export const INVALIDATE_ASSEMBLIES='INVALIDATE_ASSEMBLIES'
@@ -33,6 +31,7 @@ export const REQUEST_CATEGORIES='REQUEST_CATEGORIES';
 export const INVALIDATE_CATEGORIES='INVALIDATE_CATEGORIES';
 
 //FILTERS
+export const SET_TRUCK_MAKE='SET_TRUCK_MAKE';
 export const ADD_FILTER='ADD_FILTER';
 export const UPDATE_FILTER='UPDATE_FILTER';
 export const REMOVE_FILTER='REMOVE_FILTER';
@@ -43,6 +42,8 @@ export const RECIEVE_FILTERS='RECIEVE_FILTERS'
 export const SET_MATERIAL_FILTER='SET_MATERIAL_FILTER';
 export const INVALIDATE_FILTERS='INVALIDATE_FILTERS';
 export const REQUEST_FILTERS='REQUEST_FILTERS';
+export const NEXT_FILTER_INDEX='NEXT_FILTER_INDEX';
+export const UPDATE_FILTER_ID='UPDATE_FILTER_ID';
 
 //DETAILS
 export const RECIEVE_ASSEMBLY_DETAILS='RECIEVE_ASSEMBLY_DETAILS'
@@ -50,6 +51,7 @@ export const REQUEST_ASSEMBLY_DETAILS='REQUEST_ASSEMBLY_DETAILS'
 export const INVALIDATE_ASSEMBLY_DETAILS='INVALIDATE_ASSEMBLY_DETAILS'
 
 // PARTS
+export const PARTS_RESULT='PARTS_RESULT';
 export const RECIEVE_PARTS='RECIEVE_PARTS'
 export const REQUEST_PARTS='REQUEST_PARTS'
 export const INVALIDATE_PARTS='INVALIDATE_PARTS'
@@ -59,9 +61,9 @@ export const RECIEVE_IMAGES='RECIEVE_IMAGES'
 export const REQUEST_IMAGES='REQUEST_IMAGES'
 export const INVALIDATE_IMAGES='INVALIDATE_IMAGES'
 export const INCACHE_IMAGE='INCACHE_IMAGE'
+export const NO_IMAGE='NO_IMAGE'
 
 // STATUS
-export const NO_IMAGE='NO_IMAGE'
 export const ZERO_RESULTS = 'ZERO_RESULTS';
 export const SUCCESS = 'SUCCESS';
 export const OK = 'OK';

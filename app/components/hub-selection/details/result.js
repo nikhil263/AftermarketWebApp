@@ -131,6 +131,7 @@ class Result extends Component {
 		 return (<Spinner />)
 	 }
 	 let note = null;
+
 	 if (!_.isUndefined(item.GawrNote)) {
 		 note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
 	 }
