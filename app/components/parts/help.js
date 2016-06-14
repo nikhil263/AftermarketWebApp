@@ -17,7 +17,7 @@ class Help extends Component {
 
 				<iframe width="100%" height="300px" src="https://www.youtube.com/embed/9yVp9V2JuEs" frameborder="0" allowfullscreen></iframe>
 					<div className="conmet-button">
-						<button onClick={this.handleClick.bind(this,'/parts/help/detail')} className="yes-no-button"><em>Read</em> More about finding your assembly number.</button>
+						<button onClick={this.handleClick.bind(this,'/parts/help/detail')} className="yes-no-button"><em>Read</em> about finding your assembly number.</button>
 					</div>
 
 				<div className="conmet-button">
