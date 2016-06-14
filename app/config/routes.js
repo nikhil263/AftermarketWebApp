@@ -33,9 +33,12 @@ import PartsResults from 'components/parts/results'
 import PartsHelp from 'components/parts/help'
 import PartsHelpDetail from 'components/parts/help-detail'
 
+import MobileHelpDetail from 'components/mobile-help.js'
+
 module.exports = (
 		<Route path='/' component={Main}>
 			<IndexRoute component={Splash} />
+
 			<Route path='' component={App}>
 			<Route path='about' component={About} />
 			<Route path='contact' component={Contact} />
@@ -65,9 +68,10 @@ module.exports = (
 				<Route path='search/:id' component={PartsResults} />
 				<Route path='help' component={PartsHelp} />
 				<Route path='help/detail' component={PartsHelpDetail} />
-
 			</Route>
+
 		</Route>
+		<Route path='mobile-help' component={MobileHelpDetail} />
 		</Route>
 
 );
