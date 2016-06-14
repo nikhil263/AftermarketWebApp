@@ -63,9 +63,8 @@ module.exports = (
 			<Route path='parts' component={PartsWrapper}>
 				<Route path='search' component={PartsSearch} />
 				<Route path='search/:id' component={PartsResults} />
-				<Route path='help' component={PartsHelp}>
-					<Route path='detail' component={PartsHelpDetail} />
-				</Route>
+				<Route path='help' component={PartsHelp} />
+				<Route path='help/detail' component={PartsHelpDetail} />
 
 			</Route>
 		</Route>
