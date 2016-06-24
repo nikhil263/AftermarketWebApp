@@ -246,8 +246,8 @@ export const PARTTYPES = [
   },
   {
     'PartTypeId': 219,
-    'AftermarketPartTypeName': 'PreSet / PreSet Plus Seal & Spacer Kit',
-    'InternalPartTypeName': 'PreSet / PreSet Plus Seal & Spacer Kit'
+    'AftermarketPartTypeName': 'PreSet / PreSet Plus Hub Rebuild Kit',
+    'InternalPartTypeName': 'PreSet / PreSet Plus Bearing, Seal & Spacer Kit'
   },
   {
     'PartTypeId': 220,
