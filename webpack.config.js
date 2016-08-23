@@ -8,8 +8,8 @@ module.exports = {
 	entry: [
 			'babel-polyfill',
 			'webpack/hot/dev-server',
-			'webpack-dev-server/client?http://localhost:8080',
-      path.resolve(__dirname, 'app/index.js')
+			'webpack-dev-server/client?http://localhost:3005',
+			path.resolve(__dirname, 'app/index.js')
     ],
 	output: {
 		path: path.resolve(__dirname, 'public/assets'),

@@ -1,7 +1,9 @@
 body.rotate {
   -webkit-transform: rotate(90deg);
 }
-
+body {
+	display: -ms-flexbox;
+}
 .main-content {
 	margin-top: 2em;
 	color: #fff;

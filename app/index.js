@@ -14,4 +14,8 @@ import Root from 'containers/root'
 
 import 'styles/app.scss';
 
+if (Function('/*@cc_on return document.documentMode===10@*/')()){
+    document.documentElement.className+=' ie10';
+}
+
 render(<Root store={store} history={history} />, document.getElementById('app'))
