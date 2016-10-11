@@ -35,10 +35,10 @@ export default class extends Component {
 							<td>Bearing Set (Outboard)</td>
 							<td>{result.BearingSetOutboard}</td>
 						</tr>
-						<tr>
+						{/*}<tr>
 							<td>Assembly Type</td>
 							<td>{result.HubAssemblyType}</td>
-						</tr>
+						</tr>*/}
 
 						<tr>
 							<td>Compatible Brake Type</td>
