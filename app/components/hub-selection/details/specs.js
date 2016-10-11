@@ -57,7 +57,7 @@ export default class extends Component {
 							<td>{result.WheelMaterial}</td>
 						</tr>
 						<tr>
-							<td>Flange Offset</td>
+							<td>Flange Offset (in.)</td>
 							<td>{result.FlangeOffsetInch}</td>
 						</tr>
 						<tr>
