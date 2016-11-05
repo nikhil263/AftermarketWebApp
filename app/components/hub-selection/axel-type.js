@@ -43,7 +43,7 @@ class AxelType extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Hub Type by Bearing Part or Set Number:</h1>
+				<h1>Choose the Hub by Axle Type or Bearing Number:</h1>
 				{app.filterResults.map((result, index) => {
 					var boundClick = setFilter.bind(this, FILTERIDX, {aaxna: result.Id || result.AftermarketAxleId}, app);
 					var boundActive = setActive.bind(this, FILTERIDX, result.Id || result.AftermarketAxleId);
