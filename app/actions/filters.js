@@ -36,19 +36,18 @@ export const setActiveFilterId = (filterId) => {
 	}
 }
 
-export const setActiveFilterValue = (idx, value, state) => {
+export const setActiveFilterValue = (idx, filterState, state) => {
 	return dispatch => {
-		dispatch(setVal(idx, value))
+		dispatch(setVal(idx, filterState))
 		dispatch(nextFilter(idx, state))
 	}
-
 }
 
-export const setVal = (idx, value) => {
+export const setVal = (idx, filterState) => {
 	return {
 		type: UPDATE_FILTER_VALUE,
-		idx: idx,
-		value: value,
+		idx,
+		filterState,
 		back: false
 	}
 }
@@ -59,6 +58,7 @@ export const nextFilter = (idx, state) => {
 	const url = STEP_NAVIGATION[nextIndex].path
 	return dispatch => {
 		dispatch(invalidateFilters())
+		console.log('next', url);
 		dispatch(pushPath(url))
 	}
 }
@@ -67,8 +67,10 @@ export const nextFilter = (idx, state) => {
 export const previousFilter = (state) => {
 
 	const idx = state.currentIndex;
-	const newIdx = (-1 !== state.currentIndex) ? state.currentIndex - 1 : -1;
+	let newIdx = (-1 !== state.currentIndex) ? state.currentIndex - 1 : -1;
+	newIdx = (newIdx === 1) ? 0 : newIdx;
 	const url = STEP_NAVIGATION[newIdx].path
+
 	return dispatch => {
 		dispatch(decreaseIndex(newIdx))
 		dispatch(pushPath(url))
@@ -91,7 +93,7 @@ export const receiveFilters = (idx, json, state) => {
 	const recieve = {
     type: RECIEVE_FILTERS,
 		idx: idx,
-    filters: _.reject(json.Results, {Id:0, Name:'—'})
+    filters: _.reject(json.Results, {Id:0})
   }
 	return dispatch => {
 		if(json.Results.length === 1) { // don't set on going back
@@ -99,7 +101,10 @@ export const receiveFilters = (idx, json, state) => {
 			if (state.goingBack === true) { // go skip and don't set
 				dispatch(previousFilter(state))
 			} else {
-				dispatch(setActiveFilterValue(idx, filters[0].Id, state))
+				let currentCategory = state.categories[idx];
+				let filterValue = {};
+				filterValue[currentCategory.QueryParameterName] = filters[0].Id;
+				dispatch(setActiveFilterValue(idx, filterValue, state))
 			}
 
 		} else {
@@ -138,23 +143,33 @@ export const fetchFilters = (idx, state) => {
 					dispatch(requestFilters(id))
 
 					var id = 0;
-					if (state.filterState.length > idx) {
+					if (state.categories.length > idx) {
 						// console.log(idx, state.categories[idx])
 						id = state.categories[idx].Id
 					}
 
-					const searchFilterState = state.filterState.map(function(item, index){
-						// console.log(index,item, idx)
+					let searchFilterState = [];
 
-						if (index < idx) {
-							return item
+					// const searchFilterState = state.filterState.map(function(item, index){
+					// 	// console.log(index,item, idx)
+					//
+					// 	if (index < idx) {
+					// 		return item
+					// 	}
+					// 	return '~'
+					// })
+
+					_.each(state.filterState, (value, key) => {
+						// need to have index of the category as well.
+						let index = _.findLastIndex(state.categories, { 'QueryParameterName': key})
+						if (value && index < idx) {
+							searchFilterState.push(`${key}=${value}`);
 						}
-						return '~'
-					})
+					});
 
-					let searchParams = searchFilterState.join('/');
+					let searchParams = searchFilterState.join('&');
 
-					let url = API+'/hubassembly/filtervalues/'+id+'/'+searchParams;
+					let url = API+'/hubassembly/filtervalues/'+id+'?'+searchParams;
 					return fetch(url, {
 						method: 'get',
 						headers: {

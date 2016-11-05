@@ -34,16 +34,13 @@ export const app = (state = constants.APPSTATE, action)  => {
 			const idx = action.idx;
 			const newIndex = (state.filterState.length > idx + 1) ? idx + 1 : idx;
 			console.log('update filter value', action.value)
-			const newFilterState = [
-				...state.filterState.slice(0, idx),
-    		action.value,
-    		...state.filterState.slice(idx + 1)
-			];
+			const newFilterState = Object.assign({}, state.filterState, action.filterState);
 			console.log('update filter value state', state)
-			console.log('update filter value', action.value, newFilterState)
+			console.log('update filter value', action.filterState, newFilterState)
 			var choice = {};
-			if (state.filterResults.length) {
-				choice = _.find(state.filterResults, {Id: action.value})
+
+			if (state.filterResults.length) { //TODO: try to figure out a better way to handle this.
+				// choice = _.find(state.filterResults, {Id: action.value})
 			}
 			const newId = state.categories[newIndex].Id;
 			return Object.assign(

@@ -1,5 +1,5 @@
 // API
-export const API = 'https://api.conmetwheelends.com/aftermarket/v3';
+export const API = 'https://api.conmetwheelends.com/aftermarket/v10';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
 export const IMAGE_CDN = 'https://conmetaftermarketimages.azureedge.net/images/';
 export const V2KEY='de21c7db30a94f659cf8a8665805acba';
@@ -71,16 +71,18 @@ export const OK = 'OK';
 export const FINDER_START = '/hub-selection/truck-type'
 
 export const STEP_NAVIGATION = [
-	{ id: 0, path: '/hub-selection/choose-path'},
-	{ id: 2, path: '/hub-selection/truck-type'},
-	{ id: 5, path: '/hub-selection/truck-make'},
-	{ id: 7, path: '/hub-selection/axle-type'},
-	{ id: 8, path: '/hub-selection/gawr'},
-	{ id: 12, path: '/hub-selection/axle-stud'},
-	{ id: 9, path: '/hub-selection/wheel-type'},
-	{ id: 10, path: '/hub-selection/material'},
-	{ id: 11, path: '/hub-selection/hub-type'},
-	{ id: 12, path: '/hub-selection/results'}
+	{ id: 0, path: '/hub-selection/choose-path'}, //0
+	{ id: 15, path: '/hub-selection/choose-path'}, //1
+	{ id: 2, path: '/hub-selection/truck-type'}, //2
+	{ id: 5, path: '/hub-selection/truck-make'}, //3
+	{ id: 7, path: '/hub-selection/axle-type'}, //4
+	{ id: 14, path: '/hub-selection/hub-mounting-system'}, //5
+	{ id: 8, path: '/hub-selection/gawr'}, //6
+	{ id: 12, path: '/hub-selection/axle-stud'},//7
+	{ id: 9, path: '/hub-selection/wheel-type'},//8
+	{ id: 10, path: '/hub-selection/material'},//9
+	{ id: 11, path: '/hub-selection/hub-type'},//10
+	{ id: 12, path: '/hub-selection/results'} //11
 ]
 
 export const RESULTS = {
@@ -112,84 +114,32 @@ export const MATERIAL_ALL=0;
 export const MATERIAL_ALUMINUM=1;
 export const MATERIAL_IRON=2;
 
-export const FILTER_VALUES = [
-  {
-    Id: 0,
-    Name: 'Hub Assembly Number | Aftermarket Description',
-    Sort: 0,
-    UrlParameterName: 'aftermarketHubAssemblyNumbers'
-  },
-  {
-    Id: 2,
-    Name: 'Truck Compartment',
-    Sort: 1,
-    UrlParameterName: 'truckCompartmentIds'
-  },
-  {
-    Id: 5,
-    Name: 'Truck Make',
-    Sort: 2,
-    UrlParameterName: 'truckMakeIds'
-  },
-  {
-    Id: 7,
-    Name: 'Axle Name',
-    Sort: 3,
-    UrlParameterName: 'axleNameIds'
-  },
-  {
-    Id: 8,
-    Name: 'Gross Axle Weight Rating (GAWR) Range',
-    Sort: 4,
-    UrlParameterName: 'grossAxleWeightRatingRangeIds'
-  },
-  {
-    Id: 12,
-    Name: 'Axle Stud Thread Diameter',
-    Sort: 5,
-    UrlParameterName: 'axleStudThreadIds'
-  },
-  {
-    Id: 9,
-    Name: 'Wheel Material / Stud Length',
-    Sort: 6,
-    UrlParameterName: 'wheelMaterialStudLengthClassIds'
-  },
-  {
-    Id: 10,
-    Name: 'Hub Casting Material Type',
-    Sort: 7,
-    UrlParameterName: 'hubCastingMaterialTypeIds'
-  },
-  {
-    Id: 11,
-    Name: 'Hub Assembly Type',
-    Sort: 8,
-  	UrlParameterName: 'hubAssemblyTypeIds'
-  }
-]
-
 export const APPSTATE = {
 	goingBack: false,
 	isFetching: false,
 	needsFetch: true,
 	lastPath: '',
 	step: 1,
-	categories: FILTER_VALUES,
+	categories: [],
 	currentIndex: 1,
 	filterResults: [],
 	lastChoice: {},
-	filterState: [
-		'~', 	//aftermarketHubAssemblyNumbers
-		'~', 	//truckCompartmentIds
-		'~', 	//truckMakeIds
-		'~', 	//axleNameIds
-		'~', 	//grossAxleWeightRatingRangeIds
-		'~', 	//axleStudThreadIds
-		'~', 	//wheelMaterialStudLengthClassIds
-		'~', 	//hubCastingMaterialTypeIds
-		'~'		//hubAssemblyTypeIds
-	]
+	filterState: {
+		brkty: null, // brakeType,
+		hatyp: null, // hubAssemblyType
+		hcmty: null, // hubCastingMaterialType
+		wmslc: null,  // wheelMaterialStudLengthClass
+		axthd: null,  // axleStudThreadDiameter
+		gawrr: null, // grossAxleWeightRatingRange
+		gawrr: null, // grossAxleWeightRatingRange
+		hamnt: null, // hubMountingSystem
+		hamnt: null, // hubMountingSystem
+		aaxna: null, // aftermarketAxleName
+		tmake: null, // truckMake
+		tcomp: null, // truckCompartment
+		hanum: null, // hubAssemlySummary
+		srcht: ''
+	}
 }
 
 export const DETAILS_TPL = {

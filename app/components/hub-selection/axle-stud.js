@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=5
+const FILTERIDX=7
 const NEXT_FILTER_PATH = '/hub-selection/wheel-type'
 
 class Result extends Component {
@@ -43,7 +43,7 @@ class AxelStud extends Component {
 
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, app);
+						var boundClick = setFilter.bind(this, FILTERIDX, {axthd: result.Id}, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
 						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}
