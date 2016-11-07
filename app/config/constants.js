@@ -95,21 +95,6 @@ export const RESULTS = {
 	isFetching: false
 }
 
-export const FILTERSTATE = {
-	filterId: 0,
-	partNumbers: '~',
-	aftermarketPartTypeIds: 1,
-	truckCompartmentIds: 1, //1 = Tractor
-	dutyRatingIds: 1, // 1 = Heavy Duty
-	brakeTypeIds: 1, // 1 = Drum Brakes,
-	truckMakeIds: '~', // 1 = Freightliner
-	axlePositionIds: '~',
-	axleNameIds: '~',
-	grossAxleWeightRatingRangeIds: '~',
-	wheelTypeStudLengthIds: '~',
-	searchText: ''
-}
-
 export const MATERIAL_ALL=0;
 export const MATERIAL_ALUMINUM=1;
 export const MATERIAL_IRON=2;
