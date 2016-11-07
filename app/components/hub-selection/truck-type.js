@@ -40,7 +40,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
 
 					<div className={setActive(FILTERIDX, TRUCK)}>
             <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, {tcomp: TRUCK, brkty: DISC}, app)}>
-              <strong>Medium-Duty Truck with Disk Brakes</strong>
+              <strong>Medium-Duty Truck with Disc Brakes</strong>
             </button>
           </div>
 
