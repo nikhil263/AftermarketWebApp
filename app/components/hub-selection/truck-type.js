@@ -34,7 +34,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
           <div className="grid-content small-6">
           <div className={setActive(FILTERIDX, TRUCK)}>
             <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, {tcomp: TRUCK, brkty: DRUM}, app)}>
-              <strong>Heavy-Duty Truck with Drum Brakes</strong>
+              <strong>Truck with Drum Brakes</strong>
             </button>
           </div>
 
