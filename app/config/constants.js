@@ -116,8 +116,6 @@ export const APPSTATE = {
 		wmslc: null,  // wheelMaterialStudLengthClass
 		axthd: null,  // axleStudThreadDiameter
 		gawrr: null, // grossAxleWeightRatingRange
-		gawrr: null, // grossAxleWeightRatingRange
-		hamnt: null, // hubMountingSystem
 		hamnt: null, // hubMountingSystem
 		aaxna: null, // aftermarketAxleName
 		tmake: null, // truckMake
