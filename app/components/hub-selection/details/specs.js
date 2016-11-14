@@ -28,12 +28,12 @@ export default class extends Component {
 							<td>{result.HubAssemblyType}</td>
 						</tr>
 						<tr>
-							<td>Bearing Set (Inboard)</td>
-							<td>{result.BearingSetInboard}</td>
+							<td>Bearing {result.BearingNumbersType} (Inboard)</td>
+							<td>{result.BearingNumberInboard}</td>
 						</tr>
 						<tr>
-							<td>Bearing Set (Outboard)</td>
-							<td>{result.BearingSetOutboard}</td>
+							<td>Bearing {result.BearingNumbersType} (Outboard)</td>
+							<td>{result.BearingNumberOutboard}</td>
 						</tr>
 						{/*}<tr>
 							<td>Assembly Type</td>
