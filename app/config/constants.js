@@ -132,86 +132,86 @@ export const DETAILS_TPL = {
 }
 
 export const PARTTYPES = [
-  {
-    'PartTypeId': 5,
-    'AftermarketPartTypeName': 'Wheel Stud',
-    'InternalPartTypeName': 'Wheel Stud'
-  },
-  {
-    'PartTypeId': 6,
-    'AftermarketPartTypeName': 'Axle Stud',
-    'InternalPartTypeName': 'Double-Ended Stud'
-  },
-  {
-    'PartTypeId': 7,
-    'AftermarketPartTypeName': 'ABS Tone Ring',
-    'InternalPartTypeName': 'ABS Tone Ring'
-  },
-  {
-    'PartTypeId': 8,
-    'AftermarketPartTypeName': 'Fill Plug',
-    'InternalPartTypeName': 'Port Plug'
-  },
-  {
-    'PartTypeId': 101,
-    'AftermarketPartTypeName': 'Bearing Set',
-    'InternalPartTypeName': 'Bearing Cup & Cone Assembly',
+	{
+		'PartTypeId': 5,
+		'AftermarketPartTypeName': 'Wheel Stud',
+		'InternalPartTypeName': 'Wheel Stud'
+	},
+	{
+		'PartTypeId': 6,
+		'AftermarketPartTypeName': 'Axle Stud',
+		'InternalPartTypeName': 'Double-Ended Stud'
+	},
+	{
+		'PartTypeId': 7,
+		'AftermarketPartTypeName': 'ABS Tone Ring',
+		'InternalPartTypeName': 'ABS Tone Ring'
+	},
+	{
+		'PartTypeId': 8,
+		'AftermarketPartTypeName': 'Fill Plug',
+		'InternalPartTypeName': 'Port Plug'
+	},
+	{
+		'PartTypeId': 101,
+		'AftermarketPartTypeName': 'Bearing Set',
+		'InternalPartTypeName': 'Bearing Cup & Cone Assembly',
 		'Usages': [
 			'',
 			' (Inner)',
 			' (Outer)'
 		]
-  },
-  {
-    'PartTypeId': 115,
-    'AftermarketPartTypeName': 'Complete Hub Assembly',
-    'InternalPartTypeName': 'Hub Assembly'
-  },
-  {
-    'PartTypeId': 217,
-    'AftermarketPartTypeName': 'PreSet Complete Hub Rebuild Kit (Keyway)',
-    'InternalPartTypeName': 'PreSet Complete Hub Rebuild Kit (Keyway)'
-  },
-  {
-    'PartTypeId': 218,
-    'AftermarketPartTypeName': 'PreSet Complete Hub Rebuild Kit (D Flat)',
-    'InternalPartTypeName': 'PreSet Complete Hub Rebuild Kit (D Flat)'
-  },
-  {
-    'PartTypeId': 219,
-    'AftermarketPartTypeName': 'PreSet / PreSet Plus Hub Rebuild Kit',
-    'InternalPartTypeName': 'PreSet / PreSet Plus Bearing, Seal & Spacer Kit'
-  },
-  {
-    'PartTypeId': 220,
-    'AftermarketPartTypeName': 'Wheel Seal',
-    'InternalPartTypeName': 'Wheel Seal'
-  },
-  {
-    'PartTypeId': 221,
-    'AftermarketPartTypeName': 'Wheel Seal and Spacer Kit',
-    'InternalPartTypeName': 'Wheel Seal and Spacer Kit'
-  },
-  {
-    'PartTypeId': 222,
-    'AftermarketPartTypeName': 'PreSet Spindle Nut Kit (D Flat)',
-    'InternalPartTypeName': 'PreSet Spindle Nut Kit (D Flat)'
-  },
-  {
-    'PartTypeId': 223,
-    'AftermarketPartTypeName': 'PreSet Spindle Nut Kit (Keyway)',
-    'InternalPartTypeName': 'PreSet Spindle Nut Kit (Keyway)'
-  },
-  {
-    'PartTypeId': 226,
-    'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (D Flat)',
-    'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (D Flat)'
-  },
-  {
-    'PartTypeId': 227,
-    'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)',
-    'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)'
-  }
+	},
+	{
+		'PartTypeId': 115,
+		'AftermarketPartTypeName': 'Complete Hub Assembly',
+		'InternalPartTypeName': 'Hub Assembly'
+	},
+	{
+		'PartTypeId': 217,
+		'AftermarketPartTypeName': 'PreSet Complete Hub Rebuild Kit (Keyway)',
+		'InternalPartTypeName': 'PreSet Complete Hub Rebuild Kit (Keyway)'
+	},
+	{
+		'PartTypeId': 218,
+		'AftermarketPartTypeName': 'PreSet Complete Hub Rebuild Kit (D Flat)',
+		'InternalPartTypeName': 'PreSet Complete Hub Rebuild Kit (D Flat)'
+	},
+	{
+		'PartTypeId': 219,
+		'AftermarketPartTypeName': 'PreSet / PreSet Plus Hub Rebuild Kit',
+		'InternalPartTypeName': 'PreSet / PreSet Plus Bearing, Seal & Spacer Kit'
+	},
+	{
+		'PartTypeId': 220,
+		'AftermarketPartTypeName': 'Wheel Seal',
+		'InternalPartTypeName': 'Wheel Seal'
+	},
+	{
+		'PartTypeId': 221,
+		'AftermarketPartTypeName': 'Wheel Seal and Spacer Kit',
+		'InternalPartTypeName': 'Wheel Seal and Spacer Kit'
+	},
+	{
+		'PartTypeId': 222,
+		'AftermarketPartTypeName': 'PreSet Spindle Nut Kit (D Flat)',
+		'InternalPartTypeName': 'PreSet Spindle Nut Kit (D Flat)'
+	},
+	{
+		'PartTypeId': 223,
+		'AftermarketPartTypeName': 'PreSet Spindle Nut Kit (Keyway)',
+		'InternalPartTypeName': 'PreSet Spindle Nut Kit (Keyway)'
+	},
+	{
+		'PartTypeId': 226,
+		'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (D Flat)',
+		'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (D Flat)'
+	},
+	{
+		'PartTypeId': 227,
+		'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)',
+		'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)'
+	}
 ]
 
 export const AFTERMARKET_DETAILS = [
