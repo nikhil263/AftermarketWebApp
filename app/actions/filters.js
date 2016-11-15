@@ -24,7 +24,7 @@ export const resetAppState = () => {
 }
 
 export const checkFilterStatus = (app) => {
-	if (app.filterState[1] !== '~' ) {
+	if (app.filterState.tcomp !== null ) {
 		return true
 	}
 }
