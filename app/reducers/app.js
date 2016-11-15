@@ -3,6 +3,8 @@ import _ from 'lodash'
 
 export const app = (state = constants.APPSTATE, action)  => {
 	switch(action.type) {
+		case constants.RESET_APP_STATE:
+			return Object.assign({}, state, {filterState: constants.APPSTATE.filterState})
 		case constants.UPDATE_STEP:
 			return Object.assign({}, state, { step: action.step })
 		case constants.DECREMENT_STEP:
