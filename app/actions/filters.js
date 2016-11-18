@@ -1,16 +1,16 @@
 import {
 	API,
-	V2KEY,
-	ZERO_RESULTS,
-	RECIEVE_FILTERS,
-	REQUEST_FILTERS,
-	INVALIDATE_FILTERS,
-	UPDATE_FILTER_ID,
-	UPDATE_FILTER_VALUE,
-	PREVIOUS_FILTER_INDEX,
-	FINDER_START,
-	STEP_NAVIGATION,
-	RESET_APP_STATE
+		V2KEY,
+		ZERO_RESULTS,
+		RECIEVE_FILTERS,
+		REQUEST_FILTERS,
+		INVALIDATE_FILTERS,
+		UPDATE_FILTER_ID,
+		UPDATE_FILTER_VALUE,
+		PREVIOUS_FILTER_INDEX,
+		FINDER_START,
+		STEP_NAVIGATION,
+		RESET_APP_STATE
 } from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
@@ -86,15 +86,15 @@ export const decreaseIndex = (idx) => {
 }
 
 export const receiveFilters = (idx, json, state) => {
-  let filters = [];
-  if (json.Status != ZERO_RESULTS) {
-    filters = json.Results
-  }
+	let filters = [];
+	if (json.Status != ZERO_RESULTS) {
+		filters = json.Results
+	}
 	const recieve = {
-    type: RECIEVE_FILTERS,
+		type: RECIEVE_FILTERS,
 		idx: idx,
-    filters: _.reject(json.Results, {Id:0})
-  }
+		filters: _.reject(json.Results, {Id:0})
+	}
 	return dispatch => {
 		if(json.Results.length === 1) { // don't set on going back
 			// console.log('FOUND ONLY 1')
@@ -112,19 +112,19 @@ export const receiveFilters = (idx, json, state) => {
 		}
 
 	}
-  return
+	return
 }
 export const requestFilters = (id) => {
-  return {
-    type: REQUEST_FILTERS,
-    filterId: id
-  }
+	return {
+		type: REQUEST_FILTERS,
+		filterId: id
+	}
 }
 
 export const invalidateFilters = () => {
-  return {
-    type: INVALIDATE_FILTERS
-  }
+	return {
+		type: INVALIDATE_FILTERS
+	}
 }
 
 // TODO: Refactor
@@ -137,61 +137,61 @@ export const invalidateFilters = () => {
 
 export const fetchFilters = (idx, state) => {
 
-			if (checkFilterStatus(state)){
+	if (checkFilterStatus(state)){
 
-				return dispatch => {
-					dispatch(requestFilters(id))
-
-					var id = 0;
-					if (state.categories.length > idx) {
-						// console.log(idx, state.categories[idx])
-						id = state.categories[idx].Id
-					}
-
-					let searchFilterState = [];
-
-					// const searchFilterState = state.filterState.map(function(item, index){
-					// 	// console.log(index,item, idx)
-					//
-					// 	if (index < idx) {
-					// 		return item
-					// 	}
-					// 	return '~'
-					// })
-
-					_.each(state.filterState, (value, key) => {
-						// need to have index of the category as well.
-						let index = _.findLastIndex(state.categories, { 'QueryParameterName': key})
-						if (value && index < idx) {
-							searchFilterState.push(`${key}=${value}`);
-						}
-					});
-
-					let searchParams = searchFilterState.join('&');
-
-					let url = API+'/hubassembly/filtervalues/'+id+'?'+searchParams;
-					return fetch(url, {
-						method: 'get',
-						headers: {
-							'Accept': 'application/json',
-							'Content-Type': 'application/json',
-							'Ocp-Apim-Subscription-Key': V2KEY
-						}
-					})
-					.then(
-						response => response.json(),
-						err => {
-							// console.log('API Error', err);
-						}
-					)
-					.then(json => {
-
-						dispatch(receiveFilters(idx, json, state))
-					})
-
-			}
-		}
 		return dispatch => {
-			dispatch(pushPath(FINDER_START));
+			dispatch(requestFilters(id))
+
+			var id = 0;
+			if (state.categories.length > idx) {
+				// console.log(idx, state.categories[idx])
+				id = state.categories[idx].Id
+			}
+
+			let searchFilterState = [];
+
+			// const searchFilterState = state.filterState.map(function(item, index){
+			// 	// console.log(index,item, idx)
+			//
+			// 	if (index < idx) {
+			// 		return item
+			// 	}
+			// 	return '~'
+			// })
+
+			_.each(state.filterState, (value, key) => {
+				// need to have index of the category as well.
+				let index = _.findLastIndex(state.categories, { 'QueryParameterName': key})
+				if (value && index < idx) {
+					searchFilterState.push(`${key}=${value}`);
+				}
+			});
+
+			let searchParams = searchFilterState.join('&');
+
+			let url = API+'/hubassembly/filtervalues/'+id+'?'+searchParams;
+			return fetch(url, {
+				method: 'get',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+					'Ocp-Apim-Subscription-Key': V2KEY
+				}
+			})
+				.then(
+					response => response.json(),
+					err => {
+						// console.log('API Error', err);
+					}
+				)
+				.then(json => {
+
+					dispatch(receiveFilters(idx, json, state))
+				})
+
 		}
+	}
+	return dispatch => {
+		dispatch(pushPath(FINDER_START));
+	}
 }
