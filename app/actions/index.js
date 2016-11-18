@@ -124,7 +124,8 @@ export const fetchHubs = (partNumber) => {
     ///1/'+partNumber
     //https://apis.conmetwheelends.com/aftermarket/v1/summarydetails/~/10031065
     //https://apis.conmetwheelends.com/parts/api/v2/details/~/10031065
-    return fetch(constants.API+'/aftermarketparts/'+partNumber+'/'+afterMarketHubPartType, {
+
+    return fetch(constants.API+'/aftermarketparts?hanum='+partNumber+'&party='+afterMarketHubPartType, {
       method: 'get',
       headers: {
         'Accept': 'application/json',

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=7
+const FILTERIDX=9
 const NEXT_FILTER_PATH = '/hub-selection/hub-type'
 
 class Result extends Component {
@@ -42,7 +42,7 @@ class Material extends Component {
 				<h1>Choose the Hub Material</h1>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, app);
+						var boundClick = setFilter.bind(this, FILTERIDX, {wmslc: result.Id}, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
 						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}

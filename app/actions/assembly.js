@@ -71,7 +71,7 @@ export const fetchAssemblyDetails = (id, images) => {
 				return dispatch => {
 					dispatch(requestAssemblyDetails(id))
 
-					let url = API+'/hubassemblydetails/'+id;
+					let url = `${API}/hubassemblydetails/${id}`;
 					return fetch(url, {
 						method: 'get',
 						headers: {
@@ -135,8 +135,17 @@ export const fetchAssembly = (state) => {
   return dispatch => {
     dispatch(requestAssembly(state))
 
-    let searchParams = state.filterState.join('/');
-    let url = API+'/hubassembly/filtervalues/0/'+searchParams;
+		let searchFilterState = [];
+		_.each(state.filterState, (value, key) => {
+			console.log(value, key)
+			if (value) {
+				searchFilterState.push(`${key}=${value}`);
+			}
+
+		});
+		let searchParams = searchFilterState.join('&');
+
+    let url = API+'/hubassembly/filtervalues/0?'+searchParams;
     return fetch(url, {
       method: 'get',
       headers: {
