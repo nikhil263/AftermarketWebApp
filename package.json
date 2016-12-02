@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --port 3005 --colors --hot --inline --content-base public --host 10.0.0.181",
+    "dev": "webpack-dev-server --port 3005 --colors --hot --inline --content-base public --host localhost",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
