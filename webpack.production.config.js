@@ -2,6 +2,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var WebpackStrip = require('strip-loader');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: [
@@ -23,7 +24,11 @@ module.exports = {
 	    compress: {
 	      warnings: false
 	    }
-	  })
+	  }),
+		new ExtractTextPlugin('styles.css', {
+      publicPath: '/styles/',
+      allChunks: true
+    })
 	],
 	resolve: {
 		alias: {
@@ -46,7 +51,7 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+				loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
 			},
 
 
