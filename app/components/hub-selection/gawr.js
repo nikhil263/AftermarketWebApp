@@ -63,17 +63,13 @@ class GAWR extends Component {
 				<h1>Choose the GAWR <br />(Gross Axle Weight Rating):</h1>
 
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, {gawr: result.Id}, app);
+						var boundClick = setFilter.bind(this, FILTERIDX, {gawrr: result.Id}, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
 						return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
 
 					})}
 
-				{/*
-				<div className="conmet-button">
-					<button className="yes-no-button" onClick={this.setGAWR.bind(this, 2)}><strong>I Don’t Know</strong></button>
-				</div>
-				*/}
+				
 			</div>
 		)
 	}
