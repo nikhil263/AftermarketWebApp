@@ -65,14 +65,15 @@
     "react-router": "^1.0.0",
     "reactfire": "^0.5.1",
     "redux": "^3.0.5",
-    "redux-logger": "^2.2.1",
-    "redux-simple-router": "^1.0.1",
-    "redux-thunk": "^1.0.0",
+    "redux-logger": "^3.0.0",
+    "redux-simple-router": "^2.0.4",
+    "redux-thunk": "^2.2.0",
     "reselect": "^2.0.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "svg-inline-loader": "^0.4.0",
     "svg-react-loader": "^0.3.2",
-    "whatwg-fetch": "^0.10.1"
+    "svgo": "^0.7.2",
+    "whatwg-fetch": "^2.0.3"
   }
 }
