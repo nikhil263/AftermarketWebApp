@@ -2385,9 +2385,9 @@ faye-websocket@^0.10.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.5.1.tgz#db17fe609777a17a25b6c8b045303adad3339203"
+fbjs@^0.3.1:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.3.2.tgz#033a540595084b5de3509a405d06f1a2a8e5b9fb"
   dependencies:
     core-js "^1.0.0"
     loose-envify "^1.0.0"
@@ -2395,9 +2395,9 @@ fbjs@^0.5.0:
     ua-parser-js "^0.7.9"
     whatwg-fetch "^0.9.0"
 
-fbjs@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.6.1.tgz#9636b7705f5ba9684d44b72f78321254afc860f7"
+fbjs@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.5.1.tgz#db17fe609777a17a25b6c8b045303adad3339203"
   dependencies:
     core-js "^1.0.0"
     loose-envify "^1.0.0"
@@ -4784,7 +4784,11 @@ rc@^1.1.2, rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-react-addons-css-transition-group@^0.14.3, react-addons-css-transition-group@^0.14.6:
+react-addons-css-transition-group@0.14.6:
+  version "0.14.6"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-0.14.6.tgz#0b64b577b6033d98c6523ddad14903f6a6c2334e"
+
+react-addons-css-transition-group@^0.14.3:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-0.14.8.tgz#c7a2279e71095e743c43a3a4583a1e4f1a2dd61d"
 
@@ -4815,9 +4819,11 @@ react-dock@^0.2.1:
     lodash.debounce "^3.1.1"
     object-assign "^4.0.1"
 
-react-dom@^0.14.0:
-  version "0.14.8"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.8.tgz#0f1c547514263f771bd31814a739e5306575069e"
+react-dom@0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.0.tgz#fc2e792ab27d88db009a76ecbcfd5611368a849e"
+  dependencies:
+    react "^0.14.0"
 
 "react-foundation-apps@https://github.com/synap-collaboration/react-foundation-apps":
   version "0.7.1"
@@ -4858,7 +4864,7 @@ react-pure-render@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-pure-render/-/react-pure-render-1.0.2.tgz#9d8a928c7f2c37513c2d064e57b3e3c356e9fabb"
 
-react-redux@^4.0.0:
+react-redux@^4.0.0, react-redux@^4.4.6:
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-4.4.6.tgz#4b9d32985307a11096a2dd61561980044fcc6209"
   dependencies:
@@ -4888,12 +4894,12 @@ react@0.13.x:
   dependencies:
     envify "^3.0.0"
 
-react@^0.14.0:
-  version "0.14.8"
-  resolved "https://registry.yarnpkg.com/react/-/react-0.14.8.tgz#078dfa454d4745bcc54a9726311c2bf272c23684"
+react@0.14.0, react@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.14.0.tgz#72e7c69233b082e37e1bbd3674a943db72d8f407"
   dependencies:
     envify "^3.0.0"
-    fbjs "^0.6.1"
+    fbjs "^0.3.1"
 
 reactfire@^0.5.1:
   version "0.5.1"
@@ -6202,11 +6208,7 @@ websocket-extensions@>=0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.1.tgz#76899499c184b6ef754377c2dbb0cd6cb55d29e7"
 
-whatwg-fetch@>=0.10.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
-
-whatwg-fetch@^0.10.1:
+whatwg-fetch@>=0.10.0, whatwg-fetch@^0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-0.10.1.tgz#365125d40b36823feac8ab41b71c4d56e84a531f"
 
