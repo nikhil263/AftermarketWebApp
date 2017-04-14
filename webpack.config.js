@@ -1,6 +1,7 @@
 /* global module */
 var path = require('path');
 var webpack = require('webpack');
+require('es6-promise').polyfill();
 require('babel-polyfill');
 
 

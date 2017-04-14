@@ -10,8 +10,8 @@ import { pushPath } from 'redux-simple-router'
 class ChoosePath extends Component {
 	static contextTypes = {
 		store: PropTypes.object,
-  	history: PropTypes.object
-  };
+		history: PropTypes.object
+	};
 
 	componentDidMount() {
 		const { app, dispatch } = this.props;
