@@ -16,7 +16,10 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-    	ENVIRONMENT: JSON.stringify(process.env.NODE_ENV)
+    	ENVIRONMENT: 'production'
+		}),
+		new webpack.DefinePlugin({
+    	NODE_ENV: 'production'
 		}),
 		new webpack.optimize.DedupePlugin(),
 	  new webpack.optimize.UglifyJsPlugin({
