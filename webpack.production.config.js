@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackStrip = require('strip-loader');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+// production build
 module.exports = {
 	entry: [
 			'babel-polyfill',
