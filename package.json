@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --port 3005 --colors --hot --inline --content-base public --host localhost",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
-    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
+    "deploy": "NODE_ENV='production' webpack -p --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
