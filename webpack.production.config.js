@@ -18,6 +18,7 @@ module.exports = {
 		new webpack.DefinePlugin({
     	ENVIRONMENT: JSON.stringify(process.env.NODE_ENV),
 			NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
 		}),
 		new webpack.optimize.DedupePlugin(),
 	  new webpack.optimize.UglifyJsPlugin({
