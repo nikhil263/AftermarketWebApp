@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=2
+const FILTERIDX=3
 const NEXT_FILTER_PATH = '/hub-selection/axle-type'
 
 class Result extends Component {
@@ -43,7 +43,7 @@ class TruckMakes extends Component {
 				<h1>Choose the Truck Make</h1>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, app);
+						var boundClick = setFilter.bind(this, FILTERIDX, {tmake: result.Id}, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id, 'general-button truck-make');
 						return <Result key={index} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}

@@ -2,6 +2,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var WebpackStrip = require('strip-loader');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: [
@@ -15,7 +16,9 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-    	ENVIRONMENT: JSON.stringify(process.env.NODE_ENV)
+    	ENVIRONMENT: JSON.stringify(process.env.NODE_ENV),
+			NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
 		}),
 		new webpack.optimize.DedupePlugin(),
 	  new webpack.optimize.UglifyJsPlugin({
@@ -23,7 +26,11 @@ module.exports = {
 	    compress: {
 	      warnings: false
 	    }
-	  })
+	  }),
+		new ExtractTextPlugin('styles.css', {
+      publicPath: '/styles/',
+      allChunks: true
+    })
 	],
 	resolve: {
 		alias: {
@@ -46,7 +53,7 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+				loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
 			},
 
 

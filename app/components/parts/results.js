@@ -122,7 +122,9 @@ class Results extends Component {
 						<tbody>
 						{PARTTYPES.map((item, index) => {
 							if (-1 < FULLREPLACE.indexOf(item.PartTypeId)) {
+								console.log('aftermarket parts', parts.AftermarketParts)
 								let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
+								console.log(filtered)
 								return this.renderTable(filtered, item)
 							}
 

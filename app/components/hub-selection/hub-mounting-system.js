@@ -5,30 +5,31 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=7
-const NEXT_FILTER_PATH = '/hub-selection/wheel-type'
+const FILTERIDX=5
+const NEXT_FILTER_PATH = '/hub-selection/gawr'
 
 class Result extends Component {
+
+
+
 	render () {
 	 var { result, active, onClick } = this.props
+	 var className = 'general-button truck-make'
 	 return (
 		 <div className="grid-content small-6">
-		 <div className={active()}>
- 			<button className="yes-no-button" onClick={onClick}>
- 				<strong>{result.NominalDiameter+'"'}</strong>
-			</button>
- 		</div>
-		</div>
-
+			 <a href="#" className={active()} onClick={onClick}>{result.Name}</a>
+		 </div>
 	 )
  	}
 }
 
-class AxelStud extends Component {
+class HubMountingSystem extends Component {
 
 	componentDidMount() {
-		const { dispatch, app, checkForReload } = this.props
+
+		const { dispatch, app, checkForReload,  setFilter} = this.props
 		dispatch(fetchFilters(FILTERIDX, app))
+
 	}
 
 
@@ -39,17 +40,16 @@ class AxelStud extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Axle Stud Diameter</h1>
-
+				<h1>Hub Mounting System</h1>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, {axthd: result.Id}, app);
-						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
-						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick}/>
+						var boundClick = setFilter.bind(this, FILTERIDX, {hamnt: result.Id}, app);
+						var boundActive = setActive.bind(this, FILTERIDX, result.Id, 'general-button truck-make');
+						return <Result key={index} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}
 				</div>
 			</div>
 		)
 	}
 }
-export default connect()(AxelStud)
+export default connect()(HubMountingSystem)

@@ -1,6 +1,7 @@
 /* global module */
 var path = require('path');
 var webpack = require('webpack');
+require('es6-promise').polyfill();
 require('babel-polyfill');
 
 
@@ -8,7 +9,7 @@ module.exports = {
 	entry: [
 			'babel-polyfill',
 			'webpack/hot/dev-server',
-			'webpack-dev-server/client?http://localhost:3005',
+			'webpack-dev-server/client?http://10.0.0.181:3005',
 			path.resolve(__dirname, 'app/index.js')
     ],
 	output: {

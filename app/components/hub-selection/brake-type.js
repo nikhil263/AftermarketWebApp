@@ -5,20 +5,16 @@ import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 import { setActiveFilterValue, fetchFilters, resetAppState } from 'actions/filters'
 
-const TRUCK=1
-const TRAILER=2
-const DISC=2
-const DRUM=1
+const FILTERIDX=15
+const NEXT_FILTER_PATH = '/hub-selection/truck-type'
 
-const FILTERIDX=2
-const NEXT_FILTER_PATH = '/hub-selection/truck-make'
-
- class TruckType extends Component {
+ class BrakeType extends Component {
 
 
    componentDidMount() {
      const {dispatch } = this.props
      dispatch(resetAppState())
+		 
    }
 
   render() {
@@ -28,19 +24,19 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
 
 		return (
 			<div className="grid-container main-content">
-				<h1>Are you looking for a hub for your</h1>
+				<h1>What type of brakes do you have?</h1>
 
         <div className="grid-block">
           <div className="grid-content small-6">
-          <div className={setActive(FILTERIDX, TRUCK)}>
-            <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, {tcomp: TRUCK, brkty: DRUM}, app)}>
-              <strong>Truck with Drum Brakes</strong>
+          <div className={setActive(FILTERIDX, HEAVY_DUTY_TRUCK)}>
+            <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, HEAVY_DUTY_TRUCK, app)}>
+              <strong>Heavy-Duty Truck with Drum Brakes</strong>
             </button>
           </div>
 
-					<div className={setActive(FILTERIDX, TRUCK)}>
-            <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, {tcomp: TRUCK, brkty: DISC}, app)}>
-              <strong>Medium-Duty Truck with Disc Brakes</strong>
+					<div className={setActive(FILTERIDX, HEAVY_DUTY_TRUCK)}>
+            <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, HEAVY_DUTY_TRUCK, app)}>
+              <strong>Medium-Duty Truck with Disk Brakes</strong>
             </button>
           </div>
 
@@ -53,7 +49,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
           </div>
           <div className="grid-content small-6">
             <div className={setActive(FILTERIDX, TRAILER)}>
-              <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, {tcomp: TRAILER, brkty: DRUM}, app)}>
+              <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, TRAILER, app)}>
                 <strong>Trailer with Drum Brakes</strong>
               </button>
             </div>

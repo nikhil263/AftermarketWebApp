@@ -7,7 +7,7 @@ import {fetchAssembly} from 'actions/assembly'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=6
+const FILTERIDX=8
 const NEXT_FILTER_PATH='/hub-selection/material'
 const STEEL = 1
 const ALUMINUM = 2
@@ -41,7 +41,7 @@ class WheelType extends Component {
 			<div className="grid-container main-content">
 				<h1>Choose the Wheel Type<br />(Determine Wheel Stud Length):</h1>
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, result.Id, app);
+						var boundClick = setFilter.bind(this, FILTERIDX, {wmslc: result.Id}, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
 						return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
 

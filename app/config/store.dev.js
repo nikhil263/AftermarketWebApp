@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
-import { syncReduxAndRouter, routeReducer } from 'redux-simple-router'
+import { routeReducer } from 'redux-simple-router'
 import DevTools from '../containers/dev-tools';
 import thunk from 'redux-thunk'
 

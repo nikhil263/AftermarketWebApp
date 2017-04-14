@@ -92,15 +92,15 @@ describe('Filter Actions', () => {
 	})
 
 	it('should set the value at the filterId index', () => {
-		const value = 2;
+		const filterState = {tmake: 1};
 		const idx = 1;
 		const expectedAction = {
 			type: UPDATE_FILTER_VALUE,
 			idx,
-			value: value,
+			filterState,
 			back: false
 		}
-		expect(setVal(idx, value)).to.eql(expectedAction)
+		expect(setVal(idx, filterState)).to.eql(expectedAction)
 	})
 
 	it('should be able to reset the app state', () => {

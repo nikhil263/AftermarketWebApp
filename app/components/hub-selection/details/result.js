@@ -115,7 +115,7 @@ class Result extends Component {
 		matches = matches.map(function(n, idx) {
 			if (links.length > 0){
 
-					return [n, n.replace('{{', '<a href="'+links[idx]+'">').replace('}}', '</a>')]
+					return [n, n.replace('{{', '<a href="https://conmetaftermarketpubliccdn.azureedge.net/documents/'+links[idx]+'">').replace('}}', '</a>')]
 
 			}
 		});

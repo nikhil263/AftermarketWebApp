@@ -22,8 +22,7 @@ export const receiveParts = (hubId, json, date = Date.now()) => {
   let HubAssemblyDescription = ''
 	let HubAssemblyNumber = ''
 	let AftermarketParts = []
-	console.log(json);
-  if (json.Status != ZERO_RESULTS) {
+	if (json.Status != ZERO_RESULTS) {
 		HubAssemblyDescription = json.Results[0].HubAssemblyDescription
 		HubAssemblyNumber = json.Results[0].HubAssemblyNumber
 		AftermarketParts = json.Results[0].AftermarketParts
@@ -42,8 +41,8 @@ export const receiveParts = (hubId, json, date = Date.now()) => {
 export const fetchParts = (hubId) => {
   return dispatch => {
     dispatch(requestParts(hubId))
-		let url = API+'/aftermarketparts/'+hubId+'/~';
-    return fetch(url, {
+		let url = API+'/aftermarketparts?hanum='+hubId;
+		return fetch(url, {
       method: 'get',
       headers: {
         'Accept': 'application/json',
