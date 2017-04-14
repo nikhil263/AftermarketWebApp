@@ -16,6 +16,10 @@ class Start extends Component {
 		dispatch(pushPath(path));
 	}
 
+	handleLink(url) {
+		window.location = url;
+	}
+
 
 	render() {
 
@@ -28,16 +32,19 @@ class Start extends Component {
 
 				<div className="conmet-button big-button">
 					<button onClick={this.handleClick.bind(this,'/hub-selection/choose-path')} store={this.context.store}>
-					<h2>REPLACEMENT HUB</h2>
-					<i className="icon-angle-right"></i>
+					<h2>REPLACEMENT HUB <i className="icon-angle-right"></i></h2>
 					<p>Replace your hub with one of our OEM approved hub assemblies</p>
 					</button>
 				</div>
 				<div className="conmet-button big-button">
 					<button onClick={this.handleClick.bind(this,'/parts/search')} store={this.context.store}>
-					<h2>REPLACEMENT PARTS</h2>
-					<i className="icon-angle-right" title="Right Arrow"></i>
+					<h2>REPLACEMENT PARTS <i className="icon-angle-right" title="Right Arrow"></i></h2>
 					<p>Service your hub with genuine ConMet service parts</p>
+					</button>
+				</div>
+				<div className="btn-no-description conmet-button">
+					<button onClick={this.handleLink.bind(this,'https://drums.conmetwheelends.com/')} store={this.context.store}>
+					<h2>REPLACEMENT DRUMS <i className="icon-angle-right" title="Right Arrow"></i></h2>
 					</button>
 				</div>
 

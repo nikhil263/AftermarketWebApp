@@ -1,3 +1,9 @@
+.btn-no-description {
+	h2 {
+		border-bottom: none !important;
+		margin-bottom: 0 !important;
+	}
+}
 .conmet-button {
 	@include border-radius(10px);
 	@include button-style(
@@ -10,7 +16,7 @@
 	margin: 1.25rem 0;
 
 	a, button {
-		padding: 1rem;
+		padding: 0rem 1rem;
 		width: 100%;
 		background: none;
 		border: none;
@@ -21,7 +27,18 @@
 		text-align: left;
 	  border-bottom: 2px solid scale-color($cm-red, $lightness: 30%);
 		font-size: 2.4rem;
+		i {
+			float:right;
+			position: relative;
+			top: 0px;
+			right: 0px;
+			padding: 0px 10px 10px 10px;
+			font-size: 1.3em;
+			margin: 0;
+			line-height: 1.2rem;
+		}
 	}
+
 	a {
 		color: #fff;
 	}
@@ -146,6 +163,8 @@
 	}
 	p {
 		text-align: left;
+		padding-bottom: 0px;
+		margin-bottom: .5rem !important;
 	}
 	i {
 		float: right;
@@ -157,6 +176,7 @@
 	}
 
 }
+
 .step-bar {
 	width: 100%;
 
