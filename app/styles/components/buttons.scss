@@ -26,7 +26,7 @@
 		color: #fff;
 		text-align: left;
 	  border-bottom: 2px solid scale-color($cm-red, $lightness: 30%);
-		font-size: 2.2rem;
+		font-size: 1.7rem;
 		i {
 			float:right;
 			position: relative;
@@ -164,6 +164,8 @@
 	p {
 		text-align: left;
 		padding-bottom: 0px;
+		line-height: 1.2rem;
+		font-size: .9rem;
 		margin-bottom: .5rem !important;
 	}
 	i {
