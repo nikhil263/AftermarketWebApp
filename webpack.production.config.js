@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackStrip = require('strip-loader');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-// production build
+
 module.exports = {
 	entry: [
 			'babel-polyfill',
@@ -16,10 +16,8 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-    	ENVIRONMENT: 'production'
-		}),
-		new webpack.DefinePlugin({
-    	NODE_ENV: 'production'
+    	ENVIRONMENT: JSON.stringify(process.env.NODE_ENV),
+			NODE_ENV: JSON.stringify(process.env.NODE_ENV),
 		}),
 		new webpack.optimize.DedupePlugin(),
 	  new webpack.optimize.UglifyJsPlugin({
