@@ -47,6 +47,13 @@ class Start extends Component {
 					<h2>REPLACEMENT DRUMS <i className="icon-angle-right" title="Right Arrow"></i></h2>
 					</button>
 				</div>
+				<div className="btn-no-description conmet-button">
+					<button onClick={this.handleLink.bind(this,'http://www.conmet.com/wp-content/uploads/2017/04/Rotor-Flyer-FINAL-040317.pdf')} store={this.context.store}>
+					<h2>REPLACEMENT ROTORS <i className="icon-angle-right" title="Right Arrow"></i></h2>
+					</button>
+				</div>
+
+
 
 
 
