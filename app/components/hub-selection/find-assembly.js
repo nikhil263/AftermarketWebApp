@@ -9,6 +9,9 @@ class FindAssembly extends Component {
 		const { dispatch } = this.props;
 		dispatch(pushPath(path))
 	}
+	handleLink(url) {
+		window.location = url;
+	}
 
 	render() {
 		return (
@@ -21,14 +24,12 @@ class FindAssembly extends Component {
 					</div>
 
 				<div className="conmet-button">
-					<button onClick={this.handleClick.bind(this,'/hub-selection/search')} className="yes-no-button"><em>Yes</em>I know my number now.</button>
+					<button onClick={this.handleLink.bind(this,' http://www.conmet.com/legal/contact-information/')} className="yes-no-button"><em>Contact</em>Customer service for support.</button>
 				</div>
 				<div className="conmet-button">
 					<button onClick={this.handleClick.bind(this, '/hub-selection/truck-type')} className="yes-no-button">
 						<em>No</em>I still don't know, proceed without it.</button>
 				</div>
-
-
 			</div>
 		)
 	}
