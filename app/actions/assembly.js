@@ -8,7 +8,8 @@ import {
 	RECIEVE_ASSEMBLY_DETAILS,
 	REQUEST_ASSEMBLY_DETAILS,
 	INVALIDATE_ASSEMBLY_DETAILS,
-	IMAGE_CDN
+	IMAGE_CDN,
+	SET_RESULT_INDEX
 } from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
@@ -120,12 +121,15 @@ export const receiveAssembly = (hub, json, date = Date.now()) => {
 				})
 
   }
-  return {
-    type: RECEIVE_ASSEMBLIES,
+
+  return dispatch => {
+    dispatch({type: RECEIVE_ASSEMBLIES,
     hub: hub,
     assemblies: assemblies,
     receivedAt: date,
-    status: json.Status
+    status: json.Status})
+
+		dispatch({type: SET_RESULT_INDEX})
   }
 }
 
