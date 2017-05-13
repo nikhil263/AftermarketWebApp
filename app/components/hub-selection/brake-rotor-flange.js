@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=10
-const NEXT_FILTER_PATH = '/hub-selection/brake-rotor-flange'
+const FILTERIDX=11
+const NEXT_FILTER_PATH = '/hub-selection/brake-rotor-type'
 
 class Result extends Component {
 	render () {
@@ -25,7 +25,7 @@ class Result extends Component {
  	}
 }
 
-class HubType extends Component {
+class BrakeRotorFlange extends Component {
 
 	componentDidMount() {
 		const { dispatch, app, checkForReload } = this.props
@@ -39,7 +39,7 @@ class HubType extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Hub Assembly Type</h1>
+				<h1>Choose the Brake Rotor Flange Diameter</h1>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
 						var boundClick = setFilter.bind(this, FILTERIDX, {hatyp: result.Id}, app);
@@ -51,4 +51,4 @@ class HubType extends Component {
 		)
 	}
 }
-export default connect()(HubType)
+export default connect()(BrakeRotorFlange)

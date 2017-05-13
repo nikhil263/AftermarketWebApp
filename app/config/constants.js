@@ -1,5 +1,6 @@
 // API
-export const API = 'https://api.conmetwheelends.com/aftermarket/v10';
+export const API = 'https://api.conmetwheelends.com/aftermarket/v11';
+export const APIV10 = 'https://api.conmetwheelends.com/aftermarket/v10';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
 export const IMAGE_CDN = 'https://conmetaftermarketimages.azureedge.net/images/';
 export const V2KEY='de21c7db30a94f659cf8a8665805acba';
@@ -83,7 +84,9 @@ export const STEP_NAVIGATION = [
 	{ id: 9, path: '/hub-selection/wheel-type'},//8
 	{ id: 10, path: '/hub-selection/material'},//9
 	{ id: 11, path: '/hub-selection/hub-type'},//10
-	{ id: 12, path: '/hub-selection/results'} //11
+	{ id: 16, path: '/hub-selection/brake-rotor-flange'},//11
+	{ id: 17, path: '/hub-selection/brake-rotor-type'},//12
+	{ id: 12, path: '/hub-selection/results'} //13
 ]
 
 export const RESULTS = {

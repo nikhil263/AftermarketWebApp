@@ -141,12 +141,14 @@ export const fetchFilters = (idx, state) => {
 	if (checkFilterStatus(state)){
 
 		return dispatch => {
-			dispatch(requestFilters(id))
+			dispatch(requestFilters(idx))
 
 			var id = 0;
+			let filterName = ''
 			if (state.categories.length > idx) {
 				// console.log(idx, state.categories[idx])
 				id = state.categories[idx].Id
+				filterName = state.categories[idx].QueryParameterName
 			}
 
 			let searchFilterState = [];
@@ -168,9 +170,11 @@ export const fetchFilters = (idx, state) => {
 				}
 			});
 
+
+
 			let searchParams = searchFilterState.join('&');
 
-			let url = API+'/hubassembly/filtervalues/'+id+'?'+searchParams;
+			let url = API+'/hubassembly/filtervalues/'+filterName+'?'+searchParams;
 			return fetch(url, {
 				method: 'get',
 				headers: {
