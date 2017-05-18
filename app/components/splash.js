@@ -14,7 +14,6 @@ class Splash extends Component {
 		const { dispatch, app } = this.props
 		const cookies = new Cookies();
 		cookies.set('accepted', true, { path: '/' });
-
 		dispatch(pushPath('/hub-selection'))
 	}
 
