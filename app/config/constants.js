@@ -83,9 +83,9 @@ export const STEP_NAVIGATION = [
 	{ id: 12, path: '/hub-selection/axle-stud'},//7
 	{ id: 9, path: '/hub-selection/wheel-type'},//8
 	{ id: 10, path: '/hub-selection/material'},//9
-	{ id: 11, path: '/hub-selection/hub-type'},//10
-	{ id: 16, path: '/hub-selection/brake-rotor-flange'},//11
-	{ id: 17, path: '/hub-selection/brake-rotor-type'},//12
+	// { id: 16, path: '/hub-selection/brake-rotor-flange'},//10
+	// { id: 17, path: '/hub-selection/brake-rotor-type'},//11
+	{ id: 11, path: '/hub-selection/hub-type'},//12
 	{ id: 12, path: '/hub-selection/results'} //13
 ]
 

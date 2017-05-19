@@ -11,6 +11,8 @@ export const receiveCategories = (json = []) => {
   let categories = [];
 	if (json.length > 0) {
 		categories = json;
+		categories.splice(10, 2)
+		console.log('Categories', categories)
 	}
   return {
     type: RECIEVE_CATEGORIES,

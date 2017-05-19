@@ -6,7 +6,7 @@ import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
 const FILTERIDX=10
-const NEXT_FILTER_PATH = '/hub-selection/brake-rotor-flange'
+const NEXT_FILTER_PATH = '/hub-selection/results'
 
 class Result extends Component {
 	render () {
