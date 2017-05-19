@@ -75,6 +75,7 @@
     "svg-inline-loader": "^0.4.0",
     "svg-react-loader": "^0.3.2",
     "svgo": "^0.7.2",
+    "universal-cookie": "^2.0.7",
     "whatwg-fetch": "^0.10.1"
   }
 }
