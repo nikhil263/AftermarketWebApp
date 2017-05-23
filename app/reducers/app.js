@@ -33,11 +33,11 @@ export const app = (state = constants.APPSTATE, action)  => {
 			return Object.assign({}, state, {isFetching: true, needsFetch: false})
 
 		case constants.SET_RESULT_INDEX:
-			return Object.assign({}, state, {currentIndex: 11})
+			return Object.assign({}, state, {currentIndex: state.categories.length})
 
 		case constants.UPDATE_FILTER_VALUE:
 			const idx = action.idx;
-			const newIndex = (state.filterState.length > idx + 2) ? idx + 1 : idx; // +2 handles the results page
+			const newIndex = (state.categories.length > idx + 2) ? idx + 1 : idx; // +2 handles the results page
 			console.log('update filter value', action.value)
 			const newFilterState = Object.assign({}, state.filterState, action.filterState);
 			console.log('update filter value state', state)

@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=10
-const NEXT_FILTER_PATH = '/hub-selection/results'
+const FILTERIDX=12
+const NEXT_FILTER_PATH = '/hub-selection/brake-rotor-flange'
 
 class Result extends Component {
 	render () {

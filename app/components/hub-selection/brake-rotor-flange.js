@@ -11,12 +11,12 @@ const NEXT_FILTER_PATH = '/hub-selection/brake-rotor-type'
 class Result extends Component {
 	render () {
 	 var { result, active, onClick } = this.props
-	 var className = 'general-button'
+	 var className = 'conmet-button'
 	 return (
 		 <div className="grid-content small-6">
-		 <div className={active()}>
+		 <div className="conmet-button">
  			<button className="yes-no-button" onClick={onClick}>
- 				<strong>{result.Name}</strong>
+ 				<strong>{result.Inch}" / {result.Millimeter}mm</strong>
 			</button>
  		</div>
 		</div>
@@ -40,11 +40,16 @@ class BrakeRotorFlange extends Component {
 		return (
 			<div className="grid-container main-content">
 				<h1>Choose the Brake Rotor Flange Diameter</h1>
+
 				<div className="grid-block">
+					<div className="grid-content small-12">
+							<img className="brake-rotor-flange" src={require('../../images/brake-rotor-flange.png')} alt="ConMet" width="300" height="300 "/>
+					</div>
+
 					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, {hatyp: result.Id}, app);
-						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
-						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick}/>
+						var boundClick = setFilter.bind(this, FILTERIDX, {brdia: result.Inch}, app);
+						var boundActive = setActive.bind(this, FILTERIDX, result.Inches);
+						return <Result key={index} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}
 				</div>
 			</div>
