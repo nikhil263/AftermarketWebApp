@@ -71,7 +71,6 @@ export const previousFilter = (state) => {
 	const idx = state.currentIndex;
 	let newIdx = (-1 !== state.currentIndex) ? state.currentIndex - 1 : -1;
 	newIdx = (newIdx === 1) ? 0 : newIdx;
-	console.log(`state index: ${state.currentIndex} | new Index: ${newIdx}`)
 	const url = STEP_NAVIGATION[newIdx].path
 
 	return dispatch => {
@@ -89,7 +88,6 @@ export const decreaseIndex = (idx) => {
 }
 
 export const receiveFilters = (idx, json, state) => {
-	console.log('Receive Filters @', idx)
 	let filters = [];
 	if (json.Status != ZERO_RESULTS) {
 		filters = json.Results
