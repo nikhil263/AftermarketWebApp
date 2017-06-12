@@ -1,5 +1,6 @@
 import {
 	API,
+	APIV10,
 	V2KEY,
 	ZERO_RESULTS,
 	INVALIDATE_ASSEMBLIES,
@@ -72,7 +73,7 @@ export const fetchAssemblyDetails = (id, images) => {
 				return dispatch => {
 					dispatch(requestAssemblyDetails(id))
 
-					let url = `${API}/hubassemblydetails/${id}`;
+					let url = `${APIV10}/hubassemblydetails/${id}`;
 					return fetch(url, {
 						method: 'get',
 						headers: {
@@ -149,7 +150,7 @@ export const fetchAssembly = (state) => {
 		});
 		let searchParams = searchFilterState.join('&');
 
-    let url = API+'/hubassembly/filtervalues/0?'+searchParams;
+    let url = API+'/hubassembly/filtervalues/hanum?'+searchParams;
     return fetch(url, {
       method: 'get',
       headers: {

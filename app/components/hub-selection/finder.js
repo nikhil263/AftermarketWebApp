@@ -42,7 +42,6 @@ class Finder extends Component {
 
 	render() {
 		const { app } = this.props;
-
 		return (
 			<div className="grid-container main-content">
 				<h1>Are you looking for a hub for your</h1>

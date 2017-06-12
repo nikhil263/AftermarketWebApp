@@ -54,7 +54,9 @@ export const setVal = (idx, filterState) => {
 
 
 export const nextFilter = (idx, state) => {
-	const nextIndex = (STEP_NAVIGATION.length > idx + 1) ? idx+1 : idx
+	console.log('currentINDEX', idx);
+	const nextIndex = (STEP_NAVIGATION.length > idx+1) ? idx+1 : idx
+	console.log('nextINDEX', nextIndex, STEP_NAVIGATION.length);
 	const url = STEP_NAVIGATION[nextIndex].path
 	return dispatch => {
 		dispatch(invalidateFilters())
@@ -69,7 +71,6 @@ export const previousFilter = (state) => {
 	const idx = state.currentIndex;
 	let newIdx = (-1 !== state.currentIndex) ? state.currentIndex - 1 : -1;
 	newIdx = (newIdx === 1) ? 0 : newIdx;
-	console.log(`state index: ${state.currentIndex} | new Index: ${newIdx}`)
 	const url = STEP_NAVIGATION[newIdx].path
 
 	return dispatch => {
@@ -141,12 +142,14 @@ export const fetchFilters = (idx, state) => {
 	if (checkFilterStatus(state)){
 
 		return dispatch => {
-			dispatch(requestFilters(id))
+			dispatch(requestFilters(idx))
 
 			var id = 0;
+			let filterName = ''
 			if (state.categories.length > idx) {
 				// console.log(idx, state.categories[idx])
 				id = state.categories[idx].Id
+				filterName = state.categories[idx].QueryParameterName
 			}
 
 			let searchFilterState = [];
@@ -168,9 +171,11 @@ export const fetchFilters = (idx, state) => {
 				}
 			});
 
+
+
 			let searchParams = searchFilterState.join('&');
 
-			let url = API+'/hubassembly/filtervalues/'+id+'?'+searchParams;
+			let url = API+'/hubassembly/filtervalues/'+filterName+'?'+searchParams;
 			return fetch(url, {
 				method: 'get',
 				headers: {

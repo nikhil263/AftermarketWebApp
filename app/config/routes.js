@@ -23,6 +23,8 @@ import HubSelectionWheelType from 'components/hub-selection/wheel-type'
 import HubSelectionAxleStud from 'components/hub-selection/axle-stud'
 import HubSelectionMaterial from 'components/hub-selection/material'
 import HubSelectionType from 'components/hub-selection/hub-type'
+import BrakeRotorFlange from 'components/hub-selection/brake-rotor-flange'
+import BrakeRotorType from 'components/hub-selection/brake-rotor-type'
 import HubFinder from 'components/hub-selection/finder'
 import About from 'components/about'
 import Contact from 'components/contact'
@@ -61,7 +63,8 @@ module.exports = (
 				<Route path='wheel-type' component={HubSelectionWheelType} />
 				<Route path='material' component={HubSelectionMaterial} />
 				<Route path='hub-type' component={HubSelectionType} />
-
+				<Route path='brake-rotor-flange' component={BrakeRotorFlange} />
+				<Route path='brake-rotor-type' component={BrakeRotorType} />
 				<Route path='find-assembly' component={HubSelectionFindAssembly} />
 				<Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail} />
 			</Route>

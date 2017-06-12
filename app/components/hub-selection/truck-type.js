@@ -40,15 +40,11 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
 
 					<div className={setActive(FILTERIDX, TRUCK)}>
             <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, {tcomp: TRUCK, brkty: DISC}, app)}>
-              <strong>Medium-Duty Truck with Disc Brakes</strong>
+              <strong>Truck with Disc Brakes</strong>
             </button>
           </div>
 
-					<div className="conmet-button disabled">
-  					<button className="yes-no-button">
-              <strong>Heavy-Duty Truck with Disc Brakes</strong><br />Coming Soon
-  					</button>
-  				</div>
+
 
           </div>
           <div className="grid-content small-6">
@@ -58,11 +54,12 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-make'
               </button>
             </div>
 
-          <div className="conmet-button disabled">
-  					<button className="yes-no-button">
-              <strong>Trailer with Disc Brakes</strong><br />Coming Soon
-  					</button>
-  				</div>
+						<div className={setActive(FILTERIDX, TRAILER)}>
+              <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, {tcomp: TRAILER, brkty: DISC}, app)}>
+                <strong>Trailer with Disc Brakes</strong>
+              </button>
+            </div>
+
         </div>
         </div>
 

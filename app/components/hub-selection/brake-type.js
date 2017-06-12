@@ -14,7 +14,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-type'
    componentDidMount() {
      const {dispatch } = this.props
      dispatch(resetAppState())
-		 
+
    }
 
   render() {
@@ -30,35 +30,34 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-type'
           <div className="grid-content small-6">
           <div className={setActive(FILTERIDX, HEAVY_DUTY_TRUCK)}>
             <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, HEAVY_DUTY_TRUCK, app)}>
-              <strong>Heavy-Duty Truck with Drum Brakes</strong>
+              <strong>Truck with Drum Brakes</strong>
             </button>
           </div>
 
 					<div className={setActive(FILTERIDX, HEAVY_DUTY_TRUCK)}>
             <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, HEAVY_DUTY_TRUCK, app)}>
-              <strong>Medium-Duty Truck with Disk Brakes</strong>
+              <strong>Truck with Disc Brakes</strong>
             </button>
           </div>
 
-					<div className="conmet-button disabled">
-  					<button className="yes-no-button">
-              <strong>Heavy-Duty Truck with Disc Brakes</strong><br />Coming Soon
-  					</button>
-  				</div>
-
-          </div>
+					</div>
           <div className="grid-content small-6">
             <div className={setActive(FILTERIDX, TRAILER)}>
               <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, TRAILER, app)}>
                 <strong>Trailer with Drum Brakes</strong>
               </button>
             </div>
+						<div className={setActive(FILTERIDX, TRAILER)}>
+              <button className="yes-no-button" onClick={setFilter.bind(this, FILTERIDX, TRAILER, app)}>
+                <strong>Trailer with Drum Brakes</strong>
+              </button>
+            </div>
 
-          <div className="conmet-button disabled">
+          {/* <div className="conmet-button disabled">
   					<button className="yes-no-button">
               <strong>Trailer with Disc Brakes</strong><br />Coming Soon
   					</button>
-  				</div>
+  				</div> */}
         </div>
         </div>
 
