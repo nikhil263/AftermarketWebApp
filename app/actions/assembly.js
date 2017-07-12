@@ -73,7 +73,7 @@ export const fetchAssemblyDetails = (id, images) => {
 				return dispatch => {
 					dispatch(requestAssemblyDetails(id))
 
-					let url = `${APIV10}/hubassemblydetails/${id}`;
+					let url = `${API}/hubassemblydetails/${id}`;
 					return fetch(url, {
 						method: 'get',
 						headers: {
