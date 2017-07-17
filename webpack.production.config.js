@@ -3,6 +3,8 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackStrip = require('strip-loader');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+require('es6-promise').polyfill();
+require('babel-polyfill');
 
 module.exports = {
 	entry: [
