@@ -13,7 +13,6 @@ import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
 import { pushPath } from 'redux-simple-router'
 
-
 export const receiveImages = (id, json, state) => {
 	let images = []
 	console.log('recieved json', json);
@@ -78,12 +77,7 @@ export const fetchImages = (images, state) => {
 						'Ocp-Apim-Subscription-Key': V2KEY
 					}
 				})
-				.then(
-					response => response.json(),
-					err => {
-						// console.log('API Error', err);
-					}
-				)
+				.then(response => response.json())
 				.then(json => {
 					dispatch(receiveImages(id, json, state));
 				});
