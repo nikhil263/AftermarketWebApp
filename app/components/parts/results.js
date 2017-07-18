@@ -50,14 +50,14 @@ class Results extends Component {
 			}
 
 			if (viewArray.length > 1 && part.TypeId === 115) {
-				if (part.Description.indexOf('PreSet') > -1) {
+				//if (part.Description.indexOf('PreSet') > -1) {
 					return (
 						<tr key={index}>
 							<td><Link to={'/hub-selection/details/'+part.PartNumber} >{item.AftermarketPartTypeName+appendStr}</Link></td>
 							<td>{part.PartNumber}</td>
 						</tr>
 					)
-				}
+				//}
 			} else {
 				if (part.TypeId === 115) {
 					return (
@@ -89,6 +89,7 @@ class Results extends Component {
 		if (parts.isFetching) {
 			return (<Waiting />)
 		}
+
 		if (parts.AftermarketParts.length === 0) {
 			return (<NoResults />)
 		}
@@ -124,8 +125,11 @@ class Results extends Component {
 							if (-1 < FULLREPLACE.indexOf(item.PartTypeId)) {
 								console.log('aftermarket parts', parts.AftermarketParts)
 								let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
-								console.log(filtered)
-								return this.renderTable(filtered, item)
+                                filtered = filtered.sort(function(a,b){
+                                	return a.Ranking > b.Ranking;
+								});
+								//Return only the first item
+								return this.renderTable([filtered.shift()], item)
 							}
 
 						})}
