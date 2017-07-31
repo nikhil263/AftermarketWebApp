@@ -1,9 +1,9 @@
-$body-background: #1a1a1a;
+$body-background: #fff;
 $button-radius: 4px;
 $primary-color: rgba(211,17,69, 1);
 
-$cm-dark-grey: #1A1A1A;
-$cm-mid-grey: #686868;
+$cm-dark-grey: #414042;
+$cm-mid-grey: #6d6e71;
 $cm-light-grey: #F2F2F2;
 $cm-red: $primary-color;
 $cm-dark-red: darken($cm-red, 8%);
@@ -11,12 +11,12 @@ $cm-copy-light: #fff;
 $cm-copy-dark: #000;
 $cm-table-desc: #9E9E9E;
 $cm-table-detail: $cm-mid-grey;
-$cm-error-color: #FBB03B;
+$cm-error-color: #bfa043;
 
-$cm-diagonal-background: #000 repeating-linear-gradient(
+$cm-diagonal-background: #e6e6e6 repeating-linear-gradient(
 	-45deg,
-	transparent,
-	transparent 15px,
+	#e6e6e6,
+	#e6e6e6 15px,
 	rgba(255,255,255,.2) 15px,
 	rgba(255,255,255,.2) 16px
 );

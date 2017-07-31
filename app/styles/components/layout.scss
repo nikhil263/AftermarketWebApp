@@ -3,17 +3,22 @@ body.rotate {
 }
 body {
 	display: -ms-flexbox;
+	font-family: "ArialNovaCond-Light";
 }
 .main-content {
 	margin-top: 2em;
-	color: #fff;
+	color: $cm-dark-grey;
 	h1,h2,h3,h4,h5,h6 {
-		color: #fff;
+		color: $cm-dark-grey;
 		text-align: center;
 	}
 }
+h2,h3,h4,h5,h6{
+	font-family: "ArialNovaCond";
+	letter-spacing: 0.02rem;
+}
 .global-navigation {
-	background: black;
+	background: #fff;
 	// background: $cm-diagonal-background;
 	padding: 1.5rem;
 	text-align: center;
@@ -39,7 +44,7 @@ body {
 }
 .grid-container {
 	h1, h2,h3,h4,h5,h6 {
-		color: #fff;
+		color: $cm-dark-grey;
 	}
 }
 #logo {
@@ -49,7 +54,7 @@ body {
 }
 a {
 	p,h1,h2,h3,h4,i {
-		color: #fff;
+		color: $cm-dark-grey;
 	}
 }
 .grid-block.footer {
@@ -74,6 +79,7 @@ img.brake-rotor-flange {
 
 .error {
 	color: $cm-error-color;
+	font-family: "ArialNovaCond";
 	font-weight: bold;
 	padding-top: 1.2rem;
 }
@@ -85,13 +91,12 @@ img.brake-rotor-flange {
 		text-align: center;
 		font-size: 3rem;
 		padding: 2rem;
-		background: #000;
+		background: #fff;
 		h3 {
 			color: $cm-mid-grey;
 			font-size: 1.4rem;
 		}
 		h1 {
-			font-family: "Steelfish";
 			font-size: 3.1rem;
 			line-height: 2.9rem;
 		}
@@ -111,7 +116,6 @@ img.brake-rotor-flange {
 	color: #000;
 	background: #fff;
 	@include clearfix;
-	font-family: "Alt Gothic";
 	color: $cm-mid-grey;
 	font-size: 1.7rem;
 	em {
@@ -166,7 +170,6 @@ img.brake-rotor-flange {
 			td {
 				font-size: 1.2rem;
 				padding: 1.0rem;
-				font-family: "Alt Gothic";
 			}
 			td:first-child {
 				color: $cm-table-desc;
@@ -217,7 +220,7 @@ img.brake-rotor-flange {
 		position: absolute;
 		top: 0; right: 0;
 		border-top: 20px solid #fff;
-		border-left: 20px solid $cm-light-grey;
+		border-left: 20px solid $cm-mid-grey;
 		width: 0;
 }
 .figure {
@@ -240,17 +243,14 @@ img.brake-rotor-flange {
 div.disclaimer {
   margin-top: 30px;
   p{
-    font-size: .75rem;
+    font-size: .90rem;
     color: $cm-mid-grey;
   }
-
 }
 div.not-found {
   margin: 30px;
   p{
-
-    color: #fff;
-
+    color: $cm-dark-grey;
   }
 }
 h2.partsSubHead {
