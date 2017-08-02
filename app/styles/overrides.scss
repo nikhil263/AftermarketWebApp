@@ -13,13 +13,7 @@ $cm-table-desc: #9E9E9E;
 $cm-table-detail: $cm-mid-grey;
 $cm-error-color: #bfa043;
 
-$cm-diagonal-background: #FFFFFF repeating-linear-gradient(
-	-45deg,
-	#FFFFFF,
-	#FCFCFC 15px,
-	rgba(255,255,255,.2) 15px,
-	rgba(255,255,255,.2) 16px
-);
+$cm-diagonal-background: linear-gradient(to bottom, white 0%, rgba(220, 221, 222, 0.7) 100%);
 
 
 .ie10 {

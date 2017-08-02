@@ -120,7 +120,7 @@
 
 .yes-no-button {
 	text-align: left;
-	font-size: .9rem;
+	font-size: 1rem;
 	padding: .75rem !important;
 	a {
 		color: #fff !important;
@@ -197,7 +197,7 @@
 
 	.grid-content {
 		padding: 0px;
-		background: #dcddde;
+		background: #e6e6e6;
 		height: 39px;
 	}
 
@@ -301,7 +301,7 @@
 	background: #fff;
 	padding: 2.5em 1.5em 0;
 	font-size: 1.15em;
-	border-left: solid 10px $cm-mid-grey;
+	//border-left: solid 10px $cm-mid-grey;
 	p{
 		color: $cm-mid-grey;
 	}
