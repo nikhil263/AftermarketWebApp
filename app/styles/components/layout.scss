@@ -4,6 +4,7 @@ body.rotate {
 body {
 	display: -ms-flexbox;
 	font-family: "ArialNovaCond-Light";
+	background: $cm-diagonal-background;
 }
 .main-content {
 	margin-top: 2em;
@@ -32,7 +33,7 @@ h2,h3,h4,h5,h6{
 	}
 }
 .title-bar.dark {
-	background: $cm-diagonal-background;
+	background: #fff;
 
 }
 .title-bar .center h2 {
