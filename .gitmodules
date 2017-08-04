@@ -1,0 +1,6 @@
+[submodule "azure/prod"]
+	path = azure/prod
+	url = https://sujayjaju@aftermarketweb.scm.azurewebsites.net:443/AftermarketWeb.git
+[submodule "azure/staging"]
+	path = azure/staging
+	url = https://sujayjaju@aftermarketweb-1.scm.azurewebsites.net:443/AftermarketWeb.git
