@@ -26,7 +26,8 @@
 		color: #fff;
 		text-align: left;
 	  border-bottom: 2px solid scale-color($cm-red, $lightness: 30%);
-		font-size: 1.7rem;
+		font-size: 1.55rem;
+		padding: 5px 0;
 		i {
 			float:right;
 			position: relative;
@@ -228,6 +229,7 @@
 		color: #fff !important;
 		background-color: transparent !important;
 		cursor: default;
+		visibility: hidden;
 	}
 	.prev-button {
 		float: left;
