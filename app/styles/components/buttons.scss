@@ -26,7 +26,8 @@
 		color: #fff;
 		text-align: left;
 	  border-bottom: 2px solid scale-color($cm-red, $lightness: 30%);
-		font-size: 1.7rem;
+		font-size: 1.55rem;
+		padding: 5px 0;
 		i {
 			float:right;
 			position: relative;
@@ -98,7 +99,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	font-family: "Alt Gothic";
 	font-size: 1.7rem;
 	text-align: center;
 	@include border-radius(10px);
@@ -111,6 +111,8 @@
 	width: 100%;
 	margin: 1.25rem 0;
 	padding: 1rem .8rem;
+	letter-spacing: 0.04rem;
+	font-family: "ArialNovaCond";
 }
 
 .truck-make {
@@ -119,14 +121,13 @@
 
 .yes-no-button {
 	text-align: left;
-	font-size: .9rem;
+	font-size: 1rem;
 	padding: .75rem !important;
 	a {
 		color: #fff !important;
 		font-size: .7rem;
 	}
 	em {
-		font-family: "Alt Gothic";
 		border-right: 1px solid $cm-dark-red;
 		font-size: 2rem;
 		font-style: normal;
@@ -183,7 +184,7 @@
 	width: 100%;
 
 	a.back-btn, .step-number, .home-btn{
-		color: #fff !important;
+		color: $cm-dark-grey !important;
 		margin-top:5px !important;
 		padding-top:4px !important;
 		display: block;
@@ -197,7 +198,7 @@
 
 	.grid-content {
 		padding: 0px;
-		background: #333;
+		background: rgba(220, 221, 222, 0.7);
 		height: 39px;
 	}
 
@@ -225,9 +226,10 @@
 		cursor: pointer;
 	}
 	.disabled {
-		color: $cm-dark-grey !important;
+		color: #fff !important;
 		background-color: transparent !important;
 		cursor: default;
+		visibility: hidden;
 	}
 	.prev-button {
 		float: left;
@@ -240,13 +242,13 @@
 		float: left;
 		p {
 		text-align: center;
-		color: $cm-light-grey;
+		color: $cm-mid-grey;
 		font-size: .9rem;
 		}
 	}
 	.hide-button {
 		i {
-			color: $cm-dark-grey;
+			color: #fff;
 		}
 	}
 }
@@ -272,35 +274,39 @@
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: fixed;
-  width: 36px;
-  height: 30px;
-  right: 36px;
-  top: 36px;
+	position: absolute;
+	width: 36px;
+	height: 30px;
+	right: 36px;
+	top: 36px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #fff;
+	background: $cm-dark-grey;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+	height: 24px;
+	width: 24px;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+	background: $cm-mid-grey;
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background: rgba(0,0,0, 1);
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-	border-left: solid 10px $cm-mid-grey;
+	font-family: "ArialNovaCond";
+	background: #fff;
+	padding: 2.5em 1.5em 0;
+	font-size: 1.15em;
+	//border-left: solid 10px $cm-mid-grey;
+	p{
+		color: $cm-mid-grey;
+	}
 	ul {
 		li {
 			list-style: none !important;
