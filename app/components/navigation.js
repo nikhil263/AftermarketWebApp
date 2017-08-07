@@ -10,10 +10,7 @@ var Menu = slide
 class Navigation extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-
-		}
-
+        this.state = {isOpen: false};
 	}
 
 	goHome() {
@@ -25,14 +22,17 @@ class Navigation extends Component {
 	goDisclaimer() {
 		const {dispatch} = this.props
 		dispatch(resetFilters())
-		dispatch(pushPath('/'))
+		dispatch(pushPath('/disclaimer'))
+		this.setState({
+            isOpen: false
+		});
 	}
 
 
 	render() {
 		return (
 			<div>
-				<Menu className="global-navigation" right>
+				<Menu className="global-navigation" right isOpen={this.state.isOpen}>
 					<p>More Information</p>
 					<ul>
 						<li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>
