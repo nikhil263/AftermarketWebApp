@@ -122,9 +122,7 @@ class Result extends Component {
 		matches.forEach(item => {
 			str = str.replace(item[0], item[1])
 		});
-		let disclaimer = '(<a href="/disclaimer">Disclaimer</a>)';
-		let res = str.concat(disclaimer);
-		return <p dangerouslySetInnerHTML={{__html: res}}></p>;
+		return <p dangerouslySetInnerHTML={{__html: str}}></p>;
 	}
 	render () {
 	 let { idx, total, item, dispatch, images } = this.props
@@ -158,6 +156,7 @@ class Result extends Component {
 			 		#{item.PartNumber}
 			 	</h2>
 				{note}
+				<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>
 				<Link to={'/hub-selection/details/'+item.PartNumber} className="general-button">See Details</Link>
 			</div>
 			<NextButton

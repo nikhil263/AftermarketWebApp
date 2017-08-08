@@ -1,9 +1,20 @@
 import React, { PropTypes, Component } from 'react';
+import Step from 'components/hub-selection/step';
+import { previousFilter } from 'actions/filters';
 export default class Disclaimer extends Component {
-	render() {
-		return (
-			<div className="grid-frame vertical splash" id="disclaimer">
-				<div className="grid-block align-center">
+    render() {
+        const { dispatch, history, app} = this.props;
+        const childProps = {
+            app,
+            goBack: (app) => {
+                dispatch(previousFilter(app))
+            }
+        };
+        const backClick = childProps.goBack.bind(this, app);
+        return (
+			<div className="grid-frame splash" id="disclaimer">
+				<div className="grid-block vertical">
+					<Step history={history} dispatch={dispatch} app={app} onClick={backClick}></Step>
 					<div className="grid-container">
 						<div className="grid-content splash-title">
 							<h2>Disclaimer</h2>
@@ -16,6 +27,6 @@ export default class Disclaimer extends Component {
 					</div>
 				</div>
 			</div>
-		)
-	}
+        )
+    }
 };
