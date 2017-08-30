@@ -28,6 +28,7 @@ import BrakeRotorType from 'components/hub-selection/brake-rotor-type'
 import HubFinder from 'components/hub-selection/finder'
 import About from 'components/about'
 import Contact from 'components/contact'
+import Disclaimer from 'components/disclaimer'
 
 
 import PartsWrapper from 'components/parts'
@@ -45,6 +46,7 @@ module.exports = (
 			<Route path='' component={App}>
 			<Route path='about' component={About} />
 			<Route path='contact' component={Contact} />
+			<Route path='disclaimer' component={Disclaimer} />
 			<Route path='hub-selection' component={HubSelectionWrapper}>
 				<IndexRoute component={HubSelectionStart} />
 				<Route path='choose-path' component={HubSelectionChoosePath} />

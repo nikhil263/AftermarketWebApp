@@ -156,6 +156,7 @@ class Result extends Component {
 			 		#{item.PartNumber}
 			 	</h2>
 				{note}
+				<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>
 				<Link to={'/hub-selection/details/'+item.PartNumber} className="general-button">See Details</Link>
 			</div>
 			<NextButton

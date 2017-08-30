@@ -13,7 +13,7 @@ const FULLREPLACE = [115]
 const SERVICEPARTS = [220, 5, 6, 7, 8, 101]
 // const SERVICEKITS = [217, 218, 219, 221]
 // const SPINDLENUTS = [222, 223, 226, 227]
-const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227]
+const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227,203]
 const SPINDLENUTS = []
 
 class Results extends Component {

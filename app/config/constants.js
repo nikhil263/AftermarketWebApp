@@ -217,7 +217,12 @@ export const PARTTYPES = [
 		'PartTypeId': 227,
 		'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)',
 		'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)'
-	}
+	},
+    {
+        'PartTypeId': 203,
+        'AftermarketPartTypeName': 'Replacement Rotor Kit',
+        'InternalPartTypeName': 'Replacement Rotor Kit'
+    }
 ]
 
 export const AFTERMARKET_DETAILS = [
