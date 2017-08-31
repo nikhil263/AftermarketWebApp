@@ -266,3 +266,29 @@ h2.partsSubHead {
 		margin: 0;
 	}
 }
+
+#autoComplete{
+	input{margin: 0;}
+	.menu{
+		position: absolute;
+		width: 100%;
+		border-left: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		max-height: 426px;
+		overflow: auto;
+		box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+		.menu-item{
+			color: $cm-mid-grey;
+			text-transform: uppercase;
+			padding: 8px 10px;
+			border-bottom: 1px solid #ccc;
+		}
+		.item{
+			min-height: 40px;
+			background: #fff;
+			display: flex;
+			align-items: center;
+			padding-left: 15px;
+		}
+	}
+}

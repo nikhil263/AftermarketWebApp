@@ -142,6 +142,98 @@ export const fetchHubs = (partNumber) => {
   }
 }
 
+export const fetchHubAssemblyNumber = (term) => {
+    return dispatch => {
+        return fetch(constants.API+'/hubassemblynumbers/withaftermarkethubassemblies/'+term, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.ASSEMBLY_NUMBER_DATA,
+                    assemblyNumber: json,
+                })
+            })
+    }
+};
+
+export const fetchHubAssemblyFilters = (id) =>{
+    return dispatch => {
+        return fetch(constants.API+'/aftermarkethubassemblyfilters?chaid='+id, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.HUB_ASSEMBLY_FILTERS,
+                    filters: json,
+                })
+            })
+    }
+};
+
+export const fetchFilterValues = (filtername,filters) =>{
+    return dispatch => {
+        return fetch(constants.API+"/hubassembly/filtervalues/"+filtername+"?"+filters, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.HUB_ASSEMBLY_FILTER_VALUE,
+                    filters: json,
+                })
+            })
+    }
+};
+
+export const fetchHubsCrossApi = (filters) =>{
+    return dispatch => {
+        return fetch(constants.API+'/hubassembly/filtervalues/hanum?'+filters, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.RECEIVE_HUBS_CROSS_API,
+                    filters: json,
+                })
+            })
+    }
+};
+
 export const invalidateHubs = () => {
   return {
     type: constants.INVALIDATE_HUBS,
