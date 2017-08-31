@@ -131,7 +131,9 @@ class Results extends Component {
                                 	return a.Ranking > b.Ranking;
 								});
 								//Return only the first item
-								return this.renderTable([filtered.shift()], item)
+								if(filtered.length) {
+                                    return this.renderTable([filtered.shift()], item)
+                                }
 							}
 
 						})}
@@ -145,8 +147,10 @@ class Results extends Component {
 						<tbody>
 							{PARTTYPES.map((item, index) => {
 								if (-1 < SERVICEKITS.indexOf(item.PartTypeId)) {
-									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
-									return this.renderTable(filtered, item)
+									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId});
+                                    if(filtered.length) {
+                                        return this.renderTable(filtered, item)
+                                    }
 								}
 
 						})}
@@ -160,8 +164,10 @@ class Results extends Component {
 						<tbody>
 							{PARTTYPES.map((item, index) => {
 								if (-1 < SERVICEPARTS.indexOf(item.PartTypeId)) {
-									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
-									return this.renderTable(filtered, item)
+									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId});
+                                    if(filtered.length) {
+                                        return this.renderTable(filtered, item)
+                                    }
 								}
 
 						})}
@@ -174,8 +180,10 @@ class Results extends Component {
 				<tbody>
 					{PARTTYPES.map((item, index) => {
 						if (-1 < SPINDLENUTS.indexOf(item.PartTypeId)) {
-							let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
-							return this.renderTable(filtered, item)
+							let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId});
+                            if(filtered.length) {
+                                return this.renderTable(filtered, item)
+                            }
 					}
 
 				})}

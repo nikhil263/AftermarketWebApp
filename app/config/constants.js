@@ -24,6 +24,10 @@ export const SHOW_PREVIOUS_RESULT='SHOW_PREVIOUS_RESULT'
 export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
 export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
 export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
+export const ASSEMBLY_NUMBER_DATA='ASSEMBLY_NUMBER_DATA';
+export const HUB_ASSEMBLY_FILTERS='HUB_ASSEMBLY_FILTERS';
+export const HUB_ASSEMBLY_FILTER_VALUE='HUB_ASSEMBLY_FILTER_VALUE';
+export const RECEIVE_HUBS_CROSS_API='RECEIVE_HUBS_CROSS_API';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
 
 //CATEGORIES
@@ -95,7 +99,11 @@ export const RESULTS = {
 	selectedIdx: 0,
 	total: 0,
 	selected: {},
+	assemblyNumber: [],
+	filters: [],
+    filter_value: [],
 	items: [],
+	item: [],
 	isFetching: false
 }
 
