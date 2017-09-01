@@ -123,7 +123,6 @@
 	text-align: left;
 	font-size: 1rem;
 	padding: .75rem !important;
-	font-weight: bold;
 	a {
 		color: #fff !important;
 		font-size: .7rem;
@@ -157,6 +156,10 @@
 	// 	display: inline-block;
 	// 	vertical-align: top;
 	// }
+
+	&.bold{
+		font-weight: bold;
+	}
 }
 .big-button {
 	h4 {

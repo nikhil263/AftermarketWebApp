@@ -94,6 +94,7 @@ class Results extends Component {
 					}
 				})}
 
+					<p className="text-center">{this.props.results.selectedHubAssemblyNumber !== '' ? 'for '+this.props.results.selectedHubAssemblyNumber : '' }</p>
 					{results.items.map((item, index) => {
 						if (index === results.selectedIdx) {
 							return <Result idx={results.selectedIdx} total={results.total} key={index} item={item} images={images} />
