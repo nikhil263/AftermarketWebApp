@@ -65,8 +65,12 @@ class Results extends Component {
             this.hubCrossApi();
         }else{
             dispatch(fetchFilterValues(this.state.filter_name[0],this.state.url)).then(()=>{
+                let results = this.props.results.filter_value.Results;
                 this.setState({current_filter: this.state.filter_name[0]});
                 this.state.filter_name.shift();
+                if(results.length === 1){
+                    this.getFilterValues(results[0].Id);
+                }
             });
         }
     }
@@ -98,7 +102,7 @@ class Results extends Component {
                         {results.map((key) => {
                             return <div className="small-12">
                                 <div className="conmet-button">
-                                    <button className="yes-no-button" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.DisplayRange}
                                     </button>
                                 </div>
@@ -115,7 +119,7 @@ class Results extends Component {
                         {results.map((key) => {
                             return <div className="small-12">
                                 <div className="conmet-button">
-                                    <button className="yes-no-button" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.WheelMaterial} - {key.StudLengthClass}
                                     </button>
                                 </div>
@@ -132,7 +136,7 @@ class Results extends Component {
                         {results.map((key) => {
                             return <div className="small-12">
                                 <div className="conmet-button">
-                                    <button className="yes-no-button" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.Name}
                                     </button>
                                 </div>
@@ -145,17 +149,15 @@ class Results extends Component {
             return (
                 <div className="grid-container main-content">
                     <h1>Enter your hub assembly number</h1>
-                    <div className="error">
-                        <p>Please enter a valid 6 or 8 digit assembly number</p>
-                    </div>
                     <form id="autoComplete">
                         <Autocomplete
                             value={this.state.value}
-                            inputProps={{ placeholder: '6 or 8 digit assembly number (10031065)',className: 'assembly-number', id:'assemblyNumber',type:'text' }}
+                            inputProps={{ placeholder: 'Please enter a valid Conmet or Competitor assembly number',className: 'assembly-number', id:'assemblyNumber',type:'text' }}
                             wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}
                             items={this.state.assemblyNumber}
                             getItemValue={(item) => item.Competitor+' '+item.HubAssemblyNumber}
                             onSelect={(value, state) => {
+                                this.props.results.selectedHubAssemblyNumber = state.Competitor+' '+state.HubAssemblyNumber;
                                 this.hubAssemblyFilters(state.CompetitorHubAssemblyNumberId);
                                 this.setState({ value, assemblyNumber: [state] })
                             }}
@@ -180,7 +182,7 @@ class Results extends Component {
                             renderMenu={(items, value) => (
                                 <div className="menu">
                                     {value === '' ? (
-                                        <div className="item">Type 6 or 8 digit of assembly number</div>
+                                        <div className="item">Type Conmet or Competitor assembly number</div>
                                     ) : this.state.loading ? (
                                         <div className="item">Loading...</div>
                                     ) : items.length === 0 ? (

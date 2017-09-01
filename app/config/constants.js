@@ -104,6 +104,7 @@ export const RESULTS = {
     filter_value: [],
 	items: [],
 	item: [],
+	selectedHubAssemblyNumber: '',
 	isFetching: false
 }
 
