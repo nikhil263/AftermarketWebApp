@@ -152,7 +152,7 @@ class Results extends Component {
                     <form id="autoComplete">
                         <Autocomplete
                             value={this.state.value}
-                            inputProps={{ placeholder: 'Please enter a valid Conmet or Competitor assembly number',className: 'assembly-number', id:'assemblyNumber',type:'text' }}
+                            inputProps={{ placeholder: 'Please enter a valid ConMet or Competitor assembly number',className: 'assembly-number', id:'assemblyNumber',type:'text' }}
                             wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}
                             items={this.state.assemblyNumber}
                             getItemValue={(item) => item.Competitor+' '+item.HubAssemblyNumber}
@@ -182,7 +182,7 @@ class Results extends Component {
                             renderMenu={(items, value) => (
                                 <div className="menu">
                                     {value === '' ? (
-                                        <div className="item">Type Conmet or Competitor assembly number</div>
+                                        <div className="item">Type ConMet or Competitor assembly number</div>
                                     ) : this.state.loading ? (
                                         <div className="item">Loading...</div>
                                     ) : items.length === 0 ? (
