@@ -153,7 +153,7 @@ class Result extends Component {
 				}
 
 				<h2>{item.title || item.Description}<br />
-			 		#{item.PartNumber}
+			 		{item.PartNumber}
 			 	</h2>
 				{note}
 				<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>

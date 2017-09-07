@@ -118,7 +118,7 @@ class Results extends Component {
 		return (
 			<div className="grid-container main-content">
 				<h2>Hub Components Search Results for:</h2>
-				<h2 className="partsSubHead">{parts.HubAssemblyDescription} <span className="number">#{parts.HubAssemblyNumber}</span></h2>
+				<h2 className="partsSubHead">{parts.HubAssemblyDescription} <span className="number">{parts.HubAssemblyNumber}</span></h2>
 				<div className="parts">
 					{replacementHeader}
 					<table>
