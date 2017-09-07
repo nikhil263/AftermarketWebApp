@@ -191,6 +191,7 @@ class Results extends Component {
                                 </div>
                             )}
                         />
+                        <div className="help">Some examples: “104444”, “ConMet 10031065”, “Gunite 5669‑1”, “Webb 20231‑‑1T‑71”</div>
                         <button type="submit" className="button general-button" onClick={this.doSearch.bind(this)}>Continue</button>
                     </form>
                 </div>
