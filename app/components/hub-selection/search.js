@@ -131,7 +131,7 @@ class Results extends Component {
         }else if(current_filter === 'hcmty' || current_filter === 'hatyp'){
             return (
                 <div className="grid-container main-content">
-                    <h1>{current_filter === 'hcmty' ? 'Choose the wheel type (determine wheel stud length)' : 'Choose the hub assembly type'}</h1>
+                    <h1>{current_filter === 'hcmty' ? 'Choose the hub material' : 'Choose the hub assembly type'}</h1>
                     <div className="grid-content">
                         {results.map((key) => {
                             return <div className="small-12">
