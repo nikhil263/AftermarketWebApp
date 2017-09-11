@@ -39,11 +39,11 @@ class BrakeRotorFlange extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Brake Rotor Diameter</h1>
+				<h1>Choose the Brake Rotor Outside Diameter</h1>
 
 				<div className="grid-block">
 					<div className="grid-content small-12">
-							<img className="brake-rotor-flange" src={require('../../images/brake-rotor-flange.png')} alt="ConMet" width="300" height="300 "/>
+							<img className="brake-rotor-flange" src={require('../../images/brake_rotor_lange.png')} alt="ConMet" width="300" height="300 "/>
 					</div>
 
 					{app.filterResults.map((result, index) => {
