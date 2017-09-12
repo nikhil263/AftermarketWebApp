@@ -35,12 +35,12 @@ class Navigation extends Component {
 				<Menu className="global-navigation" right isOpen={this.state.isOpen}>
 					<p>More Information</p>
 					<ul>
-						<li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>
-						<li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
-						<li><a href="http://www.conmet.com/general/literature/">Service Literature</a></li>
-						<li><a href="http://calculator1.conmetwheelends.com/">Replace Calculator</a></li>
+						<li><a href="https://www.conmet.com/contact-us/">Contact ConMet</a></li>
+						<li><a href="https://www.conmet.com/">Visit ConMet.com</a></li>
+						<li><a href="https://www.conmet.com/general/literature/">Service Literature</a></li>
+						<li><a href="https://calculator1.conmetwheelends.com/">Replace Calculator</a></li>
 						<li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
-						<li><a href="http://www.conmet.com/training">Hub Training 2.0</a></li>
+						<li><a href="https://www.conmet.com/training">Hub Training 2.0</a></li>
 					</ul>
 				</Menu>
 
