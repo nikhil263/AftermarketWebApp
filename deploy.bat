@@ -1,5 +1,5 @@
 echo "Step 1/4: Building"
-//npm run deploy
+call npm run deploy
 
 echo "Step 2/5: Copying to %1"
 cp -a public/* "azure/%1/"
