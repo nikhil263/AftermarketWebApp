@@ -156,10 +156,12 @@ class Filters extends Component {
 
             _self.props.dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
                 let spindleNut = "";
-                _self.props.results.spindleNut[0].AftermarketParts.map((item, id)=>{
-                    spindleNut += (id + 1 === _self.props.results.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
-                });
-                _self.setState({spindleNut: spindleNut});
+                if(_self.props.results.spindleNut !== undefined){
+                    _self.props.results.spindleNut[0].AftermarketParts.map((item, id)=>{
+                        spindleNut += (id + 1 === _self.props.results.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                    });
+                    _self.setState({spindleNut: spindleNut});
+                }
             });
         });
     }
@@ -236,9 +238,9 @@ class Filters extends Component {
                             </div>
                         })}
 
-                        <div className="optional-spindle">
-                            Optional Spindle nut: {this.state.spindleNut ? this.state.spindleNut : "xxxxx"}
-                        </div>
+                        {this.state.spindleNut ? <div className="optional-spindle">
+                            Optional Spindle nut: {this.state.spindleNut}
+                        </div>: ""}
                         {this.state.results.map((item,index) => {
                             return <div className={results.length === 2 ? "small-6" : "small-12"}>
                                 <Link to={'/hub-selection/details/'+item.HubAssemblyNumber} key={index} className="general-button">See Details</Link>
