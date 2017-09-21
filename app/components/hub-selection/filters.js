@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import {fetchFilterValues,fetchHubsCrossApi,fetchHubs} from 'actions';
+import {fetchFilterValues,fetchHubsCrossApi,fetchHubsSpindleNut} from 'actions';
 import {fetchCategories} from 'actions/categories';
 import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
@@ -47,6 +47,7 @@ class Filters extends Component {
             current_filter: null,
             results: [],
             isFetching: false,
+            spindleNut: "",
             url: ''
         };
     }
@@ -145,11 +146,21 @@ class Filters extends Component {
     hubCrossApi(){
         let url = this.state.url;
         url+='&inclv=1';
+        let _self = this;
         this.props.dispatch(fetchHubsCrossApi(url)).then(()=>{
-            this.setState({results: this.props.results.item.Results});
-        });
-        this.props.dispatch(fetchHubs("10082207,10083787")).then(()=>{
-            this.setState({results: this.props.results.item.Results});
+            _self.setState({results: _self.props.results.item.Results});
+            let partNumber = "";
+            _self.state.results.map((item,id)=>{
+                partNumber += (id + 1 === _self.state.results.length) ? item.HubAssemblyNumber : item.HubAssemblyNumber+",";
+            });
+
+            _self.props.dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
+                let spindleNut = "";
+                _self.props.results.spindleNut[0].AftermarketParts.map((item, id)=>{
+                    spindleNut += (id + 1 === _self.props.results.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                });
+                _self.setState({spindleNut: spindleNut});
+            });
         });
     }
 
@@ -222,7 +233,15 @@ class Filters extends Component {
                                 <div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
                                 <div className="number">#{item.HubAssemblyNumber}</div>
                                 <HubResults assemblyType={assemblyType} key={index} />
-                                <Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
+                            </div>
+                        })}
+
+                        <div className="optional-spindle">
+                            Optional Spindle nut: {this.state.spindleNut ? this.state.spindleNut : "xxxxx"}
+                        </div>
+                        {this.state.results.map((item,index) => {
+                            return <div className={results.length === 2 ? "small-6" : "small-12"}>
+                                <Link to={'/hub-selection/details/'+item.HubAssemblyNumber} key={index} className="general-button">See Details</Link>
                             </div>
                         })}
                         <div className="clearfix" />

@@ -29,6 +29,7 @@ export const HUB_ASSEMBLY_FILTERS='HUB_ASSEMBLY_FILTERS';
 export const HUB_ASSEMBLY_FILTER_VALUE='HUB_ASSEMBLY_FILTER_VALUE';
 export const RECEIVE_HUBS_CROSS_API='RECEIVE_HUBS_CROSS_API';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
+export const OPTIONAL_SPINDLE_NUT='OPTIONAL_SPINDLE_NUT';
 
 //CATEGORIES
 export const RECIEVE_CATEGORIES='RECIEVE_CATEGORIES';
@@ -102,6 +103,7 @@ export const RESULTS = {
 	assemblyNumber: [],
 	filters: [],
     filter_value: [],
+	spindleNut: '',
 	items: [],
 	item: [],
 	selectedHubAssemblyNumber: '',

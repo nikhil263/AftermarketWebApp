@@ -17,7 +17,8 @@ import {
     HUB_ASSEMBLY_FILTERS,
     HUB_ASSEMBLY_FILTER_VALUE,
     RECEIVE_HUBS_CROSS_API,
-	DETAILS_TPL
+    OPTIONAL_SPINDLE_NUT,
+    DETAILS_TPL
 } from '../config/constants'
 import _ from 'lodash'
 
@@ -111,6 +112,11 @@ export function results(state = RESULTS, action) {
         case RECEIVE_HUBS_CROSS_API:
             return Object.assign({}, state, {
                 item: action.filters,
+                isFetching: false
+            });
+        case OPTIONAL_SPINDLE_NUT:
+            return Object.assign({}, state, {
+                spindleNut: action.assemblyNumber.Results,
                 isFetching: false
             });
 		case INVALIDATE_HUBS:

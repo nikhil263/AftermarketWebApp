@@ -142,6 +142,30 @@ export const fetchHubs = (partNumber) => {
   }
 }
 
+export const fetchHubsSpindleNut = (partNumber) => {
+    const afterMarketHubPartType = "226,227";
+    return dispatch => {
+        dispatch(requestHubs(partNumber));
+        return fetch(constants.API+'/aftermarketparts?hanum='+partNumber+'&party='+afterMarketHubPartType, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        })
+            .then(
+                response => response.json(),
+                err => {
+                    // console.log('API Error', err);
+                })
+            .then(json => dispatch({
+                type: constants.OPTIONAL_SPINDLE_NUT,
+                assemblyNumber: json,
+            }))
+    }
+}
+
 export const fetchHubAssemblyNumber = (term) => {
     return dispatch => {
         return fetch(constants.API+'/hubassemblynumbers/withaftermarkethubassemblies/'+term, {
