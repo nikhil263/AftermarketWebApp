@@ -150,7 +150,7 @@ class Filters extends Component {
         url+='&inclv=1';
         let _self = this;
         this.props.dispatch(fetchHubsCrossApi(url)).then(()=>{
-            _self.setState({results: _self.props.results.item.Results});
+            _self.setState({results: _self.props.results.items.Results});
             let partNumber = "";
             _self.state.results.map((item,id)=>{
                 partNumber += (id + 1 === _self.state.results.length) ? item.HubAssemblyNumber : item.HubAssemblyNumber+",";
@@ -256,7 +256,7 @@ class Filters extends Component {
                     {/*</div>*/}
 
 
-                    {this.props.results.item.Results.map((item, index) => {
+                    {this.props.results.items.Results.map((item, index) => {
                         if (index === this.props.results.selectedIdx) {
                             return <Result idx={this.props.results.selectedIdx} total={this.props.results.total} key={index} item={item} />
                         }
