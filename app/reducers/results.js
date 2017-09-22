@@ -112,6 +112,9 @@ export function results(state = RESULTS, action) {
         case RECEIVE_HUBS_CROSS_API:
             return Object.assign({}, state, {
                 item: action.filters,
+                selected: action.filters.Results[0],
+                selectedIdx: 0,
+                total: action.filters.Results.length,
                 isFetching: false
             });
         case OPTIONAL_SPINDLE_NUT:
