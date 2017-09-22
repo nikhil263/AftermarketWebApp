@@ -240,7 +240,7 @@ class Filters extends Component {
 
                         {this.state.spindleNut ? <div className="optional-spindle">
                             Optional Spindle nut: {this.state.spindleNut}
-                        </div>: ""}
+                        </div> : ""}
                         {this.state.results.map((item,index) => {
                             return <div className={results.length === 2 ? "small-6" : "small-12"}>
                                 <Link to={'/hub-selection/details/'+item.HubAssemblyNumber} key={index} className="general-button">See Details</Link>
