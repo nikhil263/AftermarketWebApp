@@ -94,35 +94,18 @@ class Filters extends Component {
     getFilterValues(){
         const { dispatch } = this.props;
 
-        let hanum = this.state.filters.hanum.split(',');
-        let _self = this;
-        let checkSamefilter = true;
-        if(this.state.current_filter !== undefined){
-            Object.keys(this.state.filter_name).forEach((key)=>{
-                if(_self.state.filter_name[key] === this.state.current_filter){
-                    checkSamefilter = false;
-                }
-            });
-        }
-
-        if((this.state.current_filter === 'hatyp' && checkSamefilter)
-            || (!this.state.current_filter && this.state.filter_name[0] === 'hatyp' && hanum.length > 2)
-            || this.state.filter_name[0] === undefined
-            || (this.state.current_filter !== 'hatyp' && this.state.filter_name[0] === 'hatyp' && this.state.current_filter !== null)){
+        if(this.state.current_filter === 'hatyp' || this.state.filter_name[0] === undefined || this.state.filter_name[0] === 'hatyp'){
             this.hubCrossApi();
         }else{
             dispatch(fetchFilterValues(this.state.filter_name[0],this.state.url)).then(()=>{
                 let results = this.props.results.filter_value.Results;
-                this.setState({current_filter: this.state.filter_name[0], isFetching: false});
+                this.setState({current_filter: this.state.filter_name[0], isFetching: false, results: []});
                 this.state.filter_name.shift();
-                this.setState({results: []});
 
                 if(this.state.current_filter === 'gawrr'){
-                    if(results.length === 2){
-                        if(!(results[0].MaxGawrPound >= 13000 && results[0].MaxGawrPound <= 14600 && results[1].MaxGawrPound >= 14600)){
-                            this.state.filter_name[this.state.current_filter] = results[0].Id;
-                            this.getFilterValues();
-                        }
+                    if(results.CanSkipThisFilter !== undefined && results.CanSkipThisFilter){
+                        this.state.filter_name[this.state.current_filter] = 0;
+                        this.getFilterValues();
                     }
                 }
 
@@ -174,7 +157,7 @@ class Filters extends Component {
         let filter_value = this.props.results.filter_value.Results;
         let results = this.state.results;
 
-        if(current_filter === 'gawrr' && !isFetching && !(results.length > 0)) {
+        if(current_filter === 'gawrr' && filter_value[0] && filter_value[0].Id && !isFetching && !(results.length > 0)) {
             return (
                 <div className="grid-container main-content">
                     <h1>Choose the GAWR (Gross Axle Weight Rating)</h1>
