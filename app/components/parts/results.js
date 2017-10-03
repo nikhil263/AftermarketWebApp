@@ -9,12 +9,12 @@ import Waiting from '../global/waiting'
 import _ from 'lodash'
 import {Link} from 'react-router';
 
-const FULLREPLACE = [115]
-const SERVICEPARTS = [220, 5, 6, 7, 8, 101]
+const FULLREPLACE = [115];
+const SERVICEPARTS = [220, 5, 6, 7, 8, 101];
 // const SERVICEKITS = [217, 218, 219, 221]
 // const SPINDLENUTS = [222, 223, 226, 227]
-const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227,203]
-const SPINDLENUTS = []
+const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227,203];
+const SPINDLENUTS = [];
 const SPINDLESOCKETSIZE = { 10036548: 2, 10036549: 2, 10036550: 2.75, 10036551: 3.75, 10036552: 3.125, 10036553: 4 };
 
 class Results extends Component {
@@ -30,10 +30,10 @@ class Results extends Component {
 	}
 
 	showHeader(allowed = []) {
-		const { parts } = this.props
+		const { parts } = this.props;
 		let found = false;
 		parts.AftermarketParts.map((item, index) => {
-			console.log(allowed, item)
+			console.log(allowed, item);
 			 if (-1 !== allowed.indexOf(item.TypeId)) {
 				 found  = true;
 			 }
@@ -73,19 +73,21 @@ class Results extends Component {
 					return (
                         <tr key={index}>
                             <td>{item.AftermarketPartTypeName+appendStr}</td>
-                            <td>{part.PartNumber}</td>
-                            <td>{SPINDLESOCKETSIZE[part.PartNumber] ? SPINDLESOCKETSIZE[part.PartNumber]+'" Socket Size' : ""} </td>
+                            <td className="center">
+								{part.PartNumber}
+								{/*<div className="help2">{SPINDLESOCKETSIZE[part.PartNumber] ? "("+SPINDLESOCKETSIZE[part.PartNumber]+'" Socket)' : ""}</div>*/}
+							</td>
                         </tr>
 					)
 				}
 			}
-		})
+		});
 
 		return view
 	}
 
 	render() {
-		const { parts, dispatch, images, app, history } = this.props
+		const { parts, dispatch, images, app, history } = this.props;
 
 		if (parts.isFetching) {
 			return (<Waiting />)
@@ -95,7 +97,7 @@ class Results extends Component {
 			return (<NoResults />)
 		}
 
-		let replacementHeader, serviceKitHeader, servicePartHeader, spindleNutsHeader = null
+		let replacementHeader, serviceKitHeader, servicePartHeader, spindleNutsHeader = null;
 		parts.AftermarketParts.map((item, index) => {
 
 			 if (-1 !== FULLREPLACE.indexOf(item.TypeId)) {
@@ -194,5 +196,5 @@ class Results extends Component {
 
 		)
 	}
-};
+}
 export default connect()(Results)
