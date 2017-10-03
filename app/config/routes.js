@@ -11,6 +11,7 @@ import HubSelectionChoosePath from 'components/hub-selection/choose-path'
 import HubSelectionFindAssembly from 'components/hub-selection/find-assembly'
 import HubSelectionFindAssemblyDetail from 'components/hub-selection/find-assembly-detail'
 import HubSelectionSearch from 'components/hub-selection/search'
+import Filters from 'components/hub-selection/filters'
 import HubSelectionResults from 'components/hub-selection/results'
 import HubSelectionDetails from 'components/hub-selection/details'
 import HubSelectionEmail from 'components/hub-selection/email'
@@ -51,6 +52,7 @@ module.exports = (
 				<IndexRoute component={HubSelectionStart} />
 				<Route path='choose-path' component={HubSelectionChoosePath} />
 				<Route path='search' component={HubSelectionSearch} />
+				<Route path='filters/:filters' component={Filters} />
 				<Route path='search/:id' component={HubSelectionResults} />
 				<Route path='results' component={HubSelectionResults} />
 				<Route path='details/:id' component={HubSelectionDetails} />

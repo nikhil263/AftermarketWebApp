@@ -26,7 +26,7 @@ class Help extends Component {
 				</div>
 
 				<div className="conmet-button">
-					<button onClick={this.handleLink.bind(this,' http://www.conmet.com/legal/contact-information/')} className="yes-no-button"><em>Contact</em>Customer service for support.</button>
+					<button onClick={this.handleLink.bind(this,' https://www.conmet.com/legal/contact-information/')} className="yes-no-button"><em>Contact</em>Customer service for support.</button>
 				</div>
 
 			</div>

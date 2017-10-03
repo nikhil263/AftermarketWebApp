@@ -156,6 +156,10 @@
 	// 	display: inline-block;
 	// 	vertical-align: top;
 	// }
+
+	&.bold{
+		font-weight: bold;
+	}
 }
 .big-button {
 	h4 {

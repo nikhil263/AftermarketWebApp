@@ -12,6 +12,7 @@ cp -a public/* "azure/$1/"
 
 echo "Step 2/4: Committing to $1 with message '$2'"
 cd "azure/$1"
+chmod -R 755 ./
 git add .
 git commit -m "$2" .
 

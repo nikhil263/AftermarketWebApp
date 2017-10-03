@@ -148,16 +148,16 @@ class Result extends Component {
 		 	<div className="details">
 				{
 					item.Images.map((image, index) => {
-							return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.PartNumber} width="200" height="200" />
+							return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.HubAssemblyNumber} width="200" height="200" />
 					})
 				}
 
-				<h2>{item.title || item.Description}<br />
-			 		{item.PartNumber}
+				<h2>{item.title || item.AftermarketDescription}<br />
+			 		{item.HubAssemblyNumber}
 			 	</h2>
 				{note}
 				<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>
-				<Link to={'/hub-selection/details/'+item.PartNumber} className="general-button">See Details</Link>
+				<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
 			</div>
 			<NextButton
 				idx={idx}

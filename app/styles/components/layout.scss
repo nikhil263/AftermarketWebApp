@@ -83,6 +83,17 @@ img.brake-rotor-flange {
 	font-weight: bold;
 	padding-top: 1.2rem;
 }
+.help {
+	color: $cm-mid-grey;
+	font-family: "ArialNovaCond";
+	font-size: 0.8rem;
+	padding-left: 0.5rem;
+}
+.help2 {
+	color: $cm-mid-grey;
+	font-family: "ArialNovaCond";
+	font-size: 0.9rem;
+}
 // Splash
 .splash {
 	background: rgb(220,221,222);
@@ -265,4 +276,82 @@ h2.partsSubHead {
 	.splash-title{
 		margin: 0;
 	}
+}
+
+#autoComplete{
+	margin-top: 40px;
+	input{margin: 0;}
+	.menu{
+		position: absolute;
+		width: 100%;
+		border-left: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		max-height: 426px;
+		overflow: auto;
+		box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+		.menu-item{
+			color: $cm-mid-grey;
+			text-transform: uppercase;
+			padding: 8px 10px;
+			border-bottom: 1px solid #ccc;
+		}
+		.item{
+			min-height: 40px;
+			background: #fff;
+            line-height: 40px;
+			padding-left: 15px;
+		}
+	}
+}
+
+.flex-row{display: -webkit-flex;display: flex;-webkit-flex-flow: row wrap;-ms-flex-flow: row wrap;-moz-flex-flow: row wrap;flex-flow: row wrap;}
+
+#hubAssemblyResult{
+	font-weight: bold;
+	h1{font-size: 30px;font-weight: bold;}
+	.grid-content{
+		padding: 0;
+		text-align: center;
+		.small-12{
+			.details {
+				min-height: inherit !important;
+				ul {
+					margin: 0 auto !important;
+					width: 49%;
+				}
+			}
+		}
+		.small-6,.small-12{
+			float: left;
+			padding: 0 5px;
+			img{margin-bottom: 10px;min-height: 165px;}
+			.general-button{font-size: 1.2em;border-radius: 0;padding: 15px 10px;font-weight: bold;}
+			.type{font-size: 22px;}
+			.number{font-size: 24px;}
+			.details{
+				margin-top: 15px;
+				min-height: 140px;
+				div{font-size: 24px;}
+				ul{font-size: 18px;margin: 0;text-align: left; list-style-position: inside;}
+			}
+		}
+		.optional-spindle{
+			display: block;
+			width: 100%;
+			margin: 15px 0 9px;
+			font-size: 18px;
+		}
+	}
+	.disclaimer{
+		font-size: 20px;
+		color: #c00000;
+		margin: 15px 0;
+		text-align: center;
+	}
+	.note{
+		font-size: 15px;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
 }

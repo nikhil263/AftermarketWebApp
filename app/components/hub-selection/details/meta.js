@@ -16,7 +16,7 @@ class Meta extends Component {
 						})
 					}
 					{result.Description}<br />
-				<em>#{result.PartNumber}</em>
+				<em>{result.PartNumber}</em>
 				</div>
 			)
 	}
