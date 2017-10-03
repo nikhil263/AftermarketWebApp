@@ -1,5 +1,4 @@
 // API
-export const API12 = 'https://api.conmetwheelends.com/aftermarket/v12';
 export const API = 'https://api.conmetwheelends.com/aftermarket/v11';
 export const APIV10 = 'https://api.conmetwheelends.com/aftermarket/v10';
 export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
