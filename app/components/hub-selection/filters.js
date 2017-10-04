@@ -82,7 +82,7 @@ class Filters extends Component {
         let j = 0;
 
         Object.keys(categories).forEach((key)=>{
-            if(result.hasOwnProperty(categories[key].QueryParameterName) === false && categories[key].QueryParameterName !== 'tmake'){
+            if(result.hasOwnProperty(categories[key].QueryParameterName) === false && categories[key].QueryParameterName !== 'tmake' && categories[key].QueryParameterName !== 'gawrr'){
                 this.state.filter_name[j] = categories[key].QueryParameterName;
                 j++;
             }
@@ -102,12 +102,12 @@ class Filters extends Component {
                 this.setState({current_filter: this.state.filter_name[0], isFetching: false, results: []});
                 this.state.filter_name.shift();
 
-                if(this.state.current_filter === 'gawrr'){
-                    if(results.CanSkipThisFilter !== undefined && results.CanSkipThisFilter){
-                        this.state.filter_name[this.state.current_filter] = 0;
-                        this.getFilterValues();
-                    }
-                }
+                // if(this.state.current_filter === 'gawrr'){
+                //     if(results.CanSkipThisFilter !== undefined && results.CanSkipThisFilter){
+                //         this.state.filter_name[this.state.current_filter] = 0;
+                //         this.getFilterValues();
+                //     }
+                // }
 
                 if(results.length === 1){
                     this.state.filter_name[this.state.current_filter] = results[0].Id;
@@ -238,7 +238,7 @@ class Filters extends Component {
                         {/*{results[0].GawrNote.Text}*/}
                     {/*</div>*/}
 
-
+                    <p className="text-center">{this.props.results.selectedHubAssemblyNumber !== '' ? 'for '+this.props.results.selectedHubAssemblyNumber : '' }</p>
                     {this.props.results.items.Results.map((item, index) => {
                         if (index === this.props.results.selectedIdx) {
                             return <Result idx={this.props.results.selectedIdx} total={this.props.results.total} key={index} item={item} />

@@ -214,7 +214,7 @@ export const fetchHubAssemblyFilters = (id) =>{
 
 export const fetchFilterValues = (filtername,filters) =>{
     return dispatch => {
-        return fetch(constants.API12+"/hubassembly/filtervalues/"+filtername+"?"+filters, {
+        return fetch(constants.API+"/hubassembly/filtervalues/"+filtername+"?"+filters, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -237,7 +237,7 @@ export const fetchFilterValues = (filtername,filters) =>{
 
 export const fetchHubsCrossApi = (filters) =>{
     return dispatch => {
-        return fetch(constants.API12+'/hubassembly/filtervalues/hanum?'+filters, {
+        return fetch(constants.API+'/hubassembly/filtervalues/hanum?'+filters, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
