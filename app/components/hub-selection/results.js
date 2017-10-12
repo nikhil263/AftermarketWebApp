@@ -4,11 +4,12 @@ import { connect } from 'react-redux'
 import Waiting from 'components/global/waiting'
 import { MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
 import {fetchAssembly} from 'actions/assembly'
-import {materialFilter, fetchHubs} from 'actions'
+import {materialFilter, fetchHubs, fetchHubsSpindleNut} from 'actions'
 import _ from 'lodash'
 import NoResults from '../global/no-result'
 
-import Result from './details/result'
+// import Result from './details/result'
+import Result from './details/hub-results';
 import ResultNavigation from './details/result-navigation'
 
 
@@ -48,9 +49,16 @@ class MaterialType extends Component {
 }
 
 class Results extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        	results: [],
+            spindleNut: ""
+        };
+    }
+
 	componentDidMount() {
-		const {dispatch, app, params} = this.props
-		// console.log(params)
+		const {dispatch, app, params} = this.props;
 		if (params.id) {
 			dispatch(fetchHubs(params.id))
 		} else {
@@ -59,10 +67,30 @@ class Results extends Component {
 
 	}
 
-	render() {
-		const { results, materialFilter, dispatch, images, app } = this.props
+    componentWillReceiveProps(newProps){
+    	const {results,dispatch} = newProps;
+        if(!results.isFetching && !(results.items.length === 0) && results.items[0] && ((this.state.results.items === undefined) || (results.items[0].PartNumber !== this.state.results.items[0].PartNumber))){
+            this.setState({results: results});
+            let partNumber = "";
+            results.items.map((item,id)=>{
+                partNumber += (id + 1 === results.items.length) ? item.HubAssemblyNumber : item.HubAssemblyNumber+",";
+            });
+            if(partNumber){
+                dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
+                    let spindleNut = "";
+                    if(results.items.spindleNut !== undefined){
+                        results.items.spindleNut[0].AftermarketParts.map((item, id)=>{
+                            spindleNut += (id + 1 === results.items.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                        });
+                        this.setState({spindleNut: spindleNut});
+                    }
+                });
+            }
+        }
+    }
 
-		const filteredResults = results
+	render() {
+		const { results, materialFilter, dispatch } = this.props;
 
 		if (results.isFetching) {
 			return (<Waiting />)
@@ -74,38 +102,8 @@ class Results extends Component {
 			return <MaterialType dispatch={dispatch}/>
 		}
 
-
-
-		return (
-			<div className="grid-container main-content">
-				{results.items.map((item, index) => {
-					if (index === 0) {
-
-
-					var title = ''
-					if (results.items.length > 1) {
-						title = 'Success! The following ConMet hubs are recommended'
-					} else if (_.isUndefined(app.lastChoice.Name)) {
-						title = 'Success! The following ConMet hub is recommended'
-					} else {
-						title = 'Success! The following ConMet '+app.lastChoice.Name+' hub is recommended'
-					}
-					return <h1 key={index}>{title}</h1>
-					}
-				})}
-
-					<p className="text-center">{this.props.results.selectedHubAssemblyNumber !== '' ? 'for '+this.props.results.selectedHubAssemblyNumber : '' }</p>
-					{results.items.map((item, index) => {
-						if (index === results.selectedIdx) {
-							return <Result idx={results.selectedIdx} total={results.total} key={index} item={item} images={images} />
-						}
-					})}
-
-					<ResultNavigation total={results.total} currentIdx={results.selectedIdx}/>
-
-
-
-			</div>
+        return (
+        	<Result results={results.items} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={null} />
 		)
 	}
 };

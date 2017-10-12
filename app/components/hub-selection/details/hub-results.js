@@ -1,174 +1,75 @@
 import React, { PropTypes, Component, Image } from 'react';
-import HubSelection from 'components/hub-selection';
-import { pushPath } from 'redux-simple-router'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import {Link} from 'react-router';
-import {showPreviousResult, showNextResult} from 'actions'
-import { AFTERMARKET_DETAILS, IMAGE_CDN } from 'config/constants'
-import _ from 'lodash'
-import Spinner from 'components/global/spinner'
+import { IMAGE_CDN } from 'config/constants';
 
-class NextButton extends Component {
-
-	nextClass() {
-		let {idx, total, showButton} = this.props
-		let defaultClass = 'next-button'
-		defaultClass = (showButton()) ? defaultClass + ' hide-button': defaultClass;
-		if (idx === total-1) {
-			return defaultClass + ' disabled'
-		}
-		return defaultClass
-	}
-
-
-
-	render() {
-		let { idx, total, handleClick } = this.props
-
-		return (
-			<div className={this.nextClass()} onClick={handleClick}>
-				<i className="icon-angle-right"></i>
-			</div>
-		)
-	}
-}
-
-class PreviousButton extends Component {
-
-	previousClass() {
-		let {idx, total, showButton} = this.props
-		let defaultClass = 'prev-button'
-		defaultClass = (showButton()) ? defaultClass + ' hide-button': defaultClass;
-		if (idx === 0) {
-			return defaultClass + ' disabled'
-		}
-		return defaultClass
-	}
-
-	render() {
-		let { idx, total, handleClick} = this.props
-		return (
-			<div className={this.previousClass()} onClick={handleClick}>
-				<i className="icon-angle-left"></i>
-			</div>
-		)
-	}
+class HubResults extends React.Component {
+    render() {
+        let assemblyType = this.props.assemblyType;
+        if(assemblyType){
+            return (
+				<div className="details">
+					<div>Best Value:</div>
+					<ul>
+						<li>Extended Warranty</li>
+						<li>Less DownTime</li>
+						<li>Simplified Process</li>
+						<li>Liability Protection</li>
+					</ul>
+				</div>
+            )
+        }else{
+            return (
+				<div className="details">
+					<div>Not Included:</div>
+					<ul>
+						<li>Bearing Cones</li>
+						<li>Seal</li>
+						<li>Manually Adjusted</li>
+					</ul>
+				</div>
+            )
+        }
+    }
 }
 
 class Result extends Component {
-	constructor(props) {
-		super(props)
-		this.itemDetails = {};
-	}
+	render(){
+		let results = this.props.results;
+		let spindleNut = this.props.spindleNut;
+		let selectedHubAssemblyNumber = this.props.selectedHubAssemblyNumber;
+		return(
+			<div className="grid-container main-content" id="hubAssemblyResult">
+				<h1>Success !</h1>
+				{selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : '' }
+				<div className="grid-content flex-row">
+                    {results.map((item,index) => {
+                        let assemblyType = item.AftermarketDescription.toLowerCase().includes('preset');
+                        return <div className={results.length === 2 ? "small-6" : "small-12"}>
+							<img className="product-image"  src={IMAGE_CDN+item.Images[0].ImageGuid+'.png'} alt={item.HubAssemblyNumber} />
+							<div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
+							<div className="number">#{item.HubAssemblyNumber}</div>
+							<HubResults assemblyType={assemblyType} key={index} />
+						</div>
+                    })}
 
-	componentDidMount() {
-		const { dispatch, item, images } = this.props;
-		// dispatch(fetchImages(item.Images, images));
-	}
-
-	showPrevious(idx, total) {
-		const {dispatch } = this.props;
-		if (idx !== 0) {
-			// dispatch(showPreviousResult());
-		}
-	}
-
-	showNext(idx, total) {
-		const {dispatch} = this.props;
-		// dispatch(showNextResult());
-	}
-
-	renderButtons() {
-		let {idx, total} = this.props
-		return total === 1;
-	}
-
-	handleNextClick() {
-		const {idx, total, dispatch} = this.props;
-		dispatch(showNextResult());
-	}
-
-	handlePreviousClick() {
-		const {idx, total, dispatch} = this.props;
-		dispatch(showPreviousResult());
-	}
-
-	renderPreviousBtn() {
-		if (this.renderButtons()) {
-
-		}
-		return ''
-	}
-
-	renderNextBtn() {
-		if (this.renderButtons()) {
-
-		}
-		return ''
-	}
-	addLinks(str, links) {
-		if (str === undefined) {
-			return null
-		}
-		let matches = str.match(/{{(.*?)}}/g) || []
-
-		matches = matches.map(function(n, idx) {
-			if (links.length > 0){
-
-					return [n, n.replace('{{', '<a href="https://conmetaftermarketpubliccdn.azureedge.net/documents/'+links[idx]+'">').replace('}}', '</a>')]
-
-			}
-		});
-		matches.forEach(item => {
-			str = str.replace(item[0], item[1])
-		});
-		return <p dangerouslySetInnerHTML={{__html: str}}></p>;
-	}
-	render () {
-	 let { idx, total, item, dispatch, images } = this.props
-
-	 if (_.isUndefined(item) || item.id === -1) {
-		 return (<Spinner />)
-	 }
-	 let note = null;
-
-	 if (!_.isUndefined(item.GawrNote)) {
-		 note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
-	 }
-
-	return (
- 	 <div className="result">
-
-			<PreviousButton
-				idx={idx}
-				total={total}
-				handleClick={this.handlePreviousClick.bind(this)}
-				showButton={this.renderButtons.bind(this)} />
-
-		 	<div className="details">
-				{
-					item.Images.map((image, index) => {
-							return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.HubAssemblyNumber} width="200" height="200" />
-					})
-				}
-
-				<h2>{item.title || item.AftermarketDescription}<br />
-			 		{item.HubAssemblyNumber}
-			 	</h2>
-				{note}
-				<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>
-				<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
+                    {spindleNut ? <div className="optional-spindle">
+						Optional Spindle nut: {spindleNut}
+					</div> : ""}
+                    {results.map((item,index) => {
+                        return <div className={results.length === 2 ? "small-6" : "small-12"}>
+							<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} key={index} className="general-button">See Details</Link>
+						</div>
+                    })}
+					<div className="clearfix" />
+				</div>
+				<div className="disclaimer">ConMet Wheel End Disclaimer</div>
+				<div className="note">
+                    {results[0].GawrNote.Text}
+				</div>
 			</div>
-			<NextButton
-				idx={idx}
-				total={total}
-				handleClick={this.handleNextClick.bind(this)}
-				showButton={this.renderButtons.bind(this)}
-				/>
-
-		</div>
-	 )
- 	}
+		)
+	}
 }
 
 export default connect()(Result);

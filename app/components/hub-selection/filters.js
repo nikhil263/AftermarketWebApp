@@ -4,40 +4,7 @@ import {fetchCategories} from 'actions/categories';
 import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
 import Spinner from '../global/spinner';
-import { IMAGE_CDN } from 'config/constants';
-import {Link} from 'react-router';
 import Result from './details/hub-results';
-import ResultNavigation from './details/result-navigation';
-
-class HubResults extends React.Component {
-    render() {
-        let assemblyType = this.props.assemblyType;
-        if(assemblyType){
-            return (
-                <div className="details">
-                    <div>Best Value:</div>
-                    <ul>
-                        <li>Extended Warranty</li>
-                        <li>Less DownTime</li>
-                        <li>Simplified Process</li>
-                        <li>Liability Protection</li>
-                    </ul>
-                </div>
-            )
-        }else{
-            return (
-                <div className="details">
-                    <div>Not Included:</div>
-                    <ul>
-                        <li>Bearing Cones</li>
-                        <li>Seal</li>
-                        <li>Manually Adjusted</li>
-                    </ul>
-                </div>
-            )
-        }
-    }
-}
 
 class Filters extends Component {
 
@@ -210,43 +177,7 @@ class Filters extends Component {
             )
         }else if(results.length > 0) {
             return(
-                <div className="grid-container main-content">
-                    <h1>Success! The following ConMet hubs are recommended</h1>
-                    {/*<div className="grid-content">*/}
-                        {/*{this.state.results.map((item,index) => {*/}
-                            {/*let assemblyType = item.AftermarketDescription.toLowerCase().includes('preset');*/}
-                            {/*return <div className={results.length === 2 ? "small-6" : "small-12"}>*/}
-                                {/*<img className="product-image"  src={IMAGE_CDN+item.Images[0].ImageGuid+'.png'} alt={item.HubAssemblyNumber} />*/}
-                                {/*<div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>*/}
-                                {/*<div className="number">#{item.HubAssemblyNumber}</div>*/}
-                                {/*<HubResults assemblyType={assemblyType} key={index} />*/}
-                            {/*</div>*/}
-                        {/*})}*/}
-
-                        {/*{this.state.spindleNut ? <div className="optional-spindle">*/}
-                            {/*Optional Spindle nut: {this.state.spindleNut}*/}
-                        {/*</div> : ""}*/}
-                        {/*{this.state.results.map((item,index) => {*/}
-                            {/*return <div className={results.length === 2 ? "small-6" : "small-12"}>*/}
-                                {/*<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} key={index} className="general-button">See Details</Link>*/}
-                            {/*</div>*/}
-                        {/*})}*/}
-                        {/*<div className="clearfix" />*/}
-                    {/*</div>*/}
-                    {/*<div className="disclaimer">ConMet Wheel End Disclaimer</div>*/}
-                    {/*<div className="note">*/}
-                        {/*{results[0].GawrNote.Text}*/}
-                    {/*</div>*/}
-
-                    <p className="text-center">{this.props.results.selectedHubAssemblyNumber !== '' ? 'for '+this.props.results.selectedHubAssemblyNumber : '' }</p>
-                    {this.props.results.items.Results.map((item, index) => {
-                        if (index === this.props.results.selectedIdx) {
-                            return <Result idx={this.props.results.selectedIdx} total={this.props.results.total} key={index} item={item} />
-                        }
-                    })}
-
-                    <ResultNavigation total={this.props.results.total} currentIdx={this.props.results.selectedIdx}/>
-                </div>
+                <Result results={results} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={this.props.results.selectedHubAssemblyNumber} />
             )
         }else{
             return (
