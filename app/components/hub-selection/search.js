@@ -23,19 +23,29 @@ class Results extends Component {
 
     hubAssemblyFilters(id){
         if(id){
-            const { dispatch } = this.props;
-            dispatch(fetchHubAssemblyFilters(id)).then(()=>{
-                let filters = this.props.results.filters.Results;
-                let i = 1, length = Object.keys(filters).length;
-
-                Object.keys(filters).forEach((key)=>{
-                    this.state.url += (i === length) ? key+'='+filters[key] : key+'='+filters[key]+"&";
-                    i++;
-                });
-
-                this.props.dispatch(pushPath('/hub-selection/filters/'+this.state.url));
-            });
+            this.getResult(id);
+        }else{
+            if(this.state.assemblyNumber.length === 1){
+                this.getResult(this.state.assemblyNumber[0].CompetitorHubAssemblyNumberId);
+            }else if((this.state.value !== "") && (this.state.assemblyNumber.length === 0)){
+                this.props.dispatch(pushPath('/hub-selection/no-results'));
+            }
         }
+    }
+
+    getResult(id){
+        const { dispatch } = this.props;
+        dispatch(fetchHubAssemblyFilters(id)).then(()=>{
+            let filters = this.props.results.filters.Results;
+            let i = 1, length = Object.keys(filters).length;
+
+            Object.keys(filters).forEach((key)=>{
+                this.state.url += (i === length) ? key+'='+filters[key] : key+'='+filters[key]+"&";
+                i++;
+            });
+
+            this.props.dispatch(pushPath('/hub-selection/filters/'+this.state.url));
+        });
     }
 
     render() {
