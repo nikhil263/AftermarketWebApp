@@ -75,7 +75,7 @@ class Results extends Component {
                             <td>{item.AftermarketPartTypeName+appendStr}</td>
                             <td className="center">
 								{part.PartNumber}
-								{/*<div className="help2">{SPINDLESOCKETSIZE[part.PartNumber] ? "("+SPINDLESOCKETSIZE[part.PartNumber]+'" Socket)' : ""}</div>*/}
+								<div className="help2">{SPINDLESOCKETSIZE[part.PartNumber] ? "("+SPINDLESOCKETSIZE[part.PartNumber]+'" Socket)' : ""}</div>
 							</td>
                         </tr>
 					)

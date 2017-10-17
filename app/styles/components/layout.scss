@@ -158,7 +158,7 @@ img.brake-rotor-flange {
 
 .specs, .parts {
 	position: relative;
-	padding: 1.3rem;
+	padding: 1rem;
 	h2 {
 		color: $cm-copy-dark;
 		text-align: left;
@@ -180,9 +180,10 @@ img.brake-rotor-flange {
 			border-bottom: 1px solid #ccc;
 			td {
 				font-size: 1.2rem;
-				padding: 1.0rem;
+				padding: 1.0rem 0.5rem 1rem 0;
 			}
 			td:first-child {
+				padding-left: 0.5rem;
 				color: $cm-table-desc;
 			}
 			td:last-child {
