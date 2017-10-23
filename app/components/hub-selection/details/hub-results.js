@@ -21,11 +21,11 @@ class HubResults extends React.Component {
         }else{
             return (
 				<div className="details">
-					<div>Not Included:</div>
+					<div>Requires:</div>
 					<ul>
 						<li>Bearing Cones</li>
 						<li>Seal</li>
-						<li>Manually Adjusted</li>
+						<li>Manually Adjustment</li>
 					</ul>
 				</div>
             )
@@ -54,7 +54,7 @@ class Result extends Component {
                     })}
 
                     {spindleNut ? <div className="optional-spindle">
-						Optional Spindle nut: {spindleNut}
+						Optional Spindle nut: {spindleNut} (PreSet Hubs Only)
 					</div> : ""}
                     {results.map((item,index) => {
                         return <div className={results.length === 2 ? "small-6" : "small-12"}>

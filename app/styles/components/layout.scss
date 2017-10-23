@@ -333,14 +333,28 @@ h2.partsSubHead {
 				margin-top: 15px;
 				min-height: 140px;
 				div{font-size: 24px;}
-				ul{font-size: 18px;margin: 0;text-align: left; list-style-position: inside;}
+				ul{
+					font-size: 16px;margin: 5px 0 0 0;text-align: left;list-style: none;
+					li{
+						padding-left: 15px;
+						position: relative;
+						&:before{
+							content: "\25CF";
+							position: absolute;
+							top: 0;
+							left: 0;
+						}
+					}
+				}
 			}
 		}
 		.optional-spindle{
 			display: block;
 			width: 100%;
-			margin: 15px 0 9px;
+			margin: 9px 0;
 			font-size: 18px;
+			line-height: 22px;
+			text-align: left;
 		}
 	}
 	.disclaimer{
