@@ -90,9 +90,8 @@ export const STEP_NAVIGATION = [
 	{ id: 10, path: '/hub-selection/material'},//9
 	{ id: 16, path: '/hub-selection/brake-rotor-flange'},//10
 	{ id: 17, path: '/hub-selection/brake-rotor-type'},//11
-	{ id: 11, path: '/hub-selection/hub-type'},//12
-	{ id: 12, path: '/hub-selection/results'} //13
-]
+	{ id: 11, path: '/hub-selection/results'}
+];
 
 export const RESULTS = {
 	receivedAt: '',
