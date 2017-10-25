@@ -12,7 +12,7 @@ class HubResults extends React.Component {
 					<div>Best Value:</div>
 					<ul>
 						<li>Extended Warranty</li>
-						<li>Less DownTime</li>
+						<li>Less Downtime</li>
 						<li>Simplified Process</li>
 						<li>Liability Protection</li>
 					</ul>
@@ -25,13 +25,36 @@ class HubResults extends React.Component {
 					<ul>
 						<li>Bearing Cones</li>
 						<li>Seal</li>
-						<li>Manually Adjustment</li>
+						<li>Manual Adjustment</li>
 					</ul>
 				</div>
             )
         }
     }
 }
+
+
+class SetLink extends Component {
+    render() {
+        const note = this.props.note;
+        let text = note.Text;
+        if(note.Links){
+            let firstPart = text.substr(0,text.indexOf('{{'));
+            let secondPart = text.substr((text.indexOf('}}')+2),text.length);
+            let number = parseInt(text.split('{{')[1]);
+            return (
+				<div className="note">
+                    {firstPart}<a target="_blank" href={"https://conmetaftermarketpubliccdn.azureedge.net/documents/"+note.Links[0]}>{number}</a>{secondPart}
+				</div>
+            )
+		}else{
+			return (
+				<div className="note">{text}</div>
+			)
+		}
+	}
+}
+
 
 class Result extends Component {
 	render(){
@@ -63,10 +86,8 @@ class Result extends Component {
                     })}
 					<div className="clearfix" />
 				</div>
+				<SetLink note={results[0].GawrNote} />
 				<div className="disclaimer">ConMet Wheel End Disclaimer</div>
-				<div className="note">
-                    {results[0].GawrNote.Text}
-				</div>
 			</div>
 		)
 	}

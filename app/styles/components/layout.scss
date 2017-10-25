@@ -6,6 +6,9 @@ body {
 	font-family: "ArialNovaCond-Light";
 	background: $cm-diagonal-background;
 }
+body,html{
+	height: auto;
+}
 .main-content {
 	color: $cm-dark-grey;
 	h1,h2,h3,h4,h5,h6 {
