@@ -53,6 +53,7 @@ class Results extends Component {
         super(props);
         this.state = {
         	results: [],
+        	newResults: [],
             spindleNut: ""
         };
     }
@@ -69,6 +70,7 @@ class Results extends Component {
 
     componentWillReceiveProps(newProps){
     	const {results,dispatch} = newProps;
+    	this.state.newResults = results;
         if(!results.isFetching && !(results.items.length === 0) && results.items[0] && ((this.state.results.items === undefined) || (results.items[0].PartNumber !== this.state.results.items[0].PartNumber))){
             this.setState({results: results});
             let partNumber = "";
@@ -78,9 +80,9 @@ class Results extends Component {
             if(partNumber){
                 dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
                     let spindleNut = "";
-                    if(results.spindleNut !== undefined){
-                        results.spindleNut[0].AftermarketParts.map((item, id)=>{
-                            spindleNut += (id + 1 === results.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                    if(this.state.newResults.spindleNut !== undefined){
+                        this.state.newResults.spindleNut[0].AftermarketParts.map((item, id)=>{
+                            spindleNut += (id + 1 === this.state.newResults.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
                         });
                         this.setState({spindleNut: spindleNut});
                     }
