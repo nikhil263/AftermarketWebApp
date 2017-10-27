@@ -78,9 +78,9 @@ class Results extends Component {
             if(partNumber){
                 dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
                     let spindleNut = "";
-                    if(results.items.spindleNut !== undefined){
-                        results.items.spindleNut[0].AftermarketParts.map((item, id)=>{
-                            spindleNut += (id + 1 === results.items.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                    if(results.spindleNut !== undefined){
+                        results.spindleNut[0].AftermarketParts.map((item, id)=>{
+                            spindleNut += (id + 1 === results.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
                         });
                         this.setState({spindleNut: spindleNut});
                     }
