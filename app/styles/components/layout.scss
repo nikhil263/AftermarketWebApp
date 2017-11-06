@@ -328,7 +328,7 @@ h2.partsSubHead {
 		.small-6,.small-12{
 			float: left;
 			padding: 0 5px;
-			img{margin-bottom: 10px;min-height: 165px;}
+			img{margin-bottom: 10px;min-height: 165px;max-height: 300px;}
 			.general-button{font-size: 1.2em;border-radius: 0;padding: 15px 10px;font-weight: bold;}
 			.type{font-size: 22px;}
 			.number{font-size: 24px;}
@@ -337,17 +337,7 @@ h2.partsSubHead {
 				min-height: 140px;
 				div{font-size: 24px;}
 				ul{
-					font-size: 16px;margin: 5px 0 0 0;text-align: left;list-style: none;
-					li{
-						padding-left: 15px;
-						position: relative;
-						&:before{
-							content: "\25CF";
-							position: absolute;
-							top: 0;
-							left: 0;
-						}
-					}
+					font-size: 16px;margin: 5px 0 0 0;text-align: center;list-style: none;
 				}
 			}
 		}

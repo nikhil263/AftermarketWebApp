@@ -63,7 +63,7 @@ class Result extends Component {
 		let selectedHubAssemblyNumber = this.props.selectedHubAssemblyNumber;
 		return(
 			<div className="grid-container main-content" id="hubAssemblyResult">
-				<h1>Success !</h1>
+				<h1>Success!</h1>
 				{selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : '' }
 				<div className="grid-content flex-row">
                     {results.map((item,index) => {
@@ -71,7 +71,7 @@ class Result extends Component {
                         return <div className={results.length === 2 ? "small-6" : "small-12"}>
 							<img className="product-image"  src={IMAGE_CDN+item.Images[0].ImageGuid+'.png'} alt={item.HubAssemblyNumber} />
 							<div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
-							<div className="number">#{item.HubAssemblyNumber}</div>
+							<div className="number">{item.HubAssemblyNumber}</div>
 							<HubResults assemblyType={assemblyType} key={index} />
 						</div>
                     })}
@@ -87,7 +87,7 @@ class Result extends Component {
 					<div className="clearfix" />
 				</div>
 				<SetLink note={results[0].GawrNote} />
-				<div className="disclaimer">ConMet Wheel End Disclaimer</div>
+				<div className="disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
 			</div>
 		)
 	}
