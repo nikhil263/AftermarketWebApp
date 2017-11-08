@@ -68,7 +68,7 @@ class Result extends Component {
 				<div className="grid-content flex-row">
                     {results.map((item,index) => {
                         let assemblyType = item.AftermarketDescription.toLowerCase().includes('preset');
-                        return <div className={results.length === 2 ? "small-6" : "small-12"}>
+                        return <div className={results.length === 2 ? "small-6" : "small-12"} key={index}>
 							<img className="product-image"  src={IMAGE_CDN+item.Images[0].ImageGuid+'.png'} alt={item.HubAssemblyNumber} />
 							<div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
 							<div className="number">{item.HubAssemblyNumber}</div>
@@ -80,7 +80,7 @@ class Result extends Component {
 						Optional Spindle nut: {spindleNut} (PreSet Hubs Only)
 					</div> : ""}
                     {results.map((item,index) => {
-                        return <div className={results.length === 2 ? "small-6" : "small-12"}>
+                        return <div className={results.length === 2 ? "small-6" : "small-12"} key={index}>
 							<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} key={index} className="general-button">See Details</Link>
 						</div>
                     })}

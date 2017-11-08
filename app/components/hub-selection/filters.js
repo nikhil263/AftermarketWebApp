@@ -132,9 +132,9 @@ class Filters extends Component {
                     <h1>Choose the GAWR (Gross Axle Weight Rating)</h1>
                     <div className="grid-content">
                         {filter_value.map((key) => {
-                            return <div className="small-12">
+                            return <div className="small-12" key={key.Id}>
                                 <div className="conmet-button">
-                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.DisplayRange}
                                     </button>
                                 </div>
@@ -149,9 +149,9 @@ class Filters extends Component {
                     <h1>Choose the wheel type (determine wheel stud length)</h1>
                     <div className="grid-content">
                         {filter_value.map((key) => {
-                            return <div className="small-12">
+                            return <div className="small-12" key={key.Id}>
                                 <div className="conmet-button">
-                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.WheelMaterial} - {key.StudLengthClass}
                                     </button>
                                 </div>
@@ -166,9 +166,9 @@ class Filters extends Component {
                     <h1>{current_filter === 'hcmty' ? 'Choose the hub material' : 'Choose the hub assembly type'}</h1>
                     <div className="grid-content">
                         {filter_value.map((key) => {
-                            return <div className="small-12">
+                            return <div className="small-12" key={key.Id}>
                                 <div className="conmet-button">
-                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.Name}
                                     </button>
                                 </div>

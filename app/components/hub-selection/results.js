@@ -73,9 +73,11 @@ class Results extends Component {
         if(!results.isFetching && !(results.items.length === 0) && results.items[0] && ((this.state.results.items === undefined) || (results.items[0].PartNumber !== this.state.results.items[0].PartNumber))){
             this.setState({results: results});
             let partNumber = "";
-            results.items.map((item,id)=>{
-                partNumber += (id + 1 === results.items.length) ? item.HubAssemblyNumber : item.HubAssemblyNumber+",";
-            });
+            if(results.items && results.items.length){
+                results.items.map((item,id)=>{
+                    partNumber += (id + 1 === results.items.length) ? item.HubAssemblyNumber : item.HubAssemblyNumber+",";
+                });
+			}
             if(partNumber){
                 dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
                     let spindleNut = "";
