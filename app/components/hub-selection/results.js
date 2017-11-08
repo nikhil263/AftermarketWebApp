@@ -7,9 +7,8 @@ import {fetchAssembly} from 'actions/assembly'
 import {materialFilter, fetchHubs, fetchHubsSpindleNut} from 'actions'
 import _ from 'lodash'
 import NoResults from '../global/no-result'
-
-// import Result from './details/result'
 import Result from './details/hub-results';
+import HubSingleResult from './details/result';
 import ResultNavigation from './details/result-navigation'
 
 
@@ -104,9 +103,24 @@ class Results extends Component {
 			return <MaterialType dispatch={dispatch}/>
 		}
 
-        return (
-        	<Result results={results.items} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={null} />
-		)
+        if((results.items.length > 0) && (results.items.length === 2)) {
+            return (
+				<Result results={results.items} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={null} />
+            )
+		}else if (results.items.length > 0) {
+            return (
+				<div>
+                    {results.items.map((item, index) => {
+                        if (index === results.selectedIdx) {
+                            return <HubSingleResult idx={results.selectedIdx} total={results.total} key={index} item={item} selectedHubAssemblyNumber={null} />
+                        }
+                    })}
+					<ResultNavigation total={results.total} currentIdx={results.selectedIdx}/>
+				</div>
+            )
+        }else{
+			return (<div />)
+		}
 	}
 };
 export default connect()(Results)

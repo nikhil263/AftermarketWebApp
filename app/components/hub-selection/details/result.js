@@ -55,7 +55,7 @@ class PreviousButton extends Component {
 	}
 }
 
-class Result extends Component {
+class HubSingleResult extends Component {
 	constructor(props) {
 		super(props)
 		this.itemDetails = {};
@@ -136,39 +136,41 @@ class Result extends Component {
 		 note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
 	 }
 
+    let selectedHubAssemblyNumber = this.props.selectedHubAssemblyNumber;
 	return (
- 	 <div className="result">
+		<div>
+			<h1>Success! The following ConMet hub is recommended</h1>
+            {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : '' }
+			<div className="result">
+				<PreviousButton
+					idx={idx}
+					total={total}
+					handleClick={this.handlePreviousClick.bind(this)}
+					showButton={this.renderButtons.bind(this)} />
 
-			<PreviousButton
-				idx={idx}
-				total={total}
-				handleClick={this.handlePreviousClick.bind(this)}
-				showButton={this.renderButtons.bind(this)} />
-
-		 	<div className="details">
-				{
-					item.Images.map((image, index) => {
-							return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.PartNumber} width="200" height="200" />
-					})
-				}
-
-				<h2>{item.title || item.Description}<br />
-			 		{item.PartNumber}
-			 	</h2>
-				{note}
-				<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>
-				<Link to={'/hub-selection/details/'+item.PartNumber} className="general-button">See Details</Link>
-			</div>
-			<NextButton
-				idx={idx}
-				total={total}
-				handleClick={this.handleNextClick.bind(this)}
-				showButton={this.renderButtons.bind(this)}
+				<div className="details">
+                    {
+                        item.Images.map((image, index) => {
+                            return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.HubAssemblyNumber} width="200" height="200" />
+                        })
+                    }
+					<h2>{item.title || item.AftermarketDescription}<br />
+                        {item.HubAssemblyNumber}
+					</h2>
+                    {note}
+					<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>
+					<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
+				</div>
+				<NextButton
+					idx={idx}
+					total={total}
+					handleClick={this.handleNextClick.bind(this)}
+					showButton={this.renderButtons.bind(this)}
 				/>
-
+			</div>
 		</div>
 	 )
  	}
 }
 
-export default connect()(Result);
+export default connect()(HubSingleResult);

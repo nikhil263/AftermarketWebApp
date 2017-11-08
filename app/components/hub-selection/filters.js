@@ -5,6 +5,8 @@ import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
 import Spinner from '../global/spinner';
 import Result from './details/hub-results';
+import HubSingleResult from './details/result';
+import ResultNavigation from './details/result-navigation';
 
 class Filters extends Component {
 
@@ -175,9 +177,20 @@ class Filters extends Component {
                     </div>
                 </div>
             )
-        }else if(results.length > 0) {
+        }else if((results.length > 0) && (results.length === 2)) {
             return(
                 <Result results={results} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={this.props.results.selectedHubAssemblyNumber} />
+            )
+        }else if(results.length > 0) {
+            return(
+                <div>
+                    {this.props.results.items.Results.map((item, index) => {
+                        if (index === this.props.results.selectedIdx) {
+                            return <HubSingleResult idx={this.props.results.selectedIdx} total={this.props.results.total} key={index} item={item} selectedHubAssemblyNumber={this.props.results.selectedHubAssemblyNumber} />
+                        }
+                    })}
+                    <ResultNavigation total={this.props.results.total} currentIdx={this.props.results.selectedIdx}/>
+                </div>
             )
         }else{
             return (
