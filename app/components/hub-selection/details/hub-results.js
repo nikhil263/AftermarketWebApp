@@ -77,7 +77,7 @@ class Result extends Component {
                     })}
 
                     {spindleNut ? <div className="optional-spindle">
-						Optional Spindle nut: {spindleNut} (PreSet Hubs Only)
+						<div className="small-6">Optional Spindle nut: {spindleNut} (PreSet Hubs Only)</div>
 					</div> : ""}
                     {results.map((item,index) => {
                         return <div className={results.length === 2 ? "small-6" : "small-12"} key={index}>

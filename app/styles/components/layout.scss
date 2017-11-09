@@ -348,6 +348,10 @@ h2.partsSubHead {
 			font-size: 18px;
 			line-height: 22px;
 			text-align: left;
+			div.small-6{
+				float: none;
+				text-align: center;
+			}
 		}
 	}
 	.disclaimer{
@@ -362,4 +366,11 @@ h2.partsSubHead {
 		margin-bottom: 10px;
 	}
 
+}
+
+@media only screen and (max-width: 767px) {
+	#hubAssemblyResult .grid-content .optional-spindle div.small-6 {
+		flex: none;
+		max-width: 100%;
+	}
 }

@@ -158,8 +158,8 @@ class HubSingleResult extends Component {
                         {item.HubAssemblyNumber}
 					</h2>
                     {note}
-					<div className="text-center"><Link to="/disclaimer">Disclaimer</Link></div>
 					<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
+					<div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
 				</div>
 				<NextButton
 					idx={idx}
