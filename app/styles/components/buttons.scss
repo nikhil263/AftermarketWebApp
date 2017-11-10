@@ -256,8 +256,27 @@
 			color: #fff;
 		}
 	}
+	.optional-spindle{
+		display: block;
+		width: 100%;
+		margin: 9px 0;
+		font-size: 18px;
+		line-height: 22px;
+		text-align: center;
+		font-weight: bold;
+	}
 	.disclaimer{
+		font-size: 20px;
+		color: #c00000;
 		margin: 15px 0;
+		text-align: center;
+		font-weight: bold;
+	}
+	a.general-button{
+		font-size: 1.2em;
+		border-radius: 0;
+		padding: 15px 10px;
+		font-weight: bold;
 	}
 }
 .result-navigation {

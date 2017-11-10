@@ -137,6 +137,7 @@ class HubSingleResult extends Component {
 	 }
 
     let selectedHubAssemblyNumber = this.props.selectedHubAssemblyNumber;
+    let spindleNut = this.props.spindleNut;
 	return (
 		<div>
 			<h1>Success! The following ConMet hub is recommended</h1>
@@ -157,6 +158,9 @@ class HubSingleResult extends Component {
 					<h2>{item.title || item.AftermarketDescription}<br />
                         {item.HubAssemblyNumber}
 					</h2>
+
+                    {spindleNut ? <div className="optional-spindle">Optional Spindle nut: {spindleNut} (PreSet Hubs Only)</div> : ""}
+
                     {note}
 					<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
 					<div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>

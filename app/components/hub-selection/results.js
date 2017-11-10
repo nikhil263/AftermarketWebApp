@@ -114,7 +114,7 @@ class Results extends Component {
 				<div>
                     {results.items.map((item, index) => {
                         if (index === results.selectedIdx) {
-                            return <HubSingleResult idx={results.selectedIdx} total={results.total} key={index} item={item} selectedHubAssemblyNumber={null} />
+                            return <HubSingleResult idx={results.selectedIdx} spindleNut={this.state.spindleNut} total={results.total} key={index} item={item} selectedHubAssemblyNumber={null} />
                         }
                     })}
 					<ResultNavigation total={results.total} currentIdx={results.selectedIdx}/>

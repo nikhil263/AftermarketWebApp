@@ -186,7 +186,7 @@ class Filters extends Component {
                 <div>
                     {this.props.results.items.Results.map((item, index) => {
                         if (index === this.props.results.selectedIdx) {
-                            return <HubSingleResult idx={this.props.results.selectedIdx} total={this.props.results.total} key={index} item={item} selectedHubAssemblyNumber={this.props.results.selectedHubAssemblyNumber} />
+                            return <HubSingleResult idx={this.props.results.selectedIdx} spindleNut={this.state.spindleNut} total={this.props.results.total} key={index} item={item} selectedHubAssemblyNumber={this.props.results.selectedHubAssemblyNumber} />
                         }
                     })}
                     <ResultNavigation total={this.props.results.total} currentIdx={this.props.results.selectedIdx}/>
