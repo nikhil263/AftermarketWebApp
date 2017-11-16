@@ -69,7 +69,7 @@ class Result extends Component {
                     {results.map((item,index) => {
                         let assemblyType = item.AftermarketDescription.toLowerCase().includes('preset');
                         return <div className={results.length === 2 ? "small-6" : "small-12"} key={index}>
-							<img className="product-image"  src={IMAGE_CDN+item.Images[0].ImageGuid+'.png'} alt={item.HubAssemblyNumber} />
+							<img className="product-image"  src={require('../../../images/blank1x1.png')} style={{background: "url('"+IMAGE_CDN+item.Images[0].ImageGuid+'.png'+"') center center no-repeat"}} alt={item.HubAssemblyNumber} />
 							<div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
 							<div className="number">{item.HubAssemblyNumber}</div>
 							<HubResults assemblyType={assemblyType} key={index} />

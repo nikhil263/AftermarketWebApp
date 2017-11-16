@@ -328,8 +328,8 @@ h2.partsSubHead {
 		.small-6,.small-12{
 			float: left;
 			padding: 0 5px;
-			img{margin-bottom: 10px;min-height: 165px;max-height: 300px;}
-			.general-button{font-size: 1.2em;border-radius: 0;padding: 15px 10px;font-weight: bold;}
+			img{margin-bottom: 10px;width: 100%;background-size: contain !important;max-width: 350px;}
+			.general-button{font-weight: normal;font-size: 1.2rem;}
 			.type{font-size: 22px;}
 			.number{font-size: 24px;}
 			.details{
