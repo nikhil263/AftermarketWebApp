@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 export default class extends Component {
 	render() {
-		const {result} = this.props
+		const {result,parts} = this.props;
 		return (
 				<div className="specs">
 					<h2>Product Specs</h2>
@@ -44,6 +44,10 @@ export default class extends Component {
 							<td>Compatible Brake Type</td>
 							<td>{result.BrakeType}</td>
 						</tr>
+						{
+							parts['AftermarketParts'] && parts['AftermarketParts'].length ?
+							<tr><td>Replacement Rotor Kit</td><td>{parts["AftermarketParts"][0]["PartNumber"]}</td></tr> : ''
+						}
 						<tr>
 							<td>Hub Mounting System</td>
 							<td>{result.HubMountingSystem}</td>

@@ -30,6 +30,7 @@ import HubFinder from 'components/hub-selection/finder'
 import About from 'components/about'
 import Contact from 'components/contact'
 import Disclaimer from 'components/disclaimer'
+import NoResults from '../components/global/no-result';
 
 
 import PartsWrapper from 'components/parts'
@@ -71,6 +72,7 @@ module.exports = (
 				<Route path='brake-rotor-type' component={BrakeRotorType} />
 				<Route path='find-assembly' component={HubSelectionFindAssembly} />
 				<Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail} />
+				<Route path='no-results' component={NoResults} />
 			</Route>
 			<Route path='parts' component={PartsWrapper}>
 				<Route path='search' component={PartsSearch} />

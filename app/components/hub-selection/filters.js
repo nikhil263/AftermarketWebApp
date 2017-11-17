@@ -4,40 +4,9 @@ import {fetchCategories} from 'actions/categories';
 import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
 import Spinner from '../global/spinner';
-import { IMAGE_CDN } from 'config/constants';
-import {Link} from 'react-router';
 import Result from './details/hub-results';
+import HubSingleResult from './details/result';
 import ResultNavigation from './details/result-navigation';
-
-class HubResults extends React.Component {
-    render() {
-        let assemblyType = this.props.assemblyType;
-        if(assemblyType){
-            return (
-                <div className="details">
-                    <div>Best Value:</div>
-                    <ul>
-                        <li>Extended Warranty</li>
-                        <li>Less DownTime</li>
-                        <li>Simplified Process</li>
-                        <li>Liability Protection</li>
-                    </ul>
-                </div>
-            )
-        }else{
-            return (
-                <div className="details">
-                    <div>Not Included:</div>
-                    <ul>
-                        <li>Bearing Cones</li>
-                        <li>Seal</li>
-                        <li>Manually Adjusted</li>
-                    </ul>
-                </div>
-            )
-        }
-    }
-}
 
 class Filters extends Component {
 
@@ -163,9 +132,9 @@ class Filters extends Component {
                     <h1>Choose the GAWR (Gross Axle Weight Rating)</h1>
                     <div className="grid-content">
                         {filter_value.map((key) => {
-                            return <div className="small-12">
+                            return <div className="small-12" key={key.Id}>
                                 <div className="conmet-button">
-                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.DisplayRange}
                                     </button>
                                 </div>
@@ -180,9 +149,9 @@ class Filters extends Component {
                     <h1>Choose the wheel type (determine wheel stud length)</h1>
                     <div className="grid-content">
                         {filter_value.map((key) => {
-                            return <div className="small-12">
+                            return <div className="small-12" key={key.Id}>
                                 <div className="conmet-button">
-                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.WheelMaterial} - {key.StudLengthClass}
                                     </button>
                                 </div>
@@ -197,9 +166,9 @@ class Filters extends Component {
                     <h1>{current_filter === 'hcmty' ? 'Choose the hub material' : 'Choose the hub assembly type'}</h1>
                     <div className="grid-content">
                         {filter_value.map((key) => {
-                            return <div className="small-12">
+                            return <div className="small-12" key={key.Id}>
                                 <div className="conmet-button">
-                                    <button className="yes-no-button bold" id={key.Id} key={key.Id} onClick={this.handleFilterClick.bind(this)}>
+                                    <button className="yes-no-button bold" id={key.Id} onClick={this.handleFilterClick.bind(this)}>
                                         {key.Name}
                                     </button>
                                 </div>
@@ -208,43 +177,18 @@ class Filters extends Component {
                     </div>
                 </div>
             )
+        }else if((results.length > 0) && (results.length === 2)) {
+            return(
+                <Result results={results} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={this.props.results.selectedHubAssemblyNumber} />
+            )
         }else if(results.length > 0) {
             return(
-                <div className="grid-container main-content">
-                    <h1>Success! The following ConMet hubs are recommended</h1>
-                    {/*<div className="grid-content">*/}
-                        {/*{this.state.results.map((item,index) => {*/}
-                            {/*let assemblyType = item.AftermarketDescription.toLowerCase().includes('preset');*/}
-                            {/*return <div className={results.length === 2 ? "small-6" : "small-12"}>*/}
-                                {/*<img className="product-image"  src={IMAGE_CDN+item.Images[0].ImageGuid+'.png'} alt={item.HubAssemblyNumber} />*/}
-                                {/*<div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>*/}
-                                {/*<div className="number">#{item.HubAssemblyNumber}</div>*/}
-                                {/*<HubResults assemblyType={assemblyType} key={index} />*/}
-                            {/*</div>*/}
-                        {/*})}*/}
-
-                        {/*{this.state.spindleNut ? <div className="optional-spindle">*/}
-                            {/*Optional Spindle nut: {this.state.spindleNut}*/}
-                        {/*</div> : ""}*/}
-                        {/*{this.state.results.map((item,index) => {*/}
-                            {/*return <div className={results.length === 2 ? "small-6" : "small-12"}>*/}
-                                {/*<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} key={index} className="general-button">See Details</Link>*/}
-                            {/*</div>*/}
-                        {/*})}*/}
-                        {/*<div className="clearfix" />*/}
-                    {/*</div>*/}
-                    {/*<div className="disclaimer">ConMet Wheel End Disclaimer</div>*/}
-                    {/*<div className="note">*/}
-                        {/*{results[0].GawrNote.Text}*/}
-                    {/*</div>*/}
-
-                    <p className="text-center">{this.props.results.selectedHubAssemblyNumber !== '' ? 'for '+this.props.results.selectedHubAssemblyNumber : '' }</p>
+                <div>
                     {this.props.results.items.Results.map((item, index) => {
                         if (index === this.props.results.selectedIdx) {
-                            return <Result idx={this.props.results.selectedIdx} total={this.props.results.total} key={index} item={item} />
+                            return <HubSingleResult idx={this.props.results.selectedIdx} spindleNut={this.state.spindleNut} total={this.props.results.total} key={index} item={item} selectedHubAssemblyNumber={this.props.results.selectedHubAssemblyNumber} />
                         }
                     })}
-
                     <ResultNavigation total={this.props.results.total} currentIdx={this.props.results.selectedIdx}/>
                 </div>
             )

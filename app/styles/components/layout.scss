@@ -6,6 +6,9 @@ body {
 	font-family: "ArialNovaCond-Light";
 	background: $cm-diagonal-background;
 }
+body,html{
+	height: auto;
+}
 .main-content {
 	color: $cm-dark-grey;
 	h1,h2,h3,h4,h5,h6 {
@@ -158,7 +161,7 @@ img.brake-rotor-flange {
 
 .specs, .parts {
 	position: relative;
-	padding: 1.3rem;
+	padding: 1rem;
 	h2 {
 		color: $cm-copy-dark;
 		text-align: left;
@@ -180,9 +183,10 @@ img.brake-rotor-flange {
 			border-bottom: 1px solid #ccc;
 			td {
 				font-size: 1.2rem;
-				padding: 1.0rem;
+				padding: 1.0rem 0.5rem 1rem 0;
 			}
 			td:first-child {
+				padding-left: 0.5rem;
 				color: $cm-table-desc;
 			}
 			td:last-child {
@@ -308,7 +312,7 @@ h2.partsSubHead {
 
 #hubAssemblyResult{
 	font-weight: bold;
-	h1{font-size: 30px;font-weight: bold;}
+	h1{font-size: 2.75rem;}
 	.grid-content{
 		padding: 0;
 		text-align: center;
@@ -324,22 +328,30 @@ h2.partsSubHead {
 		.small-6,.small-12{
 			float: left;
 			padding: 0 5px;
-			img{margin-bottom: 10px;min-height: 165px;}
-			.general-button{font-size: 1.2em;border-radius: 0;padding: 15px 10px;font-weight: bold;}
+			img{margin-bottom: 10px;width: 100%;background-size: contain !important;max-width: 350px;}
+			.general-button{font-weight: normal;font-size: 1.2rem;}
 			.type{font-size: 22px;}
 			.number{font-size: 24px;}
 			.details{
 				margin-top: 15px;
 				min-height: 140px;
 				div{font-size: 24px;}
-				ul{font-size: 18px;margin: 0;text-align: left; list-style-position: inside;}
+				ul{
+					font-size: 16px;margin: 5px 0 0 0;text-align: center;list-style: none;
+				}
 			}
 		}
 		.optional-spindle{
 			display: block;
 			width: 100%;
-			margin: 15px 0 9px;
+			margin: 9px 0;
 			font-size: 18px;
+			line-height: 22px;
+			text-align: left;
+			div.small-6{
+				float: none;
+				text-align: center;
+			}
 		}
 	}
 	.disclaimer{
@@ -354,4 +366,11 @@ h2.partsSubHead {
 		margin-bottom: 10px;
 	}
 
+}
+
+@media only screen and (max-width: 767px) {
+	#hubAssemblyResult .grid-content .optional-spindle div.small-6 {
+		flex: none;
+		max-width: 100%;
+	}
 }
