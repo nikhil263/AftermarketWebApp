@@ -38,7 +38,7 @@ import PartsSearch from 'components/parts/search'
 import PartsResults from 'components/parts/results'
 import PartsHelp from 'components/parts/help'
 import PartsHelpDetail from 'components/parts/help-detail'
-
+import PartsChoosePath from 'components/parts/choose-path'
 import MobileHelpDetail from 'components/mobile-help.js'
 
 module.exports = (
@@ -75,6 +75,7 @@ module.exports = (
 				<Route path='no-results' component={NoResults} />
 			</Route>
 			<Route path='parts' component={PartsWrapper}>
+				<Route path='choose-path' component={PartsChoosePath} />
 				<Route path='search' component={PartsSearch} />
 				<Route path='search/:id' component={PartsResults} />
 				<Route path='help' component={PartsHelp} />

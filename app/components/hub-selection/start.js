@@ -36,7 +36,7 @@ class Start extends Component {
 					</button>
 				</div>
 				<div className="btn-no-description conmet-button">
-					<button onClick={this.handleClick.bind(this,'/parts/search')} store={this.context.store}>
+					<button onClick={this.handleClick.bind(this,'/parts/choose-path')} store={this.context.store}>
 					<h2>HUB COMPONENTS <i className="icon-angle-right" title="Right Arrow"></i></h2>
 					</button>
 				</div>
