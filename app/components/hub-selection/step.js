@@ -20,6 +20,9 @@ export default class extends Component {
 		if (location.pathname === '/hub-selection') {
 			link = null
 		}
+        if (window.location.pathname.indexOf('/replacement-drum') > -1) {
+            link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
+        }
 		else if (!app || app.currentIndex === 0) {
 			link = <Link to="/hub-selection" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
 		}
@@ -30,7 +33,6 @@ export default class extends Component {
 			link = <Link to="/hub-selection/search" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
 		}
 		if (window.location.pathname.indexOf('/parts/search/') > -1) {
-
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
 		if (window.location.pathname.indexOf('/details/') > -1) {

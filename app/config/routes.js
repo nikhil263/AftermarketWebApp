@@ -8,6 +8,11 @@ import Splash from 'components/splash'
 import HubSelectionWrapper from 'components/hub-selection'
 import HubSelectionStart from 'components/hub-selection/start'
 import HubSelectionChoosePath from 'components/hub-selection/choose-path'
+import ReplacementDrum from 'components/hub-selection/replacement-drum'
+import ReplacementDrumFilter from 'components/hub-selection/replacement-drum-filter'
+import ReplacementDrumSearch from 'components/hub-selection/replacement-drum-search'
+import ReplacementDrumResult from 'components/hub-selection/replacement-drum-result'
+import ReplacementDrumDetail from 'components/hub-selection/replacement-drum-detail'
 import HubSelectionFindAssembly from 'components/hub-selection/find-assembly'
 import HubSelectionFindAssemblyDetail from 'components/hub-selection/find-assembly-detail'
 import HubSelectionSearch from 'components/hub-selection/search'
@@ -51,10 +56,16 @@ module.exports = (
 			<Route path='disclaimer' component={Disclaimer} />
 			<Route path='hub-selection' component={HubSelectionWrapper}>
 				<IndexRoute component={HubSelectionStart} />
+				<Route path='replacement-drum' component={ReplacementDrum} />
+				<Route path='replacement-drum/filter' component={ReplacementDrumFilter} />
+				<Route path='replacement-drum/filter/:currentFilter/:filters' component={ReplacementDrumFilter} />
+				<Route path='replacement-drum/filter/:currentFilter' component={ReplacementDrumFilter} />
+				<Route path='replacement-drum/search' component={ReplacementDrumSearch} />
+				<Route path='replacement-drum/recommended-drums/:drumId' component={ReplacementDrumResult} />
+				<Route path='replacement-drum/drumdetails/:id' component={ReplacementDrumDetail} />
 				<Route path='choose-path' component={HubSelectionChoosePath} />
 				<Route path='search' component={HubSelectionSearch} />
 				<Route path='filters/:filters' component={Filters} />
-				<Route path='search/:id' component={HubSelectionResults} />
 				<Route path='results' component={HubSelectionResults} />
 				<Route path='details/:id' component={HubSelectionDetails} />
 				<Route path='email' component={HubSelectionEmail} />

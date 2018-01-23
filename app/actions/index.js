@@ -166,6 +166,125 @@ export const fetchHubsSpindleNut = (partNumber) => {
     }
 }
 
+export const fetchDrumFilterValues = (filtername, filtervalues) => {
+    return dispatch => {
+        dispatch(requestHubs(filtername));
+        return fetch(constants.API+'/brakedrum/filtervalues/'+filtername+filtervalues, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_FILTER_VALUES,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumFilterCategories = () => {
+    return dispatch => {
+        dispatch(requestHubs('123'));
+        return fetch(constants.API+'/brakedrum/filtercategories/', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_FILTER_CATEGORIES,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumNumber = (term) => {
+    return dispatch => {
+        return fetch(constants.API+'/brakedrum/interchanges/'+term, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_NUMBER_DATA,
+                    drumNumber: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumResult = (drumNumberId) => {
+    return dispatch => {
+        dispatch(requestHubs(drumNumberId));
+        return fetch(constants.API+'/brakedrum/summaries?cbdid='+drumNumberId, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_RESULT,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumDetail = (id) => {
+    return dispatch => {
+        dispatch(requestHubs(id));
+        return fetch(constants.API+'/brakedrum/details/'+id, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_DETAILS,
+                    data: json,
+                })
+            })
+    }
+};
+
 export const fetchHubAssemblyNumber = (term) => {
     return dispatch => {
         return fetch(constants.API+'/hubassemblynumbers/withaftermarkethubassemblies/'+term, {

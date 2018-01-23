@@ -228,6 +228,10 @@
 		vertical-align:middle;
 		padding-top: 100px;
 		cursor: pointer;
+		&.hide-button {
+			opacity: 0;
+			visibility: hidden;
+		}
 	}
 	.disabled {
 		color: #fff !important;

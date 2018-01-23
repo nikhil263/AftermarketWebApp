@@ -1,18 +1,16 @@
 import React, { PropTypes, Component, Image } from 'react';
-import HubSelection from 'components/hub-selection';
-import { pushPath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 import {Link} from 'react-router';
 import {showPreviousResult, showNextResult} from 'actions'
-import { AFTERMARKET_DETAILS, IMAGE_CDN } from 'config/constants'
+import { IMAGE_CDN } from 'config/constants'
 import _ from 'lodash'
 import Spinner from 'components/global/spinner'
 
 class NextButton extends Component {
 
 	nextClass() {
-		let {idx, total, showButton} = this.props
-		let defaultClass = 'next-button'
+		let {idx, total, showButton} = this.props;
+		let defaultClass = 'next-button';
 		defaultClass = (showButton()) ? defaultClass + ' hide-button': defaultClass;
 		if (idx === total-1) {
 			return defaultClass + ' disabled'
@@ -23,11 +21,11 @@ class NextButton extends Component {
 
 
 	render() {
-		let { idx, total, handleClick } = this.props
+		let { handleClick } = this.props;
 
 		return (
 			<div className={this.nextClass()} onClick={handleClick}>
-				<i className="icon-angle-right"></i>
+				<i className="icon-angle-right" />
 			</div>
 		)
 	}
@@ -36,8 +34,8 @@ class NextButton extends Component {
 class PreviousButton extends Component {
 
 	previousClass() {
-		let {idx, total, showButton} = this.props
-		let defaultClass = 'prev-button'
+		let {idx, showButton} = this.props;
+		let defaultClass = 'prev-button';
 		defaultClass = (showButton()) ? defaultClass + ' hide-button': defaultClass;
 		if (idx === 0) {
 			return defaultClass + ' disabled'
@@ -46,50 +44,29 @@ class PreviousButton extends Component {
 	}
 
 	render() {
-		let { idx, total, handleClick} = this.props
+		let { handleClick} = this.props;
 		return (
 			<div className={this.previousClass()} onClick={handleClick}>
-				<i className="icon-angle-left"></i>
+				<i className="icon-angle-left" />
 			</div>
 		)
 	}
 }
 
 class HubSingleResult extends Component {
-	constructor(props) {
-		super(props)
-		this.itemDetails = {};
-	}
-
-	componentDidMount() {
-		const { dispatch, item, images } = this.props;
-		// dispatch(fetchImages(item.Images, images));
-	}
-
-	showPrevious(idx, total) {
-		const {dispatch } = this.props;
-		if (idx !== 0) {
-			// dispatch(showPreviousResult());
-		}
-	}
-
-	showNext(idx, total) {
-		const {dispatch} = this.props;
-		// dispatch(showNextResult());
-	}
 
 	renderButtons() {
-		let {idx, total} = this.props
+		let { total } = this.props;
 		return total === 1;
 	}
 
 	handleNextClick() {
-		const {idx, total, dispatch} = this.props;
+		const {dispatch} = this.props;
 		dispatch(showNextResult());
 	}
 
 	handlePreviousClick() {
-		const {idx, total, dispatch} = this.props;
+		const {dispatch} = this.props;
 		dispatch(showPreviousResult());
 	}
 
@@ -125,7 +102,7 @@ class HubSingleResult extends Component {
 		return <p dangerouslySetInnerHTML={{__html: str}}></p>;
 	}
 	render () {
-	 let { idx, total, item, dispatch, images } = this.props
+	 let { idx, total, item } = this.props;
 
 	 if (_.isUndefined(item) || item.id === -1) {
 		 return (<Spinner />)

@@ -18,7 +18,12 @@ import {
     HUB_ASSEMBLY_FILTER_VALUE,
     RECEIVE_HUBS_CROSS_API,
     OPTIONAL_SPINDLE_NUT,
-    DETAILS_TPL
+    DETAILS_TPL,
+    DRUM_NUMBER_DATA,
+    DRUM_RESULT,
+    DRUM_DETAILS,
+    DRUM_FILTER_VALUES,
+    DRUM_FILTER_CATEGORIES
 } from '../config/constants'
 import _ from 'lodash'
 
@@ -99,6 +104,43 @@ export function results(state = RESULTS, action) {
 				assemblyNumber: assemblyNumber,
 				isFetching: false
 			});
+        case DRUM_RESULT: {
+            if (action.data.Status === 'ZERO_RESULTS') {
+                return Object.assign({}, state, {
+                    isFetching: false,
+                    isZeroResults: true,
+                });
+            }
+
+            return Object.assign({}, state, {
+                drumResult: action.data.Results,
+                isFetching: false,
+                isZeroResults: false,
+            });
+        }
+        case DRUM_NUMBER_DATA:
+            console.log(action);
+            let drumNumber = action.drumNumber;
+            return Object.assign({}, state, {
+                drumNumber: drumNumber,
+                isFetching: false
+            });
+        case DRUM_DETAILS:
+            return Object.assign({}, state, {
+            	drumDetail: action.data.Results,
+                isFetching: false
+            });
+		case DRUM_FILTER_CATEGORIES:
+            return Object.assign({}, state, {
+                drumFilters: action.data,
+                isFetching: false
+            });
+        case DRUM_FILTER_VALUES:
+        	console.log(action);
+            return Object.assign({}, state, {
+                drumFilterValue: action.data.Results,
+                isFetching: false
+            });
         case HUB_ASSEMBLY_FILTERS:
             return Object.assign({}, state, {
                 filters: action.filters,
