@@ -23,6 +23,8 @@ import {
     DRUM_RESULT,
     DRUM_DETAILS,
     DRUM_FILTER_VALUES,
+    REQUEST_DRUMS,
+    RESET_DRUM_FILTER,
     DRUM_FILTER_CATEGORIES
 } from '../config/constants'
 import _ from 'lodash'
@@ -119,7 +121,6 @@ export function results(state = RESULTS, action) {
             });
         }
         case DRUM_NUMBER_DATA:
-            console.log(action);
             let drumNumber = action.drumNumber;
             return Object.assign({}, state, {
                 drumNumber: drumNumber,
@@ -136,10 +137,20 @@ export function results(state = RESULTS, action) {
                 isFetching: false
             });
         case DRUM_FILTER_VALUES:
-        	console.log(action);
             return Object.assign({}, state, {
                 drumFilterValue: action.data.Results,
-                isFetching: false
+                isFetching: false,
+                isFilterValueSingle: true
+            });
+        case REQUEST_DRUMS:
+            return Object.assign({}, state, {
+                isFilterValueSingle: action.isFilterValueSingle,
+                isFetching: true,
+				currentFilter: action.currentFilter
+            });
+        case RESET_DRUM_FILTER:
+            return Object.assign({}, state, {
+                currentFilter: ''
             });
         case HUB_ASSEMBLY_FILTERS:
             return Object.assign({}, state, {

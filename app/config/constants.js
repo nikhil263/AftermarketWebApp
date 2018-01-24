@@ -19,6 +19,7 @@ export const RECEIVE_ASSEMBLIES='RECEIVE_ASSEMBLIES'
 export const INVALIDATE_ASSEMBLIES='INVALIDATE_ASSEMBLIES'
 export const RECEIVE_HUBS='RECEIVE_HUBS'
 export const REQUEST_HUBS='REQUEST_HUBS'
+export const REQUEST_DRUMS='REQUEST_DRUMS'
 export const INVALIDATE_HUBS='INVALIDATE_HUBS'
 export const SHOW_PREVIOUS_RESULT='SHOW_PREVIOUS_RESULT'
 export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
@@ -49,6 +50,7 @@ export const REMOVE_FILTER='REMOVE_FILTER';
 export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
 export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
 export const RESET_FILTER='RESET_FILTER';
+export const RESET_DRUM_FILTER='RESET_DRUM_FILTER';
 export const RECIEVE_FILTERS='RECIEVE_FILTERS'
 export const SET_MATERIAL_FILTER='SET_MATERIAL_FILTER';
 export const INVALIDATE_FILTERS='INVALIDATE_FILTERS';
@@ -111,6 +113,8 @@ export const RESULTS = {
     drumFilters: [],
     drumFilterValue: [],
     isZeroResults: false,
+    isFilterValueSingle: false,
+	currentFilter: '',
 	filters: [],
     filter_value: [],
 	spindleNut: '',

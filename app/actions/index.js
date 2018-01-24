@@ -86,6 +86,20 @@ export const requestHubs = (partNumber) => {
   }
 }
 
+export const requestDrums = (filtername, isFilterValueSingle) => {
+    return {
+        type: constants.REQUEST_DRUMS,
+        isFitlerValueSingle: isFilterValueSingle,
+        currentFilter: filtername
+    }
+}
+
+export const resetDrumFilter = () => {
+    return {
+        type: constants.RESET_DRUM_FILTER
+    }
+}
+
 export const receiveHubs = (partNumber, json) => {
   // for now we need to usher the json into the following format
   // we need a part number and ID
@@ -166,9 +180,11 @@ export const fetchHubsSpindleNut = (partNumber) => {
     }
 }
 
-export const fetchDrumFilterValues = (filtername, filtervalues) => {
+
+
+export const fetchDrumFilterValues = (filtername, filtervalues, isFilterValueSingle = true) => {
     return dispatch => {
-        dispatch(requestHubs(filtername));
+        dispatch(requestDrums(filtername, isFilterValueSingle));
         return fetch(constants.API+'/brakedrum/filtervalues/'+filtername+filtervalues, {
             method: 'get',
             headers: {

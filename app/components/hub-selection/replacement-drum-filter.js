@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
-import { fetchDrumFilterValues, fetchDrumFilterCategories } from 'actions';
+import { fetchDrumFilterValues, fetchDrumFilterCategories, resetDrumFilter } from 'actions';
 import Waiting from 'components/global/waiting';
 import DrumResult from './drumResult';
 
@@ -15,13 +15,19 @@ class ReplacementDrumFilter extends Component {
         this.state = {
             filters: [],
             urlParams: '',
-            cFilter: '',
+            isResult: false,
+            skipFilter: {},
         };
     }
 
     componentWillMount(){
         const { dispatch } = this.props;
         dispatch(fetchDrumFilterCategories());
+    }
+
+    componentWillUnmount() {
+        const { dispatch } = this.props;
+        dispatch(resetDrumFilter());
     }
 
     componentDidMount() {
@@ -31,7 +37,7 @@ class ReplacementDrumFilter extends Component {
     getFilterValue() {
         const { results, params, dispatch } = this.props;
         const { drumFilters, drumFilterValue } = results;
-        const { filters, urlParams, currentFilter } = this.state;
+        const { filters, urlParams, currentFilter, isResult, skipFilter } = this.state;
 
         this.state.urlParams = params.filters ? params.filters : '';
 
@@ -40,31 +46,56 @@ class ReplacementDrumFilter extends Component {
         }
 
         let filterParams = params.filters ? '?inclv=2&'+params.filters : '?inclv=2';
+        this.state.url = filterParams;
 
         if (drumFilters.length && !params.currentFilter) {
             dispatch(pushPath('/hub-selection/replacement-drum/filter/'+this.state.filters[1]));
         } else if (params.currentFilter !== this.state.currentFilter) {
-            dispatch(fetchDrumFilterValues(params.currentFilter, filterParams));
-            this.state.currentFilter = params.currentFilter;
+            if (results.currentFilter !== 'brnum' || !isResult) {
+                let url = filterParams;
+
+                if (skipFilter !== undefined) {
+                    const skippedFilter = Object.keys(skipFilter);
+                    if (skippedFilter.length) {
+                        url += '&'+skippedFilter.map((key) => key+'='+skipFilter[key]).join('&');
+                    }
+                }
+
+                dispatch(fetchDrumFilterValues(params.currentFilter, url));
+                this.state.currentFilter = params.currentFilter;
+            }
+
+            if (results.currentFilter === 'brnum' && isResult && drumFilterValue && drumFilterValue[0] && drumFilterValue[0].BrakeDrumNumber) {
+                this.state.isResult = false;
+            }
 
             if (currentFilter === 'bcdia') {
                 dispatch(fetchDrumFilterValues(filters[0], filterParams));
             }
-        } else if (drumFilterValue.length === 1) {
-            // const index = filters.indexOf(currentFilter);
-            // const cindex = filters.indexOf(this.state.cFilter);
-            // const id = drumFilterValue[0].Id ? drumFilterValue[0].Id : drumFilterValue[0];
-            // console.log(this.state.cFilter, filters[index + 1], filters[cindex + 1]);
-            // if (this.state.cFilter !== filters[index + 1] && filters.length) {
-            //     dispatch(fetchDrumFilterValues(filters[index + 1], filterParams+'&'+filters[index]+'='+id));
-            // }
-            // this.state.cFilter = filters[index + 1];
+        } else if (drumFilterValue.length === 1 && results.isFilterValueSingle && currentFilter && drumFilters.length) {
+            const index = filters.indexOf(results.currentFilter);
+            const id = drumFilterValue[0].Id !== undefined ? drumFilterValue[0].Id : drumFilterValue[0];
+
+            if (this.state.url === '') {
+                this.state.url = filterParams;
+            }
+            if (results.currentFilter === 'bcdia') {
+                this.state.url += '&'+filters[0]+'='+id;
+                dispatch(fetchDrumFilterValues(filters[0], this.state.url));
+                this.state.currentFilter = 'brnum';
+                this.state.isResult = true;
+            } else {
+                this.state.url += '&'+filters[index]+'='+id;
+                this.state.skipFilter = {...skipFilter, [filters[index]]: id};
+                dispatch(fetchDrumFilterValues(filters[index + 1], this.state.url, false));
+            }
         }
     }
 
     handleFilterClick(id) {
-        const { dispatch } = this.props;
-        const { filters, currentFilter, urlParams } = this.state;
+        const { dispatch, results } = this.props;
+        const { currentFilter } = results;
+        const { filters, urlParams } = this.state;
         const index = currentFilter === 'bcdia' ? -1 : filters.indexOf(currentFilter);
 
         this.state.urlParams += urlParams === '' ? currentFilter+'='+id : '&'+currentFilter+'='+id;
@@ -77,24 +108,25 @@ class ReplacementDrumFilter extends Component {
 
     render() {
         const { results } = this.props;
-        const { drumFilterValue } = results;
+        const { drumFilterValue, currentFilter } = results;
+        const isResult = drumFilterValue && drumFilterValue[0] && drumFilterValue[0].BrakeDrumNumber;
 
         if (results.isFetching) {
             return (<Waiting />)
         }
 
-        if (this.state.currentFilter === 'bcdia' || this.state.currentFilter === 'pidia' || this.state.currentFilter === 'holes' || this.state.currentFilter === 'shwid' || this.state.currentFilter === 'szdia') {
+        if (currentFilter === 'bcdia' || currentFilter === 'pidia' || currentFilter === 'holes' || currentFilter === 'shwid' || currentFilter === 'szdia' && currentFilter !== 'brnum' && !isResult) {
             let message = '';
 
-            if (this.state.currentFilter === 'pidia') {
+            if (currentFilter === 'pidia') {
                 message = 'Choose the pilot diameter system';
-            } else if (this.state.currentFilter === 'bcdia') {
+            } else if (currentFilter === 'bcdia') {
                 message = 'Choose the bolt circle diameter';
-            } else if (this.state.currentFilter === 'holes') {
+            } else if (currentFilter === 'holes') {
                 message = 'Choose the Stud Hole count';
-            } else if (this.state.currentFilter === 'shwid') {
+            } else if (currentFilter === 'shwid') {
                 message = 'Choose the shoe width';
-            } else if (this.state.currentFilter === 'szdia') {
+            } else if (currentFilter === 'szdia') {
                 message = 'Choose the brake diameter';
             }
 
@@ -118,7 +150,7 @@ class ReplacementDrumFilter extends Component {
             )
         }
 
-        if (this.state.currentFilter === 'tmake') {
+        if (currentFilter === 'tmake' && !isResult) {
             return (
                 <div className="grid-container main-content replacement-drum">
                     <h1>Choose the truck make</h1>
@@ -139,7 +171,7 @@ class ReplacementDrumFilter extends Component {
             )
         }
 
-        if (this.state.currentFilter === 'axpos') {
+        if (currentFilter === 'axpos' && !isResult) {
             return (
                 <div className="grid-container main-content replacement-drum">
                     <h1>Choose the tractor axle position</h1>
@@ -161,7 +193,11 @@ class ReplacementDrumFilter extends Component {
         }
 
         return (
-            <DrumResult drumResult={drumFilterValue} />
+            <div>
+                {
+                    isResult ? <DrumResult drumResult={drumFilterValue} /> : <div />
+                }
+            </div>
         )
     }
 };
