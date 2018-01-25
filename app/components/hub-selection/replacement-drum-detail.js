@@ -99,21 +99,25 @@ class ReplacementDrumDetail extends React.Component {
 										</tbody>
 									</table>
 								</div>
-
-								<div className="specs mb-3">
-									<h2>Notes</h2>
-									<table>
-										<tbody>
-										{
-											item.Notes.map((n, index) => {
-												return (
-													<tr key={index}><td>{n}</td></tr>
-												)
-											})
-										}
-										</tbody>
-									</table>
-								</div>
+                                {
+                                    item.Notes && item.Notes.length ?
+                                        <div className="specs mb-3">
+                                            <h2>Notes</h2>
+                                            <table>
+                                                <tbody>
+                                                {
+                                                    item.Notes.map((n, index) => {
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td>{n}</td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                }
+                                                </tbody>
+                                            </table>
+                                        </div> : ''
+                                }
 
                                 {
                                     item.Interchanges && item.Interchanges.length ?

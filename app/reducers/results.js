@@ -150,7 +150,8 @@ export function results(state = RESULTS, action) {
             });
         case RESET_DRUM_FILTER:
             return Object.assign({}, state, {
-                currentFilter: ''
+                currentFilter: '',
+                drumFilterValue: []
             });
         case HUB_ASSEMBLY_FILTERS:
             return Object.assign({}, state, {

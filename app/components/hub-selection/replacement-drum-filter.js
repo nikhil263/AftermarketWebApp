@@ -17,11 +17,13 @@ class ReplacementDrumFilter extends Component {
             urlParams: '',
             isResult: false,
             skipFilter: {},
+            filterClicked: false,
         };
     }
 
     componentWillMount(){
         const { dispatch } = this.props;
+        dispatch(resetDrumFilter());
         dispatch(fetchDrumFilterCategories());
     }
 
@@ -50,18 +52,12 @@ class ReplacementDrumFilter extends Component {
 
         if (drumFilters.length && !params.currentFilter) {
             dispatch(pushPath('/hub-selection/replacement-drum/filter/'+this.state.filters[1]));
+            this.state.skipFilter = []; // when back button is pressed
         } else if (params.currentFilter !== this.state.currentFilter) {
             if (results.currentFilter !== 'brnum' || !isResult) {
-                let url = filterParams;
 
-                if (skipFilter !== undefined) {
-                    const skippedFilter = Object.keys(skipFilter);
-                    if (skippedFilter.length) {
-                        url += '&'+skippedFilter.map((key) => key+'='+skipFilter[key]).join('&');
-                    }
-                }
 
-                dispatch(fetchDrumFilterValues(params.currentFilter, url));
+                dispatch(fetchDrumFilterValues(params.currentFilter, filterParams));
                 this.state.currentFilter = params.currentFilter;
             }
 
@@ -72,6 +68,7 @@ class ReplacementDrumFilter extends Component {
             if (currentFilter === 'bcdia') {
                 dispatch(fetchDrumFilterValues(filters[0], filterParams));
             }
+            this.state.filterClicked = false;
         } else if (drumFilterValue.length === 1 && results.isFilterValueSingle && currentFilter && drumFilters.length) {
             const index = filters.indexOf(results.currentFilter);
             const id = drumFilterValue[0].Id !== undefined ? drumFilterValue[0].Id : drumFilterValue[0];
@@ -84,9 +81,13 @@ class ReplacementDrumFilter extends Component {
                 dispatch(fetchDrumFilterValues(filters[0], this.state.url));
                 this.state.currentFilter = 'brnum';
                 this.state.isResult = true;
+                this.state.skipFilter = [];
             } else {
                 this.state.url += '&'+filters[index]+'='+id;
-                this.state.skipFilter = {...skipFilter, [filters[index]]: id};
+                if (this.state.filterClicked) {
+                    this.state.skipFilter = {...skipFilter, [filters[index]]: id};
+                }
+                this.state.filterClicked = false;
                 dispatch(fetchDrumFilterValues(filters[index + 1], this.state.url, false));
             }
         }
@@ -95,11 +96,21 @@ class ReplacementDrumFilter extends Component {
     handleFilterClick(id) {
         const { dispatch, results } = this.props;
         const { currentFilter } = results;
-        const { filters, urlParams } = this.state;
+        const { filters, urlParams, skipFilter} = this.state;
         const index = currentFilter === 'bcdia' ? -1 : filters.indexOf(currentFilter);
-
+        this.state.filterClicked = true;
         this.state.urlParams += urlParams === '' ? currentFilter+'='+id : '&'+currentFilter+'='+id;
-        dispatch(pushPath('/hub-selection/replacement-drum/filter/'+filters[index + 1]+'/'+this.state.urlParams));
+
+        let url = this.state.urlParams;
+        if (skipFilter !== undefined) {
+            const skippedFilter = Object.keys(skipFilter);
+            if (skippedFilter.length) {
+                url += '&'+skippedFilter.map((key) => key+'='+skipFilter[key]).join('&');
+            }
+            this.state.skipFilter = [];
+         }
+
+        dispatch(pushPath('/hub-selection/replacement-drum/filter/'+filters[index + 1]+'/'+url));
     }
 
     componentDidUpdate() {
@@ -114,16 +125,13 @@ class ReplacementDrumFilter extends Component {
         if (results.isFetching) {
             return (<Waiting />)
         }
-
-        if (currentFilter === 'bcdia' || currentFilter === 'pidia' || currentFilter === 'holes' || currentFilter === 'shwid' || currentFilter === 'szdia' && currentFilter !== 'brnum' && !isResult) {
+        if (currentFilter === 'bcdia' || currentFilter === 'pidia' || currentFilter === 'shwid' || currentFilter === 'szdia' && currentFilter !== 'brnum' && !isResult) {
             let message = '';
 
             if (currentFilter === 'pidia') {
                 message = 'Choose the pilot diameter system';
             } else if (currentFilter === 'bcdia') {
                 message = 'Choose the bolt circle diameter';
-            } else if (currentFilter === 'holes') {
-                message = 'Choose the Stud Hole count';
             } else if (currentFilter === 'shwid') {
                 message = 'Choose the shoe width';
             } else if (currentFilter === 'szdia') {
@@ -133,6 +141,27 @@ class ReplacementDrumFilter extends Component {
             return (
                 <div className="grid-container main-content replacement-drum">
                     <h1>{message}</h1>
+                    <div className="grid-content">
+                        {drumFilterValue.map((item) => {
+                            return (
+                                <div className="small-12" key={item}>
+                                    <div className="conmet-button">
+                                        <button className="yes-no-button bold" onClick={() => this.handleFilterClick(item)}>
+                                            ⌀ {item} inch
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            )
+        }
+
+        if (currentFilter === 'holes') {
+            return (
+                <div className="grid-container main-content replacement-drum">
+                    <h1>Choose the Stud Hole count</h1>
                     <div className="grid-content">
                         {drumFilterValue.map((item) => {
                             return (
@@ -150,7 +179,7 @@ class ReplacementDrumFilter extends Component {
             )
         }
 
-        if (currentFilter === 'tmake' && !isResult) {
+        if (currentFilter === 'tmake' && currentFilter !== 'brnum' && !isResult) {
             return (
                 <div className="grid-container main-content replacement-drum">
                     <h1>Choose the truck make</h1>
@@ -171,7 +200,7 @@ class ReplacementDrumFilter extends Component {
             )
         }
 
-        if (currentFilter === 'axpos' && !isResult) {
+        if (currentFilter === 'axpos' && currentFilter !== 'brnum' && !isResult) {
             return (
                 <div className="grid-container main-content replacement-drum">
                     <h1>Choose the tractor axle position</h1>
