@@ -10,10 +10,10 @@ const NEXT_FILTER_PATH = '/hub-selection/hub-type'
 
 class Result extends Component {
 	render () {
-	 var { result, active, onClick } = this.props
-	 var className = 'general-button'
+	 var { result, active, onClick, resultLength } = this.props;
+	 var className = resultLength === 2 ? "grid-content small-6" : "grid-content small-12";
 	 return (
-		 <div className="grid-content small-12">
+		 <div className={className}>
 			 <img className="product-image"  src={IMAGE_CDN+result.ImageGuid+'.png'} alt={result.Name} width="200" height="200" />
 		 <div className={active()}>
  			<button className="yes-no-button" onClick={onClick}>
@@ -45,7 +45,7 @@ class BrakeRotorType extends Component {
 					{app.filterResults.map((result, index) => {
 						var boundClick = setFilter.bind(this, FILTERIDX, {abrty: result.Id}, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
-						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick}/>
+						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick} resultLength={app.filterResults.length} />
 					})}
 				</div>
 			</div>
