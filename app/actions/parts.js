@@ -4,11 +4,10 @@ import {
 	ZERO_RESULTS,
 	RECIEVE_PARTS,
 	REQUEST_PARTS,
-	INVALIDATE_PARTS
-} from '../config/constants'
-import _ from 'lodash'
-import fetch from 'isomorphic-fetch'
-import { pushPath } from 'redux-simple-router'
+	INVALIDATE_PARTS,
+    REBUILD_KIT_DETAILS
+} from '../config/constants';
+import fetch from 'isomorphic-fetch';
 
 
 export const requestParts = (hubId) => {
@@ -79,6 +78,30 @@ export const fetchPartsWithPartTypeId = (hubId,partTypeId) => {
                 }
             )
             .then(json => {dispatch(receiveParts(hubId, json));})
+    }
+};
+
+export const fetchRebuildKitDetails = (id) => {
+    return dispatch => {
+        let url = API+'/presetpresetplushubrebuildkitdetails/'+id;
+        console.log(id, url);
+        return fetch(url, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            }
+        ).then(json => dispatch({
+            type: REBUILD_KIT_DETAILS,
+            data: json,
+            id: id,
+        }))
     }
 };
 
