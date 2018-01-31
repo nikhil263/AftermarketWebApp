@@ -1,16 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router';
 import Waiting from 'components/global/waiting';
 import { fetchDrumDetail } from 'actions';
 import NoResults from '../global/no-result';
 import { IMAGE_CDN } from 'config/constants';
 
 class ReplacementDrumDetail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.getData = this.getData.bind(this);
+
+        this.state = {
+          drumId: null,
+        };
+    }
 
     componentWillMount() {
-        const {dispatch, params} = this.props;
+        const {params} = this.props;
         if (params.id) {
-            dispatch(fetchDrumDetail(params.id));
+            this.setState({ drumId: params.id });
+            this.getData(params.id);
+        }
+    }
+
+    getData(id) {
+        const {dispatch} = this.props;
+        dispatch(fetchDrumDetail(id));
+    }
+
+    componentWillReceiveProps(newProps) {
+        const {params} = newProps;
+        if (params.id && this.state.drumId !== params.id) {
+            this.setState({ drumId: params.id });
+            this.getData(params.id);
         }
     }
 
@@ -53,35 +76,35 @@ class ReplacementDrumDetail extends React.Component {
 												<td>{item.BrakeDrumType}</td>
 											</tr>
 											<tr>
-												<td>Size - Diameter</td>
+                                                <td><span className="badge">A</span>Size - Diameter</td>
 												<td>Ø {item.BrakeSizeDiameterInch} inch</td>
 											</tr>
 											<tr>
-												<td>Shoe Width</td>
+                                                <td><span className="badge">B</span>Shoe Width</td>
 												<td>{item.BrakeSizeWidthInch} inch</td>
 											</tr>
 											<tr>
-												<td>Pilot Diameter</td>
+                                                <td><span className="badge">C</span>Pilot Diameter</td>
 												<td>Ø {item.PilotDiameterInch} inch</td>
 											</tr>
 											<tr>
-												<td>Overall Depth</td>
+                                                <td><span className="badge">D</span>Overall Depth</td>
 												<td>{item.DepthInch} inch</td>
 											</tr>
 											<tr>
-												<td>Surface - Width</td>
+                                                <td><span className="badge">E</span>Surface - Width</td>
 												<td>{item.DrumSurfaceWidthInch} inch</td>
 											</tr>
 											<tr>
-												<td>Flange Thickness</td>
+                                                <td><span className="badge">F</span>Flange Thickness</td>
 												<td>{item.ThicknessInch} inch</td>
 											</tr>
 											<tr>
-												<td>Bolt Circle Diameter</td>
+                                                <td><span className="badge">G</span>Bolt Circle Diameter</td>
 												<td>Ø{item.BoltCircleDiameterInch} inch</td>
 											</tr>
 											<tr>
-												<td>Bolt Hole Diameter</td>
+                                                <td><span className="badge">H</span>Bolt Hole Diameter</td>
 												<td>Ø{item.BoltHoleDiameterInch} inch</td>
 											</tr>
 											<tr>
@@ -134,7 +157,7 @@ class ReplacementDrumDetail extends React.Component {
                                                 item.Interchanges.map((item, index) => {
                                                     return (
                                                         <tr key={`${index} ${item.BrakeDrumNumber}`}>
-                                                            <td>{item.BrakeDrumNumber}</td>
+                                                            <td><Link to={"/hub-selection/replacement-drum/drumdetails/"+item.BrakeDrumNumber}>{item.BrakeDrumNumber}</Link></td>
                                                             <td>{item.Type}</td>
                                                             <td>{item.WeightPound} pound</td>
                                                             <td>{item.IsBestMatch ? 'Best Match' : ''}</td>
