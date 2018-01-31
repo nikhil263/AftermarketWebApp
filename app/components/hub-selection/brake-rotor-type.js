@@ -40,7 +40,7 @@ class BrakeRotorType extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Aftermarket Brake Rotor Type</h1>
+				<h1>Choose the Brake Rotor Type</h1>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
 						var boundClick = setFilter.bind(this, FILTERIDX, {abrty: result.Id}, app);
