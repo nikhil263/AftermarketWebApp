@@ -46,7 +46,7 @@ export default class extends Component {
 						</tr>
 						{
 							parts['AftermarketParts'] && parts['AftermarketParts'].length ?
-							<tr><td>Replacement Rotor Kit</td><td>{parts["AftermarketParts"][0]["PartNumber"]}</td></tr> : ''
+							<tr><td>Replacement Rotor Kit</td><td>{parts["AftermarketParts"][0]["PartNumber"]}</td></tr> : null
 						}
 						<tr>
 							<td>Hub Mounting System</td>
@@ -68,6 +68,14 @@ export default class extends Component {
 							<td>Weight (lbs.)</td>
 							<td>{result.WeightPound}</td>
 						</tr>
+						{
+                            result.ConventionalHubNumber ? (
+								<tr>
+									<td>Conventional Hub Option</td>
+									<td>{result.ConventionalHubNumber}</td>
+								</tr>
+							) : null
+						}
 						</tbody>
 					</table>
 				</div>
