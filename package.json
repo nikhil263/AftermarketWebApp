@@ -8,7 +8,7 @@
     "dev": "rm -rf public/index.html && webpack-dev-server --config webpack.config.js --port 3005 --colors --hot",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
-    "deploy": "rm -rf public/index.html && webpack -p --config webpack.production.config.js"
+    "deploy": "webpack -p --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
@@ -58,7 +58,7 @@
     "history": "^1.13.1",
     "isomorphic-fetch": "^2.2.0",
     "lodash": "^3.10.1",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.7.2",
     "object-assign": "^2.1.1",
     "open-iconic": "^1.1.1",
     "react": "0.14.9",
