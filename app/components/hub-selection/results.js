@@ -83,7 +83,14 @@ class Results extends Component {
                     let spindleNut = "";
                     if(this.state.newResults.spindleNut !== undefined){
                         this.state.newResults.spindleNut[0].AftermarketParts.map((item, id)=>{
-                            spindleNut += (id + 1 === this.state.newResults.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                            let washer_description = '';
+                            if (item.TypeId === 226) {
+                                washer_description = ' (D Flat)';
+                            } else if (item.TypeId === 227) {
+                                washer_description = ' (Keyway)';
+                            }
+
+                            spindleNut += (id + 1 === this.state.newResults.spindleNut[0].AftermarketParts.length ? item.PartNumber+(washer_description) : item.PartNumber+(washer_description)+",");
                         });
                         this.setState({spindleNut: spindleNut});
                     }
