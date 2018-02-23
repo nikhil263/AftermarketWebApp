@@ -46,7 +46,7 @@ class DrumResult extends React.Component {
 										<p className="brake-type">{item.BrakeType}</p>
 										<div className="number">{item.BrakeDrumNumber}</div>
 										<img className="product-image"  src={require('../../images/blank1x1.png')} style={{background: "url('"+IMAGE_CDN+item.Images[0].ImageGuid+'.png'+"') center center no-repeat"}} alt={item.HubAssemblyNumber} />
-										<div className="weight">Weight: {item.WeightPound} pound</div>
+										<div className="weight">Weight: {item.WeightPound} Lbs</div>
 										<div className="seal-nut">Ball Seat Nut Compatible: {item.IsBsnCompatible ? 'Yes' : 'No'}</div>
 										<Link to={'/hub-selection/replacement-drum/drumdetails/'+item.BrakeDrumNumber} className="general-button">See Details</Link>
 										<div className="note">{item.Notes}</div>
@@ -78,7 +78,7 @@ class DrumResult extends React.Component {
                                     })
                                 }
 								<p>{data.Notes}</p>
-								<p>Weight: {data.WeightPound} pound</p>
+								<p>Weight: {data.WeightPound} Lbs</p>
 								<p>Ball Seat Nut Compatible: {data.IsBsnCompatible ? 'Yes' : 'No'}</p>
 								<Link to={'/hub-selection/replacement-drum/drumdetails/'+data.BrakeDrumNumber} className="general-button">See Details</Link>
 								<div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>

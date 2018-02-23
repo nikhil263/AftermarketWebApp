@@ -117,7 +117,7 @@ class ReplacementDrumDetail extends React.Component {
 											</tr>
 											<tr>
 												<td>Weight (lbs.)</td>
-												<td>{item.WeightPound} pound</td>
+												<td>{item.WeightPound} Lbs</td>
 											</tr>
 										</tbody>
 									</table>
@@ -159,7 +159,7 @@ class ReplacementDrumDetail extends React.Component {
                                                         <tr key={`${index} ${item.BrakeDrumNumber}`}>
                                                             <td><Link to={"/hub-selection/replacement-drum/drumdetails/"+item.BrakeDrumNumber}>{item.BrakeDrumNumber}</Link></td>
                                                             <td>{item.Type}</td>
-                                                            <td>{item.WeightPound} pound</td>
+                                                            <td>{item.WeightPound} Lbs</td>
                                                             <td>{item.IsBestMatch ? 'Best Match' : ''}</td>
                                                             <td>{item.IsBsnCompatible ? 'Yes' : 'No'}</td>
                                                         </tr>

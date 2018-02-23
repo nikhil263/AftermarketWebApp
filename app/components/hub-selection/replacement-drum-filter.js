@@ -129,7 +129,7 @@ class ReplacementDrumFilter extends Component {
             let message = '';
 
             if (currentFilter === 'pidia') {
-                message = 'Choose the pilot diameter system';
+                message = 'Choose the pilot diameter';
             } else if (currentFilter === 'bcdia') {
                 message = 'Choose the bolt circle diameter';
             } else if (currentFilter === 'shwid') {
