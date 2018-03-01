@@ -20,7 +20,7 @@ export default class extends Component {
 		if (location.pathname === '/hub-selection') {
 			link = null
 		}
-        if (window.location.pathname.indexOf('/replacement-drum') > -1) {
+        if (window.location.pathname.indexOf('/replacement-drum') > -1 || window.location.pathname.indexOf('/replacement-rotor') > -1) {
             link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
         }
 		else if (!app || app.currentIndex === 0) {

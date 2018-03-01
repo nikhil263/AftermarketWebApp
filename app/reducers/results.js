@@ -25,9 +25,11 @@ import {
     DRUM_FILTER_VALUES,
     REQUEST_DRUMS,
     RESET_DRUM_FILTER,
+    ROTOR_NUMBER_DATA,
     DRUM_FILTER_CATEGORIES
 } from '../config/constants'
 import _ from 'lodash'
+import {ROTOR_DETAILS, ROTOR_FILTER_CATEGORIES, ROTOR_FILTER_VALUES, ROTOR_RESULT} from "config/constants";
 
 const mergeInDetails = (assemblies = []) => {
 
@@ -126,9 +128,33 @@ export function results(state = RESULTS, action) {
                 drumNumber: drumNumber,
                 isFetching: false
             });
+		case ROTOR_NUMBER_DATA:
+            return Object.assign({}, state, {
+                rotorNumber: action.rotorNumber,
+                isFetching: false
+            });
+        case ROTOR_RESULT: {
+            if (action.data.Status === 'ZERO_RESULTS') {
+                return Object.assign({}, state, {
+                    isFetching: false,
+                    isZeroResults: true,
+                });
+            }
+
+            return Object.assign({}, state, {
+                rotorResult: action.data.Results,
+                isFetching: false,
+                isZeroResults: false,
+            });
+        }
         case DRUM_DETAILS:
             return Object.assign({}, state, {
             	drumDetail: action.data.Results,
+                isFetching: false
+            });
+        case ROTOR_DETAILS:
+            return Object.assign({}, state, {
+                rotorDetail: action.data.Results,
                 isFetching: false
             });
 		case DRUM_FILTER_CATEGORIES:
@@ -136,9 +162,20 @@ export function results(state = RESULTS, action) {
                 drumFilters: action.data,
                 isFetching: false
             });
+        case ROTOR_FILTER_CATEGORIES:
+            return Object.assign({}, state, {
+                rotorFilters: action.data,
+                isFetching: false
+            });
         case DRUM_FILTER_VALUES:
             return Object.assign({}, state, {
                 drumFilterValue: action.data.Results,
+                isFetching: false,
+                isFilterValueSingle: true
+            });
+        case ROTOR_FILTER_VALUES:
+            return Object.assign({}, state, {
+                rotorFilterValue: action.data.Results,
                 isFetching: false,
                 isFilterValueSingle: true
             });

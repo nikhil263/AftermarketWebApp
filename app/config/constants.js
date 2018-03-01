@@ -26,13 +26,18 @@ export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
 export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
 export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
 export const DRUM_RESULT='DRUM_RESULT';
+export const ROTOR_RESULT='ROTOR_RESULT';
 export const DRUM_DETAILS='DRUM_DETAILS';
+export const ROTOR_DETAILS='ROTOR_DETAILS';
 export const ASSEMBLY_NUMBER_DATA='ASSEMBLY_NUMBER_DATA';
 export const DRUM_NUMBER_DATA='DRUM_NUMBER_DATA';
+export const ROTOR_NUMBER_DATA='ROTOR_NUMBER_DATA';
 export const DRUM_FILTER_CATEGORIES='DRUM_FILTER_CATEGORIES';
+export const ROTOR_FILTER_CATEGORIES='ROTOR_FILTER_CATEGORIES';
 export const HUB_ASSEMBLY_FILTERS='HUB_ASSEMBLY_FILTERS';
 export const HUB_ASSEMBLY_FILTER_VALUE='HUB_ASSEMBLY_FILTER_VALUE';
 export const DRUM_FILTER_VALUES='DRUM_FILTER_VALUES';
+export const ROTOR_FILTER_VALUES='ROTOR_FILTER_VALUES';
 export const RECEIVE_HUBS_CROSS_API='RECEIVE_HUBS_CROSS_API';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
 export const OPTIONAL_SPINDLE_NUT='OPTIONAL_SPINDLE_NUT';
@@ -108,6 +113,11 @@ export const RESULTS = {
 	total: 0,
 	selected: {},
 	assemblyNumber: [],
+    rotorNumber: [],
+    rotorResult: [],
+    rotorDetail: [],
+    rotorFilters: [],
+    rotorFilterValue: [],
 	drumNumber: [],
 	drumResult: [],
 	drumDetail: [],
