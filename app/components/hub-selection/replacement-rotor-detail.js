@@ -75,7 +75,7 @@ class ReplacementRotorDetail extends React.Component {
 												<td>Ø {item.OverallLength} inch</td>
 											</tr>
 											<tr>
-                                                <td><span className="badge">B</span>Brake Surface Outside Diamater</td>
+                                                <td><span className="badge">B</span>Brake Surface Outside Diameter</td>
 												<td>Ø{item.BrakeSurfaceOutsideDiamater} inch</td>
 											</tr>
                                             <tr>

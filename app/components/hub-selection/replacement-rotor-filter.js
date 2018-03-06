@@ -3,6 +3,7 @@ import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
 import { fetchRotorFilterValues, fetchRotorFilterCategories, resetDrumFilter } from 'actions';
 import Waiting from 'components/global/waiting';
+import { IMAGE_CDN } from 'config/constants';
 import RotorResult from './rotorResult';
 
 class ReplacementRotorFilter extends Component {
@@ -115,18 +116,10 @@ class ReplacementRotorFilter extends Component {
             return (<Waiting />)
         }
 
-        if (currentFilter === 'brtyp' || currentFilter === 'axpos' && (rotorFilterValue !== undefined)) {
-            let message = '';
-
-            if (currentFilter === 'brtyp') {
-                message = 'Choose the brake rotor type';
-            } else if (currentFilter === 'axpos') {
-                message = 'Choose the Axle position';
-            }
-
+        if (currentFilter === 'axpos' && (rotorFilterValue !== undefined)) {
             return (
                 <div className="grid-container main-content replacement-drum">
-                    <h1>{message}</h1>
+                    <h1>Choose the Axle position</h1>
                     <div className="grid-content">
                         {rotorFilterValue.map((item) => {
                             return (
@@ -144,11 +137,33 @@ class ReplacementRotorFilter extends Component {
             )
         }
 
+        if (currentFilter === 'brtyp' && (rotorFilterValue !== undefined)) {
+            return (
+                <div className="grid-container main-content replacement-drum">
+                    <h1>Choose the brake rotor type</h1>
+                    <div className="grid-block">
+                        {rotorFilterValue.map((item) => {
+                            return (
+                                <div className="grid-content small-6" key={currentFilter+item.Id}>
+                                    <img className="product-image"  src={IMAGE_CDN+item.ImageGuid+'.png'} alt={item.Name} width="200" height="200" />
+                                    <div className="conmet-button">
+                                        <button className="yes-no-button bold" onClick={() => this.handleFilterClick(item.Id)}>
+                                            {item.Name}
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            )
+        }
+
         if (currentFilter === 'bsdia' || currentFilter === 'ovlgt' && (rotorFilterValue !== undefined)) {
             let message = '';
 
             if (currentFilter === 'bsdia') {
-                message = 'Choose the Brake Surface Outside Diamater';
+                message = 'Choose the Brake Surface Outside Diameter';
             } else if (currentFilter === 'ovlgt') {
                 message = 'Choose the overall length';
             }
