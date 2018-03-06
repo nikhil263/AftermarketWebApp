@@ -16,29 +16,32 @@ export default class extends Component {
 	render() {
 		const { onClick, app, params, history } = this.props
 		let link = <a href="javascript:void(0)" onClick={onClick} className="back-btn"> <i className="icon-angle-left"></i>Back</a>
+		const pathName = window.location.pathname;
 
 		if (location.pathname === '/hub-selection') {
 			link = null
 		}
-        if (window.location.pathname.indexOf('/replacement-drum') > -1 || window.location.pathname.indexOf('/replacement-rotor') > -1) {
+
+		if (pathName.indexOf('/replacement-drum/filter/axpos') > -1 || pathName.indexOf('/replacement-rotor/filter/brtyp') > -1) {
+            link = <a href="javascript:void(0)" onClick={() => window.history.go(-2)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
+		} else if (pathName.indexOf('/replacement-drum') > -1 || pathName.indexOf('/replacement-rotor') > -1) {
             link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
-        }
-		else if (!app || app.currentIndex === 0) {
+        } else if (!app || app.currentIndex === 0) {
 			link = <Link to="/hub-selection" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
 		}
-		if (window.location.pathname.indexOf('/search/') > -1) {
+		if (pathName.indexOf('/search/') > -1) {
 			link = <Link to="/hub-selection/search" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
 		}
-		if (window.location.pathname.indexOf('/hub-selection/search/') > -1) {
+		if (pathName.indexOf('/hub-selection/search/') > -1) {
 			link = <Link to="/hub-selection/search" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
 		}
-		if (window.location.pathname.indexOf('/parts/search/') > -1) {
+		if (pathName.indexOf('/parts/search/') > -1) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
-		if (window.location.pathname.indexOf('/details/') > -1) {
+		if (pathName.indexOf('/details/') > -1) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
-		if ((window.location.pathname.indexOf('/help') > -1) || (window.location.pathname.indexOf('/disclaimer') > -1) || (window.location.pathname.indexOf('/filters') > -1)) {
+		if ((pathName.indexOf('/help') > -1) || (pathName.indexOf('/disclaimer') > -1) || (pathName.indexOf('/filters') > -1)) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
 
