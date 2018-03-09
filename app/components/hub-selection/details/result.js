@@ -117,7 +117,7 @@ class HubSingleResult extends Component {
     let spindleNut = this.props.spindleNut;
 	return (
 		<div>
-			<h1>Success! The following ConMet hub is recommended</h1>
+			<h1>Success! The following hub is recommended</h1>
             {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : '' }
 			<div className="result">
 				<PreviousButton

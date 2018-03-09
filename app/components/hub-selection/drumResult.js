@@ -37,7 +37,7 @@ class DrumResult extends React.Component {
         if((drumResult.length > 0) && (drumResult.length === 2)) {
             return (
 				<div className="grid-container main-content" id="hubAssemblyResult">
-					<h1>Success! The following ConMet Drum is recommended</h1>
+					<h1>Success! The following drum is recommended</h1>
 					<div className="grid-content flex-row">
 						{
 							drumResult.map((item, index) => {
@@ -63,20 +63,22 @@ class DrumResult extends React.Component {
 			const data = drumResult[this.state.selectedIndex];
             return (
 				<div>
-                    <h1>Success! The following ConMet Drum is recommended</h1>
+                    <h1>Success! The following drum is recommended</h1>
 					<div className="result">
 						<div className={classNames("prev-button", { 'hide-button': ((drumResult.length <= 1) || (this.state.selectedIndex === 0)) })} onClick={this.prevData}>
 							<i className="icon-angle-left" />
 						</div>
 						{
 							<div className="details">
-								<p>{data.BrakeType}</p>
-								<h4>{data.BrakeDrumNumber}</h4>
                                 {
                                     data.Images.map((image, index) => {
                                         return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={data.BrakeDrumNumber} width="200" height="200" />
                                     })
                                 }
+                                <h2>
+                                    <div>{data.BrakeType}</div>
+                                    <div>{data.BrakeDrumNumber}</div>
+								</h2>
 								<p>{data.Notes}</p>
 								<p>Weight: {data.WeightPound} Lbs</p>
 								<p>Ball Seat Nut Compatible: {data.IsBsnCompatible ? 'Yes' : 'No'}</p>
