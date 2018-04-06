@@ -37,6 +37,7 @@ export const ROTOR_FILTER_CATEGORIES='ROTOR_FILTER_CATEGORIES';
 export const HUB_ASSEMBLY_FILTERS='HUB_ASSEMBLY_FILTERS';
 export const HUB_ASSEMBLY_FILTER_VALUE='HUB_ASSEMBLY_FILTER_VALUE';
 export const DRUM_FILTER_VALUES='DRUM_FILTER_VALUES';
+export const SELECTED_ROTOR_NUMBER='SELECTED_ROTOR_NUMBER';
 export const ROTOR_FILTER_VALUES='ROTOR_FILTER_VALUES';
 export const RECEIVE_HUBS_CROSS_API='RECEIVE_HUBS_CROSS_API';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
@@ -113,6 +114,7 @@ export const RESULTS = {
 	total: 0,
 	selected: {},
 	assemblyNumber: [],
+	selectedRotorNumber: '',
     rotorNumber: [],
     rotorResult: [],
     rotorDetail: [],

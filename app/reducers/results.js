@@ -26,7 +26,8 @@ import {
     REQUEST_DRUMS,
     RESET_DRUM_FILTER,
     ROTOR_NUMBER_DATA,
-    DRUM_FILTER_CATEGORIES
+    DRUM_FILTER_CATEGORIES,
+    SELECTED_ROTOR_NUMBER
 } from '../config/constants'
 import _ from 'lodash'
 import {ROTOR_DETAILS, ROTOR_FILTER_CATEGORIES, ROTOR_FILTER_VALUES, ROTOR_RESULT} from "config/constants";
@@ -136,6 +137,7 @@ export function results(state = RESULTS, action) {
         case ROTOR_RESULT: {
             if (action.data.Status === 'ZERO_RESULTS') {
                 return Object.assign({}, state, {
+                    rotorResult: [],
                     isFetching: false,
                     isZeroResults: true,
                 });
@@ -178,6 +180,11 @@ export function results(state = RESULTS, action) {
                 rotorFilterValue: action.data.Results,
                 isFetching: false,
                 isFilterValueSingle: true
+            });
+        case SELECTED_ROTOR_NUMBER:
+            console.log(action);
+            return Object.assign({}, state, {
+                selectedRotorNumber: action.rotorNumber
             });
         case REQUEST_DRUMS:
             return Object.assign({}, state, {

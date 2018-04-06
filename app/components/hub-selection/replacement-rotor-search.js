@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import {connect} from 'react-redux';
-import { fetchRotorNumber } from 'actions';
+import { fetchRotorNumber, saveBrakeRotorNumber } from 'actions';
 import { pushPath } from 'redux-simple-router';
 import Autocomplete from 'react-autocomplete';
 
@@ -18,13 +18,17 @@ class ReplacementRotorSearch extends Component {
 
     doSearch(e){
         e.preventDefault();
-        if (this.state.rotorNumber[0] === 1 && this.state.rotorNumber[0].CompetitorBrakeRotorId) {
-            this.hubAssemblyFilters(this.state.rotorNumber[0].CompetitorBrakeRotorId);
+        if (this.state.rotorNumber.length === 1 && this.state.rotorNumber[0].CompetitorBrakeRotorId) {
+            this.hubAssemblyFilters(this.state.rotorNumber[0]);
         }
     }
 
-    hubAssemblyFilters(id){
-        this.props.dispatch(pushPath('/hub-selection/replacement-rotor/recommended-rotors/'+id));
+    hubAssemblyFilters(data){
+        const { dispatch } = this.props;
+        dispatch(saveBrakeRotorNumber(data.BrakeRotorNumber));
+        setTimeout(() => {
+            dispatch(pushPath('/hub-selection/replacement-rotor/recommended-rotors/'+data.CompetitorBrakeRotorId));
+        }, 100);
     }
 
     render() {
@@ -39,8 +43,7 @@ class ReplacementRotorSearch extends Component {
                         items={this.state.rotorNumber}
                         getItemValue={(item) => item.Competitor+' '+item.BrakeRotorNumber}
                         onSelect={(value, state) => {
-                            this.hubAssemblyFilters(state.CompetitorBrakeRotorId);
-                            this.setState({ value, rotorNumber: [state] })
+                            this.hubAssemblyFilters(state);
                         }}
                         onChange={(event, value) => {
                             this.setState({value, rotorNumber : [], loading: true });

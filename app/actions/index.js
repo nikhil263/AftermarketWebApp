@@ -206,6 +206,13 @@ export const fetchDrumFilterValues = (filtername, filtervalues, isFilterValueSin
     }
 };
 
+export const saveBrakeRotorNumber = (rotorNumber) => {
+    return {
+        type: constants.SELECTED_ROTOR_NUMBER,
+        rotorNumber: rotorNumber
+    }
+};
+
 export const fetchRotorFilterValues = (filtername, filtervalues, isFilterValueSingle = true) => {
     return dispatch => {
         dispatch(requestDrums(filtername, isFilterValueSingle));

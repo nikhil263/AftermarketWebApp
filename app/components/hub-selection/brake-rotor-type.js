@@ -1,55 +1,109 @@
 import React, { PropTypes, Component } from 'react';
-import HubSelection from 'components/hub-selection';
-import { pushPath } from 'redux-simple-router'
-import { connect } from 'react-redux'
-import Spinner from 'components/global/spinner'
-import { setActiveFilterValue, fetchFilters } from 'actions/filters'
-import { IMAGE_CDN } from 'config/constants'
-const FILTERIDX=11
-const NEXT_FILTER_PATH = '/hub-selection/hub-type'
+import { connect } from 'react-redux';
+import Spinner from 'components/global/spinner';
+import { fetchFilters } from 'actions/filters';
+import { IMAGE_CDN } from 'config/constants';
+const FILTERIDX=11;
 
 class Result extends Component {
-	render () {
-	 var { result, active, onClick, resultLength } = this.props;
-	 var className = resultLength === 2 ? "grid-content small-6" : "grid-content small-12";
-	 return (
-		 <div className={className}>
-			 <img className="product-image"  src={IMAGE_CDN+result.ImageGuid+'.png'} alt={result.Name} width="200" height="200" />
-		 <div className={active()}>
- 			<button className="yes-no-button" onClick={onClick}>
- 				<strong>{result.Name}</strong>
-			</button>
- 		</div>
-		</div>
+    render () {
+        var { result, active, onClick, resultLength, app } = this.props;
+        var className = resultLength === 2 ? "grid-content small-6" : "grid-content small-12";
+        return (
+            <div className={className}>
+                <img className="product-image"  src={IMAGE_CDN+result.ImageGuid+'.png'} alt={result.Name} width="200" height="200" />
+                <div className={active()}>
+                    <button className="yes-no-button" onClick={() => onClick(result)}>
+                        <strong>{result.Name}</strong>
+                    </button>
+                </div>
+            </div>
+        )
+    }
+}
 
-	 )
- 	}
+class ChooseBrakeRotorType extends Component {
+    render() {
+        const { app, setFilter } = this.props;
+        return (
+            <div>
+                <h3>
+                    For Trailer applications, ConMet Flat Rotor Assemblies are offered as a lower cost, direct-fit replacement for Bendix Splined
+                </h3>
+                <div className="text-center">
+                    <img src={require('../../images/flat-rotor.png')} />
+                </div>
+                {
+                    app.filterResults.map((result, i) => {
+                        let boundClick = setFilter.bind(this, FILTERIDX, {abrty: result.Id}, app);
+                        if (i === 0) {
+                            return (
+                                <div className="general-button" onClick={boundClick}>
+                                    See ConMet Flat
+                                </div>
+                            );
+                        }
+                        return <div className="general-button" onClick={boundClick}>Continue to Bendix Splined</div>
+                    })
+                }
+            </div>
+        )
+    }
 }
 
 class BrakeRotorType extends Component {
+    constructor() {
+        super();
+        this.state = {
+            showSplined: false,
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-	componentDidMount() {
-		const { dispatch, app, checkForReload } = this.props
-		dispatch(fetchFilters(FILTERIDX, app))
-	}
+    componentDidMount() {
+        const { dispatch, app } = this.props;
+        dispatch(fetchFilters(FILTERIDX, app));
+    }
 
-	render() {
-		const { app, setFilter, setActive } = this.props;
-		if (app.isFetching || app.filterResults.length < 1) {
-			return <Spinner isFetching={app.isFetching} />
-		}
-		return (
-			<div className="grid-container main-content">
-				<h1>Choose the Brake Rotor Type</h1>
-				<div className="grid-block">
-					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, {abrty: result.Id}, app);
-						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
-						return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={boundClick} resultLength={app.filterResults.length} />
-					})}
-				</div>
-			</div>
-		)
-	}
+    handleClick(result) {
+        const { setFilter, app } = this.props;
+        if (result.Name && result.Name.toLowerCase() === 'splined') {
+            this.setState({ showSplined: true });
+        } else {
+            this.setState({ showSplined: false });
+            setFilter(FILTERIDX, {abrty: result.Id}, app);
+        }
+
+    }
+
+    render() {
+        const { app, setFilter, setActive } = this.props;
+        const { showSplined } = this.state;
+        if (app.isFetching || app.filterResults.length < 1) {
+            return <Spinner isFetching={app.isFetching} />
+        }
+        return (
+            <div className="grid-container main-content">
+                {
+                    showSplined ? (
+                        <ChooseBrakeRotorType
+                            app={app}
+                            setFilter={setFilter}
+                        />
+                    ) : (
+                        <div>
+                            <h1>Choose the Brake Rotor Type</h1>
+                            <div className="grid-block">
+                                {app.filterResults.map((result) => {
+                                    let boundActive = setActive.bind(this, FILTERIDX, result.Id);
+                                    return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={this.handleClick} resultLength={app.filterResults.length} />
+                                })}
+                            </div>
+                        </div>
+                    )
+                }
+            </div>
+        )
+    }
 }
 export default connect()(BrakeRotorType)
