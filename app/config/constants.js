@@ -12,6 +12,14 @@ export const INCREMENT_STEP='INCREMENT_STEP';
 export const DECREMENT_STEP='DECREMENT_STEP';
 export const RESET_APP_STATE='RESET_APP_STATE';
 
+//Truck Type
+export const TRUCK=1;
+export const TRAILER=2;
+export const DISC=2;
+export const DRUM=1;
+
+export const FILTERIDX=2;
+
 //HUBS AND ASSEMBLIES
 export const REQUEST_HUB='REQUEST_HUB';
 export const REQUEST_ASSEMBLIES='REQUEST_ASSEMBLIES'

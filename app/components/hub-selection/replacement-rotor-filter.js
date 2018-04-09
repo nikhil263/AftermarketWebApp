@@ -3,7 +3,7 @@ import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
 import { fetchRotorFilterValues, fetchRotorFilterCategories, resetDrumFilter } from 'actions';
 import Waiting from 'components/global/waiting';
-import { IMAGE_CDN } from 'config/constants';
+import { TRAILER, DRUM, IMAGE_CDN, TRUCK, FILTERIDX } from '../../config/constants';
 import RotorResult from './rotorResult';
 
 class ReplacementRotorFilter extends Component {
@@ -12,12 +12,14 @@ class ReplacementRotorFilter extends Component {
         super(props);
         this.getFilterValue = this.getFilterValue.bind(this);
         this.handleFilterClick = this.handleFilterClick.bind(this);
+        this.replacementHub = this.replacementHub.bind(this);
 
         this.state = {
             filters: [],
             urlParams: '',
             skipFilter: {},
             filterClicked: false,
+            showSplined: false,
         };
     }
 
@@ -43,7 +45,9 @@ class ReplacementRotorFilter extends Component {
         this.getFilterValue();
     }
 
-    handleFilterClick(id) {
+    handleFilterClick(item) {
+        const id = item.Id ? item.Id : item;
+        this.setState({ showSplined: (item.Name && item.Name.toLowerCase() === 'splined') });
         const { dispatch, results } = this.props;
         const { currentFilter } = results;
         const { filters, urlParams, skipFilter } = this.state;
@@ -67,7 +71,7 @@ class ReplacementRotorFilter extends Component {
         const { results, params, dispatch } = this.props;
         const { rotorFilters, rotorFilterValue } = results;
         const isResult = rotorFilterValue && rotorFilterValue[0] && rotorFilterValue[0].BrakeRotorNumber;
-        const { filters, urlParams, currentFilter, skipFilter } = this.state;
+        const { filters, urlParams, currentFilter, skipFilter, showSplined } = this.state;
         this.state.urlParams = params.filters ? params.filters : '';
 
         if (rotorFilters.length) {
@@ -80,8 +84,20 @@ class ReplacementRotorFilter extends Component {
         if (rotorFilters.length && !params.currentFilter) {
             dispatch(pushPath('/hub-selection/replacement-rotor/filter/'+this.state.filters[1]));
             this.state.skipFilter = []; // when back button is pressed
+            this.setState({ showSplined: false });
         } else if (params.currentFilter !== this.state.currentFilter) {
-            dispatch(fetchRotorFilterValues(params.currentFilter, filterParams));
+            const filters = this.paramsToObject(this.state.urlParams);
+            const splinedFilter = filters.brtyp === 6;
+            if (!showSplined) {
+                if (splinedFilter) {
+                    this.setState({ showSplined: true });
+                } else { // dispatch if not splined filter
+                    dispatch(fetchRotorFilterValues(params.currentFilter, filterParams));
+                }
+            }
+            if (!this.state.filterClicked && !splinedFilter) {
+                this.setState({ showSplined: false });
+            }
             this.state.currentFilter = params.currentFilter;
             this.state.filterClicked = false;
         } else if (rotorFilters.length && rotorFilterValue.length === 1 && !isResult && results.isFilterValueSingle) {
@@ -107,13 +123,54 @@ class ReplacementRotorFilter extends Component {
         }
     }
 
+    paramsToObject(urlParams) {
+        const params = urlParams.split('&');
+        const filters = {};
+        params.forEach((item) => {
+            const t = item.split('=');
+            filters[t[0]] = parseFloat(t[1]);
+        });
+        return filters;
+    }
+
+    replacementHub() {
+        const { app, setFilter } = this.props;
+        const { urlParams } = this.state;
+        const filters = this.paramsToObject(urlParams);
+
+        if (filters.axpos === 1 || filters.axpos === 2) {
+            setFilter(FILTERIDX, { tcomp: TRUCK, brkty: DRUM }, app);
+        }
+
+        if (filters.axpos === 3) {
+            setFilter(FILTERIDX, { tcomp: TRAILER, brkty: DRUM }, app);
+        }
+    }
+
     render() {
         const { results } = this.props;
+        const { showSplined } = this.state;
         const { rotorFilterValue, currentFilter } = results;
         const isResult = rotorFilterValue && rotorFilterValue[0] && rotorFilterValue[0].BrakeRotorNumber;
 
         if (results.isFetching) {
             return (<Waiting />)
+        }
+
+        if (showSplined) {
+            return (
+                <div className="grid-container main-content replacement-drum">
+                    <h3>
+                        ConMet Does not offer replacement rotors for Bendix Splined. Complete Hub/rotor assemblies are available.
+                    </h3>
+                    <div className="text-center">
+                        <img src={require('../../images/flat-rotor.png')} />
+                    </div>
+                    <div className="general-button" onClick={this.replacementHub}>
+                        Search Replacement Hub/Rotor Assemblies
+                    </div>
+                </div>
+            )
         }
 
         if (currentFilter === 'axpos' && (rotorFilterValue !== undefined)) {
@@ -125,7 +182,7 @@ class ReplacementRotorFilter extends Component {
                             return (
                                 <div className="small-12" key={currentFilter+item.Id}>
                                     <div className="conmet-button">
-                                        <button className="yes-no-button bold" onClick={() => this.handleFilterClick(item.Id)}>
+                                        <button className="yes-no-button bold" onClick={() => this.handleFilterClick(item)}>
                                             {item.Name}
                                         </button>
                                     </div>
@@ -147,7 +204,7 @@ class ReplacementRotorFilter extends Component {
                                 <div className="grid-content small-6" key={currentFilter+item.Id}>
                                     <img className="product-image"  src={IMAGE_CDN+item.ImageGuid+'.png'} alt={item.Name} width="200" height="200" />
                                     <div className="conmet-button">
-                                        <button className="yes-no-button bold" onClick={() => this.handleFilterClick(item.Id)}>
+                                        <button className="yes-no-button bold" onClick={() => this.handleFilterClick(item)}>
                                             {item.Name}
                                         </button>
                                     </div>
