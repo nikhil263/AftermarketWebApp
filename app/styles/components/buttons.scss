@@ -156,6 +156,10 @@
 	// 	display: inline-block;
 	// 	vertical-align: top;
 	// }
+
+	&.bold{
+		font-weight: bold;
+	}
 }
 .big-button {
 	h4 {
@@ -244,12 +248,29 @@
 		text-align: center;
 		color: $cm-mid-grey;
 		font-size: .9rem;
+		margin-bottom: 0.25rem;
 		}
 	}
 	.hide-button {
 		i {
 			color: #fff;
 		}
+	}
+	.optional-spindle{
+		display: block;
+		width: 100%;
+		margin: 9px 0;
+		font-size: 18px;
+		line-height: 22px;
+		text-align: center;
+		font-weight: bold;
+	}
+	.disclaimer{
+		font-size: 20px;
+		color: #c00000;
+		margin: 15px 0;
+		text-align: center;
+		font-weight: bold;
 	}
 }
 .result-navigation {

@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import Waiting from 'components/global/waiting'
 import { MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
 import {fetchAssembly} from 'actions/assembly'
-import {materialFilter, fetchHubs} from 'actions'
+import {materialFilter, fetchHubs, fetchHubsSpindleNut} from 'actions'
 import _ from 'lodash'
 import NoResults from '../global/no-result'
-
-import Result from './details/result'
+import Result from './details/hub-results';
+import HubSingleResult from './details/result';
 import ResultNavigation from './details/result-navigation'
 
 
@@ -48,9 +48,17 @@ class MaterialType extends Component {
 }
 
 class Results extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        	results: [],
+        	newResults: [],
+            spindleNut: ""
+        };
+    }
+
 	componentDidMount() {
-		const {dispatch, app, params} = this.props
-		// console.log(params)
+		const {dispatch, app, params} = this.props;
 		if (params.id) {
 			dispatch(fetchHubs(params.id))
 		} else {
@@ -59,10 +67,33 @@ class Results extends Component {
 
 	}
 
-	render() {
-		const { results, materialFilter, dispatch, images, app } = this.props
+    componentWillReceiveProps(newProps){
+    	const {results,dispatch} = newProps;
+    	this.state.newResults = results;
+        if(!results.isFetching && !(results.items.length === 0) && results.items[0] && ((this.state.results.items === undefined) || (results.items[0].PartNumber !== this.state.results.items[0].PartNumber))){
+            this.setState({results: results});
+            let partNumber = "";
+            if(results.items && results.items.length){
+                results.items.map((item,id)=>{
+                    partNumber += (id + 1 === results.items.length) ? item.HubAssemblyNumber : item.HubAssemblyNumber+",";
+                });
+			}
+            if(partNumber){
+                dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
+                    let spindleNut = "";
+                    if(this.state.newResults.spindleNut !== undefined){
+                        this.state.newResults.spindleNut[0].AftermarketParts.map((item, id)=>{
+                            spindleNut += (id + 1 === this.state.newResults.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                        });
+                        this.setState({spindleNut: spindleNut});
+                    }
+                });
+            }
+        }
+    }
 
-		const filteredResults = results
+	render() {
+		const { results, materialFilter, dispatch } = this.props;
 
 		if (results.isFetching) {
 			return (<Waiting />)
@@ -74,38 +105,24 @@ class Results extends Component {
 			return <MaterialType dispatch={dispatch}/>
 		}
 
-
-
-		return (
-			<div className="grid-container main-content">
-				{results.items.map((item, index) => {
-					if (index === 0) {
-
-
-					var title = ''
-					if (results.items.length > 1) {
-						title = 'Success! The following ConMet hubs are recommended'
-					} else if (_.isUndefined(app.lastChoice.Name)) {
-						title = 'Success! The following ConMet hub is recommended'
-					} else {
-						title = 'Success! The following ConMet '+app.lastChoice.Name+' hub is recommended'
-					}
-					return <h1 key={index}>{title}</h1>
-					}
-				})}
-
-					{results.items.map((item, index) => {
-						if (index === results.selectedIdx) {
-							return <Result idx={results.selectedIdx} total={results.total} key={index} item={item} images={images} />
-						}
-					})}
-
+        if((results.items.length > 0) && (results.items.length === 2)) {
+            return (
+				<Result results={results.items} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={null} />
+            )
+		}else if (results.items.length > 0) {
+            return (
+				<div>
+                    {results.items.map((item, index) => {
+                        if (index === results.selectedIdx) {
+                            return <HubSingleResult idx={results.selectedIdx} spindleNut={this.state.spindleNut} total={results.total} key={index} item={item} selectedHubAssemblyNumber={null} />
+                        }
+                    })}
 					<ResultNavigation total={results.total} currentIdx={results.selectedIdx}/>
-
-
-
-			</div>
-		)
+				</div>
+            )
+        }else{
+			return (<div />)
+		}
 	}
 };
 export default connect()(Results)

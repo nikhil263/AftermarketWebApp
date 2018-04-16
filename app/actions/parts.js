@@ -60,6 +60,28 @@ export const fetchParts = (hubId) => {
   }
 }
 
+export const fetchPartsWithPartTypeId = (hubId,partTypeId) => {
+    return dispatch => {
+        dispatch(requestParts(hubId));
+        let url = API+'/aftermarketparts?hanum='+hubId+'&party='+partTypeId;
+        return fetch(url, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': V2KEY
+            }
+        })
+            .then(
+                response => response.json(),
+                err => {
+                    // console.log('API Error', err);
+                }
+            )
+            .then(json => {dispatch(receiveParts(hubId, json));})
+    }
+};
+
 export const invalidateParts = () => {
   return {
     type: INVALIDATE_PARTS,

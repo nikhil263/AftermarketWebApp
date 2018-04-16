@@ -11,6 +11,7 @@ import HubSelectionChoosePath from 'components/hub-selection/choose-path'
 import HubSelectionFindAssembly from 'components/hub-selection/find-assembly'
 import HubSelectionFindAssemblyDetail from 'components/hub-selection/find-assembly-detail'
 import HubSelectionSearch from 'components/hub-selection/search'
+import Filters from 'components/hub-selection/filters'
 import HubSelectionResults from 'components/hub-selection/results'
 import HubSelectionDetails from 'components/hub-selection/details'
 import HubSelectionEmail from 'components/hub-selection/email'
@@ -28,6 +29,8 @@ import BrakeRotorType from 'components/hub-selection/brake-rotor-type'
 import HubFinder from 'components/hub-selection/finder'
 import About from 'components/about'
 import Contact from 'components/contact'
+import Disclaimer from 'components/disclaimer'
+import NoResults from '../components/global/no-result';
 
 
 import PartsWrapper from 'components/parts'
@@ -45,10 +48,12 @@ module.exports = (
 			<Route path='' component={App}>
 			<Route path='about' component={About} />
 			<Route path='contact' component={Contact} />
+			<Route path='disclaimer' component={Disclaimer} />
 			<Route path='hub-selection' component={HubSelectionWrapper}>
 				<IndexRoute component={HubSelectionStart} />
 				<Route path='choose-path' component={HubSelectionChoosePath} />
 				<Route path='search' component={HubSelectionSearch} />
+				<Route path='filters/:filters' component={Filters} />
 				<Route path='search/:id' component={HubSelectionResults} />
 				<Route path='results' component={HubSelectionResults} />
 				<Route path='details/:id' component={HubSelectionDetails} />
@@ -67,6 +72,7 @@ module.exports = (
 				<Route path='brake-rotor-type' component={BrakeRotorType} />
 				<Route path='find-assembly' component={HubSelectionFindAssembly} />
 				<Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail} />
+				<Route path='no-results' component={NoResults} />
 			</Route>
 			<Route path='parts' component={PartsWrapper}>
 				<Route path='search' component={PartsSearch} />

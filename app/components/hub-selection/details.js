@@ -6,6 +6,7 @@ import Meta from 'components/hub-selection/details/meta';
 import Spinner from 'components/global/spinner'
 import {Link} from 'react-router';
 import { fetchAssemblyDetails } from 'actions/assembly'
+import {fetchPartsWithPartTypeId} from 'actions/parts';
 import { invalidateImages } from 'actions/images'
 import { connect } from 'react-redux'
 
@@ -15,11 +16,10 @@ class Details extends Component {
 	componentDidMount() {
 		const { app, dispatch, params, images } = this.props
 		dispatch(fetchAssemblyDetails(params.id, images))
+		dispatch(fetchPartsWithPartTypeId(params.id, 203));
 	}
 	render() {
-		const {app, assembly, images, history } = this.props
-
-
+		const {app, assembly, images, history, parts } = this.props;
 		return (
 			<div className="grid-container main-content">
 				<h2>Product Details</h2>
@@ -29,7 +29,7 @@ class Details extends Component {
 							return (
 								<div key={index}>
 									<Meta result={r} images={images} />
-									<Specs result={r}/>
+									<Specs result={r} parts={parts}/>
 								</div>
 							)
 						})}

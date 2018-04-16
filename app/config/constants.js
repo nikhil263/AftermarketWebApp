@@ -24,7 +24,12 @@ export const SHOW_PREVIOUS_RESULT='SHOW_PREVIOUS_RESULT'
 export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
 export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
 export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
+export const ASSEMBLY_NUMBER_DATA='ASSEMBLY_NUMBER_DATA';
+export const HUB_ASSEMBLY_FILTERS='HUB_ASSEMBLY_FILTERS';
+export const HUB_ASSEMBLY_FILTER_VALUE='HUB_ASSEMBLY_FILTER_VALUE';
+export const RECEIVE_HUBS_CROSS_API='RECEIVE_HUBS_CROSS_API';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
+export const OPTIONAL_SPINDLE_NUT='OPTIONAL_SPINDLE_NUT';
 
 //CATEGORIES
 export const RECIEVE_CATEGORIES='RECIEVE_CATEGORIES';
@@ -85,9 +90,8 @@ export const STEP_NAVIGATION = [
 	{ id: 10, path: '/hub-selection/material'},//9
 	{ id: 16, path: '/hub-selection/brake-rotor-flange'},//10
 	{ id: 17, path: '/hub-selection/brake-rotor-type'},//11
-	{ id: 11, path: '/hub-selection/hub-type'},//12
-	{ id: 12, path: '/hub-selection/results'} //13
-]
+	{ id: 11, path: '/hub-selection/results'}
+];
 
 export const RESULTS = {
 	receivedAt: '',
@@ -95,7 +99,13 @@ export const RESULTS = {
 	selectedIdx: 0,
 	total: 0,
 	selected: {},
+	assemblyNumber: [],
+	filters: [],
+    filter_value: [],
+	spindleNut: '',
 	items: [],
+	item: [],
+	selectedHubAssemblyNumber: '',
 	isFetching: false
 }
 
@@ -217,7 +227,12 @@ export const PARTTYPES = [
 		'PartTypeId': 227,
 		'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)',
 		'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)'
-	}
+	},
+    {
+        'PartTypeId': 203,
+        'AftermarketPartTypeName': 'Replacement Rotor Kit',
+        'InternalPartTypeName': 'Replacement Rotor Kit'
+    }
 ]
 
 export const AFTERMARKET_DETAILS = [

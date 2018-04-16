@@ -5,7 +5,7 @@ if [ $# -lt 2 ]; then
 fi
 
 echo "Step 1/4: Building"
-npm run deploy
+#npm run deploy
 
 echo "Step 2/5: Copying to $1"
 cp -a public/* "azure/$1/"
@@ -17,5 +17,3 @@ git commit -m "$2" .
 
 echo "Step 2/4: Uploading to $1"
 git push
-
-exit 0

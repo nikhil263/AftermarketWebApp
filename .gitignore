@@ -28,3 +28,4 @@ node_modules
 *.hot-update.*
 public/assets
 .idea
+public/old

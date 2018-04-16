@@ -13,7 +13,12 @@ import {
 	INVALIDATE_HUBS,
 	INVALIDATE_ASSEMBLIES,
 	AFTERMARKET_DETAILS,
-	DETAILS_TPL
+	ASSEMBLY_NUMBER_DATA,
+    HUB_ASSEMBLY_FILTERS,
+    HUB_ASSEMBLY_FILTER_VALUE,
+    RECEIVE_HUBS_CROSS_API,
+    OPTIONAL_SPINDLE_NUT,
+    DETAILS_TPL
 } from '../config/constants'
 import _ from 'lodash'
 
@@ -88,6 +93,35 @@ export function results(state = RESULTS, action) {
 					receivedAt: action.receivedAt,
 					isFetching: false
 			})
+		case ASSEMBLY_NUMBER_DATA:
+			let assemblyNumber = action.assemblyNumber;
+			return Object.assign({}, state, {
+				assemblyNumber: assemblyNumber,
+				isFetching: false
+			});
+        case HUB_ASSEMBLY_FILTERS:
+            return Object.assign({}, state, {
+                filters: action.filters,
+                isFetching: false
+            });
+        case HUB_ASSEMBLY_FILTER_VALUE:
+            return Object.assign({}, state, {
+                filter_value: action.filters,
+                isFetching: false
+            });
+        case RECEIVE_HUBS_CROSS_API:
+            return Object.assign({}, state, {
+                items: action.filters,
+                selected: action.filters.Results[0],
+                selectedIdx: 0,
+                total: action.filters.Results.length,
+                isFetching: false
+            });
+        case OPTIONAL_SPINDLE_NUT:
+            return Object.assign({}, state, {
+                spindleNut: action.assemblyNumber.Results,
+                isFetching: false
+            });
 		case INVALIDATE_HUBS:
 		case INVALIDATE_ASSEMBLIES:
 			return Object.assign({}, state, RESULTS)

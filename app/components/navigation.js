@@ -10,10 +10,7 @@ var Menu = slide
 class Navigation extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-
-		}
-
+        this.state = {isOpen: false};
 	}
 
 	goHome() {
@@ -25,14 +22,17 @@ class Navigation extends Component {
 	goDisclaimer() {
 		const {dispatch} = this.props
 		dispatch(resetFilters())
-		dispatch(pushPath('/'))
+		dispatch(pushPath('/disclaimer'))
+		this.setState({
+            isOpen: false
+		});
 	}
 
 
 	render() {
 		return (
 			<div>
-				<Menu className="global-navigation" right>
+				<Menu className="global-navigation" right isOpen={this.state.isOpen}>
 					<p>More Information</p>
 					<ul>
 						<li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>
@@ -40,7 +40,7 @@ class Navigation extends Component {
 						<li><a href="http://www.conmet.com/general/literature/">Service Literature</a></li>
 						<li><a href="http://calculator.conmetwheelends.com/">Replace Calculator</a></li>
 						<li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
-						<li><a href="http://www.conmet.com/training">Hub Training 2.0</a></li>
+						<li><a href="https://www.conmet.com/training">Hub Training 2.0</a></li>
 					</ul>
 				</Menu>
 

@@ -36,7 +36,7 @@ export default class extends Component {
 		if (window.location.pathname.indexOf('/details/') > -1) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
-		if (window.location.pathname.indexOf('/help') > -1) {
+		if ((window.location.pathname.indexOf('/help') > -1) || (window.location.pathname.indexOf('/disclaimer') > -1) || (window.location.pathname.indexOf('/filters') > -1)) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
 

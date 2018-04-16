@@ -9,12 +9,13 @@ import Waiting from '../global/waiting'
 import _ from 'lodash'
 import {Link} from 'react-router';
 
-const FULLREPLACE = [115]
-const SERVICEPARTS = [220, 5, 6, 7, 8, 101]
+const FULLREPLACE = [115];
+const SERVICEPARTS = [220, 5, 6, 7, 8, 101];
 // const SERVICEKITS = [217, 218, 219, 221]
 // const SPINDLENUTS = [222, 223, 226, 227]
-const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227]
-const SPINDLENUTS = []
+const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227,203];
+const SPINDLENUTS = [];
+const SPINDLESOCKETSIZE = { 10036548: 2, 10036549: 2, 10036550: 2.75, 10036551: 3.75, 10036552: 3.125, 10036553: 4 };
 
 class Results extends Component {
 	componentDidMount() {
@@ -29,10 +30,10 @@ class Results extends Component {
 	}
 
 	showHeader(allowed = []) {
-		const { parts } = this.props
+		const { parts } = this.props;
 		let found = false;
 		parts.AftermarketParts.map((item, index) => {
-			console.log(allowed, item)
+			console.log(allowed, item);
 			 if (-1 !== allowed.indexOf(item.TypeId)) {
 				 found  = true;
 			 }
@@ -68,25 +69,25 @@ class Results extends Component {
 							<td>{part.PartNumber}</td>
 						</tr>
 					)
-				} else {
+				}else {
 					return (
-						<tr key={index}>
-							<td>{item.AftermarketPartTypeName+appendStr}</td>
-							<td>{part.PartNumber}</td>
-						</tr>
+                        <tr key={index}>
+                            <td>{item.AftermarketPartTypeName+appendStr}</td>
+                            <td className="center">
+								{part.PartNumber}
+								<div className="help2">{SPINDLESOCKETSIZE[part.PartNumber] ? "("+SPINDLESOCKETSIZE[part.PartNumber]+'" Socket)' : ""}</div>
+							</td>
+                        </tr>
 					)
 				}
-
 			}
-
-
-		})
+		});
 
 		return view
 	}
 
 	render() {
-		const { parts, dispatch, images, app, history } = this.props
+		const { parts, dispatch, images, app, history } = this.props;
 
 		if (parts.isFetching) {
 			return (<Waiting />)
@@ -96,7 +97,7 @@ class Results extends Component {
 			return (<NoResults />)
 		}
 
-		let replacementHeader, serviceKitHeader, servicePartHeader, spindleNutsHeader = null
+		let replacementHeader, serviceKitHeader, servicePartHeader, spindleNutsHeader = null;
 		parts.AftermarketParts.map((item, index) => {
 
 			 if (-1 !== FULLREPLACE.indexOf(item.TypeId)) {
@@ -118,7 +119,7 @@ class Results extends Component {
 		return (
 			<div className="grid-container main-content">
 				<h2>Hub Components Search Results for:</h2>
-				<h2 className="partsSubHead">{parts.HubAssemblyDescription} <span className="number">#{parts.HubAssemblyNumber}</span></h2>
+				<h2 className="partsSubHead">{parts.HubAssemblyDescription} <span className="number">{parts.HubAssemblyNumber}</span></h2>
 				<div className="parts">
 					{replacementHeader}
 					<table>
@@ -131,7 +132,9 @@ class Results extends Component {
                                 	return a.Ranking > b.Ranking;
 								});
 								//Return only the first item
-								return this.renderTable([filtered.shift()], item)
+								if(filtered.length) {
+                                    return this.renderTable([filtered.shift()], item)
+                                }
 							}
 
 						})}
@@ -145,8 +148,10 @@ class Results extends Component {
 						<tbody>
 							{PARTTYPES.map((item, index) => {
 								if (-1 < SERVICEKITS.indexOf(item.PartTypeId)) {
-									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
-									return this.renderTable(filtered, item)
+									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId});
+                                    if(filtered.length) {
+                                        return this.renderTable(filtered, item)
+                                    }
 								}
 
 						})}
@@ -160,8 +165,10 @@ class Results extends Component {
 						<tbody>
 							{PARTTYPES.map((item, index) => {
 								if (-1 < SERVICEPARTS.indexOf(item.PartTypeId)) {
-									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
-									return this.renderTable(filtered, item)
+									let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId});
+                                    if(filtered.length) {
+                                        return this.renderTable(filtered, item)
+                                    }
 								}
 
 						})}
@@ -174,8 +181,10 @@ class Results extends Component {
 				<tbody>
 					{PARTTYPES.map((item, index) => {
 						if (-1 < SPINDLENUTS.indexOf(item.PartTypeId)) {
-							let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
-							return this.renderTable(filtered, item)
+							let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId});
+                            if(filtered.length) {
+                                return this.renderTable(filtered, item)
+                            }
 					}
 
 				})}
@@ -187,5 +196,5 @@ class Results extends Component {
 
 		)
 	}
-};
+}
 export default connect()(Results)
