@@ -3,7 +3,7 @@ import { pushPath } from 'redux-simple-router';
 import { connect } from 'react-redux';
 import { fetchRotorFilterValues, fetchRotorFilterCategories, resetDrumFilter } from 'actions';
 import Waiting from 'components/global/waiting';
-import { TRAILER, DRUM, IMAGE_CDN, TRUCK, FILTERIDX } from '../../config/constants';
+import { TRAILER, DRUM, DISC, IMAGE_CDN, TRUCK, FILTERIDX } from '../../config/constants';
 import RotorResult from './rotorResult';
 
 class ReplacementRotorFilter extends Component {
@@ -143,7 +143,7 @@ class ReplacementRotorFilter extends Component {
         }
 
         if (filters.axpos === 3) {
-            setFilter(FILTERIDX, { tcomp: TRAILER, brkty: DRUM }, app);
+            setFilter(FILTERIDX, { tcomp: TRAILER, brkty: DISC }, app);
         }
     }
 
