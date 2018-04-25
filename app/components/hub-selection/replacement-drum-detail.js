@@ -149,7 +149,6 @@ class ReplacementDrumDetail extends React.Component {
                                             <tbody>
                                             <tr>
                                                 <td className="text-center">Interchangeable drums</td>
-                                                <td className="text-right">BSN compatible</td>
                                             </tr>
                                             </tbody>
                                             <tbody>
@@ -158,16 +157,18 @@ class ReplacementDrumDetail extends React.Component {
                                                     return (
                                                         <tr key={`${index} ${item.BrakeDrumNumber}`}>
                                                             <td><Link to={"/hub-selection/replacement-drum/drumdetails/"+item.BrakeDrumNumber}>{item.BrakeDrumNumber}</Link></td>
-                                                            <td>{item.Type}</td>
+                                                            <td>{item.Type}{item.IsBsnCompatible ? '*' : null}</td>
                                                             <td>{item.WeightPound} Lbs</td>
-                                                            <td>{item.IsBestMatch ? 'Best Match' : ''}</td>
-                                                            <td>{item.IsBsnCompatible ? 'Yes' : 'No'}</td>
+                                                            {
+                                                                item.IsBestMatch ? <td>Best Match</td> : null
+                                                            }
                                                         </tr>
                                                     );
                                                 })
                                             }
                                             </tbody>
                                         </table>
+                                        <div className="text-right">*BSN Compatible</div>
                                     </div> : ''
                                 }
                                 <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="general-button">Return to results</a>

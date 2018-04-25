@@ -26,24 +26,24 @@ class ChooseBrakeRotorType extends Component {
     render() {
         const { app, setFilter } = this.props;
         return (
-            <div>
+            <div className="replacement-drum result">
                 <h3>
                     For Trailer applications, ConMet Flat Rotor Assemblies are offered as a lower cost, direct-fit replacement for Bendix Splined
                 </h3>
-                <div className="text-center">
-                    <img src={require('../../images/flat-rotor.png')} />
+                <div className="details text-center">
+                    <img className="product-image" src={require('../../images/flat-rotor.png')} />
                 </div>
                 {
                     app.filterResults.map((result, i) => {
                         let boundClick = setFilter.bind(this, FILTERIDX, {abrty: result.Id}, app);
                         if (i === 0) {
                             return (
-                                <div className="general-button" onClick={boundClick}>
+                                <div key={i} className="general-button" onClick={boundClick}>
                                     See ConMet Flat
                                 </div>
                             );
                         }
-                        return <div className="general-button" onClick={boundClick}>Continue to Bendix Splined</div>
+                        return <div key={i} className="general-button" onClick={boundClick}>Continue to Bendix Splined</div>
                     })
                 }
             </div>
@@ -76,6 +76,17 @@ class BrakeRotorType extends Component {
 
     }
 
+    componentWillReceiveProps(newProps) {
+        const { setFilter, app } = newProps;
+
+        app.filterResults.forEach((result) => {
+            if (result.Name && result.Name.toLowerCase() === 'splined' && parseInt(localStorage.getItem('isRotorSplined'))) {
+                setFilter(FILTERIDX, {abrty: result.Id}, app);
+                localStorage.removeItem('isRotorSplined');
+            }
+        });
+    }
+
     render() {
         const { app, setFilter, setActive } = this.props;
         const { showSplined } = this.state;
@@ -92,7 +103,7 @@ class BrakeRotorType extends Component {
                         />
                     ) : (
                         <div>
-                            <h1>Choose the Brake Rotor Type</h1>
+                            <h1>Choose the brake rotor type</h1>
                             <div className="grid-block">
                                 {app.filterResults.map((result) => {
                                     let boundActive = setActive.bind(this, FILTERIDX, result.Id);

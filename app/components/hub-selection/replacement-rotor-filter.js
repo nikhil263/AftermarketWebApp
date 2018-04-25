@@ -145,6 +145,8 @@ class ReplacementRotorFilter extends Component {
         if (filters.axpos === 3) {
             setFilter(FILTERIDX, { tcomp: TRAILER, brkty: DISC }, app);
         }
+
+        localStorage.setItem('isRotorSplined', 1);
     }
 
     render() {
@@ -159,12 +161,12 @@ class ReplacementRotorFilter extends Component {
 
         if (showSplined) {
             return (
-                <div className="grid-container main-content replacement-drum">
+                <div className="grid-container main-content replacement-drum result">
                     <h3>
                         ConMet Does not offer replacement rotors for Bendix Splined. Complete Hub/rotor assemblies are available.
                     </h3>
-                    <div className="text-center">
-                        <img src={require('../../images/flat-rotor.png')} />
+                    <div className="details text-center">
+                        <img className="product-image" src={require('../../images/flat-rotor.png')} />
                     </div>
                     <div className="general-button" onClick={this.replacementHub}>
                         Search Replacement Hub/Rotor Assemblies
