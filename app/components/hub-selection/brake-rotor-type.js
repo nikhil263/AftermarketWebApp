@@ -28,7 +28,7 @@ class ChooseBrakeRotorType extends Component {
         return (
             <div className="replacement-drum result">
                 <h3>
-                    For Trailer applications, ConMet Flat Rotor Assemblies are offered as a lower cost, direct-fit replacement for Bendix Splined
+                    For Trailer applications, ConMet Flat Rotor Assemblies are offered as an alternative, direct-fit replacement for Bendix Splined
                 </h3>
                 <div className="details text-center">
                     <img className="product-image" src={require('../../images/flat-rotor.png')} />
