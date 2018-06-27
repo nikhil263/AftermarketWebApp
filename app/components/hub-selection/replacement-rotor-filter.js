@@ -232,8 +232,7 @@ class ReplacementRotorFilter extends Component {
           <h1>{message}</h1>
           {
             currentFilter === 'bsdia' ? (
-              <img className="brake-rotor-flange" src={require('../../images/brake_rotor_lange.png')}
-                   alt="ConMet" width="300" height="300 " data-reactid=".0.0.1:$/=10.1.0.$/=10.1.0.0" />
+              <img className="brake-rotor-flange" src={require('../../images/brake_rotor_lange.png')} alt="ConMet" width="300" height="300" />
             ) : null
           }
           <div className="grid-content">

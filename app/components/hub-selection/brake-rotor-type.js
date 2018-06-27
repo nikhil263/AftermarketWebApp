@@ -110,6 +110,9 @@ class BrakeRotorType extends Component {
                                     return <Result key={result.Id} app={app} result={result} active={boundActive} onClick={this.handleClick} resultLength={app.filterResults.length} />
                                 })}
                             </div>
+                            <div className="text-center card card-divider">
+                                All ConMet Trailer Rotors are 430mm in diameter. Please confirm your rotor size
+                            </div>
                         </div>
                     )
                 }
