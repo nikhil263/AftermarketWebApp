@@ -220,21 +220,20 @@ class ReplacementRotorFilter extends Component {
 
     if (currentFilter === 'bsdia' || currentFilter === 'ovlgt' && (rotorFilterValue !== undefined)) {
       let message = '';
+      let src = '';
 
       if (currentFilter === 'bsdia') {
         message = 'Choose the Brake Surface Outside Diameter';
+        src = require('../../images/brake_rotor_lange.png');
       } else if (currentFilter === 'ovlgt') {
         message = 'Choose the overall length';
+        src = require('../../images/U-Rotorapp.png');
       }
 
       return (
         <div className="grid-container main-content replacement-drum">
           <h1>{message}</h1>
-          {
-            currentFilter === 'bsdia' ? (
-              <img className="brake-rotor-flange" src={require('../../images/brake_rotor_lange.png')} alt="ConMet" width="300" height="300" />
-            ) : null
-          }
+          <img className="brake-rotor-flange" src={src} alt="ConMet" width="300" height="300" />
           <div className="grid-content">
             {rotorFilterValue.map((item) => {
               const value = (currentFilter === 'bsdia') ? '⌀'+item.toFixed(1)+' inch'+' ['+(item * 25.4).toFixed(0)+' mm]' : '⌀'+item.toFixed(1)+' inch';
