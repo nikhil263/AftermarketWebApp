@@ -39,7 +39,7 @@ class ChooseBrakeRotorType extends Component {
                         if (i === 0) {
                             return (
                                 <div key={i} className="general-button" onClick={boundClick}>
-                                    See ConMet Flat
+                                    See ConMet Flat Rotor
                                 </div>
                             );
                         }
