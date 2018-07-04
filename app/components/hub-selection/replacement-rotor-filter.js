@@ -236,7 +236,8 @@ class ReplacementRotorFilter extends Component {
           <img className="brake-rotor-flange" src={src} alt="ConMet" width="300" height="300" />
           <div className="grid-content">
             {rotorFilterValue.map((item) => {
-              const value = (currentFilter === 'bsdia') ? '⌀'+item.toFixed(1)+' inch'+' ['+(item * 25.4).toFixed(0)+' mm]' : '⌀'+item.toFixed(1)+' inch';
+              const mm = item === 16.9 ? Math.ceil(item * 25.4) : (item * 25.4).toFixed(0);
+              const value = (currentFilter === 'bsdia') ? '⌀'+item.toFixed(1)+' inch'+' ['+mm+' mm]' : '⌀'+item.toFixed(1)+' inch';
               return (
                 <div className="small-12" key={currentFilter+item}>
                   <div className="conmet-button">
