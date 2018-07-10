@@ -20,7 +20,7 @@ class Result extends Component {
 						{
 							skipGawrFilter ? (
 								<div>
-                  <div><strong>{ isAluminum ? 'Up to 23,000 lbs.' : '23,001 - 26,000 lbs.' }</strong></div>
+                  <div><strong>{ isAluminum ? 'Up to 23,000 lbs.' : 'Up to 26,000 lbs.' }</strong></div>
                   <div><span>{ isAluminum ? '(0-10,433 kg)' : '(10,433-11,793 kg)' }</span></div>
 								</div>
 							) : null
