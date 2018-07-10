@@ -138,7 +138,11 @@ class ReplacementRotorFilter extends Component {
     const { urlParams } = this.state;
     const filters = this.paramsToObject(urlParams);
 
-    if (filters.axpos === 1 || filters.axpos === 2) {
+    if (filters.axpos === 1) {
+      setFilter(FILTERIDX, { tcomp: TRUCK, brkty: DISC }, app);
+    }
+
+    if (filters.axpos === 2) {
       setFilter(FILTERIDX, { tcomp: TRUCK, brkty: DRUM }, app);
     }
 
