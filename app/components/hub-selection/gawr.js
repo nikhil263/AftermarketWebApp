@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import  { connect } from 'react-redux';
+import { pushPath } from 'redux-simple-router';
 import Spinner from 'components/global/spinner';
 import { fetchFilters } from 'actions/filters';
 
@@ -43,12 +44,16 @@ class Result extends Component {
 
 class GAWR extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch, app } = this.props;
-    const { brkty, tmake, aaxna } = app.filterState;
-    const skipGawrFilter = brkty === 1 && tmake === 1 && aaxna === 4;
+    const { brkty, aaxna } = app.filterState;
+    const skipGawrFilter = brkty === 1 && aaxna === 4;
 
-    dispatch(fetchFilters(skipGawrFilter ? 7 : FILTERIDX, app));
+    if (skipGawrFilter) {
+      dispatch(pushPath('/hub-selection/axle-stud'));
+    } else {
+      dispatch(fetchFilters(FILTERIDX, app));
+    }
   }
 
   render() {
