@@ -66,6 +66,17 @@ class DrumResult extends React.Component {
     }
 	}
 
+	renderBrakeType(brakeType) {
+    if (brakeType.length < 21) {
+      return brakeType;
+    } else {
+      const test = [];
+      const i = brakeType.indexOf(' ');
+      test.push(brakeType.slice(0, i), <br />, brakeType.slice(i + 1));
+      return test;
+    }
+  }
+
   render() {
     const { drumResult } = this.props;
     this.state.resultsLength = drumResult.length;
@@ -79,7 +90,7 @@ class DrumResult extends React.Component {
               drumResult.map((item, index) => {
                 return (
                   <div className="small-6" key={index}>
-                    <p className="brake-type">{item.BrakeType}</p>
+                    <p className="brake-type">{this.renderBrakeType(item.BrakeType)}</p>
                     <div className="number">{item.BrakeDrumNumber}</div>
                     <img className="product-image"  src={require('../../images/blank1x1.png')} style={{background: "url('"+IMAGE_CDN+item.Images[0].ImageGuid+'.png'+"') center center no-repeat"}} alt={item.HubAssemblyNumber} />
                     <div className="weight">Weight: {item.WeightPound} Lbs</div>
