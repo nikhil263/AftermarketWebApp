@@ -9,7 +9,7 @@ class Result extends Component {
   render () {
     var { result, active, onClick, app } = this.props;
     const { brkty, tmake, aaxna } = app.filterState;
-    const skipGawrFilter = brkty === 1 && tmake === 1 && aaxna === 4;
+    const skipGawrFilter = brkty === 1 && aaxna === 4;
     const isAluminum = result.Name.toLowerCase() === 'aluminum';
 
     return (
