@@ -203,7 +203,7 @@ class ReplacementDrumFilter extends Component {
         if (currentFilter === 'axpos' && currentFilter !== 'brnum' && !isResult) {
             return (
                 <div className="grid-container main-content replacement-drum">
-                    <h1>Choose the tractor axle position</h1>
+                    <h1>Choose the axle position</h1>
                     <div className="grid-content">
                         {drumFilterValue.map((item) => {
                             return (
