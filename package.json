@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --port 3005 --colors --hot --inline --content-base public --host localhost",
+    "dev": "rm -rf public/index.html && webpack-dev-server --config webpack.config.js --port 3005 --colors --hot",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "deploy": "webpack -p --config webpack.production.config.js"
@@ -33,6 +33,8 @@
     "eslint-plugin-react": "^3.16.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "html-webpack-harddisk-plugin": "0.1.0",
+    "html-webpack-plugin": "2.30.1",
     "image-webpack-loader": "^1.8.0",
     "mocha": "^2.3.4",
     "react-hot-loader": "^1.3.0",
@@ -41,6 +43,7 @@
     "redux-devtools-log-monitor": "^1.0.1",
     "strip-loader": "^0.1.1",
     "svgo-loader": "^1.1.0",
+    "uglifyjs-webpack-plugin": "1.0.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.14.0"
@@ -48,6 +51,7 @@
   "dependencies": {
     "applicationinsights": "^0.15.11",
     "babel-polyfill": "^6.3.14",
+    "classnames": "2.2.5",
     "css-loader": "^0.23.0",
     "es6-promise": "^4.1.0",
     "foundation-apps": "^1.2.0",
