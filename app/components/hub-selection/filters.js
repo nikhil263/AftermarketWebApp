@@ -111,8 +111,17 @@ class Filters extends Component {
             _self.props.dispatch(fetchHubsSpindleNut(partNumber)).then(()=>{
                 let spindleNut = "";
                 if(_self.props.results.spindleNut !== undefined){
-                    _self.props.results.spindleNut[0].AftermarketParts.map((item, id)=>{
-                        spindleNut += (id + 1 === _self.props.results.spindleNut[0].AftermarketParts.length ? item.PartNumber : item.PartNumber+",");
+                    _self.props.results.spindleNut[0].AftermarketParts.map((item, id) => {
+                        let washer_description = '';
+                        if (item.Description.toLowerCase().includes('hub service kit') && item.Description.toLowerCase().includes('ff')) {
+                            if (item.TypeId === 226) {
+                                washer_description = ' (D Flat)';
+                            } else if (item.TypeId === 227) {
+                                washer_description = ' (Keyway)';
+                            }
+                        }
+
+                        spindleNut += (id + 1 === _self.props.results.spindleNut[0].AftermarketParts.length ? item.PartNumber+(washer_description) : item.PartNumber+(washer_description)+",");
                     });
                     _self.setState({spindleNut: spindleNut});
                 }

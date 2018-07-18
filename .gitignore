@@ -27,5 +27,6 @@ build/Release
 node_modules
 *.hot-update.*
 public/assets
+public/index.html
 .idea
 public/old

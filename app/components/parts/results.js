@@ -1,13 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import {connect} from 'react-redux'
 import { pushPath } from 'redux-simple-router'
-import {fetchParts} from 'actions/parts'
+import {fetchParts, fetchRebuildKitDetails} from 'actions/parts'
 import { PARTTYPES } from 'config/constants'
 import Part from './part'
 import NoResults from '../global/no-result'
 import Waiting from '../global/waiting'
 import _ from 'lodash'
 import {Link} from 'react-router';
+import classNames from 'classnames';
 
 const FULLREPLACE = [115];
 const SERVICEPARTS = [220, 5, 6, 7, 8, 101];
@@ -18,9 +19,15 @@ const SPINDLENUTS = [];
 const SPINDLESOCKETSIZE = { 10036548: 2, 10036549: 2, 10036550: 2.75, 10036551: 3.75, 10036552: 3.125, 10036553: 4 };
 
 class Results extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			rebuildKitActive: false,
+		};
+	}
 	componentDidMount() {
-		const {dispatch, app, params} = this.props
-		// console.log(params)
+		const {dispatch, params} = this.props;
 		if (params.id) {
 			dispatch(fetchParts(params.id))
 		} else {
@@ -42,6 +49,7 @@ class Results extends Component {
 	}
 
 	renderTable(viewArray = [], item) {
+		const { dispatch, parts } = this.props;
 		if (!viewArray) {
 			return null
 		}
@@ -70,15 +78,40 @@ class Results extends Component {
 						</tr>
 					)
 				}else {
+					const isRebuildKit = parts.rebuildKitDetails.length && part.TypeId === 219;
+					if (part.TypeId === 219 && (parts.rebuildKitNumber !== part.PartNumber)) {
+                        dispatch(fetchRebuildKitDetails(part.PartNumber));
+					}
+
 					return (
-                        <tr key={index}>
-                            <td>{item.AftermarketPartTypeName+appendStr}</td>
-                            <td className="center">
-								{part.PartNumber}
-								<div className="help2">{SPINDLESOCKETSIZE[part.PartNumber] ? "("+SPINDLESOCKETSIZE[part.PartNumber]+'" Socket)' : ""}</div>
+						<tr key={index}>
+							<td>
+								<table>
+									<tbody>
+										<tr>
+											<td>{isRebuildKit ? <span className={classNames('rebuild-kit-toggle', { show: this.state.rebuildKitActive })} onClick={() => this.setState({ rebuildKitActive: !this.state.rebuildKitActive })} /> : null}{item.AftermarketPartTypeName+appendStr}</td>
+											<td className="center">
+												{part.PartNumber}
+												<div className="help2">{SPINDLESOCKETSIZE[part.PartNumber] ? "("+SPINDLESOCKETSIZE[part.PartNumber]+'" Socket)' : ""}</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+                                {
+                                    isRebuildKit ?
+                                        parts.rebuildKitDetails.map((item) => {
+                                            return (
+												<div className={classNames('rebuild-kit-info', { show: this.state.rebuildKitActive })} key={item.PreSetPreSetPlusHubRebuildKitNumber}>
+													<div><span className="text">Inner Bearing</span> <span className="number">{item.BearingSetNumberInboard}</span></div>
+													<div><span className="text">Outer Bearing</span> <span className="number">{item.BearingSetNumberOutboard}</span></div>
+													<div><span className="text">Seal & Spacer</span> <span className="number">{item.SealAndSpacerKitNumber}</span></div>
+												</div>
+                                            );
+                                        }) : null
+                                }
 							</td>
-                        </tr>
-					)
+						</tr>
+					);
 				}
 			}
 		});
@@ -126,7 +159,6 @@ class Results extends Component {
 						<tbody>
 						{PARTTYPES.map((item, index) => {
 							if (-1 < FULLREPLACE.indexOf(item.PartTypeId)) {
-								console.log('aftermarket parts', parts.AftermarketParts)
 								let filtered = _.filter(parts.AftermarketParts, {TypeId: item.PartTypeId})
                                 filtered = filtered.sort(function(a,b){
                                 	return a.Ranking > b.Ranking;

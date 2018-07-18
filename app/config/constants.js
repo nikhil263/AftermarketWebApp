@@ -12,6 +12,14 @@ export const INCREMENT_STEP='INCREMENT_STEP';
 export const DECREMENT_STEP='DECREMENT_STEP';
 export const RESET_APP_STATE='RESET_APP_STATE';
 
+//Truck Type
+export const TRUCK=1;
+export const TRAILER=2;
+export const DISC=2;
+export const DRUM=1;
+
+export const FILTERIDX=2;
+
 //HUBS AND ASSEMBLIES
 export const REQUEST_HUB='REQUEST_HUB';
 export const REQUEST_ASSEMBLIES='REQUEST_ASSEMBLIES'
@@ -19,14 +27,26 @@ export const RECEIVE_ASSEMBLIES='RECEIVE_ASSEMBLIES'
 export const INVALIDATE_ASSEMBLIES='INVALIDATE_ASSEMBLIES'
 export const RECEIVE_HUBS='RECEIVE_HUBS'
 export const REQUEST_HUBS='REQUEST_HUBS'
+export const REQUEST_DRUMS='REQUEST_DRUMS'
 export const INVALIDATE_HUBS='INVALIDATE_HUBS'
 export const SHOW_PREVIOUS_RESULT='SHOW_PREVIOUS_RESULT'
 export const SHOW_NEXT_RESULT='SHOW_NEXT_RESULT'
 export const SHOW_RESULT_AT_IDX='SHOW_RESULT_AT_IDX'
 export const ASSEMBLY_RESULT='ASSEMBLY_RESULT';
+export const DRUM_RESULT='DRUM_RESULT';
+export const ROTOR_RESULT='ROTOR_RESULT';
+export const DRUM_DETAILS='DRUM_DETAILS';
+export const ROTOR_DETAILS='ROTOR_DETAILS';
 export const ASSEMBLY_NUMBER_DATA='ASSEMBLY_NUMBER_DATA';
+export const DRUM_NUMBER_DATA='DRUM_NUMBER_DATA';
+export const ROTOR_NUMBER_DATA='ROTOR_NUMBER_DATA';
+export const DRUM_FILTER_CATEGORIES='DRUM_FILTER_CATEGORIES';
+export const ROTOR_FILTER_CATEGORIES='ROTOR_FILTER_CATEGORIES';
 export const HUB_ASSEMBLY_FILTERS='HUB_ASSEMBLY_FILTERS';
 export const HUB_ASSEMBLY_FILTER_VALUE='HUB_ASSEMBLY_FILTER_VALUE';
+export const DRUM_FILTER_VALUES='DRUM_FILTER_VALUES';
+export const SELECTED_ROTOR_NUMBER='SELECTED_ROTOR_NUMBER';
+export const ROTOR_FILTER_VALUES='ROTOR_FILTER_VALUES';
 export const RECEIVE_HUBS_CROSS_API='RECEIVE_HUBS_CROSS_API';
 export const SEARCH_ASSEMBLY_RESULT='SEARCH_ASSEMBLY_RESULT'
 export const OPTIONAL_SPINDLE_NUT='OPTIONAL_SPINDLE_NUT';
@@ -44,6 +64,7 @@ export const REMOVE_FILTER='REMOVE_FILTER';
 export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
 export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
 export const RESET_FILTER='RESET_FILTER';
+export const RESET_DRUM_FILTER='RESET_DRUM_FILTER';
 export const RECIEVE_FILTERS='RECIEVE_FILTERS'
 export const SET_MATERIAL_FILTER='SET_MATERIAL_FILTER';
 export const INVALIDATE_FILTERS='INVALIDATE_FILTERS';
@@ -61,6 +82,7 @@ export const INVALIDATE_ASSEMBLY_DETAILS='INVALIDATE_ASSEMBLY_DETAILS'
 export const PARTS_RESULT='PARTS_RESULT';
 export const RECIEVE_PARTS='RECIEVE_PARTS'
 export const REQUEST_PARTS='REQUEST_PARTS'
+export const REBUILD_KIT_DETAILS='REBUILD_KIT_DETAILS';
 export const INVALIDATE_PARTS='INVALIDATE_PARTS'
 
 // IMAGES
@@ -100,6 +122,20 @@ export const RESULTS = {
 	total: 0,
 	selected: {},
 	assemblyNumber: [],
+	selectedRotorNumber: '',
+    rotorNumber: [],
+    rotorResult: [],
+    rotorDetail: [],
+    rotorFilters: [],
+    rotorFilterValue: [],
+	drumNumber: [],
+	drumResult: [],
+	drumDetail: [],
+    drumFilters: [],
+    drumFilterValue: [],
+    isZeroResults: false,
+    isFilterValueSingle: false,
+	currentFilter: '',
 	filters: [],
     filter_value: [],
 	spindleNut: '',

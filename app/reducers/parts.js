@@ -1,6 +1,7 @@
 import {
 	RECIEVE_PARTS,
 	REQUEST_PARTS,
+    REBUILD_KIT_DETAILS,
 	INVALIDATE_PARTS
 } from '../config/constants'
 import _ from 'lodash'
@@ -10,8 +11,10 @@ const defaultState = {
 	HubAssemblyNumber: '',
 	HubAssemblyDescription: '',
 	isFetching: false,
-	needsFetch: false
-}
+	needsFetch: false,
+	rebuildKitDetails: [],
+	rebuildKitNumber: null,
+};
 
 export const parts = (state = defaultState, action) => {
 	const newResult = Object.assign([], state.result)
@@ -24,6 +27,8 @@ export const parts = (state = defaultState, action) => {
 				AftermarketParts: action.AftermarketParts,
 				hubId: action.hubId
 			})
+		case REBUILD_KIT_DETAILS:
+            return Object.assign({}, state, {rebuildKitDetails: action.data.Results, rebuildKitNumber: action.id });
 		case REQUEST_PARTS:
 			return Object.assign({}, state, {hubId: action.hubId, isFetching: true})
 		case INVALIDATE_PARTS:

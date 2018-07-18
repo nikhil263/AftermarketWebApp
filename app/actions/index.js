@@ -86,6 +86,20 @@ export const requestHubs = (partNumber) => {
   }
 }
 
+export const requestDrums = (filtername, isFilterValueSingle) => {
+    return {
+        type: constants.REQUEST_DRUMS,
+        isFitlerValueSingle: isFilterValueSingle,
+        currentFilter: filtername
+    }
+}
+
+export const resetDrumFilter = () => {
+    return {
+        type: constants.RESET_DRUM_FILTER
+    }
+}
+
 export const receiveHubs = (partNumber, json) => {
   // for now we need to usher the json into the following format
   // we need a part number and ID
@@ -165,6 +179,253 @@ export const fetchHubsSpindleNut = (partNumber) => {
             }))
     }
 }
+
+
+
+export const fetchDrumFilterValues = (filtername, filtervalues, isFilterValueSingle = true) => {
+    return dispatch => {
+        dispatch(requestDrums(filtername, isFilterValueSingle));
+        return fetch(constants.API+'/brakedrum/filtervalues/'+filtername+filtervalues, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_FILTER_VALUES,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const saveBrakeRotorNumber = (rotorNumber) => {
+    return {
+        type: constants.SELECTED_ROTOR_NUMBER,
+        rotorNumber: rotorNumber
+    }
+};
+
+export const fetchRotorFilterValues = (filtername, filtervalues, isFilterValueSingle = true) => {
+    return dispatch => {
+        dispatch(requestDrums(filtername, isFilterValueSingle));
+        return fetch(constants.API+'/brakerotor/filtervalues/'+filtername+filtervalues, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.ROTOR_FILTER_VALUES,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumFilterCategories = () => {
+    return dispatch => {
+        dispatch(requestHubs('123'));
+        return fetch(constants.API+'/brakedrum/filtercategories/', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_FILTER_CATEGORIES,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchRotorFilterCategories = () => {
+    return dispatch => {
+        dispatch(requestHubs('123'));
+        return fetch(constants.API+'/brakerotor/filtercategories/', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.ROTOR_FILTER_CATEGORIES,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumNumber = (term) => {
+    return dispatch => {
+        return fetch(constants.API+'/brakedrum/interchanges/'+term, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_NUMBER_DATA,
+                    drumNumber: json,
+                })
+            })
+    }
+};
+
+export const fetchRotorNumber = (term) => {
+    return dispatch => {
+        return fetch(constants.API+'/brakerotor/interchanges/'+term, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.ROTOR_NUMBER_DATA,
+                    rotorNumber: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumResult = (drumNumberId) => {
+    return dispatch => {
+        dispatch(requestHubs(drumNumberId));
+        return fetch(constants.API+'/brakedrum/summaries?cbdid='+drumNumberId, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_RESULT,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchRotorResult = (rotorId) => {
+    return dispatch => {
+        dispatch(requestHubs(rotorId));
+        return fetch(constants.API+'/brakerotor/summaries?cbrid='+rotorId, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.ROTOR_RESULT,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchDrumDetail = (id) => {
+    return dispatch => {
+        dispatch(requestHubs(id));
+        return fetch(constants.API+'/brakedrum/details/'+id, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.DRUM_DETAILS,
+                    data: json,
+                })
+            })
+    }
+};
+
+export const fetchRotorDetail = (id) => {
+    return dispatch => {
+        dispatch(requestHubs(id));
+        return fetch(constants.API+'/brakerotor/details/'+id, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.ROTOR_DETAILS,
+                    data: json,
+                })
+            })
+    }
+};
 
 export const fetchHubAssemblyNumber = (term) => {
     return dispatch => {
