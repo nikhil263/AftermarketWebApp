@@ -1,6 +1,6 @@
 echo "Step 1/4: Building"
 set NODE_ENV=production
-::call npm run deploy
+call npm run deploy
 
 echo "Step 2/5: Copying to %1"
 xcopy /s/e/y "public\*" "azure\%1\"
