@@ -32,6 +32,8 @@ class RotorResult extends React.Component {
 
   render() {
     const { rotorResult } = this.props;
+    const FF = [10083923, 10041216, 10041215];
+    const R = [10083924, 10041218, 10041217];
     this.state.resultsLength = rotorResult.length;
 
     if((rotorResult.length > 0) && (rotorResult.length === 2)) {
@@ -46,8 +48,8 @@ class RotorResult extends React.Component {
                     <p className="brake-type">{item.BrakeRotorType}</p>
                     <div className="number">{item.BrakeRotorNumber}</div>
                     <img className="product-image"  src={require('../../images/blank1x1.png')} style={{background: "url('"+IMAGE_CDN+item.Images[0].ImageGuid+'.png'+"') center center no-repeat"}} alt={item.HubAssemblyNumber} />
-										{ item.BrakeRotorKitNumber === '10083923' ? <div className="number">For FF Steer Axle</div> : null }
-										{ item.BrakeRotorKitNumber === '10083924' ? <div className="number">For R Drive Axle</div> : null }
+										{ FF.includes(parseInt(item.BrakeRotorKitNumber)) ? <div className="number">For FF Steer Axle</div> : null }
+										{ R.includes(parseInt(item.BrakeRotorKitNumber)) ? <div className="number">For R Drive Axle</div> : null }
                     <div className="weight">Brake Rotor Kit Number: {item.BrakeRotorKitNumber}</div>
                     <Link to={'/hub-selection/replacement-rotor/rotordetails/'+item.BrakeRotorNumber} className="general-button">See Details</Link>
                   </div>
