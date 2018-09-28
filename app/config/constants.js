@@ -183,6 +183,8 @@ export const DETAILS_TPL = {
 	title: ''
 }
 
+export const DOUBLE_END_STUDS = { 3: 'Axle Stud', 4: 'Rotor Stud' };
+
 export const PARTTYPES = [
 	{
 		'PartTypeId': 5,
