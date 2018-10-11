@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Spinner from 'components/global/spinner';
 import { fetchFilters } from 'actions/filters';
 import { IMAGE_CDN } from 'config/constants';
+import { setRotorSpilned } from "../../actions/filters";
 const FILTERIDX = 11;
 
 class Result extends Component {
@@ -94,12 +95,13 @@ class BrakeRotorType extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const { setFilter, app } = newProps;
+    const { setFilter, app, dispatch } = newProps;
+    const { isRotorSplined } = app;
 
     app.filterResults.forEach(result => {
-      if (result.Name && result.Name.toLowerCase() === 'splined' && parseInt(localStorage.getItem('isRotorSplined'))) {
+      if (result.Name && result.Name.toLowerCase() === 'splined' && isRotorSplined) {
         setFilter(FILTERIDX, { abrty: result.Id }, app);
-        localStorage.removeItem('isRotorSplined');
+        dispatch(setRotorSpilned(false));
       }
     });
   }
