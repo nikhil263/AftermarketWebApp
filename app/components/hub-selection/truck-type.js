@@ -7,7 +7,6 @@ class TruckType extends Component {
     componentDidMount() {
         const {dispatch } = this.props;
         dispatch(resetAppState());
-        localStorage.removeItem('isRotorSplined');
     }
 
     render() {

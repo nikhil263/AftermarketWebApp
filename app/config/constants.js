@@ -11,6 +11,7 @@ export const UPDATE_STEP='UPDATE_STEP';
 export const INCREMENT_STEP='INCREMENT_STEP';
 export const DECREMENT_STEP='DECREMENT_STEP';
 export const RESET_APP_STATE='RESET_APP_STATE';
+export const ROTOT_SPLINED='ROTOT_SPLINED';
 
 //Truck Type
 export const TRUCK=1;
@@ -159,6 +160,7 @@ export const APPSTATE = {
 	currentIndex: 1,
 	filterResults: [],
 	lastChoice: {},
+  isRotorSplined: false,
 	filterState: {
 		brkty: null, // brakeType,
 		hatyp: null, // hubAssemblyType
@@ -195,11 +197,6 @@ export const PARTTYPES = [
 		'PartTypeId': 6,
 		'AftermarketPartTypeName': 'Axle Stud',
 		'InternalPartTypeName': 'Double-Ended Stud'
-	},
-	{
-		'PartTypeId': 7,
-		'AftermarketPartTypeName': 'ABS Tone Ring',
-		'InternalPartTypeName': 'ABS Tone Ring'
 	},
 	{
 		'PartTypeId': 8,
