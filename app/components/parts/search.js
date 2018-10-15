@@ -20,7 +20,7 @@ class PartsSearch extends Component {
 
   doSearch(e) {
     e.preventDefault();
-    this.hubAssemblyFilters(this.state.assemblyNumber.HubAssemblyNumber);
+    this.hubAssemblyFilters();
   }
 
   hubAssemblyFilters(id) {
@@ -29,7 +29,7 @@ class PartsSearch extends Component {
       dispatch(pushPath('/parts/search/' + id));
     } else {
       if (this.state.assemblyNumber.length === 1) {
-        dispatch(pushPath('/parts/search/' + this.state.assemblyNumber[0].HubAssemblyNumber));
+        dispatch(pushPath('/parts/search/' + this.state.assemblyNumber[0]));
       }
     }
   }
@@ -49,16 +49,15 @@ class PartsSearch extends Component {
             }}
             wrapperStyle={{ position: 'relative', display: 'block', margin: '0 0 1rem 0' }}
             items={this.state.assemblyNumber}
-            getItemValue={item => item.Competitor + ' ' + item.HubAssemblyNumber}
+            getItemValue={item => item}
             onSelect={(value, state) => {
-              this.props.results.selectedHubAssemblyNumber = state.Competitor + ' ' + state.HubAssemblyNumber;
-              this.hubAssemblyFilters(state.HubAssemblyNumber);
+              this.hubAssemblyFilters(state);
               this.setState({ value, assemblyNumber: [state] });
             }}
             onChange={(event, value) => {
               this.setState({ value, assemblyNumber: [], loading: true });
               if (value !== '') {
-                this.props.dispatch(fetchHubAssemblyNumber(value)).then(() => {
+                this.props.dispatch(fetchHubAssemblyNumber(value, true)).then(() => {
                   let results = this.props.results.assemblyNumber.Results;
                   if (results) {
                     this.setState({ assemblyNumber: this.props.results.assemblyNumber.Results, loading: false });
@@ -72,14 +71,14 @@ class PartsSearch extends Component {
               <div
                 className="menu-item"
                 style={{ background: isHighlighted ? 'lightgray' : 'white' }}
-                key={item.HubAssemblyNumber}
+                key={item}
               >
-                {item.Competitor} {item.HubAssemblyNumber}
+                {item}
               </div>
             )}
             renderMenu={(items, value) => (
               <div className="menu">
-                {value === '' ? (
+                {value === '' || value.length < 3 ? (
                   <div className="item">Type ConMet or Competitor assembly number</div>
                 ) : this.state.loading ? (
                   <div className="item">Loading...</div>

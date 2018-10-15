@@ -427,9 +427,9 @@ export const fetchRotorDetail = (id) => {
     }
 };
 
-export const fetchHubAssemblyNumber = (term) => {
+export const fetchHubAssemblyNumber = (term, withAftermarketParts = false) => {
     return dispatch => {
-        return fetch(constants.API+'/hubassemblynumbers/withaftermarkethubassemblies/'+term, {
+        return fetch(`${constants.API}/hubassemblynumbers/${withAftermarketParts ? 'withaftermarketparts' : 'withaftermarkethubassemblies'}/${term}`, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
