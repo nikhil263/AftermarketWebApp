@@ -10,8 +10,8 @@ import { Link } from 'react-router';
 import classNames from 'classnames';
 
 const FULLREPLACE = [115];
-const SERVICEPARTS = [220, 5, 6, 7, 8, 101];
-const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227, 203, 241, 7];
+const SERVICEPARTS = [220, 5, 6, 8, 101,  241, 7];
+const SERVICEKITS = [217, 218, 219, 221, 222, 223, 226, 227, 203];
 const SPINDLENUTS = [];
 const SPINDLESOCKETSIZE = { 10036548: 2, 10036549: 2, 10036550: 2.75, 10036551: 3.75, 10036552: 3.125, 10036553: 4 };
 
