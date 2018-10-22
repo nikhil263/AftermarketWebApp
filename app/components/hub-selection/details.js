@@ -1,44 +1,66 @@
 import React, { PropTypes, Component } from 'react';
-import HubSelection from 'components/hub-selection';
 import Specs from 'components/hub-selection/details/specs';
-import Description from 'components/hub-selection/details/description';
 import Meta from 'components/hub-selection/details/meta';
-import Spinner from 'components/global/spinner'
-import {Link} from 'react-router';
-import { fetchAssemblyDetails } from 'actions/assembly'
-import {fetchPartsWithPartTypeId} from 'actions/parts';
-import { invalidateImages } from 'actions/images'
-import { connect } from 'react-redux'
-
+import Spinner from 'components/global/spinner';
+import { fetchAssemblyDetails } from 'actions/assembly';
+import { fetchParts, fetchRebuildKitDetails } from 'actions/parts';
+import { connect } from 'react-redux';
 
 class Details extends Component {
+  constructor() {
+    super();
 
-	componentDidMount() {
-		const { app, dispatch, params, images } = this.props
-		dispatch(fetchAssemblyDetails(params.id, images))
-		dispatch(fetchPartsWithPartTypeId(params.id, 203));
-	}
-	render() {
-		const {app, assembly, images, history, parts } = this.props;
-		return (
-			<div className="grid-container main-content">
-				<h2>Product Details</h2>
-					<Spinner isFetching={assembly.isFetching} />
-					{assembly.result.map((r, index) => {
+    this.state =  {
+      rebuildKitNumber: null,
+    };
+    this.fetchRebuildKit = this.fetchRebuildKit.bind(this);
+  }
+  componentDidMount() {
+    const { dispatch, params, images } = this.props;
+    dispatch(fetchParts(params.id));
+    dispatch(fetchAssemblyDetails(params.id, images));
+    this.fetchRebuildKit(this.props);
+  }
 
-							return (
-								<div key={index}>
-									<Meta result={r} images={images} />
-									<Specs result={r} parts={parts}/>
-								</div>
-							)
-						})}
+  componentWillReceiveProps(newProps) {
+    this.fetchRebuildKit(newProps);
+  }
 
-				<a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="general-button">Return to results</a>
+  fetchRebuildKit(props) {
+    const { parts, dispatch } = props;
+    const { AftermarketParts } = parts;
 
-			</div>
-		)
-	}
-};
+    console.log('#######', AftermarketParts);
+    if (AftermarketParts && AftermarketParts.length) {
+      const rebuildKit = AftermarketParts.filter(t => t.TypeId === 219);
+      if (rebuildKit && rebuildKit.length) {
+        const partNumber = rebuildKit[0].PartNumber;
+        this.setState({ rebuildKitNumber: partNumber });
+        if (parts.rebuildKitNumber !== partNumber) {
+          dispatch(fetchRebuildKitDetails(partNumber));
+        }
+      }
+    }
+  }
+
+  render() {
+    const { assembly, images, history, parts } = this.props;
+    return (
+      <div className="grid-container main-content">
+        <h2>Product Details</h2>
+        <Spinner isFetching={assembly.isFetching} />
+        {assembly.result.map((r, index) => {
+          return (
+            <div key={index}>
+              <Meta result={r} images={images} />
+              <Specs result={r} parts={parts} {...this.state} />
+            </div>
+          )
+        })}
+        <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="general-button">Return to results</a>
+      </div>
+    )
+  }
+}
 
 export default connect()(Details)
