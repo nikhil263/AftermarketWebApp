@@ -81,7 +81,7 @@ class RotorResult extends React.Component {
                   <div>Rotor Replacement Kit:</div>
                   <div>{data.BrakeRotorKitNumber}</div>
                 </h2>
-                <div className="optional-spindle">Replaces Rotor {data.BrakeRotorNumber}</div>
+                <div className="optional-spindle">Includes Rotor {data.BrakeRotorNumber}</div>
                 <Link to={'/hub-selection/replacement-rotor/rotordetails/'+data.BrakeRotorNumber} className="general-button">See Details</Link>
                 <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
               </div>

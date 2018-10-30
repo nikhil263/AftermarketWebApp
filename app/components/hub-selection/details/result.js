@@ -136,7 +136,7 @@ class HubSingleResult extends Component {
                         {item.HubAssemblyNumber}
 					</h2>
 
-                    {spindleNut ? <div className="optional-spindle">Optional Spindle nut: {spindleNut} (PreSet Hubs Only)</div> : ""}
+                    {spindleNut ? <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div> : ""}
 
                     {note}
 					<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>

@@ -10,6 +10,7 @@ import {
 		PREVIOUS_FILTER_INDEX,
 		FINDER_START,
 		STEP_NAVIGATION,
+  	ROTOT_SPLINED,
 		RESET_APP_STATE
 } from '../config/constants'
 import _ from 'lodash'
@@ -21,6 +22,13 @@ export const resetAppState = () => {
 	return {
 		type: RESET_APP_STATE
 	}
+}
+
+export const setRotorSpilned = (payload) => {
+  return {
+    type: ROTOT_SPLINED,
+    payload
+  }
 }
 
 export const checkFilterStatus = (app) => {

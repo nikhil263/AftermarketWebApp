@@ -5,6 +5,7 @@ import { fetchRotorFilterValues, fetchRotorFilterCategories, resetDrumFilter } f
 import Waiting from 'components/global/waiting';
 import { TRAILER, DRUM, DISC, IMAGE_CDN, TRUCK, FILTERIDX } from '../../config/constants';
 import RotorResult from './rotorResult';
+import { setRotorSpilned } from "../../actions/filters";
 
 class ReplacementRotorFilter extends Component {
 
@@ -134,7 +135,7 @@ class ReplacementRotorFilter extends Component {
   }
 
   replacementHub() {
-    const { app, setFilter } = this.props;
+    const { app, setFilter, dispatch } = this.props;
     const { urlParams } = this.state;
     const filters = this.paramsToObject(urlParams);
 
@@ -150,7 +151,7 @@ class ReplacementRotorFilter extends Component {
       setFilter(FILTERIDX, { tcomp: TRAILER, brkty: DISC }, app);
     }
 
-    localStorage.setItem('isRotorSplined', 1);
+    dispatch(setRotorSpilned(true));
   }
 
   render() {
