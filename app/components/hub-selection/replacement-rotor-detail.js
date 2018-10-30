@@ -95,7 +95,7 @@ class ReplacementRotorDetail extends React.Component {
                       <td>{item.BoltSize}</td>
                     </tr>
                     <tr>
-                      <td>Bolt Size No</td>
+                      <td>Number of Bolt Holes</td>
                       <td>{item.BoltHoleNumber}</td>
                     </tr>
                     </tbody>

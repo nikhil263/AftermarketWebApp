@@ -263,12 +263,22 @@ export const PARTTYPES = [
 		'AftermarketPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)',
 		'InternalPartTypeName': 'PreSet Plus Spindle Nut Kit (Keyway)'
 	},
-    {
-        'PartTypeId': 203,
-        'AftermarketPartTypeName': 'Replacement Rotor Kit',
-        'InternalPartTypeName': 'Replacement Rotor Kit'
-    }
-]
+	{
+			'PartTypeId': 203,
+			'AftermarketPartTypeName': 'Replacement Rotor Kit',
+			'InternalPartTypeName': 'Replacement Rotor Kit'
+	},
+  {
+    'PartTypeId': 241,
+    'AftermarketPartTypeName': 'ABS Ring',
+    'InternalPartTypeName': 'ABS Ring Service Kit'
+  },
+  {
+    'PartTypeId': 7,
+    'AftermarketPartTypeName': 'ABS Ring',
+    'InternalPartTypeName': 'ABS Tone Ring'
+  },
+];
 
 export const AFTERMARKET_DETAILS = [
 	{
