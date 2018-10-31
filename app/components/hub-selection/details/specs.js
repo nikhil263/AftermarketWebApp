@@ -65,7 +65,12 @@ export default class extends Component {
   }
 
   render() {
-    const { result, parts } = this.props;
+    const { result, parts: { AftermarketParts } } = this.props;
+    let replacementRotorKit = null;
+
+    if (AftermarketParts && AftermarketParts.length) {
+      replacementRotorKit = AftermarketParts.filter(part => part.TypeId === 203);
+    }
 
     return (
       <div className="specs">
@@ -101,8 +106,8 @@ export default class extends Component {
             <td>{result.BrakeType}</td>
           </tr>
           {
-            parts['AftermarketParts'] && parts['AftermarketParts'].length ?
-              <tr><td>Replacement Rotor Kit</td><td>{parts["AftermarketParts"][0]["PartNumber"]}</td></tr> : null
+            replacementRotorKit && replacementRotorKit.length ?
+              <tr><td>Replacement Rotor Kit</td><td>{replacementRotorKit[0]["PartNumber"]}</td></tr> : null
           }
           <tr>
             <td>Hub Mounting System</td>
