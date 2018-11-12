@@ -35,16 +35,17 @@ class Results extends Component {
 
   getResult(id){
     const { dispatch } = this.props;
+    let url = '';
     dispatch(fetchHubAssemblyFilters(id)).then(()=>{
       let filters = this.props.results.filters.Results;
       let i = 1, length = Object.keys(filters).length;
 
       Object.keys(filters).forEach((key)=>{
-        this.state.url += (i === length) ? key+'='+filters[key] : key+'='+filters[key]+"&";
+        url += (i === length) ? key+'='+filters[key] : key+'='+filters[key]+"&";
         i++;
       });
 
-      this.props.dispatch(pushPath('/hub-selection/filters/'+this.state.url));
+      this.props.dispatch(pushPath('/hub-selection/filters/'+url));
     });
   }
 
