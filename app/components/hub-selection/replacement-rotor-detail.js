@@ -67,7 +67,7 @@ class ReplacementRotorDetail extends React.Component {
                       <td>{item.BrakeRotorNumber}</td>
                     </tr>
                     <tr>
-                      <td>Type</td>
+                      <td>Rotor Type</td>
                       <td>{item.BrakeRotorType}</td>
                     </tr>
                     <tr>
