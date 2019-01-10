@@ -141,6 +141,9 @@ class ReplacementDrumFilter extends Component {
       return (
         <div className="grid-container main-content replacement-drum">
           <h1>{message}</h1>
+          {
+            currentFilter === 'pidia' ? <img className="product-image" src={require('../../images/pidia.png')} alt="Pilot Diameter"  width="300" height="300 " /> : null
+          }
           <div className="grid-content">
             {drumFilterValue.map((item) => {
               return (
