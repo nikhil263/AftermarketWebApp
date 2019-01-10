@@ -101,7 +101,7 @@ class ReplacementRotorFilter extends Component {
       }
       this.state.currentFilter = params.currentFilter;
       this.state.filterClicked = false;
-    } else if (rotorFilters.length && rotorFilterValue.length === 1 && !isResult && results.isFilterValueSingle) {
+    } else if (rotorFilters.length && rotorFilterValue && rotorFilterValue.length === 1 && !isResult && results.isFilterValueSingle) {
       const index = filters.indexOf(results.currentFilter);
       const id = rotorFilterValue[0].Id !== undefined ? rotorFilterValue[0].Id : rotorFilterValue[0];
 

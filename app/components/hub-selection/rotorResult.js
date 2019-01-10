@@ -51,6 +51,7 @@ class RotorResult extends React.Component {
 										{ FF.includes(parseInt(item.BrakeRotorKitNumber)) ? <div className="number">For FF Steer Axle</div> : null }
 										{ R.includes(parseInt(item.BrakeRotorKitNumber)) ? <div className="number">For R Drive Axle</div> : null }
                     <div className="weight">Brake Rotor Kit Number: {item.BrakeRotorKitNumber}</div>
+                    <p>{item.BrakeRotorComponents}</p>
                     <Link to={'/hub-selection/replacement-rotor/rotordetails/'+item.BrakeRotorNumber} className="general-button">See Details</Link>
                   </div>
                 );
@@ -82,6 +83,7 @@ class RotorResult extends React.Component {
                   <div>{data.BrakeRotorKitNumber}</div>
                 </h2>
                 <div className="optional-spindle">Includes Rotor {data.BrakeRotorNumber}</div>
+                <p>{data.BrakeRotorComponents}</p>
                 <Link to={'/hub-selection/replacement-rotor/rotordetails/'+data.BrakeRotorNumber} className="general-button">See Details</Link>
                 <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
               </div>
