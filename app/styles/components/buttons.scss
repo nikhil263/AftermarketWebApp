@@ -272,6 +272,10 @@
 		line-height: 22px;
 		text-align: center;
 		font-weight: bold;
+		&.note {
+			padding: 12px;
+			background-color: #cacaca;
+		}
 	}
 	.disclaimer{
 		font-size: 20px;

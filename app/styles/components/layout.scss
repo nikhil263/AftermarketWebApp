@@ -353,6 +353,19 @@ h2.partsSubHead {
 			.number{font-size: 24px;}
 			.brake-type, .seal-nut{margin: 0;}
 			.weight{margin-bottom: 5px;}
+			.optional-spindle{
+				display: block;
+				width: 100%;
+				margin: 9px 0;
+				font-size: 18px;
+				line-height: 22px;
+				text-align: center;
+				font-weight: bold;
+				&.note {
+					padding: 12px;
+					background-color: #cacaca;
+				}
+			}
 			.details{
 				margin-top: 15px;
 				min-height: 140px;
