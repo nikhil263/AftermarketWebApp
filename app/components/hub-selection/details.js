@@ -30,7 +30,6 @@ class Details extends Component {
     const { parts, dispatch } = props;
     const { AftermarketParts } = parts;
 
-    console.log('#######', AftermarketParts);
     if (AftermarketParts && AftermarketParts.length) {
       const rebuildKit = AftermarketParts.filter(t => t.TypeId === 219);
       if (rebuildKit && rebuildKit.length) {

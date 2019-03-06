@@ -1,33 +1,33 @@
 
 import {
-	RESULTS,
-	SHOW_PREVIOUS_RESULT,
-	SHOW_NEXT_RESULT,
-	SHOW_RESULT_AT_IDX,
-	REQUEST_ASSEMBLIES,
-	RECEIVE_ASSEMBLIES,
-	ASSEMBLY_RESULT,
-	REQUEST_HUBS,
-	RECEIVE_HUBS,
-	SEARCH_ASSEMBLY_RESULT,
-	INVALIDATE_HUBS,
-	INVALIDATE_ASSEMBLIES,
-	AFTERMARKET_DETAILS,
-	ASSEMBLY_NUMBER_DATA,
-    HUB_ASSEMBLY_FILTERS,
-    HUB_ASSEMBLY_FILTER_VALUE,
-    RECEIVE_HUBS_CROSS_API,
-    OPTIONAL_SPINDLE_NUT,
-    DETAILS_TPL,
-    DRUM_NUMBER_DATA,
-    DRUM_RESULT,
-    DRUM_DETAILS,
-    DRUM_FILTER_VALUES,
-    REQUEST_DRUMS,
-    RESET_DRUM_FILTER,
-    ROTOR_NUMBER_DATA,
-    DRUM_FILTER_CATEGORIES,
-    SELECTED_ROTOR_NUMBER
+  RESULTS,
+  SHOW_PREVIOUS_RESULT,
+  SHOW_NEXT_RESULT,
+  SHOW_RESULT_AT_IDX,
+  REQUEST_ASSEMBLIES,
+  RECEIVE_ASSEMBLIES,
+  ASSEMBLY_RESULT,
+  REQUEST_HUBS,
+  RECEIVE_HUBS,
+  SEARCH_ASSEMBLY_RESULT,
+  INVALIDATE_HUBS,
+  INVALIDATE_ASSEMBLIES,
+  AFTERMARKET_DETAILS,
+  ASSEMBLY_NUMBER_DATA,
+  HUB_ASSEMBLY_FILTERS,
+  HUB_ASSEMBLY_FILTER_VALUE,
+  RECEIVE_HUBS_CROSS_API,
+  OPTIONAL_SPINDLE_NUT,
+  DETAILS_TPL,
+  DRUM_NUMBER_DATA,
+  DRUM_RESULT,
+  DRUM_DETAILS,
+  DRUM_FILTER_VALUES,
+  REQUEST_DRUMS,
+  RESET_DRUM_FILTER,
+  ROTOR_NUMBER_DATA,
+  DRUM_FILTER_CATEGORIES,
+  SELECTED_ROTOR_NUMBER, FETCH_HUB_STUDS, INVALIDATE_HUB_STUDS
 } from '../config/constants'
 import _ from 'lodash'
 import {ROTOR_DETAILS, ROTOR_FILTER_CATEGORIES, ROTOR_FILTER_VALUES, ROTOR_RESULT} from "config/constants";
@@ -202,6 +202,24 @@ export function results(state = RESULTS, action) {
                 filters: action.filters,
                 isFetching: false
             });
+        case FETCH_HUB_STUDS:
+          const { result } = action;
+
+          if (result && result.Status && result.Status.toLowerCase() === 'ok' && result.Results && result.Results.length) {
+            const studs = result.Results.map(item => item.HubAssemblyNumber).join(',');
+            return Object.assign({}, state, {
+              short_studs: studs,
+              isFetching: false
+            });
+          }
+
+          return Object.assign({}, state, {
+            isFetching: false,
+            short_studs: '',
+          });
+        case INVALIDATE_HUB_STUDS: {
+          return Object.assign({}, state, { short_studs: '' });
+        }
         case HUB_ASSEMBLY_FILTER_VALUE:
             return Object.assign({}, state, {
                 filter_value: action.filters,

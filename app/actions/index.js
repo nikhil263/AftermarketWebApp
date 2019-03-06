@@ -496,7 +496,11 @@ export const fetchFilterValues = (filtername,filters) =>{
     }
 };
 
-export const fetchHubsCrossApi = (filters) =>{
+export function invalidateHubStuds() {
+  return dispatch => dispatch({ type: constants.INVALIDATE_HUB_STUDS });
+}
+
+export const fetchHubsCrossApi = (filters, isShortStud = false) =>{
     return dispatch => {
         return fetch(constants.API+'/hubassembly/filtervalues/hanum?'+filters, {
             method: 'get',
@@ -511,10 +515,11 @@ export const fetchHubsCrossApi = (filters) =>{
                 // console.log('API Error', err);
             })
             .then(json => {
-                dispatch({
-                    type: constants.RECEIVE_HUBS_CROSS_API,
-                    filters: json,
-                })
+              if (isShortStud) {
+                dispatch({ type: constants.FETCH_HUB_STUDS, result: json });
+              } else {
+                dispatch({ type: constants.RECEIVE_HUBS_CROSS_API, filters: json });
+              }
             })
     }
 };

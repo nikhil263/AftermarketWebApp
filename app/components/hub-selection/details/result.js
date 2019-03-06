@@ -92,7 +92,7 @@ class HubSingleResult extends Component {
 		matches = matches.map(function(n, idx) {
 			if (links.length > 0){
 
-					return [n, n.replace('{{', '<a href="https://conmetaftermarketpubliccdn.azureedge.net/documents/'+links[idx]+'">').replace('}}', '</a>')]
+				return [n, n.replace('{{', '<a href="https://conmetaftermarketpubliccdn.azureedge.net/documents/'+links[idx]+'">').replace('}}', '</a>')]
 
 			}
 		});
@@ -102,56 +102,54 @@ class HubSingleResult extends Component {
 		return <p dangerouslySetInnerHTML={{__html: str}}></p>;
 	}
 	render () {
-	 let { idx, total, item } = this.props;
+		let { idx, total, item, spindleNut, short_studs, selectedHubAssemblyNumber } = this.props;
 
-	 if (_.isUndefined(item) || item.id === -1) {
-		 return (<Spinner />)
-	 }
-	 let note = null;
+		if (_.isUndefined(item) || item.id === -1) {
+			return (<Spinner />)
+		}
 
-	 if (!_.isUndefined(item.GawrNote)) {
-		 note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
-	 }
+		let note = null;
 
-    let selectedHubAssemblyNumber = this.props.selectedHubAssemblyNumber;
-    let spindleNut = this.props.spindleNut;
-	return (
-		<div>
-			<h1>Success! The following hub is recommended</h1>
-            {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : '' }
-			<div className="result">
-				<PreviousButton
-					idx={idx}
-					total={total}
-					handleClick={this.handlePreviousClick.bind(this)}
-					showButton={this.renderButtons.bind(this)} />
+		if (!_.isUndefined(item.GawrNote)) {
+			note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
+		}
 
-				<div className="details">
-                    {
-                        item.Images.map((image, index) => {
-                            return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.HubAssemblyNumber} width="200" height="200" />
-                        })
-                    }
-					<h2>{item.title || item.AftermarketDescription}<br />
-                        {item.HubAssemblyNumber}
-					</h2>
+		return (
+			<div>
+				<h1>Success! The following hub is recommended</h1>
+				{selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : '' }
+				<div className="result">
+					<PreviousButton
+						idx={idx}
+						total={total}
+						handleClick={this.handlePreviousClick.bind(this)}
+						showButton={this.renderButtons.bind(this)} />
 
-                    {spindleNut ? <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div> : ""}
-
-                    {note}
-					<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
-					<div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
+					<div className="details">
+						{
+							item.Images.map((image, index) => {
+								return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.HubAssemblyNumber} width="200" height="200" />
+							})
+						}
+						<h2>{item.title || item.AftermarketDescription}<br />
+							{item.HubAssemblyNumber}
+						</h2>
+						{short_studs && <div className="optional-spindle">(Long Stud version: {short_studs})</div>}
+						{spindleNut && <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
+						{note}
+						<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
+						<div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
+					</div>
+					<NextButton
+						idx={idx}
+						total={total}
+						handleClick={this.handleNextClick.bind(this)}
+						showButton={this.renderButtons.bind(this)}
+					/>
 				</div>
-				<NextButton
-					idx={idx}
-					total={total}
-					handleClick={this.handleNextClick.bind(this)}
-					showButton={this.renderButtons.bind(this)}
-				/>
 			</div>
-		</div>
-	 )
- 	}
+		)
+	}
 }
 
 export default connect()(HubSingleResult);
