@@ -103,6 +103,7 @@ class HubSingleResult extends Component {
 	}
 	render () {
 		let { idx, total, item, spindleNut, short_studs, selectedHubAssemblyNumber } = this.props;
+		let studs = null;
 
 		if (_.isUndefined(item) || item.id === -1) {
 			return (<Spinner />)
@@ -112,6 +113,10 @@ class HubSingleResult extends Component {
 
 		if (!_.isUndefined(item.GawrNote)) {
 			note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
+		}
+
+		if (short_studs && short_studs.length) {
+			studs = short_studs.map(item => item.HubAssemblyNumber).join(',');
 		}
 
 		return (
@@ -134,7 +139,7 @@ class HubSingleResult extends Component {
 						<h2>{item.title || item.AftermarketDescription}<br />
 							{item.HubAssemblyNumber}
 						</h2>
-						{short_studs && <div className="optional-spindle">(Long Stud version: {short_studs})</div>}
+						{studs && <div className="optional-spindle">(Long Stud version: {studs})</div>}
 						{spindleNut && <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
 						{note}
 						<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>

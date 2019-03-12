@@ -76,14 +76,14 @@ class Result extends Component {
                 <div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
                 <div className="number">{item.HubAssemblyNumber}</div>
                 <HubResults assemblyType={assemblyType} key={index}/>
+                {short_studs && short_studs[index] && (
+                  <div className="optional-spindle text-center">
+                    (Long Stud version: {short_studs[index].HubAssemblyNumber})
+                  </div>
+                )}
               </div>
             )
           })}
-          {short_studs && (
-            <div className="optional-spindle">
-              <div className="small-6">(Long Stud version: {short_studs})</div>
-            </div>
-          )}
           {spindleNut && (
             <div className="optional-spindle">
               <div className="small-6">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>

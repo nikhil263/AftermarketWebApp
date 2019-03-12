@@ -145,9 +145,9 @@ export const RESULTS = {
 	items: [],
 	item: [],
 	selectedHubAssemblyNumber: '',
-	short_studs: '',
+	short_studs: [],
 	isFetching: false
-}
+};
 
 export const MATERIAL_ALL=0;
 export const MATERIAL_ALUMINUM=1;

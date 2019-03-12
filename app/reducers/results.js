@@ -206,19 +206,18 @@ export function results(state = RESULTS, action) {
           const { result } = action;
 
           if (result && result.Status && result.Status.toLowerCase() === 'ok' && result.Results && result.Results.length) {
-            const studs = result.Results.map(item => item.HubAssemblyNumber).join(',');
             return Object.assign({}, state, {
-              short_studs: studs,
+              short_studs: result.Results,
               isFetching: false
             });
           }
 
           return Object.assign({}, state, {
             isFetching: false,
-            short_studs: '',
+            short_studs: [],
           });
         case INVALIDATE_HUB_STUDS: {
-          return Object.assign({}, state, { short_studs: '' });
+          return Object.assign({}, state, { short_studs: [] });
         }
         case HUB_ASSEMBLY_FILTER_VALUE:
             return Object.assign({}, state, {
