@@ -159,7 +159,7 @@ export const fetchHubs = (partNumber) => {
 export const fetchHubsSpindleNut = (partNumber) => {
     const afterMarketHubPartType = "226,227";
     return dispatch => {
-        dispatch(requestHubs(partNumber));
+        dispatch({ type: constants.REQUEST_OPTIONAL_SPINDLE_NUT });
         return fetch(constants.API+'/aftermarketparts?hanum='+partNumber+'&party='+afterMarketHubPartType, {
             method: 'get',
             headers: {

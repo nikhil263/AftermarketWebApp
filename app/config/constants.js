@@ -28,6 +28,7 @@ export const RECEIVE_ASSEMBLIES='RECEIVE_ASSEMBLIES'
 export const INVALIDATE_ASSEMBLIES='INVALIDATE_ASSEMBLIES'
 export const RECEIVE_HUBS='RECEIVE_HUBS'
 export const REQUEST_HUBS='REQUEST_HUBS'
+export const REQUEST_OPTIONAL_SPINDLE_NUT='REQUEST_OPTIONAL_SPINDLE_NUT';
 export const REQUEST_DRUMS='REQUEST_DRUMS'
 export const INVALIDATE_HUBS='INVALIDATE_HUBS'
 export const SHOW_PREVIOUS_RESULT='SHOW_PREVIOUS_RESULT'
@@ -146,6 +147,7 @@ export const RESULTS = {
 	item: [],
 	selectedHubAssemblyNumber: '',
 	short_studs: [],
+	isSpindleNutFetching: false,
 	isFetching: false
 };
 

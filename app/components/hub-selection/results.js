@@ -104,7 +104,7 @@ class Results extends Component {
 	render() {
 		const { results, materialFilter, dispatch } = this.props;
 
-		if (results.isFetching) {
+    if (results.isFetching || results.isSpindleNutFetching) {
 			return (<Waiting />)
 		}
 		if (results.items.length === 0) {

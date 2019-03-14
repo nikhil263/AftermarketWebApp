@@ -150,6 +150,12 @@ class Filters extends Component {
     let results = this.state.results;
     const {results: {short_studs}} = this.props;
 
+    if (this.props.results.isSpindleNutFetching) {
+      return (
+        <Spinner isFetching={true}/>
+      )
+    }
+
     if (current_filter === 'gawrr' && filter_value[0] && filter_value[0].Id && !isFetching && !(results.length > 0)) {
       return (
         <div className="grid-container main-content">
