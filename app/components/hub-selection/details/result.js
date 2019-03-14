@@ -115,7 +115,7 @@ class HubSingleResult extends Component {
 			note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
 		}
 
-		if (short_studs && short_studs.length) {
+		if (short_studs && short_studs.length && 0) {
 			studs = short_studs.map(item => item.HubAssemblyNumber).join(',');
 		}
 
