@@ -452,6 +452,31 @@ h2.partsSubHead {
 	}
 }
 
+#studResult {
+  .result {
+    //display: flex;
+  }
+
+  .specs.stud {
+    background: none;
+    padding: 0;
+    margin-top: 15px;
+
+    &:before {
+      content: none;
+    }
+  }
+
+  .prev-button, .next-button {
+    //display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: auto;
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 767px) {
 	#hubAssemblyResult .grid-content .optional-spindle div.small-6 {
 		flex: none;

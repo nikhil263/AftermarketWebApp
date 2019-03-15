@@ -1,6 +1,5 @@
 import React from 'react'
-import {render} from 'react-dom'
-import { Router, Route, RouteHandler, Redirect, IndexRoute } from 'react-router';
+import { Route, RouteHandler, IndexRoute } from 'react-router';
 
 import Main from 'containers/main'
 import App from 'containers/app'
@@ -12,6 +11,7 @@ import ReplacementDrum from 'components/hub-selection/replacement-drum'
 import ReplacementRotor from 'components/hub-selection/replacement-rotor'
 import ReplacementDrumFilter from 'components/hub-selection/replacement-drum-filter'
 import ReplacementRotorFilter from 'components/hub-selection/replacement-rotor-filter'
+import StudFilter from 'components/hub-selection/stud-filter'
 import ReplacementDrumSearch from 'components/hub-selection/replacement-drum-search'
 import ReplacementRotorSearch from 'components/hub-selection/replacement-rotor-search'
 import ReplacementDrumResult from 'components/hub-selection/replacement-drum-result'
@@ -52,59 +52,61 @@ import PartsChoosePath from 'components/parts/choose-path'
 import MobileHelpDetail from 'components/mobile-help.js'
 
 module.exports = (
-    <Route path='/' component={Main}>
-        <IndexRoute component={Splash} />
-        <Route path='' component={App}>
-            <Route path='about' component={About} />
-            <Route path='contact' component={Contact} />
-            <Route path='disclaimer' component={Disclaimer} />
-            <Route path='hub-selection' component={HubSelectionWrapper}>
-                <IndexRoute component={HubSelectionStart} />
-                <Route path='replacement-rotor' component={ReplacementRotor} />
-                <Route path='replacement-rotor/filter' component={ReplacementRotorFilter} />
-                <Route path='replacement-rotor/filter/:currentFilter/:filters' component={ReplacementRotorFilter} />
-                <Route path='replacement-rotor/filter/:currentFilter' component={ReplacementRotorFilter} />
-                <Route path='replacement-rotor/search' component={ReplacementRotorSearch} />
-                <Route path='replacement-rotor/recommended-rotors/:rotorId' component={ReplacementRotorResult} />
-                <Route path='replacement-rotor/rotordetails/:id' component={ReplacementRotorDetail} />
-                <Route path='replacement-drum' component={ReplacementDrum} />
-                <Route path='replacement-drum/filter' component={ReplacementDrumFilter} />
-                <Route path='replacement-drum/filter/:currentFilter/:filters' component={ReplacementDrumFilter} />
-                <Route path='replacement-drum/filter/:currentFilter' component={ReplacementDrumFilter} />
-                <Route path='replacement-drum/search' component={ReplacementDrumSearch} />
-                <Route path='replacement-drum/recommended-drums/:drumId' component={ReplacementDrumResult} />
-                <Route path='replacement-drum/drumdetails/:id' component={ReplacementDrumDetail} />
-                <Route path='choose-path' component={HubSelectionChoosePath} />
-                <Route path='search' component={HubSelectionSearch} />
-                <Route path='filters/:filters' component={Filters} />
-                <Route path='results' component={HubSelectionResults} />
-                <Route path='details/:id' component={HubSelectionDetails} />
-                <Route path='email' component={HubSelectionEmail} />
-                <Route path='finder' component={HubFinder} />
-                <Route path='truck-type' component={HubSelectionTruckType} />
-                <Route path='truck-make' component={HubSelectionTruckMake} />
-                <Route path='axle-type' component={HubSelectionAxelType} />
-                <Route path='hub-mounting-system' component={HubSelectionMountingSystem} />
-                <Route path='gawr' component={HubSelectionGAWR} />
-                <Route path='axle-stud' component={HubSelectionAxleStud} />
-                <Route path='wheel-type' component={HubSelectionWheelType} />
-                <Route path='material' component={HubSelectionMaterial} />
-                <Route path='hub-type' component={HubSelectionType} />
-                <Route path='brake-rotor-flange' component={BrakeRotorFlange} />
-                <Route path='brake-rotor-type' component={BrakeRotorType} />
-                <Route path='find-assembly' component={HubSelectionFindAssembly} />
-                <Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail} />
-                <Route path='no-results' component={NoResults} />
-            </Route>
-            <Route path='parts' component={PartsWrapper}>
-                <Route path='choose-path' component={PartsChoosePath} />
-                <Route path='search' component={PartsSearch} />
-                <Route path='search/:id' component={PartsResults} />
-                <Route path='help' component={PartsHelp} />
-                <Route path='help/detail' component={PartsHelpDetail} />
-            </Route>
-        </Route>
-        <Route path='mobile-help' component={MobileHelpDetail} />
+  <Route path='/' component={Main}>
+    <IndexRoute component={Splash}/>
+    <Route path='' component={App}>
+      <Route path='about' component={About}/>
+      <Route path='contact' component={Contact}/>
+      <Route path='disclaimer' component={Disclaimer}/>
+      <Route path='hub-selection' component={HubSelectionWrapper}>
+        <IndexRoute component={HubSelectionStart}/>
+        <Route path='replacement-rotor' component={ReplacementRotor}/>
+        <Route path='replacement-rotor/filter' component={ReplacementRotorFilter}/>
+        <Route path='stud/filter' component={StudFilter}/>
+        <Route path='stud/filter/:currentFilter' component={StudFilter}/>
+        <Route path='stud/filter/:currentFilter/:filters' component={StudFilter}/>
+        <Route path='replacement-rotor/filter/:currentFilter/:filters' component={ReplacementRotorFilter}/>
+        <Route path='replacement-rotor/filter/:currentFilter' component={ReplacementRotorFilter}/>
+        <Route path='replacement-rotor/search' component={ReplacementRotorSearch}/>
+        <Route path='replacement-rotor/recommended-rotors/:rotorId' component={ReplacementRotorResult}/>
+        <Route path='replacement-rotor/rotordetails/:id' component={ReplacementRotorDetail}/>
+        <Route path='replacement-drum' component={ReplacementDrum}/>
+        <Route path='replacement-drum/filter' component={ReplacementDrumFilter}/>
+        <Route path='replacement-drum/filter/:currentFilter/:filters' component={ReplacementDrumFilter}/>
+        <Route path='replacement-drum/filter/:currentFilter' component={ReplacementDrumFilter}/>
+        <Route path='replacement-drum/search' component={ReplacementDrumSearch}/>
+        <Route path='replacement-drum/recommended-drums/:drumId' component={ReplacementDrumResult}/>
+        <Route path='replacement-drum/drumdetails/:id' component={ReplacementDrumDetail}/>
+        <Route path='choose-path' component={HubSelectionChoosePath}/>
+        <Route path='search' component={HubSelectionSearch}/>
+        <Route path='filters/:filters' component={Filters}/>
+        <Route path='results' component={HubSelectionResults}/>
+        <Route path='details/:id' component={HubSelectionDetails}/>
+        <Route path='email' component={HubSelectionEmail}/>
+        <Route path='finder' component={HubFinder}/>
+        <Route path='truck-type' component={HubSelectionTruckType}/>
+        <Route path='truck-make' component={HubSelectionTruckMake}/>
+        <Route path='axle-type' component={HubSelectionAxelType}/>
+        <Route path='hub-mounting-system' component={HubSelectionMountingSystem}/>
+        <Route path='gawr' component={HubSelectionGAWR}/>
+        <Route path='axle-stud' component={HubSelectionAxleStud}/>
+        <Route path='wheel-type' component={HubSelectionWheelType}/>
+        <Route path='material' component={HubSelectionMaterial}/>
+        <Route path='hub-type' component={HubSelectionType}/>
+        <Route path='brake-rotor-flange' component={BrakeRotorFlange}/>
+        <Route path='brake-rotor-type' component={BrakeRotorType}/>
+        <Route path='find-assembly' component={HubSelectionFindAssembly}/>
+        <Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail}/>
+        <Route path='no-results' component={NoResults}/>
+      </Route>
+      <Route path='parts' component={PartsWrapper}>
+        <Route path='choose-path' component={PartsChoosePath}/>
+        <Route path='search' component={PartsSearch}/>
+        <Route path='search/:id' component={PartsResults}/>
+        <Route path='help' component={PartsHelp}/>
+        <Route path='help/detail' component={PartsHelpDetail}/>
+      </Route>
     </Route>
-
+    <Route path='mobile-help' component={MobileHelpDetail}/>
+  </Route>
 );
