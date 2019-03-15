@@ -44,10 +44,14 @@ class Details extends Component {
 
   render() {
     const { assembly, images, history, parts } = this.props;
+
+    if (parts.isFetching) {
+      return <Spinner isFetching />;
+    }
+
     return (
       <div className="grid-container main-content">
         <h2>Product Details</h2>
-        <Spinner isFetching={assembly.isFetching} />
         {assembly.result.map((r, index) => {
           return (
             <div key={index}>

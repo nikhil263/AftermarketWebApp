@@ -27,7 +27,7 @@ import {
   RESET_DRUM_FILTER,
   ROTOR_NUMBER_DATA,
   DRUM_FILTER_CATEGORIES,
-  SELECTED_ROTOR_NUMBER, FETCH_HUB_STUDS, INVALIDATE_HUB_STUDS
+  SELECTED_ROTOR_NUMBER, FETCH_HUB_STUDS, INVALIDATE_HUB_STUDS, REQUEST_OPTIONAL_SPINDLE_NUT
 } from '../config/constants'
 import _ from 'lodash'
 import {ROTOR_DETAILS, ROTOR_FILTER_CATEGORIES, ROTOR_FILTER_VALUES, ROTOR_RESULT} from "config/constants";
@@ -91,7 +91,8 @@ export function results(state = RESULTS, action) {
 
 		case REQUEST_HUBS:
 			return Object.assign({}, state, {isFetching: true})
-
+		case REQUEST_OPTIONAL_SPINDLE_NUT:
+			return Object.assign({}, state, {isSpindleNutFetching: true});
 		case RECEIVE_HUBS:
 			let hubs = action.hubs;
 			return Object.assign({}, state, {
@@ -235,7 +236,8 @@ export function results(state = RESULTS, action) {
         case OPTIONAL_SPINDLE_NUT:
             return Object.assign({}, state, {
                 spindleNut: action.assemblyNumber.Results,
-                isFetching: false
+                isSpindleNutFetching: false,
+                isFetching: false,
             });
 		case INVALIDATE_HUBS:
 		case INVALIDATE_ASSEMBLIES:
