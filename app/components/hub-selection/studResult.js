@@ -59,7 +59,7 @@ class StudResult extends React.Component {
               <i className="icon-angle-left"/>
             </div>
             {result.map((data, i) => (
-              <div className="specs stud" key{i}>
+              <div className="specs stud" key={i}>
                 <table>
                   <tbody>
                   <tr>
