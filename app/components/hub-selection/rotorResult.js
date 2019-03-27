@@ -71,7 +71,7 @@ class RotorResult extends React.Component {
                   item.BrakeRotorType.toLowerCase() === 'u-section' &&
                   item.BrakeRotorNumber !== '10020109' && (
                     <div className="optional-spindle note">
-                      Note: This rotor is not compatible with aluminium hubs.
+                      Note: This rotor is not compatible with aluminum hubs.
                     </div>
                   )}
                   <Link
@@ -127,7 +127,7 @@ class RotorResult extends React.Component {
                 {data.BrakeRotorType &&
                 data.BrakeRotorType.toLowerCase() === 'u-section' &&
                 data.BrakeRotorNumber !== '10020109' && (
-                  <div className="optional-spindle note">Note: This rotor is not compatible with aluminium hubs.</div>
+                  <div className="optional-spindle note">Note: This rotor is not compatible with aluminum hubs.</div>
                 )}
                 <Link
                   to={'/hub-selection/replacement-rotor/rotordetails/' + data.BrakeRotorNumber}
