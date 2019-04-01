@@ -240,12 +240,12 @@ export const fetchRotorFilterValues = (filtername, filtervalues, isFilterValueSi
 export const fetchStudFilterValues = (filtername, filters) => {
   return dispatch => {
     dispatch(requestHubs('123'));
-    return fetch(constants.API+'/stud/filtervalues/'+filtername+(filters ? '?'+filters : ''), {
+    return fetch(constants.API1+'/stud/filtervalues/'+filtername+(filters ? '?'+filters : ''), {
       method: 'get',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': constants.V2KEY
+        'Ocp-Apim-Subscription-Key': constants.V2KEY1
       }
     }).then(
       response => response.json(),
