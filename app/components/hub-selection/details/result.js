@@ -182,9 +182,9 @@ class HubSingleResult extends Component {
               ))
             }
             <h2>{item.title || item.AftermarketDescription}<br/>
-              {item.HubAssemblyNumber}
+              {item.HubAssemblyNumber}<br/>
+              {studs && `${studs} (Long stud version)`}
             </h2>
-            {studs && <div className="optional-spindle">(Long Stud version: {studs})</div>}
             {spindleNut &&
             <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
             {note}
