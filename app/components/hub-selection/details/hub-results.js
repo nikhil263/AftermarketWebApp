@@ -75,12 +75,12 @@ class Result extends Component {
                      alt={item.HubAssemblyNumber}/>
                 <div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
                 <div className="number">{item.HubAssemblyNumber}</div>
-                <HubResults assemblyType={assemblyType} key={index}/>
                 {short_studs && short_studs[index] && (
-                  <div className="number text-center">
+                  <div className="number text-center" style={{ marginTop: '10px' }}>
                     {`${short_studs[index].HubAssemblyNumber} (Long stud version)`}
                   </div>
                 )}
+                <HubResults assemblyType={assemblyType} key={index}/>
               </div>
             )
           })}
