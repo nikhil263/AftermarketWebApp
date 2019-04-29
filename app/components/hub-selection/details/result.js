@@ -170,16 +170,20 @@ class HubSingleResult extends Component {
           />
           <div className="details">
             {
-              item.Images.map((image, index) => (
-                <img
-                  key={index}
-                  className="product-image"
-                  src={IMAGE_CDN + image.ImageGuid + '.png'}
-                  alt={item.HubAssemblyNumber}
-                  width="200"
-                  height="200"
-                />
-              ))
+              item.Images.map((image, index) => {
+                if (index === 0) {
+                  return (
+                    <img
+                      key={index}
+                      className="product-image"
+                      src={IMAGE_CDN + image.ImageGuid + '.png'}
+                      alt={item.HubAssemblyNumber}
+                      width="200"
+                      height="200"
+                    />
+                  )
+                }
+              })
             }
             <h2>{item.title || item.AftermarketDescription}<br/>
               {item.HubAssemblyNumber}<br/>
@@ -188,6 +192,22 @@ class HubSingleResult extends Component {
             {spindleNut &&
             <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
             {note}
+            {
+              item.Images.map((image, index) => {
+                if (index === 1) {
+                  return (
+                    <img
+                      key={index}
+                      className="product-image danger"
+                      src={IMAGE_CDN + image.ImageGuid + '.png'}
+                      alt={item.HubAssemblyNumber}
+                      width="200"
+                      height="200"
+                    />
+                  )
+                }
+              })
+            }
             <Link to={'/hub-selection/details/' + item.HubAssemblyNumber} className="general-button">See Details</Link>
             <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
           </div>
