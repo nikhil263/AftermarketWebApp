@@ -66,7 +66,7 @@ class RotorResult extends React.Component {
                     <div className="number">For R Drive Axle</div>
                   ) : null}
                   <div className="weight">Brake Rotor Kit Number: {item.BrakeRotorKitNumber}</div>
-                  {/*<p>{item.BrakeRotorComponents}</p>*/}
+                  <p>{item.BrakeRotorComponents}</p>
                   {item.BrakeRotorType &&
                   item.BrakeRotorType.toLowerCase() === 'u-section' &&
                   item.BrakeRotorNumber !== '10020109' && (
@@ -123,7 +123,7 @@ class RotorResult extends React.Component {
                   <div>{data.BrakeRotorKitNumber}</div>
                 </h2>
                 <div className="optional-spindle">Includes Rotor {data.BrakeRotorNumber}</div>
-                {/*<p>{data.BrakeRotorComponents}</p>*/}
+                <p>{data.BrakeRotorComponents}</p>
                 {data.BrakeRotorType &&
                 data.BrakeRotorType.toLowerCase() === 'u-section' &&
                 data.BrakeRotorNumber !== '10020109' && (
