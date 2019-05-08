@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, RouteHandler, IndexRoute } from 'react-router';
+import {Route, RouteHandler, IndexRoute} from 'react-router';
 
 import Main from 'containers/main'
 import App from 'containers/app'
@@ -22,6 +22,7 @@ import HubSelectionFindAssembly from 'components/hub-selection/find-assembly'
 import HubSelectionFindAssemblyDetail from 'components/hub-selection/find-assembly-detail'
 import HubSelectionSearch from 'components/hub-selection/search'
 import Filters from 'components/hub-selection/filters'
+import CompareAssembly from 'components/hub-selection/compare-assembly'
 import HubSelectionResults from 'components/hub-selection/results'
 import HubSelectionDetails from 'components/hub-selection/details'
 import HubSelectionEmail from 'components/hub-selection/email'
@@ -80,6 +81,7 @@ module.exports = (
         <Route path='choose-path' component={HubSelectionChoosePath}/>
         <Route path='search' component={HubSelectionSearch}/>
         <Route path='filters/:filters' component={Filters}/>
+        <Route path='compare/:assembly/:compareAssembly' component={CompareAssembly}/>
         <Route path='results' component={HubSelectionResults}/>
         <Route path='details/:id' component={HubSelectionDetails}/>
         <Route path='email' component={HubSelectionEmail}/>

@@ -138,6 +138,7 @@ class HubSingleResult extends Component {
 
   render() {
     let {idx, total, item, spindleNut, short_studs, selectedHubAssemblyNumber} = this.props;
+    const selectedNumber = selectedHubAssemblyNumber ? selectedHubAssemblyNumber.split(" ")[1] : '';
     const {isFetching, shortStuds} = this.state;
     let studs = null;
 
@@ -209,6 +210,14 @@ class HubSingleResult extends Component {
               })
             }
             <Link to={'/hub-selection/details/' + item.HubAssemblyNumber} className="general-button">See Details</Link>
+            {selectedNumber && (
+              <Link
+                to={`/hub-selection/compare/${selectedNumber}/${item.HubAssemblyNumber}`}
+                className="general-button"
+              >
+                Compare
+              </Link>
+            )}
             <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
           </div>
           <NextButton

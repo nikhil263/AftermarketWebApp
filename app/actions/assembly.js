@@ -1,16 +1,16 @@
 import {
-	API,
-	APIV10,
-	V2KEY,
-	ZERO_RESULTS,
-	INVALIDATE_ASSEMBLIES,
-	REQUEST_ASSEMBLIES,
-	RECEIVE_ASSEMBLIES,
-	RECIEVE_ASSEMBLY_DETAILS,
-	REQUEST_ASSEMBLY_DETAILS,
-	INVALIDATE_ASSEMBLY_DETAILS,
-	IMAGE_CDN,
-	SET_RESULT_INDEX
+  API,
+  APIV10,
+  V2KEY,
+  ZERO_RESULTS,
+  INVALIDATE_ASSEMBLIES,
+  REQUEST_ASSEMBLIES,
+  RECEIVE_ASSEMBLIES,
+  RECIEVE_ASSEMBLY_DETAILS,
+  REQUEST_ASSEMBLY_DETAILS,
+  INVALIDATE_ASSEMBLY_DETAILS,
+  IMAGE_CDN,
+  SET_RESULT_INDEX, COMPARE_RECEIVE_ASSEMBLIES, COMPARE_REQUEST_ASSEMBLIES
 } from '../config/constants'
 import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
@@ -96,6 +96,33 @@ export const fetchAssemblyDetails = (id, images) => {
 			}
 
 }
+
+export const fetchCompareAssemblyDetails = (ids) => {
+  return dispatch => {
+    dispatch({ type: COMPARE_REQUEST_ASSEMBLIES });
+    let url = `${API}/hubassemblydetails/${ids}`;
+    return fetch(url, {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': V2KEY
+      }
+    })
+      .then(
+        response => response.json(),
+        err => {
+          // console.log('API Error', err);
+        }
+      )
+      .then(json => {
+          dispatch({
+            type: COMPARE_RECEIVE_ASSEMBLIES, payload: json
+          })
+        }
+      )
+  }
+};
 
 export const requestAssembly = (hub) => {
   return {

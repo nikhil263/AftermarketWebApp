@@ -374,6 +374,10 @@ h2.partsSubHead {
 					font-size: 16px;margin: 5px 0 0 0;text-align: center;list-style: none;
 				}
 			}
+			.compare-part-number {
+				font-size: 22px;
+				line-height: 24px;
+			}
 		}
 		.optional-spindle{
 			display: block;
@@ -385,6 +389,33 @@ h2.partsSubHead {
 			div.small-6{
 				float: none;
 				text-align: center;
+			}
+		}
+		.compare-props-wrapper {
+			width: 100%;
+			background-color: #fff;
+			border: none;
+			display: flex;
+			flex-direction: column-reverse;
+			margin-top: 20px;
+			.compare-item {
+				border-bottom: 4px solid #fff;
+				order: -1;
+				.content {
+					display: flex;
+				}
+				.accordion-title {
+					position: relative;
+					.pointer {
+						position: absolute;
+						top: 50%;
+						right: 0;
+						transform: translateY(-50%);
+						border-width: 10px 7px 0 7px !important;
+						border-color: $primary-color transparent transparent transparent !important;
+						cursor: pointer;
+					}
+				}
 			}
 		}
 	}
@@ -487,5 +518,9 @@ h2.partsSubHead {
 	#hubAssemblyResult .grid-content .optional-spindle div.small-6 {
 		flex: none;
 		max-width: 100%;
+	}
+
+	#hubAssemblyResult .grid-content .small-6 .compare-part-number {
+		text-align: left;
 	}
 }
