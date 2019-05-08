@@ -1,160 +1,226 @@
-import React, { PropTypes, Component, Image } from 'react';
-import { connect } from 'react-redux'
+import React, {PropTypes, Component, Image} from 'react';
+import {connect} from 'react-redux'
 import {Link} from 'react-router';
 import {showPreviousResult, showNextResult} from 'actions'
-import { IMAGE_CDN } from 'config/constants'
+import {IMAGE_CDN} from 'config/constants'
 import _ from 'lodash'
 import Spinner from 'components/global/spinner'
+import {fetchLongStudApi} from "../../../utils";
 
 class NextButton extends Component {
 
-	nextClass() {
-		let {idx, total, showButton} = this.props;
-		let defaultClass = 'next-button';
-		defaultClass = (showButton()) ? defaultClass + ' hide-button': defaultClass;
-		if (idx === total-1) {
-			return defaultClass + ' disabled'
-		}
-		return defaultClass
-	}
+  nextClass() {
+    let {idx, total, showButton} = this.props;
+    let defaultClass = 'next-button';
+    defaultClass = (showButton()) ? defaultClass + ' hide-button' : defaultClass;
+    if (idx === total - 1) {
+      return defaultClass + ' disabled'
+    }
+    return defaultClass
+  }
 
 
+  render() {
+    let {handleClick} = this.props;
 
-	render() {
-		let { handleClick } = this.props;
-
-		return (
-			<div className={this.nextClass()} onClick={handleClick}>
-				<i className="icon-angle-right" />
-			</div>
-		)
-	}
+    return (
+      <div className={this.nextClass()} onClick={handleClick}>
+        <i className="icon-angle-right"/>
+      </div>
+    )
+  }
 }
 
 class PreviousButton extends Component {
 
-	previousClass() {
-		let {idx, showButton} = this.props;
-		let defaultClass = 'prev-button';
-		defaultClass = (showButton()) ? defaultClass + ' hide-button': defaultClass;
-		if (idx === 0) {
-			return defaultClass + ' disabled'
-		}
-		return defaultClass
-	}
+  previousClass() {
+    let {idx, showButton} = this.props;
+    let defaultClass = 'prev-button';
+    defaultClass = (showButton()) ? defaultClass + ' hide-button' : defaultClass;
+    if (idx === 0) {
+      return defaultClass + ' disabled'
+    }
+    return defaultClass
+  }
 
-	render() {
-		let { handleClick} = this.props;
-		return (
-			<div className={this.previousClass()} onClick={handleClick}>
-				<i className="icon-angle-left" />
-			</div>
-		)
-	}
+  render() {
+    let {handleClick} = this.props;
+    return (
+      <div className={this.previousClass()} onClick={handleClick}>
+        <i className="icon-angle-left"/>
+      </div>
+    )
+  }
 }
 
 class HubSingleResult extends Component {
+  constructor() {
+    super();
 
-	renderButtons() {
-		let { total } = this.props;
-		return total === 1;
-	}
+    this.compareLongStuds = this.compareLongStuds.bind(this);
 
-	handleNextClick() {
-		const {dispatch} = this.props;
-		dispatch(showNextResult());
-	}
+    this.state = {
+      isFetching: false,
+      shortStuds: [],
+    };
+  }
 
-	handlePreviousClick() {
-		const {dispatch} = this.props;
-		dispatch(showPreviousResult());
-	}
+  renderButtons() {
+    let {total} = this.props;
+    return total === 1;
+  }
 
-	renderPreviousBtn() {
-		if (this.renderButtons()) {
+  handleNextClick() {
+    const {dispatch} = this.props;
+    dispatch(showNextResult());
+  }
 
-		}
-		return ''
-	}
+  handlePreviousClick() {
+    const {dispatch} = this.props;
+    dispatch(showPreviousResult());
+  }
 
-	renderNextBtn() {
-		if (this.renderButtons()) {
+  renderPreviousBtn() {
+    if (this.renderButtons()) {
 
-		}
-		return ''
-	}
-	addLinks(str, links) {
-		if (str === undefined) {
-			return null
-		}
-		let matches = str.match(/{{(.*?)}}/g) || []
+    }
+    return ''
+  }
 
-		matches = matches.map(function(n, idx) {
-			if (links.length > 0){
+  renderNextBtn() {
+    if (this.renderButtons()) {
 
-				return [n, n.replace('{{', '<a href="https://conmetaftermarketpubliccdn.azureedge.net/documents/'+links[idx]+'">').replace('}}', '</a>')]
+    }
+    return ''
+  }
 
-			}
-		});
-		matches.forEach(item => {
-			str = str.replace(item[0], item[1])
-		});
-		return <p dangerouslySetInnerHTML={{__html: str}}></p>;
-	}
-	render () {
-		let { idx, total, item, spindleNut, short_studs, selectedHubAssemblyNumber } = this.props;
-		let studs = null;
+  addLinks(str, links) {
+    if (str === undefined) {
+      return null
+    }
+    let matches = str.match(/{{(.*?)}}/g) || []
 
-		if (_.isUndefined(item) || item.id === -1) {
-			return (<Spinner />)
-		}
+    matches = matches.map(function (n, idx) {
+      if (links.length > 0) {
+        return [n, n.replace('{{', '<a href="https://conmetaftermarketpubliccdn.azureedge.net/documents/' + links[idx] + '">').replace('}}', '</a>')]
+      }
+    });
+    matches.forEach(item => {
+      str = str.replace(item[0], item[1])
+    });
+    return <p dangerouslySetInnerHTML={{__html: str}}/>;
+  }
 
-		let note = null;
+  componentWillMount() {
+    const {short_studs} = this.props;
 
-		if (!_.isUndefined(item.GawrNote)) {
-			note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
-		}
+    if (short_studs && short_studs.length > 1) {
+      this.setState({isFetching: true});
+      this.compareLongStuds();
+    }
+  }
 
-		if (short_studs && short_studs.length && 0) {
-			studs = short_studs.map(item => item.HubAssemblyNumber).join(',');
-		}
+  async compareLongStuds() {
+    const {item, short_studs} = this.props;
+    const longStudFilter = `hanum=${item.HubAssemblyNumber}`;
+    const t = await fetchLongStudApi(longStudFilter);
+    const shortStuds = [];
+    const promises = short_studs.map(async item => {
+      const res = await fetchLongStudApi(`${longStudFilter},${item.HubAssemblyNumber}`);
+      if (_.isEqual(_.sortBy(t.Results), _.sortBy(res.Results))) {
+        shortStuds.push(item.HubAssemblyNumber);
+      }
+    });
 
-		return (
-			<div>
-				<h1>Success! The following hub is recommended</h1>
-				{selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : '' }
-				<div className="result">
-					<PreviousButton
-						idx={idx}
-						total={total}
-						handleClick={this.handlePreviousClick.bind(this)}
-						showButton={this.renderButtons.bind(this)} />
+    await Promise.all(promises);
+    this.setState({isFetching: false, shortStuds});
+  };
 
-					<div className="details">
-						{
-							item.Images.map((image, index) => {
-								return <img className="product-image"  src={IMAGE_CDN+image.ImageGuid+'.png'}  key={index} alt={item.HubAssemblyNumber} width="200" height="200" />
-							})
-						}
-						<h2>{item.title || item.AftermarketDescription}<br />
-							{item.HubAssemblyNumber}
-						</h2>
-						{studs && <div className="optional-spindle">(Long Stud version: {studs})</div>}
-						{spindleNut && <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
-						{note}
-						<Link to={'/hub-selection/details/'+item.HubAssemblyNumber} className="general-button">See Details</Link>
-						<div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
-					</div>
-					<NextButton
-						idx={idx}
-						total={total}
-						handleClick={this.handleNextClick.bind(this)}
-						showButton={this.renderButtons.bind(this)}
-					/>
-				</div>
-			</div>
-		)
-	}
+  render() {
+    let {idx, total, item, spindleNut, short_studs, selectedHubAssemblyNumber} = this.props;
+    const {isFetching, shortStuds} = this.state;
+    let studs = null;
+
+    if (_.isUndefined(item) || item.id === -1 || isFetching) {
+      return (<Spinner isFetching/>)
+    }
+
+    let note = null;
+
+    if (!_.isUndefined(item.GawrNote)) {
+      note = this.addLinks(item.GawrNote.Text, item.GawrNote.Links)
+    }
+
+    if (short_studs && short_studs.length === 1) {
+      studs = short_studs.map(item => item.HubAssemblyNumber).join(',');
+    } else if (shortStuds && shortStuds.length) {
+      studs = shortStuds.map(item => item).join(',');
+    }
+
+    return (
+      <div>
+        <h1>Success! The following hub is recommended</h1>
+        {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : ''}
+        <div className="result">
+          <PreviousButton
+            idx={idx}
+            total={total}
+            handleClick={this.handlePreviousClick.bind(this)}
+            showButton={this.renderButtons.bind(this)}
+          />
+          <div className="details">
+            {
+              item.Images.map((image, index) => {
+                if (index === 0) {
+                  return (
+                    <img
+                      key={index}
+                      className="product-image"
+                      src={IMAGE_CDN + image.ImageGuid + '.png'}
+                      alt={item.HubAssemblyNumber}
+                      width="200"
+                      height="200"
+                    />
+                  )
+                }
+              })
+            }
+            <h2>{item.title || item.AftermarketDescription}<br/>
+              {item.HubAssemblyNumber}<br/>
+              {studs && `${studs} (Long stud version)`}
+            </h2>
+            {spindleNut &&
+            <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
+            {note}
+            {
+              item.Images.map((image, index) => {
+                if (index === 1) {
+                  return (
+                    <img
+                      key={index}
+                      className="product-image danger"
+                      src={IMAGE_CDN + image.ImageGuid + '.png'}
+                      alt={item.HubAssemblyNumber}
+                      width="200"
+                      height="200"
+                    />
+                  )
+                }
+              })
+            }
+            <Link to={'/hub-selection/details/' + item.HubAssemblyNumber} className="general-button">See Details</Link>
+            <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
+          </div>
+          <NextButton
+            idx={idx}
+            total={total}
+            handleClick={this.handleNextClick.bind(this)}
+            showButton={this.renderButtons.bind(this)}
+          />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default connect()(HubSingleResult);

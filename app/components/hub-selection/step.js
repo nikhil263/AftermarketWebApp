@@ -22,9 +22,9 @@ export default class extends Component {
 			link = null
 		}
 
-		if (pathName.indexOf('/replacement-drum/filter/axpos') > -1 || pathName.indexOf('/replacement-rotor/filter/axpos') > -1) {
+		if (pathName.indexOf('/replacement-drum/filter/axpos') > -1 || pathName.indexOf('/replacement-rotor/filter/axpos') > -1 || pathName.indexOf('/stud/filter/stldp') > -1) {
             link = <a href="javascript:void(0)" onClick={() => window.history.go(-2)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
-		} else if (pathName.indexOf('/replacement-drum') > -1 || pathName.indexOf('/replacement-rotor') > -1) {
+		} else if (pathName.indexOf('/replacement-drum') > -1 || pathName.indexOf('/replacement-rotor') > -1 || pathName.indexOf('/stud') > -1) {
             link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
         } else if (!app || app.currentIndex === 0) {
 			link = <Link to="/hub-selection" className="back-btn"><i className="icon-angle-left"></i>Back</Link>

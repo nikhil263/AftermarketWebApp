@@ -237,6 +237,30 @@ export const fetchRotorFilterValues = (filtername, filtervalues, isFilterValueSi
     }
 };
 
+export const fetchStudFilterValues = (filtername, filters) => {
+  return dispatch => {
+    dispatch(requestHubs('123'));
+    return fetch(constants.API1+'/stud/filtervalues/'+filtername+(filters ? '?'+filters : ''), {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': constants.V2KEY1
+      }
+    }).then(
+      response => response.json(),
+      err => {
+        // console.log('API Error', err);
+      })
+      .then(json => {
+        dispatch({
+          type: constants.STUD_FILTER_VALUES,
+          data: json,
+        })
+      })
+  }
+};
+
 export const fetchDrumFilterCategories = () => {
     return dispatch => {
         dispatch(requestHubs('123'));
