@@ -93,7 +93,6 @@ export function results(state = RESULTS, action) {
       })
 
     case REQUEST_HUBS:
-      console.log('###sd');
       return Object.assign({}, state, {isFetching: true})
     case REQUEST_OPTIONAL_SPINDLE_NUT:
       return Object.assign({}, state, {isSpindleNutFetching: true});
@@ -244,7 +243,6 @@ export function results(state = RESULTS, action) {
         isFetching: false,
       });
     case STUD_FILTER_VALUES:
-      console.log('!!!!!', action);
       return Object.assign({}, state, {
         studFilterValue: action.data.Results,
         isFetching: false
