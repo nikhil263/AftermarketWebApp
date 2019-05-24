@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {IMAGE_CDN} from "config/constants";
 
 class StudResult extends React.Component {
   constructor(props) {
@@ -60,6 +61,13 @@ class StudResult extends React.Component {
             </div>
             {result.map((data, i) => (
               <div className="specs stud" key={i}>
+                {
+                  data.Images && data.Images.map((image) => (
+                    <img className="product-image" key={image.ImageGuid} src={IMAGE_CDN + image.ImageGuid + '.png'}
+                         alt="Dimensions" height={400}
+                         width={400}/>
+                  ))
+                }
                 <table>
                   <tbody>
                   <tr>
