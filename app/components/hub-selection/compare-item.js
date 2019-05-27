@@ -27,6 +27,19 @@ class CompareItem extends Component {
     this.setState({active: !this.state.active});
   };
 
+  changeProperty(item, property){
+    let value = null;
+    if(_.isBoolean(item)){
+      value = item ? 'Yes' : 'No';
+    }else if(property === "HubRatingPound"){
+      value = Math.round(item).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }else{
+      value = item;
+    }
+
+    return value;
+  }
+
   render() {
     const {item, nextItem, property, index, isDifferent, label} = this.props;
     const {active} = this.state;
@@ -40,8 +53,8 @@ class CompareItem extends Component {
         </div>
         <div className="accordion-content">
           <div className="content">
-            <div className="small-6">{_.isBoolean(item[property]) ? (item[property] ? 'true' : 'false') : item[property]}</div>
-            <div className="small-6">{_.isBoolean(nextItem[property]) ? (nextItem[property] ? 'true' : 'false') : nextItem[property]}</div>
+            <div className="small-6">{this.changeProperty(item[property], property)}</div>
+            <div className="small-6">{this.changeProperty(nextItem[property], property)}</div>
           </div>
         </div>
       </div>
