@@ -108,7 +108,7 @@ class HubSingleResult extends Component {
     matches.forEach(item => {
       str = str.replace(item[0], item[1])
     });
-    return <p dangerouslySetInnerHTML={{__html: str}}/>;
+    return <p className="note-addLinks" dangerouslySetInnerHTML={{__html: str}}/>;
   }
 
   componentWillMount() {
@@ -160,7 +160,7 @@ class HubSingleResult extends Component {
 
     return (
       <div>
-        <h1>Success! The following hub is recommended</h1>
+        <h2>Success! The following hub is recommended</h2>
         {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : ''}
         <div className="result">
           <PreviousButton
@@ -186,7 +186,7 @@ class HubSingleResult extends Component {
                 }
               })
             }
-            <h2>{item.title || item.AftermarketDescription}<br/>
+            <h2 className="hub-name">{item.title || item.AftermarketDescription}<br/>
               {item.HubAssemblyNumber}<br/>
               {studs && `${studs} (Long stud version)`}
             </h2>

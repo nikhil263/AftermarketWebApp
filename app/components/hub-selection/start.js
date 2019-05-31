@@ -16,7 +16,7 @@ class Start extends Component {
   render() {
     return (
       <div className="grid-container main-content">
-        <h1>What are you looking for?</h1>
+        <h2>What are you looking for?</h2>
         <div className="btn-no-description conmet-button">
           <button onClick={this.handleClick.bind(this, '/hub-selection/choose-path')} store={this.context.store}>
             <h2>HUBS <i className="icon-angle-right" /></h2>

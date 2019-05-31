@@ -4,8 +4,10 @@ form {
 		font-size: 1.2rem;
 	}
 	input[type="text"] {
-		font-size: 1.2rem;
+		font-size: 1.15rem;
 		color: $cm-dark-grey;
+		font-family: myriad-pro-condensed, sans-serif;
+		text-transform: uppercase;
 	}
 	button.large {
 		font-size: 2rem;

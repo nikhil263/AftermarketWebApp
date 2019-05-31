@@ -3,7 +3,7 @@ body.rotate {
 }
 body {
 	display: -ms-flexbox;
-	font-family: "ArialNovaCond-Light";
+	font-family: myriad-pro, sans-serif;
 	background: $cm-diagonal-background;
 }
 body,html{
@@ -17,7 +17,7 @@ body,html{
 	}
 }
 h2,h3,h4,h5,h6{
-	font-family: "ArialNovaCond";
+	font-family: myriad-pro-condensed, sans-serif;
 	letter-spacing: 0.02rem;
 }
 
@@ -52,7 +52,21 @@ h2,h3,h4,h5,h6{
 }
 .grid-container {
 	h1, h2,h3,h4,h5,h6 {
+		text-transform: uppercase;
 		color: $cm-dark-grey;
+	}
+	.meta{
+		font-family: myriad-pro-condensed, sans-serif;
+		text-transform: uppercase;
+	}
+	.specs td{
+		text-transform: uppercase;
+	}
+	.help{
+		font-family: myriad-pro-condensed, sans-serif;
+	}
+	.product-details{
+		font-family: myriad-pro, sans-serif;
 	}
 }
 #logo {
@@ -101,6 +115,7 @@ img.brake-rotor-flange {
 	font-family: "ArialNovaCond";
 	font-size: 0.8rem;
 	padding-left: 0.5rem;
+	text-transform: uppercase;
 }
 .help2 {
 	color: $cm-mid-grey;

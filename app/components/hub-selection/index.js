@@ -17,6 +17,7 @@ class HubSelector extends Component {
 
 	render() {
 		const { dispatch, history, assembly, truckMakes, results, app, params, images,parts} = this.props;
+		console.log('%%%%%%%%%%%%%%', this.props)
 		const childProps = {
 			params,
             parts,
