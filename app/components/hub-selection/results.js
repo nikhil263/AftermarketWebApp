@@ -115,16 +115,32 @@ class Results extends Component {
     }
 
     if ((results.items.length > 0) && (results.items.length === 2)) {
+      const {short_studs} = results;
       return (
-        <Result results={results.items} spindleNut={this.state.spindleNut} selectedHubAssemblyNumber={null}/>
+        <Result
+          results={results.items}
+          spindleNut={this.state.spindleNut}
+          selectedHubAssemblyNumber={null}
+          short_studs={short_studs}
+        />
       )
     } else if (results.items.length > 0) {
+      const {short_studs} = results;
       return (
         <div>
           {results.items.map((item, index) => {
             if (index === results.selectedIdx) {
-              return <HubSingleResult idx={results.selectedIdx} spindleNut={this.state.spindleNut} total={results.total}
-                                      key={index} item={item} selectedHubAssemblyNumber={null}/>
+              return (
+                <HubSingleResult
+                  idx={results.selectedIdx}
+                  spindleNut={this.state.spindleNut}
+                  total={results.total}
+                  key={index}
+                  item={item}
+                  selectedHubAssemblyNumber={null}
+                  short_studs={short_studs}
+                />
+              )
             }
           })}
           <ResultNavigation total={results.total} currentIdx={results.selectedIdx}/>
@@ -134,5 +150,6 @@ class Results extends Component {
       return (<div/>)
     }
   }
-};
+}
+
 export default connect()(Results)
