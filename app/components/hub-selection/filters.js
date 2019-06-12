@@ -38,6 +38,11 @@ class Filters extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const {dispatch} = this.props;
+    dispatch(invalidateHubStuds());
+  }
+
   setFilters(filters) {
     let result = {};
     filters.split('&').forEach(function (x) {

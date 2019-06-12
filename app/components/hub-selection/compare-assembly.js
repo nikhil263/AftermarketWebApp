@@ -45,7 +45,6 @@ class CompareAssembly extends Component {
   render() {
     const {assembly, history} = this.props;
     const {compare: {results, differentProperties}} = assembly;
-    console.log('#######', assembly);
 
     if (assembly.isFetching) {
       return <Spinner isFetching/>;

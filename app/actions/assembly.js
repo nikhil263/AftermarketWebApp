@@ -165,17 +165,8 @@ export const receiveAssembly = (hub, json, date = Date.now()) => {
 
 export const fetchAssembly = (state) => {
   return dispatch => {
-    dispatch(requestAssembly(state))
-
-		let searchFilterState = [];
-		_.each(state.filterState, (value, key) => {
-			console.log(value, key)
-			if (value) {
-				searchFilterState.push(`${key}=${value}`);
-			}
-
-		});
-		let searchParams = searchFilterState.join('&');
+    dispatch(requestAssembly(state));
+		let searchParams = getAppSearchParams(state);
 
     let url = API+'/hubassembly/filtervalues/hanum?'+searchParams;
     return fetch(url, {
@@ -200,4 +191,16 @@ export const invalidateAssembly = () => {
   return {
     type: INVALIDATE_ASSEMBLIES,
   }
+}
+
+export function getAppSearchParams(state) {
+  let searchFilterState = [];
+
+  _.each(state.filterState, (value, key) => {
+    if (value) {
+      searchFilterState.push(`${key}=${value}`);
+    }
+  });
+
+  return searchFilterState.join('&');
 }
