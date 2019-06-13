@@ -164,7 +164,7 @@ class Filters extends Component {
     if (current_filter === 'gawrr' && filter_value[0] && filter_value[0].Id && !isFetching && !(results.length > 0)) {
       return (
         <div className="grid-container main-content">
-          <h1>Choose the GAWR (Gross Axle Weight Rating)</h1>
+          <h2>Choose the GAWR (Gross Axle Weight Rating)</h2>
           <div className="grid-content">
             {filter_value.map((key) => {
               return <div className="small-12" key={key.Id}>
@@ -181,7 +181,7 @@ class Filters extends Component {
     } else if (current_filter === 'wmslc' && !isFetching && !(results.length > 0)) {
       return (
         <div className="grid-container main-content">
-          <h1>Choose the wheel type (determine wheel stud length)</h1>
+          <h2>Choose the wheel type (determine wheel stud length)</h2>
           <div className="grid-content">
             {filter_value.map((key) => {
               return <div className="small-12" key={key.Id}>
@@ -198,7 +198,7 @@ class Filters extends Component {
     } else if ((current_filter === 'hcmty' || current_filter === 'hatyp') && !isFetching && !(results.length > 0)) {
       return (
         <div className="grid-container main-content">
-          <h1>{current_filter === 'hcmty' ? 'Choose the hub material' : 'Choose the hub assembly type'}</h1>
+          <h2>{current_filter === 'hcmty' ? 'Choose the hub material' : 'Choose the hub assembly type'}</h2>
           <div className="grid-content">
             {filter_value.map((key) => {
               return <div className="small-12" key={key.Id}>

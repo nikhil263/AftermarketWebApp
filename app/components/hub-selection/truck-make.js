@@ -40,7 +40,7 @@ class TruckMakes extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Truck Make</h1>
+				<h2>Choose the Truck Make</h2>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
 						var boundClick = setFilter.bind(this, FILTERIDX, {tmake: result.Id}, app);

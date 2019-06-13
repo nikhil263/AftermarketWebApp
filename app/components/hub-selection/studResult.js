@@ -49,7 +49,7 @@ class StudResult extends React.Component {
       // const data = result[this.state.selectedIndex];
       return (
         <div id="studResult">
-          <h1>Success! The following ConMet Stud is recommended</h1>
+          <h2>Success! The following ConMet Stud is recommended</h2>
           <div className="result">
             <div
               className={classNames('prev-button', {

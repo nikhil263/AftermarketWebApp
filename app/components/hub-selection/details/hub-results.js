@@ -64,7 +64,7 @@ class Result extends Component {
 
     return (
       <div className="grid-container main-content" id="hubAssemblyResult">
-        <h1>Success!</h1>
+        <h2>Success!</h2>
         {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : ''}
         <div className="grid-content flex-row">
           {results.map((item, index) => {

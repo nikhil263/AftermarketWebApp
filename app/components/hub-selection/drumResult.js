@@ -84,7 +84,7 @@ class DrumResult extends React.Component {
     if((drumResult.length > 0) && (drumResult.length === 2)) {
       return (
         <div className="grid-container main-content" id="hubAssemblyResult">
-          <h1>Success! The following drum is recommended</h1>
+          <h2>Success! The following drum is recommended</h2>
           <div className="grid-content equalizer flex-row">
             {
               drumResult.map((item, index) => {
@@ -110,7 +110,7 @@ class DrumResult extends React.Component {
       const data = drumResult[this.state.selectedIndex];
       return (
         <div>
-          <h1>Success! The following drum is recommended</h1>
+          <h2>Success! The following drum is recommended</h2>
           <div className="result">
             <div className={classNames("prev-button", { 'hide-button': ((drumResult.length <= 1) || (this.state.selectedIndex === 0)) })} onClick={this.prevData}>
               <i className="icon-angle-left" />

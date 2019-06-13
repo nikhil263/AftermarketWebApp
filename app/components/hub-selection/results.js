@@ -29,7 +29,7 @@ class MaterialType extends Component {
 
     return (
       <div className="grid-container main-content">
-        <h1>Choose the Hub Material</h1>
+        <h2>Choose the Hub Material</h2>
 
         <div className={this.setActive(MATERIAL_IRON)}>
           <button className="yes-no-button" onClick={this.setFilter.bind(this, MATERIAL_IRON)}><strong>Iron</strong>

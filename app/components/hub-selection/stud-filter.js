@@ -146,7 +146,7 @@ class StudFilter extends Component {
 
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>{message}</h1>
+          <h2>{message}</h2>
           <div className="grid-block">
             {image && (
               <div className="grid-content small-12">

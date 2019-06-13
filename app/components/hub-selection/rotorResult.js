@@ -43,7 +43,7 @@ class RotorResult extends React.Component {
     if (rotorResult.length > 0 && rotorResult.length === 2) {
       return (
         <div className="grid-container main-content" id="hubAssemblyResult">
-          <h1>Success! The following rotor is recommended</h1>
+          <h2>Success! The following rotor is recommended</h2>
           <div className="grid-content flex-row">
             {rotorResult.map((item, index) => {
               return (
@@ -94,7 +94,7 @@ class RotorResult extends React.Component {
       const data = rotorResult[this.state.selectedIndex];
       return (
         <div>
-          <h1>Success! The following rotor is recommended</h1>
+          <h2>Success! The following rotor is recommended</h2>
           <div className="result">
             <div
               className={classNames('prev-button', {

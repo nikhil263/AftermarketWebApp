@@ -39,7 +39,7 @@ class BrakeRotorFlange extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Brake Rotor Outside Diameter</h1>
+				<h2>Choose the Brake Rotor Outside Diameter</h2>
 
 				<div className="grid-block">
 					<div className="grid-content small-12">

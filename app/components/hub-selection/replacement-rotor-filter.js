@@ -183,7 +183,7 @@ class ReplacementRotorFilter extends Component {
     if (currentFilter === 'axpos' && (rotorFilterValue !== undefined)) {
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>Choose the Axle position</h1>
+          <h2>Choose the Axle position</h2>
           <div className="grid-content">
             {rotorFilterValue.map((item) => {
               return (
@@ -204,7 +204,7 @@ class ReplacementRotorFilter extends Component {
     if (currentFilter === 'brtyp' && (rotorFilterValue !== undefined)) {
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>Choose the brake rotor type</h1>
+          <h2>Choose the brake rotor type</h2>
           <div className="grid-block">
             {rotorFilterValue.map((item) => {
               return (
@@ -237,7 +237,7 @@ class ReplacementRotorFilter extends Component {
 
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>{message}</h1>
+          <h2>{message}</h2>
           <img className="brake-rotor-flange" src={src} alt="ConMet" width="300" height="300" />
           <div className="grid-content">
             {rotorFilterValue.map((item) => {

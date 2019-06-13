@@ -6,7 +6,7 @@ class PartsChoosePath extends React.Component {
     render () {
         return (
             <div className="grid-container main-content">
-                <h1>What are you looking for?</h1>
+                <h2>What are you looking for?</h2>
 
                 <Link to="/parts/search" className="general-button">Hub Components by Assembly</Link>
                 <a href="https://conmet.com/wp-content/uploads/2018/10/Wheel-Bearing-Cross-Reference-002.pdf" target="_blank" className="general-button">Bearing Cross Reference</a>

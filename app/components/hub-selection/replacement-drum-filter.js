@@ -140,7 +140,7 @@ class ReplacementDrumFilter extends Component {
 
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>{message}</h1>
+          <h2>{message}</h2>
           {
             currentFilter === 'pidia' ? <img className="product-image" src={require('../../images/pidia.png')} alt="Pilot Diameter"  width="300" height="300 " /> : null
           }
@@ -164,7 +164,7 @@ class ReplacementDrumFilter extends Component {
     if (currentFilter === 'holes') {
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>Choose the Stud Hole count</h1>
+          <h2>Choose the Stud Hole count</h2>
           <div className="grid-content">
             {drumFilterValue.map((item) => {
               return (
@@ -185,7 +185,7 @@ class ReplacementDrumFilter extends Component {
     if (currentFilter === 'tmake' && currentFilter !== 'brnum' && !isResult) {
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>Choose the truck make</h1>
+          <h2>Choose the truck make</h2>
           <div className="grid-content">
             {drumFilterValue.map((item) => {
               return (
@@ -206,7 +206,7 @@ class ReplacementDrumFilter extends Component {
     if (currentFilter === 'axpos' && currentFilter !== 'brnum' && !isResult) {
       return (
         <div className="grid-container main-content replacement-drum">
-          <h1>Choose the axle position</h1>
+          <h2>Choose the axle position</h2>
           <div className="grid-content">
             {drumFilterValue.map((item) => {
               return (

@@ -6,7 +6,7 @@ class NoResults extends Component {
 	render(){
 		return (
 			<div className="grid-container main-content">
-				<h1>No results were found.</h1>
+				<h2>No results were found.</h2>
 				<div className="not-found">
 				<p>
 					The part number you entered is not referenced in this database,

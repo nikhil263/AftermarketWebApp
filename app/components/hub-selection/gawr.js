@@ -65,7 +65,7 @@ class GAWR extends Component {
 
     return (
       <div className="grid-container main-content">
-        <h1>Choose the GAWR <br />(Gross Axle Weight Rating):</h1>
+        <h2>Choose the GAWR <br />(Gross Axle Weight Rating):</h2>
         {
           app.filterResults.map((result, index) => {
             var boundClick = setFilter.bind(this, FILTERIDX, {gawrr: result.Id}, app);

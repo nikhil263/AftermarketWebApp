@@ -39,7 +39,7 @@ class HubType extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Hub Assembly Type</h1>
+				<h2>Choose the Hub Assembly Type</h2>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
 						var boundClick = setFilter.bind(this, FILTERIDX, {hatyp: result.Id}, app);
