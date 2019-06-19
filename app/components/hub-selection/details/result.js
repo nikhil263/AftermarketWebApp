@@ -210,14 +210,14 @@ class HubSingleResult extends Component {
               })
             }
             <Link to={'/hub-selection/details/' + item.HubAssemblyNumber} className="general-button">See Details</Link>
-            {selectedNumber && selectedNumber !== item.HubAssemblyNumber &&(
-              <Link
-                to={`/hub-selection/compare/${selectedNumber}/${item.HubAssemblyNumber}`}
-                className="general-button"
-              >
-                Compare
-              </Link>
-            )}
+            {/*{selectedNumber && selectedNumber !== item.HubAssemblyNumber &&(*/}
+              {/*<Link*/}
+                {/*to={`/hub-selection/compare/${selectedNumber}/${item.HubAssemblyNumber}`}*/}
+                {/*className="general-button"*/}
+              {/*>*/}
+                {/*Compare*/}
+              {/*</Link>*/}
+            {/*)}*/}
             <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
           </div>
           <NextButton

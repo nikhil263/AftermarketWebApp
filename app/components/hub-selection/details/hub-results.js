@@ -95,30 +95,30 @@ class Result extends Component {
               <div className={results.length === 2 ? "small-6" : "small-12"} key={index}>
                 <Link to={'/hub-selection/details/' + item.HubAssemblyNumber} key={index} className="general-button">See
                   Details</Link>
-                {selectedNumber && (
-                  <Link
-                    key={`C-${index}`}
-                    to={`/hub-selection/compare/${selectedNumber}/${item.HubAssemblyNumber}`}
-                    className="general-button"
-                  >
-                    Compare
-                  </Link>
-                )}
+                {/*{selectedNumber && (*/}
+                  {/*<Link*/}
+                    {/*key={`C-${index}`}*/}
+                    {/*to={`/hub-selection/compare/${selectedNumber}/${item.HubAssemblyNumber}`}*/}
+                    {/*className="general-button"*/}
+                  {/*>*/}
+                    {/*Compare*/}
+                  {/*</Link>*/}
+                {/*)}*/}
               </div>
             )
           })}
           <div className="clearfix"/>
-          {!selectedNumber && (
-            <div className="small-12">
-              <Link
-                to={`/hub-selection/compare/${results[0].HubAssemblyNumber}/${results[1].HubAssemblyNumber}`}
-                className="general-button"
-                style={{ marginTop: 0 }}
-              >
-                Compare
-              </Link>
-            </div>
-          )}
+          {/*{!selectedNumber && (*/}
+            {/*<div className="small-12">*/}
+              {/*<Link*/}
+                {/*to={`/hub-selection/compare/${results[0].HubAssemblyNumber}/${results[1].HubAssemblyNumber}`}*/}
+                {/*className="general-button"*/}
+                {/*style={{ marginTop: 0 }}*/}
+              {/*>*/}
+                {/*Compare*/}
+              {/*</Link>*/}
+            {/*</div>*/}
+          {/*)}*/}
         </div>
         <SetLink note={results[0].GawrNote}/>
         <div className="disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>

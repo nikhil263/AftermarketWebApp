@@ -37,11 +37,11 @@ class Start extends Component {
             <h2>BRAKE ROTORS <i className="icon-angle-right" title="Right Arrow" /></h2>
           </button>
         </div>
-        <div className="btn-no-description conmet-button">
-          <button onClick={this.handleClick.bind(this, '/hub-selection/stud/filter')} store={this.context.store}>
-            <h2>STUD SEARCH <i className="icon-angle-right" title="Right Arrow" /></h2>
-          </button>
-        </div>
+        {/*<div className="btn-no-description conmet-button">*/}
+          {/*<button onClick={this.handleClick.bind(this, '/hub-selection/stud/filter')} store={this.context.store}>*/}
+            {/*<h2>STUD SEARCH <i className="icon-angle-right" title="Right Arrow" /></h2>*/}
+          {/*</button>*/}
+        {/*</div>*/}
       </div>
     )
   }
