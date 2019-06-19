@@ -35,7 +35,8 @@ class Navigation extends Component {
 				<Menu className="global-navigation" right isOpen={this.state.isOpen}>
 					<p>More Information</p>
 					<ul>
-						<li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>
+						{/*<li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>*/}
+						<li><a href="https://conmet.com/support/">Contact ConMet</a></li>
 						<li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
 						<li><a href="http://www.conmet.com/general/literature/">Service Literature</a></li>
 						<li><a href="http://calculator.conmetwheelends.com/">Replace Calculator</a></li>
