@@ -24,7 +24,7 @@ const NEXT_FILTER_PATH = '/hub-selection/truck-type'
 
 		return (
 			<div className="grid-container main-content">
-				<h1>What type of brakes do you have?</h1>
+				<h2>What type of brakes do you have?</h2>
 
         <div className="grid-block">
           <div className="grid-content small-6">

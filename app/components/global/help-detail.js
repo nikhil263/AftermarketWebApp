@@ -5,7 +5,7 @@ class HelpDetail extends Component {
 	render() {
 		return (
 			<div>
-				<h1>IDENTIFYING CONMET HUB ASSEMBLIES</h1>
+				<h2>IDENTIFYING CONMET HUB ASSEMBLIES</h2>
 
 				<p>Identifying your hub assembly is important for many reasons. It will enable you to properly service the hub assembly and purchase the appropriate replacement parts if needed. Plus, if a warranty issue arises, youʼll then be able to provide details on all aspects of the ConMet hub. This section is devoted to finding and understanding the different identification numbers associated with ConMet hubs.</p>
 

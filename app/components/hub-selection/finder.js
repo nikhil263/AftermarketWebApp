@@ -44,7 +44,7 @@ class Finder extends Component {
 		const { app } = this.props;
 		return (
 			<div className="grid-container main-content">
-				<h1>Are you looking for a hub for your</h1>
+				<h2>Are you looking for a hub for your</h2>
 				<Spinner isFetching={app.isFetching} />
         <div className="grid-block">
 

@@ -40,7 +40,7 @@ class HubMountingSystem extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Hub Mounting System</h1>
+				<h2>Hub Mounting System</h2>
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {
 						var boundClick = setFilter.bind(this, FILTERIDX, {hamnt: result.Id}, app);
