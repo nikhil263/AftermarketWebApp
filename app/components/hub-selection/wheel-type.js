@@ -39,7 +39,7 @@ class WheelType extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Wheel Type<br />(Determine Wheel Stud Length):</h1>
+				<h2>Choose the Wheel Type<br />(Determine Wheel Stud Length):</h2>
 					{app.filterResults.map((result, index) => {
 						var boundClick = setFilter.bind(this, FILTERIDX, {wmslc: result.Id}, app);
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id);

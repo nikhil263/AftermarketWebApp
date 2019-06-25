@@ -121,7 +121,7 @@ class BrakeRotorType extends Component {
           <ChooseBrakeRotorType app={app} setFilter={setFilter} />
         ) : (
           <div>
-            <h1>Choose the brake rotor type</h1>
+            <h2>Choose the brake rotor type</h2>
             <div className="grid-block">
               {app.filterResults.map(result => {
                 let boundActive = setActive.bind(this, FILTERIDX, result.Id);

@@ -1,19 +1,5 @@
-@font-face {
-  font-family: 'ArialNovaCond';
-  src: url('../fonts/ArialNovaCond.eot?#iefix') format('embedded-opentype'),  url('../fonts/ArialNovaCond.woff') format('woff'), url('../fonts/ArialNovaCond.ttf')  format('truetype'), url('../fonts/ArialNovaCond.svg#ArialNovaCond') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'ArialNovaCond-Light';
-  src: url('../fonts/ArialNovaCond-Light.eot?#iefix') format('embedded-opentype'),  url('../fonts/ArialNovaCond-Light.woff') format('woff'), url('../fonts/ArialNovaCond-Light.ttf')  format('truetype'), url('../fonts/ArialNovaCond-Light.svg#ArialNovaCond-Light') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 h1,h2,h3,h4,h5 {
   font-style: normal;
   font-weight: normal;
-  font-family: "ArialNovaCond-Light";
+  font-family: myriad-pro, sans-serif;
 }

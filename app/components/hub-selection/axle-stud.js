@@ -39,7 +39,7 @@ class AxelStud extends Component {
 		}
 		return (
 			<div className="grid-container main-content">
-				<h1>Choose the Axle Stud Diameter</h1>
+				<h2>Choose the Axle Stud Diameter</h2>
 
 				<div className="grid-block">
 					{app.filterResults.map((result, index) => {

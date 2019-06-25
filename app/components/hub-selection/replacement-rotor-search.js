@@ -34,7 +34,7 @@ class ReplacementRotorSearch extends Component {
     render() {
         return (
             <div className="grid-container main-content">
-                <h1>Enter your rotor number</h1>
+                <h2>Enter your rotor number</h2>
                 <form id="autoComplete">
                     <Autocomplete
                         value={this.state.value}

@@ -108,7 +108,7 @@ class HubSingleResult extends Component {
     matches.forEach(item => {
       str = str.replace(item[0], item[1])
     });
-    return <p dangerouslySetInnerHTML={{__html: str}}/>;
+    return <p className="note-addLinks" dangerouslySetInnerHTML={{__html: str}}/>;
   }
 
   componentWillMount() {
@@ -138,6 +138,7 @@ class HubSingleResult extends Component {
 
   render() {
     let {idx, total, item, spindleNut, short_studs, selectedHubAssemblyNumber} = this.props;
+    const selectedNumber = selectedHubAssemblyNumber ? selectedHubAssemblyNumber.split(" ")[1] : '';
     const {isFetching, shortStuds} = this.state;
     let studs = null;
 
@@ -159,7 +160,7 @@ class HubSingleResult extends Component {
 
     return (
       <div>
-        <h1>Success! The following hub is recommended</h1>
+        <h2>Success! The following hub is recommended</h2>
         {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : ''}
         <div className="result">
           <PreviousButton
@@ -185,7 +186,7 @@ class HubSingleResult extends Component {
                 }
               })
             }
-            <h2>{item.title || item.AftermarketDescription}<br/>
+            <h2 className="hub-name">{item.title || item.AftermarketDescription}<br/>
               {item.HubAssemblyNumber}<br/>
               {studs && `${studs} (Long stud version)`}
             </h2>
@@ -209,6 +210,14 @@ class HubSingleResult extends Component {
               })
             }
             <Link to={'/hub-selection/details/' + item.HubAssemblyNumber} className="general-button">See Details</Link>
+            {/*{selectedNumber && selectedNumber !== item.HubAssemblyNumber &&(*/}
+              {/*<Link*/}
+                {/*to={`/hub-selection/compare/${selectedNumber}/${item.HubAssemblyNumber}`}*/}
+                {/*className="general-button"*/}
+              {/*>*/}
+                {/*Compare*/}
+              {/*</Link>*/}
+            {/*)}*/}
             <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
           </div>
           <NextButton

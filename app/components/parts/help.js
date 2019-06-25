@@ -17,7 +17,7 @@ class Help extends Component {
 	render() {
 		return (
 			<div className="grid-container main-content">
-				<h1>Do you know your hub assembly number?</h1>
+				<h2>Do you know your hub assembly number?</h2>
 
 				<iframe width="100%" height="300px" src="https://www.youtube.com/embed/9yVp9V2JuEs" frameborder="0" allowfullscreen></iframe>
 

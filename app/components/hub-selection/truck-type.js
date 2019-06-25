@@ -13,7 +13,7 @@ class TruckType extends Component {
         const { app, setFilter, setActive } = this.props;
         return (
             <div className="grid-container main-content">
-                <h1>Are you looking for a hub for your</h1>
+                <h2>Are you looking for a hub for your</h2>
                 <div className="grid-block">
                     <div className="grid-content small-6">
                         <div className={setActive(FILTERIDX, TRUCK)}>

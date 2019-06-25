@@ -32,7 +32,7 @@ class ChoosePath extends Component {
 
 		return (
 			<div className="grid-container main-content">
-				<h1>Do you know your hub assembly number?</h1>
+				<h2>Do you know your hub assembly number?</h2>
 				<div className="conmet-button" >
 					<button onClick={this.handleClick.bind(this, '/hub-selection/search')} className="yes-no-button">
 						<em>Yes</em>I know the hub assembly number.

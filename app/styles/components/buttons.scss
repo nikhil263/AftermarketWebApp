@@ -112,7 +112,8 @@
 	margin: 1.25rem 0;
 	padding: 1rem .8rem;
 	letter-spacing: 0.04rem;
-	font-family: "ArialNovaCond";
+	font-family: myriad-pro-condensed, sans-serif;
+	text-transform: uppercase;
 }
 
 .truck-make {
@@ -120,6 +121,7 @@
 }
 
 .yes-no-button {
+	font-family: myriad-pro-condensed, sans-serif;
 	text-align: left;
 	font-size: 1rem;
 	padding: .75rem !important;
@@ -264,6 +266,10 @@
 			color: #fff;
 		}
 	}
+	.hub-name{
+		text-transform: initial;
+		font-family: myriad-pro, sans-serif;
+	}
 	.optional-spindle{
 		display: block;
 		width: 100%;
@@ -277,6 +283,9 @@
 			background-color: #cacaca;
 		}
 	}
+	.note-addLinks{
+		text-transform: uppercase;
+		font-family: myriad-pro-condensed, sans-serif;}
 	.disclaimer{
 		font-size: 20px;
 		color: #c00000;
@@ -332,7 +341,7 @@
 
 /* General sidebar styles */
 .bm-menu {
-	font-family: "ArialNovaCond";
+	//font-family: "ArialNovaCond";
 	background: #fff;
 	padding: 2.5em 1.5em 0;
 	font-size: 1.15em;

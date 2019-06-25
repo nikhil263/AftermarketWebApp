@@ -5,7 +5,7 @@ class ReplacementDrum extends React.Component {
 	render() {
 		return (
 			<div className="grid-container main-content replacement-drum">
-				<h1>Do you know your drum number?</h1>
+				<h2>Do you know your drum number?</h2>
 				<div className="conmet-button" >
 					<Link to='/hub-selection/replacement-drum/search' className="yes-no-button">
 						<em>Yes</em>I know the drum number

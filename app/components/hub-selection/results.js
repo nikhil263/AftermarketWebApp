@@ -2,8 +2,8 @@ import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux'
 import Waiting from 'components/global/waiting'
 import {MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
-import {fetchAssembly} from 'actions/assembly'
-import {materialFilter, fetchHubs, fetchHubsSpindleNut} from 'actions'
+import {fetchAssembly, getAppSearchParams} from 'actions/assembly'
+import {materialFilter, fetchHubs, fetchHubsSpindleNut, fetchHubsCrossApi, invalidateHubStuds} from 'actions'
 import NoResults from '../global/no-result'
 import Result from './details/hub-results';
 import HubSingleResult from './details/result';
@@ -29,7 +29,7 @@ class MaterialType extends Component {
 
     return (
       <div className="grid-container main-content">
-        <h1>Choose the Hub Material</h1>
+        <h2>Choose the Hub Material</h2>
 
         <div className={this.setActive(MATERIAL_IRON)}>
           <button className="yes-no-button" onClick={this.setFilter.bind(this, MATERIAL_IRON)}><strong>Iron</strong>
@@ -62,9 +62,18 @@ class Results extends Component {
     if (params.id) {
       dispatch(fetchHubs(params.id))
     } else {
-      dispatch(fetchAssembly(app))
+      dispatch(fetchAssembly(app));
+      const { wmslc } = app.filterState;
+      if (wmslc && wmslc === 1) {
+        let searchParams = getAppSearchParams(app).toLowerCase().replace('wmslc=1', 'wmslc=2');
+        dispatch(fetchHubsCrossApi(searchParams, true));
+      }
     }
+  }
 
+  componentWillUnmount() {
+    const {dispatch} = this.props;
+    dispatch(invalidateHubStuds());
   }
 
   componentWillReceiveProps(newProps) {

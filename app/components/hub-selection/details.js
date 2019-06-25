@@ -52,7 +52,7 @@ class Details extends Component {
 
     return (
       <div className="grid-container main-content">
-        <h2>Product Details</h2>
+        <h2 className="product-details">Product Details</h2>
         {assembly.result.map((r, index) => {
           return (
             <div key={index}>

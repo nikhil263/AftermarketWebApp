@@ -16,7 +16,7 @@ class Start extends Component {
   render() {
     return (
       <div className="grid-container main-content">
-        <h1>What are you looking for?</h1>
+        <h2>What are you looking for?</h2>
         <div className="btn-no-description conmet-button">
           <button onClick={this.handleClick.bind(this, '/hub-selection/choose-path')} store={this.context.store}>
             <h2>HUBS <i className="icon-angle-right" /></h2>
@@ -38,10 +38,11 @@ class Start extends Component {
           </button>
         </div>
         {/*<div className="btn-no-description conmet-button">*/}
-        {/*  <button onClick={this.handleClick.bind(this, '/hub-selection/stud/filter')} store={this.context.store}>*/}
-        {/*    <h2>STUD SEARCH <i className="icon-angle-right" title="Right Arrow" /></h2>*/}
-        {/*  </button>*/}
+          {/*<button onClick={this.handleClick.bind(this, '/hub-selection/stud/filter')} store={this.context.store}>*/}
+            {/*<h2>STUD SEARCH <i className="icon-angle-right" title="Right Arrow" /></h2>*/}
+          {/*</button>*/}
         {/*</div>*/}
+        <p className="terms-and-conditions">In using this application you are acknowledging that you have read and understand ConMet's <a href='/ConMet-Terms-And-Conditions.pdf' target='_blank'>terms and conditions</a></p>
       </div>
     )
   }
