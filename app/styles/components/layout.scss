@@ -184,6 +184,17 @@ img.brake-rotor-flange {
     border-left: 20px solid #fff;
     width: 0;
 }
+
+.unitized{
+	padding: 20px;
+	.details {
+		width: 100%!important;
+		.row{
+			text-align: center; padding: 20px;
+			img{margin: 0 15px}
+		}
+	}
+}
 .description {
 	//font-family: "Arial";
 	margin-top: .2rem;

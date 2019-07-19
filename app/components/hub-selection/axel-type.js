@@ -8,14 +8,14 @@ class Result extends Component {
 
   render() {
     const {result, active, onClick } = this.props;
-
+    const unitized = result.AftermarketAxle === 'Unitized';
     return(
       <div className={active()}>
         <button className="yes-no-button" onClick={onClick}>
           <strong>{result.AftermarketAxle}</strong><br />
           <span>
-						Inner Bearing - {result.BearingDescriptionInboard}<br/>
-						Outer Bearing - {result.BearingDescriptionOutboard}
+              {unitized ? '' : 'Inner Bearing -'} {result.BearingDescriptionInboard}<br/>
+              {unitized ? '' : 'Outer Bearing -'} {result.BearingDescriptionOutboard}
 				</span>
         </button>
       </div>
