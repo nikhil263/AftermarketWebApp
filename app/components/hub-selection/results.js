@@ -119,7 +119,7 @@ class Results extends Component {
                 {/*<h2>Success! The following hub is recommended</h2>*/}
                 <div className="result">
                     <div className="details">
-                        <h2>Volvo/Mack unitized hub assemblies can be identified by their 8-sided, thread-on hubcaps and parallel, closely-spaced bearings.</h2>
+                        <h2 style={{textTransform: 'none'}}>Volvo/Mack unitized hub assemblies can be identified by their 8-sided, thread-on hubcaps and parallel, closely-spaced bearings.</h2>
 
                         <div className="row">
                             <img
@@ -136,7 +136,7 @@ class Results extends Component {
                             />
                         </div>
 
-                        <h2>Volvo/Mack unitized hub assemblies are not serviceable, please contact your local Volvo/Mack dealer for service enquiries. </h2>
+                        <h2 style={{textTransform: 'none'}}>Volvo/Mack unitized hub assemblies are not serviceable, please contact your local Volvo/Mack dealer for service enquiries. </h2>
                         <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
                     </div>
 
