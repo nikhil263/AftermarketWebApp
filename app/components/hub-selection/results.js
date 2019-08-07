@@ -4,6 +4,7 @@ import Waiting from 'components/global/waiting'
 import {MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
 import {fetchAssembly, getAppSearchParams} from 'actions/assembly'
 import {materialFilter, fetchHubs, fetchHubsSpindleNut, fetchHubsCrossApi, invalidateHubStuds} from 'actions'
+import {Link} from 'react-router';
 import NoResults from '../global/no-result'
 import Result from './details/hub-results';
 import HubSingleResult from './details/result';
@@ -111,7 +112,38 @@ class Results extends Component {
   }
 
   render() {
-    const {results, materialFilter, dispatch} = this.props;
+    const {results, materialFilter, dispatch, app} = this.props;
+    if(app.filterState.aaxna === 82) {
+        return (
+            <div className="unitized">
+                {/*<h2>Success! The following hub is recommended</h2>*/}
+                <div className="result">
+                    <div className="details">
+                        <h2 style={{textTransform: 'none'}}>Volvo/Mack unitized hub assemblies can be identified by their 8-sided, thread-on hubcaps and parallel, closely-spaced bearings.</h2>
+
+                        <div className="row">
+                            <img
+                                src={require('../../images/figure15.jpg')}
+                                alt="Unitized"
+                                width="200"
+                                height="200"
+                            />
+                            <img
+                                src={require('../../images/figure16.png')}
+                                alt="Unitized"
+                                width="200"
+                                height="200"
+                            />
+                        </div>
+
+                        <h2 style={{textTransform: 'none'}}>Volvo/Mack unitized hub assemblies are not serviceable, please contact your local Volvo/Mack dealer for service enquiries. </h2>
+                        <div className="text-center disclaimer"><Link to="/disclaimer">ConMet Wheel End Disclaimer</Link></div>
+                    </div>
+
+                </div>
+            </div>
+        )
+    }
 
     if (results.isFetching || results.isSpindleNutFetching) {
       return (<Waiting/>)
