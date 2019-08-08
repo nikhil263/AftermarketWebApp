@@ -108,7 +108,7 @@ class Filters extends Component {
   handleFilterClick(e) {
     e.preventDefault();
     this.state.isFetching = true;
-    let id = e.target.id;
+    let id = e.currentTarget.id;
     if (id) {
       let url = this.state.url;
       url += '&' + this.state.current_filter + '=' + id;
