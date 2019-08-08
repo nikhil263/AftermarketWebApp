@@ -30,6 +30,8 @@ class PartsSearch extends Component {
     } else {
       if (this.state.assemblyNumber.length === 1) {
         dispatch(pushPath('/parts/search/' + this.state.assemblyNumber[0]));
+      }else if((this.state.value !== "") && (this.state.assemblyNumber.length === 0) && !this.state.loading){
+          this.props.dispatch(pushPath('/hub-selection/no-results'));
       }
     }
   }

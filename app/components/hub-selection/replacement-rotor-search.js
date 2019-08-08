@@ -20,6 +20,8 @@ class ReplacementRotorSearch extends Component {
         e.preventDefault();
         if (this.state.rotorNumber.length === 1 && this.state.rotorNumber[0].CompetitorBrakeRotorId) {
             this.hubAssemblyFilters(this.state.rotorNumber[0]);
+        }else if((this.state.value !== "") && (this.state.rotorNumber.length === 0) && !this.state.loading){
+            this.props.dispatch(pushPath('/hub-selection/no-results'));
         }
     }
 

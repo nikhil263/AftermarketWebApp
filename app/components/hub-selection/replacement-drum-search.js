@@ -21,6 +21,8 @@ class ReplacementDrumSearch extends Component {
     const { drumNumber } = this.state;
     if (drumNumber.length === 1 && drumNumber[0].CompetitorDrumNumberId) {
       this.hubAssemblyFilters(drumNumber[0]);
+    }else if((this.state.value !== "") && (this.state.drumNumber.length === 0) && !this.state.loading){
+        this.props.dispatch(pushPath('/hub-selection/no-results'));
     }
   }
 
