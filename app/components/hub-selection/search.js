@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import {connect} from 'react-redux';
-import {fetchHubAssemblyFilters, fetchHubAssemblyNumber} from 'actions';
+import {fetchHubAssemblyFilters, fetchHubAssemblyNumber, fetchHubAssemblyFiltersWithNoResults} from 'actions';
 import { pushPath } from 'redux-simple-router';
 import Autocomplete from 'react-autocomplete';
 
@@ -38,14 +38,22 @@ class Results extends Component {
     let url = '';
     dispatch(fetchHubAssemblyFilters(id)).then(()=>{
       let filters = this.props.results.filters.Results;
-      let i = 1, length = Object.keys(filters).length;
+      let HubAssemblyNumber = this.state.assemblyNumber[0].HubAssemblyNumber;
+      if(filters === undefined){
+          dispatch(fetchHubAssemblyFiltersWithNoResults(id)).then(()=>{
+              this.props.dispatch(pushPath('/hub-selection/not-available/' + HubAssemblyNumber))
+          })
+      }else{
+          let i = 1, length = Object.keys(filters).length;
 
-      Object.keys(filters).forEach((key)=>{
-        url += (i === length) ? key+'='+filters[key] : key+'='+filters[key]+"&";
-        i++;
-      });
+          Object.keys(filters).forEach((key)=>{
+              url += (i === length) ? key+'='+filters[key] : key+'='+filters[key]+"&";
+              i++;
+          });
 
-      this.props.dispatch(pushPath('/hub-selection/filters/'+url));
+          this.props.dispatch(pushPath('/hub-selection/filters/'+url));
+      }
+
     });
   }
 

@@ -160,7 +160,8 @@ class HubSingleResult extends Component {
 
     return (
       <div>
-        <h2>Success! The following hub is recommended</h2>
+        {/*<h2>Success! The following hub is recommended</h2>*/}
+          <h2>{item.PartStatus === 'Active' || item.PartStatus === 'Service Only' ? 'The following hub is recommended' : 'This hub is no longer available'}</h2>
         {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : ''}
         <div className="result">
           <PreviousButton
@@ -190,8 +191,10 @@ class HubSingleResult extends Component {
               {item.HubAssemblyNumber}<br/>
               {studs && `${studs} (Long stud version)`}
             </h2>
-            {spindleNut &&
-            <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
+            {/*{spindleNut &&*/}
+            {/*<div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}*/}
+              {item.PartStatus === 'Active' || item.PartStatus === 'Service Only' ?
+              <div className="optional-spindle">This hub is made-to-order only. Please contact ConMet Customer Service for availability</div> : ''}
             {note}
             {
               item.Images.map((image, index) => {
