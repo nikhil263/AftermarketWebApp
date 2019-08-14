@@ -474,6 +474,30 @@ export const fetchHubAssemblyNumber = (term, withAftermarketParts = false) => {
     }
 };
 
+export const unifiedSearch = (term) => {
+    return dispatch => {
+        return fetch(constants.API+'/partnumbers/withaftermarketnumbers/'+term, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.PART_NUMBER_DATA,
+                    partNumber: json,
+                })
+            })
+    }
+};
+
+
 export const fetchHubAssemblyFiltersWithNoResults = (id) =>{
     return dispatch => {
         return fetch(constants.API+'/hubassembliessummaries?chaid='+id, {

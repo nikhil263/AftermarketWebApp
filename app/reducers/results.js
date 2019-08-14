@@ -13,6 +13,7 @@ import {
   INVALIDATE_ASSEMBLIES,
   AFTERMARKET_DETAILS,
   ASSEMBLY_NUMBER_DATA,
+  PART_NUMBER_DATA,
   HUB_ASSEMBLY_FILTERS,
   HUB_ASSEMBLY_FILTER_VALUE,
   RECEIVE_HUBS_CROSS_API,
@@ -111,6 +112,12 @@ export function results(state = RESULTS, action) {
       let assemblyNumber = action.assemblyNumber;
       return Object.assign({}, state, {
         assemblyNumber: assemblyNumber,
+        isFetching: false
+      });
+    case PART_NUMBER_DATA:
+      let partNumber = action.partNumber;
+      return Object.assign({}, state, {
+        partNumber: partNumber,
         isFetching: false
       });
     case DRUM_RESULT: {

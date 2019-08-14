@@ -162,7 +162,8 @@ class HubSingleResult extends Component {
       <div>
         {/*<h2>Success! The following hub is recommended</h2>*/}
           <h2>{item.PartStatus === 'Active' || item.PartStatus === 'Service Only' ? 'The following hub is recommended' : 'This hub is no longer available'}</h2>
-        {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : ''}
+        {selectedHubAssemblyNumber ? <p className="text-center" style={{marginBottom: 0}}>for {selectedHubAssemblyNumber}</p> : ''}
+          <p className="text-center" style={{color: '#d31145'}}><Link to={'/parts/search/' +  selectedNumber}>(Looking for service components for {selectedNumber}?)</Link></p>
         <div className="result">
           <PreviousButton
             idx={idx}
