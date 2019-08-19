@@ -38,6 +38,8 @@ class Start extends Component {
     hubAssemblyFilters(data){
         if(data.PartTypeId === 115){
             this.getResult(data.CompetitorInterchangesId);
+        }else if(data.PartTypeId === 5){
+            this.props.dispatch(pushPath('/hub-selection/stud/filter'));
         }else if(data.PartTypeId === 23){
             this.props.dispatch(pushPath('/hub-selection/replacement-drum/recommended-drums/'+data.CompetitorInterchangesId));
         }else if(data.PartTypeId === 203){
