@@ -12,6 +12,7 @@ import ReplacementRotor from 'components/hub-selection/replacement-rotor'
 import ReplacementDrumFilter from 'components/hub-selection/replacement-drum-filter'
 import ReplacementRotorFilter from 'components/hub-selection/replacement-rotor-filter'
 import StudFilter from 'components/hub-selection/stud-filter'
+import StudFilters from 'components/hub-selection/stud-filters'
 import ReplacementDrumSearch from 'components/hub-selection/replacement-drum-search'
 import ReplacementRotorSearch from 'components/hub-selection/replacement-rotor-search'
 import ReplacementDrumResult from 'components/hub-selection/replacement-drum-result'
@@ -66,6 +67,7 @@ module.exports = (
         <Route path='replacement-rotor/filter' component={ReplacementRotorFilter}/>
         <Route path='stud/filter' component={StudFilter}/>
         <Route path='stud/filter/:currentFilter' component={StudFilter}/>
+        <Route path='stud/filters/:currentFilter' component={StudFilters}/>
         <Route path='stud/filter/:currentFilter/:filters' component={StudFilter}/>
         <Route path='replacement-rotor/filter/:currentFilter/:filters' component={ReplacementRotorFilter}/>
         <Route path='replacement-rotor/filter/:currentFilter' component={ReplacementRotorFilter}/>

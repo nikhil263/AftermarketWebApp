@@ -39,7 +39,7 @@ class Start extends Component {
         if(data.PartTypeId === 115){
             this.getResult(data.CompetitorInterchangesId);
         }else if(data.PartTypeId === 5){
-            this.props.dispatch(pushPath('/hub-selection/stud/filter'));
+            this.props.dispatch(pushPath('/hub-selection/stud/filters/sdnum?inclv=1&sdnum='+data.CompetitorPartNumber));
         }else if(data.PartTypeId === 23){
             this.props.dispatch(pushPath('/hub-selection/replacement-drum/recommended-drums/'+data.CompetitorInterchangesId));
         }else if(data.PartTypeId === 203){
