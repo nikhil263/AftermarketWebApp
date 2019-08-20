@@ -58,10 +58,10 @@ class HubMountingSystem extends Component {
                         <p>Also known as Ball Seat Nut. Uses the spherical seat of the nut to locate the wheels. Dual wheels use a double cap nut system.</p>
                     </div>
                     <div className="grid-content small-6">
-                        <img src={require('../../images/SERV_106821a_NoNumber.jpg')} alt="SERV_106821a_NoNumber"/>
+                        <img src={require('../../images/SERV_106821a_NoNumber.png')} alt="SERV_106821a_NoNumber"/>
                     </div>
                     <div className="grid-content small-6">
-                        <img src={require('../../images/SERV_106822a_NoNumber.jpg')} alt="SERV_106822a_NoNumber"/>
+                        <img src={require('../../images/SERV_106822a_NoNumber.png')} alt="SERV_106822a_NoNumber"/>
                     </div>
                 </div>
 			</div>
