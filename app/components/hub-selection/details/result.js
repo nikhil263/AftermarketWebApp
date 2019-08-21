@@ -195,7 +195,7 @@ class HubSingleResult extends Component {
             </h2>
             {/*{spindleNut &&*/}
             {/*<div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}*/}
-              {item.IsAftermarket === false && item.PartStatus === 'Service Only' ?
+              {item.IsAftermarket === false && (item.PartStatus === 'Service Only' || item.PartStatus === 'Active') ?
               <div className="optional-spindle">This hub is made-to-order only. Please contact ConMet Customer Service for availability</div> : ''}
             {note}
             {
