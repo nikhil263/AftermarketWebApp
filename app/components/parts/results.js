@@ -148,7 +148,7 @@ class Results extends Component {
   }
 
   render() {
-    const { parts, dispatch, images, app, history } = this.props;
+    const { parts, dispatch, images, app, history, results } = this.props;
 
     if (parts.isFetching) {
       return <Waiting />;
@@ -187,7 +187,7 @@ class Results extends Component {
           {parts.HubAssemblyDescription} <span className="number">{parts.HubAssemblyNumber}</span>
         </h2>
         <div className="parts">
-          {replacementHeader}
+          {results.filters.Results[0].PartStatus === 'Terminated'? '' : replacementHeader}
           <table>
             <tbody>
             {PARTTYPES.map((item, index) => {
