@@ -344,6 +344,36 @@ h2.partsSubHead {
 		margin: 0;
 	}
 }
+.hub-compare{
+	#autoComplete{
+		margin-top: 10px!important;
+	}
+	h2{
+		margin: .7em 0;
+		font-family: myriad-pro-condensed,sans-serif;
+		text-transform: uppercase;
+	}
+	input{
+		margin: 2em 0;
+		font-family: myriad-pro-condensed,sans-serif;
+		text-transform: uppercase;
+	}
+	.menu{
+		z-index: 9999;
+		.item{
+			min-height: 0!important;
+			padding-left: 0!important;
+			h6{
+				font-size: 13px;
+			}
+		}
+	}
+	.grid-block{
+		.grid-content{
+			margin: 10px 0;
+		}
+	}
+}
 
 #autoComplete{
 	margin-top: 40px;

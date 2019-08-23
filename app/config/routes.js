@@ -6,6 +6,7 @@ import App from 'containers/app'
 import Splash from 'components/splash'
 import HubSelectionWrapper from 'components/hub-selection'
 import HubSelectionStart from 'components/hub-selection/start'
+import CompareHub from 'components/hub-selection/compare-hub'
 import HubSelectionChoosePath from 'components/hub-selection/choose-path'
 import ReplacementDrum from 'components/hub-selection/replacement-drum'
 import ReplacementRotor from 'components/hub-selection/replacement-rotor'
@@ -103,6 +104,7 @@ module.exports = (
         <Route path='brake-rotor-type' component={BrakeRotorType}/>
         <Route path='find-assembly' component={HubSelectionFindAssembly}/>
         <Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail}/>
+        <Route path='compare-hub' component={CompareHub}/>
         <Route path='no-results' component={NoResults}/>
       </Route>
       <Route path='parts' component={PartsWrapper}>
