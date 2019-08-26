@@ -1,0 +1,8 @@
+.grid-frame {
+	overflow: auto !important;
+}
+.grid-content {
+	display: block !important;
+	-ms-overflow-style: scroll  !important;
+	overflow: auto !important;
+}
