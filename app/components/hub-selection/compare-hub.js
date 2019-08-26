@@ -24,7 +24,7 @@ class CompareHub extends Component {
         console.log(this.props, this.state.assembly1)
         return (
 					<div className="grid-container hub-compare">
-						<div className="grid-content splash-title">
+						<div className="splash-title">
 							<h2>Hub Comparision Tool</h2>
                                 <h2>Enter ConMet Hub Assembly Part Numbers</h2>
 								<div className="grid-block">

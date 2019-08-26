@@ -51,7 +51,7 @@ class CompareAssembly extends Component {
     }
 
     return (
-      <div className="grid-container main-content" id="hubAssemblyResult" style={{marginBottom: '80px'}}>
+      <div className="grid-container main-content" id="hubAssemblyResult">
         <h2>Compare Details</h2>
 
         <div className="grid-content flex-row">
@@ -92,8 +92,8 @@ class CompareAssembly extends Component {
             );
           })}
         </div>
-        {/*<a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="general-button">Return to*/}
-          {/*results</a>*/}
+        <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="general-button">Return to
+          Comparison</a>
       </div>
     )
   }
