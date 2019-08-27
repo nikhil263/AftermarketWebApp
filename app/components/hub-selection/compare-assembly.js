@@ -6,6 +6,7 @@ import {IMAGE_CDN} from "config/constants";
 import CompareItem from "components/hub-selection/compare-item";
 
 const propertyLabels = {
+  "Status": "Status",
   "Material": 'Material',
   "AxlePosition": 'Axle Position',
   "Axle": 'Axle',
