@@ -376,6 +376,19 @@ h2.partsSubHead {
 	}
 }
 
+.serviceComponent{
+	display: flex;
+	justify-content: center;
+	.general-button{
+		width: 50%;
+		font-size: 16px;
+		padding: 12px;
+		margin-top: 10px;
+		//text-transform: initial;
+		//font-weight: bold;
+	}
+}
+
 #autoComplete{
 	margin-top: 40px;
 	input{margin: 0;}
