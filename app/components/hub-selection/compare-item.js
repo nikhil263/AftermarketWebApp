@@ -11,8 +11,8 @@ class CompareItem extends Component {
   }
 
   componentWillMount() {
-    const {isDifferent} = this.props;
-    this.setState({active: isDifferent});
+    const {isDifferent, property} = this.props;
+    this.setState({active: property === 'Status' ? true : isDifferent});
   }
 
   componentWillReceiveProps(newProps) {
@@ -45,7 +45,7 @@ class CompareItem extends Component {
     const {active} = this.state;
 
     return (
-      <div className={`accordion-item ${(active || property === 'Status')? 'is-active' : ''} compare-item`}
+      <div className={`accordion-item ${active ? 'is-active' : ''} compare-item`}
            style={{order: (isDifferent || property === 'Status') ? (40 - index) : '-1'}}>
         <div className="accordion-title" onClick={this.toggleActive}>
           {label}
