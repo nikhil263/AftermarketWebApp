@@ -117,10 +117,10 @@ export default class extends Component {
             <td>Wheel Stud Standout (in.)</td>
             <td>{result.WheelStudStandoutInch}</td>
           </tr>
-          <tr>
-            <td>Wheel Material</td>
-            <td>{result.WheelMaterial}</td>
-          </tr>
+          {
+            result.WheelMaterial && result.WheelMaterial !== '—' ?
+              <tr><td>Wheel Material</td><td>{result.WheelMaterial}</td></tr> : null
+          }
           <tr>
             <td>Flange Offset (in.)</td>
             <td>{result.FlangeOffsetInch}</td>
@@ -130,12 +130,8 @@ export default class extends Component {
             <td>{result.WeightPound}</td>
           </tr>
           {
-            result.ConventionalHubNumber ? (
-              <tr>
-                <td>Conventional Hub Option</td>
-                <td>{result.ConventionalHubNumber}</td>
-              </tr>
-            ) : null
+            result.ConventionalHubNumber && result.ConventionalHubNumber !== '—' ?
+              <tr><td>Conventional Hub Option</td><td>{result.ConventionalHubNumber}</td></tr> : null
           }
           {this.renderRebuildKit()}
           </tbody>

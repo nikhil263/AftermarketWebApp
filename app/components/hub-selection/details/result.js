@@ -164,8 +164,7 @@ class HubSingleResult extends Component {
         {/*<h2>Success! The following hub is recommended</h2>*/}
           <h2>{item.PartStatus === 'Active' || item.PartStatus === 'Service Only' ? 'The following hub is recommended' : 'This hub is no longer available'}</h2>
         {selectedHubAssemblyNumber ? <p className="text-center" style={selectedConmet === 'ConMet' ? {marginBottom: 0} : null}>for {selectedHubAssemblyNumber}</p> : ''}
-          {/*{selectedConmet === 'ConMet' && item.PartStatus === 'Active' ? <p className="text-center" style={{color: '#d31145'}}><Link to={'/parts/search/' +  selectedNumber}>(Looking for service components for {selectedNumber}?)</Link></p> : ''}*/}
-        {selectedConmet === 'ConMet' && item.PartStatus === 'Active' ? <div className="serviceComponent"><Link to={'/parts/search/' +  selectedNumber} className="general-button">Looking for service components for {selectedNumber}?</Link></div> : ''}
+        {/*{selectedConmet === 'ConMet' && item.PartStatus === 'Active' ? <div className="serviceComponent"><Link to={'/parts/search/' +  selectedNumber} className="general-button">Looking for service components for {selectedNumber}?</Link></div> : ''}*/}
         <div className="result">
           <PreviousButton
             idx={idx}
@@ -196,7 +195,8 @@ class HubSingleResult extends Component {
             </h2>
             {/*{spindleNut &&*/}
             {/*<div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}*/}
-              {item.IsAftermarket === false && (item.PartStatus === 'Service Only' || item.PartStatus === 'Active') ?
+              {/*{item.IsAftermarket === false && (item.PartStatus === 'Service Only' || item.PartStatus === 'Active') ?*/}
+               {(item.IsAftermarket === false && item.PartStatus !== "Terminated") || (item.IsAftermarket === true && item.PartStatus === "Service Only") ?
               <div className="optional-spindle">This hub is made-to-order only. Please contact ConMet Customer Service for availability</div> : ''}
             {note}
             {
