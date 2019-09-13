@@ -187,7 +187,8 @@ class Results extends Component {
           {parts.HubAssemblyDescription} <span className="number">{parts.HubAssemblyNumber}</span>
         </h2>
         <div className="parts">
-          {results.items.Results[0].PartStatus === 'Terminated'? '' : replacementHeader}
+          {/*{results.items.Results[0].PartStatus === 'Terminated'? '' : replacementHeader}*/}
+          {replacementHeader}
           <table>
             <tbody>
             {PARTTYPES.map((item, index) => {
