@@ -36,13 +36,29 @@ class Start extends Component {
     history: PropTypes.object
   };
 
-    // componentDidMount() {
+    // componentWillMount(){
     //     const {dispatch} = this.props;
-    //     console.log('hello');
     //     dispatch(fetchNotificationResult());
     //     Modal.setAppElement('body');
     // }
-    //
+    // componentDidMount() {
+    //     const {results} = this.props;
+    //     let notifications = JSON.parse(localStorage.getItem('notifications'));
+    //     let notIgnore = notifications.filter(a => !a.ignore || a.ignore < 3);
+    //     let data = notIgnore && notIgnore.length ? notIgnore : results.notifications;
+    //     if(data && data.length){
+    //         let notification = data.find(a => a.Id === data[0].Id);
+    //         let index = notifications.findIndex(item => item.Id === notification.Id);
+    //         if(index > -1){
+    //             notifications[index] = {...notifications[index], ignore: (notifications[index].ignore ? notifications[index].ignore : 0 ) + 1}
+    //         }
+    //         localStorage.setItem('notifications', JSON.stringify(notifications));
+    //     }
+    //     // const {dispatch} = this.props;
+    //     // dispatch(fetchNotificationResult());
+    //     // Modal.setAppElement('body');
+    // }
+
     // componentWillReceiveProps(newProps) {
     //     const { results, app } = newProps;
     //     const { closeModal } = this.state;
@@ -71,6 +87,7 @@ class Start extends Component {
     // }
     //
     // onNextAction (nextSlide, slidesToShow, currentSlide, slideCount, data) {
+    //     console.log(nextSlide, slidesToShow, currentSlide, slideCount, data)
     //     if(slidesToShow + currentSlide >= slideCount){
     //         this.closeModal();
     //     }
@@ -124,7 +141,7 @@ class Start extends Component {
     //                             >
     //                                 {data.map((d,i) => (
     //                                     <div key={i} className="note">
-    //                                         <h3 className="text-center"><strong>{d.Title}</strong></h3>
+    //                                         <h2 className="text-center">{d.Title}</h2>
     //                                         <div className="btn-no-description conmet-button">
     //                                             <button onClick={() => this.openDetailModal(d.Id)}>
     //                                                 <h4>LEARN MORE</h4>
@@ -157,10 +174,10 @@ class Start extends Component {
     //                     <div className="modal-content ">
     //                         <div className="grid-block small-12">
     //                             <div className="text-center">
-    //                                 <h3><strong>{notification.Title}</strong></h3>
+    //                                 <h2>{notification.Title}</h2>
     //                             </div>
     //                             <div className="text-right" onClick={this.closeDetailModal}>
-    //                                 <h3 style={{cursor: 'pointer'}}>&times;</h3>
+    //                                 <h3 style={{cursor: 'pointer', marginTop:'-15px'}}>&times;</h3>
     //                             </div>
     //                         </div>
     //                         <h4>{notification.Message}</h4>
@@ -234,54 +251,54 @@ class Start extends Component {
       <div className="grid-container main-content">
           {/*{this.notificationDialogs()}*/}
         <h2>What are you looking for?</h2>
-          {/*<form id="autoComplete">*/}
-              {/*<Autocomplete*/}
-                  {/*value={this.state.value}*/}
-                  {/*inputProps={{ placeholder: 'Please enter a valid ConMet or Competitor part number',className: 'assembly-number', id:'assemblyNumber',type:'text' }}*/}
-                  {/*wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}*/}
-                  {/*items={this.state.partNumber}*/}
-                  {/*getItemValue={(item) => item.CompetitorName+' '+item.CompetitorPartNumber}*/}
-                  {/*onSelect={(value, state) => {*/}
-                      {/*this.props.results.selectedHubAssemblyNumber = state.CompetitorName+' '+state.CompetitorPartNumber;*/}
-                      {/*this.hubAssemblyFilters(state);*/}
-                      {/*this.setState({ value, partNumber: [state] })*/}
-                  {/*}}*/}
-                  {/*onChange={(event, value) => {*/}
-                      {/*this.setState({value, partNumber : [], loading: true });*/}
-                      {/*if(value !== ''){*/}
-                          {/*this.props.dispatch(unifiedSearch(value)).then(() => {*/}
-                              {/*let results = this.props.results.partNumber.Results;*/}
-                              {/*if(results){*/}
-                                  {/*this.setState({ partNumber: this.props.results.partNumber.Results, loading: false });*/}
-                              {/*}else{*/}
-                                  {/*this.setState({ partNumber: [], loading: false });*/}
-                              {/*}*/}
-                          {/*});*/}
-                      {/*}*/}
-                  {/*}}*/}
-                  {/*renderItem={(item, isHighlighted) =>*/}
-                      {/*<div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.CompetitorInterchangesId}>*/}
-                          {/*{item.CompetitorName}  {item.CompetitorPartNumber}*/}
-                      {/*</div>*/}
-                  {/*}*/}
-                  {/*renderMenu={(items, value) => (*/}
-                      {/*<div className="menu">*/}
-                          {/*{value === '' ? (*/}
-                              {/*<div className="item">Type ConMet or Competitor assembly number</div>*/}
-                          {/*) : this.state.loading ? (*/}
-                              {/*<div className="item">Loading...</div>*/}
-                          {/*) : items.length === 0 ? (*/}
-                              {/*<div className="item">No matches for {value}</div>*/}
-                          {/*) : items}*/}
-                      {/*</div>*/}
-                  {/*)}*/}
-              {/*/>*/}
-              {/*<div className="help">Some examples: “104444”, “ConMet 10031065”, “Gunite 5669‑1”, “Webb 20231‑‑1T‑71”</div>*/}
-              {/*<div className="btn-no-description conmet-button">*/}
-                  {/*<button type="submit" onClick={this.doSearch}><h2 style={{textAlign: 'center'}}>Continue</h2></button>*/}
-              {/*</div>*/}
-          {/*</form>*/}
-          {/*<hr/>*/}
+          <form id="autoComplete">
+              <Autocomplete
+                  value={this.state.value}
+                  inputProps={{ placeholder: 'Please enter a valid ConMet or Competitor part number',className: 'assembly-number', id:'assemblyNumber',type:'text' }}
+                  wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}
+                  items={this.state.partNumber}
+                  getItemValue={(item) => item.CompetitorName+' '+item.CompetitorPartNumber}
+                  onSelect={(value, state) => {
+                      this.props.results.selectedHubAssemblyNumber = state.CompetitorName+' '+state.CompetitorPartNumber;
+                      this.hubAssemblyFilters(state);
+                      this.setState({ value, partNumber: [state] })
+                  }}
+                  onChange={(event, value) => {
+                      this.setState({value, partNumber : [], loading: true });
+                      if(value !== ''){
+                          this.props.dispatch(unifiedSearch(value)).then(() => {
+                              let results = this.props.results.partNumber.Results;
+                              if(results){
+                                  this.setState({ partNumber: this.props.results.partNumber.Results, loading: false });
+                              }else{
+                                  this.setState({ partNumber: [], loading: false });
+                              }
+                          });
+                      }
+                  }}
+                  renderItem={(item, isHighlighted) =>
+                      <div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.CompetitorInterchangesId}>
+                          {item.CompetitorName}  {item.CompetitorPartNumber}
+                      </div>
+                  }
+                  renderMenu={(items, value) => (
+                      <div className="menu">
+                          {value === '' ? (
+                              <div className="item">Type ConMet or Competitor assembly number</div>
+                          ) : this.state.loading ? (
+                              <div className="item">Loading...</div>
+                          ) : items.length === 0 ? (
+                              <div className="item">No matches for {value}</div>
+                          ) : items}
+                      </div>
+                  )}
+              />
+              <div className="help">Some examples: “104444”, “ConMet 10031065”, “Gunite 5669‑1”, “Webb 20231‑‑1T‑71”</div>
+              <div className="btn-no-description conmet-button">
+                  <button type="submit" onClick={this.doSearch}><h2 style={{textAlign: 'center'}}>Continue</h2></button>
+              </div>
+          </form>
+          <hr/>
         <div className="btn-no-description conmet-button">
           <button onClick={this.handleClick.bind(this, '/hub-selection/choose-path')} store={this.context.store}>
             <h2>HUBS <i className="icon-angle-right" /></h2>
