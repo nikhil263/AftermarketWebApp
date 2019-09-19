@@ -27,12 +27,20 @@ class CompareItem extends Component {
     this.setState({active: !this.state.active});
   };
 
-  changeProperty(item, property){
+  changeProperty(item, property, data){
     let value = null;
     if(_.isBoolean(item)){
       value = item ? 'Yes' : 'No';
     }else if(property === "HubRatingPound"){
       value = Math.round(item).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }else if(property === "Status"){
+      if(data.Status === "Terminated"){
+        value = "Not Available";
+      }else if((data.IsAftermarketAssembly === false && data.Status === "Active") || (data.Status === "Service Only")){
+        value = "Made To Order";
+      }else{
+        value = "Available";
+      }
     }else{
       value = item;
     }
@@ -53,8 +61,8 @@ class CompareItem extends Component {
         </div>
         <div className="accordion-content">
           <div className="content">
-            <div className="small-6">{this.changeProperty(item[property], property)}</div>
-            <div className="small-6">{this.changeProperty(nextItem[property], property)}</div>
+            <div className="small-6">{this.changeProperty(item[property], property, item)}</div>
+            <div className="small-6">{this.changeProperty(nextItem[property], property, nextItem)}</div>
           </div>
         </div>
       </div>
