@@ -9,6 +9,8 @@ Conmet Mobile Web App
 
 Run the following commands:
 ````
+git chechout develop
+git pull
 yarn install
 .\deploy.bat staging 'COMMENT'
 ````
@@ -18,6 +20,8 @@ Here comment is what gets registered as the git comment on Azure for this deploy
 
 Run the following commands:
 ````
+git chechout master
+git pull
 yarn install
 .\deploy.bat prod 'COMMENT'
 ````
