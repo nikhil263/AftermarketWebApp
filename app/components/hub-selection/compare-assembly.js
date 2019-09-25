@@ -69,6 +69,7 @@ class CompareAssembly extends Component {
               </div>
             )
           })}
+            <div className="small-12 note-compare">Below rows are expanded to highlight differences. Collapsed rows are the same between the two hubs.</div>
 
           {results.map((item, index) => {
             const keys = Object.keys(propertyLabels);
