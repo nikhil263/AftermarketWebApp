@@ -195,9 +195,10 @@ class HubSingleResult extends Component {
             </h2>
             {/*{spindleNut &&*/}
             {/*<div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}*/}
-              {/*{item.IsAftermarket === false && (item.PartStatus === 'Service Only' || item.PartStatus === 'Active') ?*/}
                {(item.IsAftermarket === false && item.PartStatus === "Active") || (item.PartStatus === "Service Only") ?
               <div className="optional-spindle">This hub is made-to-order only. Please contact ConMet Customer Service for availability</div> : ''}
+              {item.PartStatus === "Terminated" ?
+                  <div className="optional-spindle">This hub is no longer available. Please contact ConMet Customer Service for options</div> : ''}
             {note}
             {
               item.Images.map((image, index) => {
