@@ -641,8 +641,15 @@ h2.partsSubHead {
 				}
 			}
 			.compare-part-number {
-				font-size: 22px;
-				line-height: 24px;
+				font-size: 37px;
+				line-height: 51.8px;
+				font-weight: initial;
+				color: rgba(0, 0, 0, 0.7);
+				font-family: myriad-pro-condensed,sans-serif;
+			}
+			.italic{
+				font-style: italic;
+				color: rgb(211, 17, 69);
 			}
 		}
 		.optional-spindle{
@@ -669,8 +676,16 @@ h2.partsSubHead {
 				order: -1;
 				.content {
 					display: flex;
+					div.small-6{
+						color:rgba(0, 0, 0, 0.6);
+						font-weight: initial;
+						font-size: 19.2px;
+					}
 				}
 				.accordion-title {
+					color: rgba(0, 0, 0, 0.7);
+					font-weight: initial;
+					font-size: 19.2px;
 					position: relative;
 					.pointer {
 						position: absolute;
@@ -684,6 +699,9 @@ h2.partsSubHead {
 				}
 			}
 		}
+	}
+	.general-button{
+		font-weight: initial;
 	}
 	.disclaimer{
 		font-size: 20px;

@@ -65,7 +65,7 @@ class CompareAssembly extends Component {
                        alt={item.HubAssemblyNumber}/>
                 )}
                 <div className="compare-part-number">{item.Description}</div>
-                <div className="compare-part-number">{item.PartNumber}</div>
+                <div className="compare-part-number italic">{item.PartNumber}</div>
               </div>
             )
           })}

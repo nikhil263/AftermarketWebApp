@@ -1,8 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import Step from 'components/hub-selection/step';
-import { previousFilter } from 'actions/filters';
 import {Link} from 'react-router';
-import {unifiedSearch} from 'actions';
+import {fetchHubAssemblyNumber} from 'actions';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-autocomplete';
 
@@ -14,14 +12,13 @@ class CompareHub extends Component {
         this.state = {
             assembly1: '',
             assembly2: '',
-            partNumber: [],
+            assemblyNumber: [],
             loading: false,
         };
     }
 
     render() {
         const { dispatch } = this.props;
-        console.log(this.props, this.state.assembly1)
         return (
 					<div className="grid-container hub-compare">
 						<div className="splash-title">
@@ -34,28 +31,27 @@ class CompareHub extends Component {
                                             value={this.state.assembly1}
                                             inputProps={{ className: 'assembly-number', id:'assemblyNumber',type:'text' }}
                                             wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}
-                                            items={this.state.partNumber}
-                                            getItemValue={(item) => item.CompetitorPartNumber}
+                                            items={this.state.assemblyNumber}
+                                            getItemValue={item => item}
                                             onSelect={(value, state) => {
-                                                this.props.results.selectedHubAssemblyNumber = state.CompetitorName+' '+state.CompetitorPartNumber;
-                                                this.setState({ assembly1:value, partNumber: [state] })
+                                                this.setState({ assembly1:value, assemblyNumber: [state] })
                                             }}
                                             onChange={(event, value) => {
-                                                this.setState({assembly1 : value, partNumber : [], loading: true });
+                                                this.setState({assembly1 : value, assemblyNumber : [], loading: true });
                                                 if(value !== ''){
-                                                    dispatch(unifiedSearch(value)).then(() => {
-                                                        let results = this.props.results.partNumber.Results;
+                                                    dispatch(fetchHubAssemblyNumber(value, true)).then(() => {
+                                                        let results = this.props.results.assemblyNumber.Results;
                                                         if(results){
-                                                            this.setState({ partNumber: this.props.results.partNumber.Results, loading: false });
+                                                            this.setState({ assemblyNumber: this.props.results.assemblyNumber.Results, loading: false });
                                                         }else{
-                                                            this.setState({ partNumber: [], loading: false });
+                                                            this.setState({ assemblyNumber: [], loading: false });
                                                         }
                                                     });
                                                 }
                                             }}
                                             renderItem={(item, isHighlighted) =>
-                                                <div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.CompetitorInterchangesId}>
-                                                    {item.CompetitorName}  {item.CompetitorPartNumber}
+                                                <div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item}>
+                                                    {item}
                                                 </div>
                                             }
                                             renderMenu={(items, value) => (
@@ -77,28 +73,27 @@ class CompareHub extends Component {
                                             value={this.state.assembly2}
                                             inputProps={{ className: 'assembly-number', id:'assemblyNumber',type:'text' }}
                                             wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}
-                                            items={this.state.partNumber}
-                                            getItemValue={(item) => item.CompetitorPartNumber}
+                                            items={this.state.assemblyNumber}
+                                            getItemValue={item => item}
                                             onSelect={(value, state) => {
-                                                this.props.results.selectedHubAssemblyNumber = state.CompetitorName+' '+state.CompetitorPartNumber;
-                                                this.setState({ assembly2:value, partNumber: [state] })
+                                                this.setState({ assembly2:value, assemblyNumber: [state] })
                                             }}
                                             onChange={(event, value) => {
-                                                this.setState({assembly2 : value, partNumber : [], loading: true });
+                                                this.setState({assembly2 : value, assemblyNumber : [], loading: true });
                                                 if(value !== ''){
-                                                    dispatch(unifiedSearch(value)).then(() => {
-                                                        let results = this.props.results.partNumber.Results;
+                                                    dispatch(fetchHubAssemblyNumber(value, true)).then(() => {
+                                                        let results = this.props.results.assemblyNumber.Results;
                                                         if(results){
-                                                            this.setState({ partNumber: this.props.results.partNumber.Results, loading: false });
+                                                            this.setState({ assemblyNumber: this.props.results.assemblyNumber.Results, loading: false });
                                                         }else{
-                                                            this.setState({ partNumber: [], loading: false });
+                                                            this.setState({ assemblyNumber: [], loading: false });
                                                         }
                                                     });
                                                 }
                                             }}
                                             renderItem={(item, isHighlighted) =>
-                                                <div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.CompetitorInterchangesId}>
-                                                    {item.CompetitorName}  {item.CompetitorPartNumber}
+                                                <div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item}>
+                                                    {item}
                                                 </div>
                                             }
                                             renderMenu={(items, value) => (
