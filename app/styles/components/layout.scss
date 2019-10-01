@@ -14,6 +14,7 @@ body,html{
 	h1,h2,h3,h4,h5,h6 {
 		color: $cm-dark-grey;
 		text-align: center;
+		font-family: myriad-pro-condensed, sans-serif;
 	}
 	.conmet-button h2{
 	font-family: myriad-pro-condensed, sans-serif;
@@ -51,6 +52,15 @@ h2,h3,h4,h5,h6{
 }
 .title-bar.dark {
 	background: #fff;
+	//.note-dot{
+	//	width: 10px;
+	//	height: 10px;
+	//	border-radius: 10px;
+	//	position: absolute;
+	//	right: 32px;
+	//	top: 32px;
+	//	background: #d31145;
+	//}
 
 }
 .title-bar .center h2 {
@@ -148,6 +158,9 @@ img.brake-rotor-flange {
 		h1 {
 			font-size: 3.1rem;
 			line-height: 2.9rem;
+		}
+		h2 {
+			font-family: myriad-pro-condensed, sans-serif;
 		}
 	}
 }
@@ -248,7 +261,7 @@ img.brake-rotor-flange {
 //				width: 50%;
 //				margin-left: 25%;
 //			}
-//			h2{text-transform: uppercase;color: rgb(65, 64, 66)}
+//			h2{text-transform: uppercase;color: rgb(65, 64, 66);font-family: myriad-pro-condensed, sans-serif}
 //			h4{
 //				text-align: center; color: #FFFFFF; margin-bottom: 5px;font-size: 24.8px;font-family: myriad-pro-condensed, sans-serif;padding: 2.5px;
 //			}
@@ -264,8 +277,9 @@ img.brake-rotor-flange {
 //}
 //.notification-detail {
 //	margin: 10% auto;
-//	h2{text-transform: uppercase;color: rgb(65, 64, 66)}
-//	h4{color: rgb(65, 64, 66);}
+//	h2{text-transform: uppercase;color: rgb(65, 64, 66);font-family: myriad-pro-condensed, sans-serif;}
+//	h4{color: rgb(65, 64, 66);;font-family: myriad-pro-condensed, sans-serif; text-align: center}
+//	li{font-family: myriad-pro-condensed, sans-serif;}
 //}
 //
 //@media only screen and (max-width: 1680px) {
@@ -306,10 +320,11 @@ img.brake-rotor-flange {
 //	.grid-block{
 //		width: 100%;
 //		.splash-title{
-//			max-width: 56.25rem;
-//			margin: 0 auto!important;
+//			//max-width: 56.25rem;
+//			//width: 110%;
+//			//margin: 0 auto!important;
 //			.notification-list{
-//				padding-top: 20px;
+//				padding-top: 10px;
 //			}
 //			.note-arrow{
 //				border-top: 15px solid transparent;
@@ -321,6 +336,10 @@ img.brake-rotor-flange {
 //			}
 //			.note-list{
 //				padding-left: 100px;
+//				h4{
+//					font-family: myriad-pro-condensed, sans-serif;
+//					font-size: 24px;
+//				}
 //			}
 //		}
 //	}
@@ -641,8 +660,8 @@ h2.partsSubHead {
 				}
 			}
 			.compare-part-number {
-				font-size: 37px;
-				line-height: 51.8px;
+				font-size: 27.2px;
+				line-height: 27.2px;
 				font-weight: initial;
 				color: rgba(0, 0, 0, 0.7);
 				font-family: myriad-pro-condensed,sans-serif;
@@ -679,14 +698,15 @@ h2.partsSubHead {
 					div.small-6{
 						color:rgba(0, 0, 0, 0.6);
 						font-weight: initial;
-						font-size: 19.2px;
+						font-size: 17px;
 					}
 				}
 				.accordion-title {
 					color: rgba(0, 0, 0, 0.7);
 					font-weight: initial;
-					font-size: 19.2px;
+					font-size: 17px;
 					position: relative;
+					text-transform: uppercase;
 					.pointer {
 						position: absolute;
 						top: 50%;
