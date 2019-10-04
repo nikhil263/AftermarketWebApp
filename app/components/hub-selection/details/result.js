@@ -95,7 +95,7 @@ class HubSingleResult extends Component {
   }
 
   addLinks(str, links) {
-    if (str === undefined) {
+    if (str === undefined || links === undefined) {
       return null
     }
     let matches = str.match(/{{(.*?)}}/g) || []
