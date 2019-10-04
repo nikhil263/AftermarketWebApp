@@ -14,7 +14,7 @@ class HubResults extends React.Component {
             <li>Extended Warranty</li>
             <li>Less Downtime</li>
             <li>Simplified Process</li>
-            <li>Liability Protection</li>
+            {/*<li>Liability Protection</li>*/}
           </ul>
         </div>
       )
@@ -75,7 +75,7 @@ class Result extends Component {
                      style={{background: "url('" + IMAGE_CDN + item.Images[0].ImageGuid + '.png' + "') center center no-repeat"}}
                      alt={item.HubAssemblyNumber}/>
                 <div className="type">{assemblyType ? "PreSet" : "Conventional"}</div>
-                <div className="number">{item.HubAssemblyNumber}</div>
+                <div className="number italic">{item.HubAssemblyNumber}</div>
                 {short_studs && short_studs[index] && (
                   <div className="number text-center" style={{marginTop: '10px'}}>
                     {`${short_studs[index].HubAssemblyNumber} (Long stud version)`}
@@ -86,9 +86,7 @@ class Result extends Component {
             )
           })}
           {spindleNut && (
-            <div className="optional-spindle">
-              <div className="small-6">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>
-            </div>
+            <div className="optional-spindle" style={{textAlign:'center'}}>Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>
           )}
           {results.map((item, index) => {
             return (

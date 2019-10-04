@@ -16,11 +16,12 @@ class Result extends Component {
 	render() {
 		const {active, onClick, result} = this.props
 		return (
-			<div className={active()}>
-				<button className="yes-no-button" onClick={onClick}><strong>{result.WheelMaterial}</strong><br />
-					({result.StudLengthClass})
-				</button>
-			</div>
+            <div className={active()}>
+                <button className="yes-no-button" onClick={onClick}><strong>{result.WheelMaterial}</strong><br />
+                    ({result.StudLengthClass})
+                </button>
+            </div>
+
 		)
 	}
 }
@@ -40,14 +41,12 @@ class WheelType extends Component {
 		return (
 			<div className="grid-container main-content">
 				<h2>Choose the Wheel Type<br />(Determine Wheel Stud Length):</h2>
-					{app.filterResults.map((result, index) => {
-						var boundClick = setFilter.bind(this, FILTERIDX, {wmslc: result.Id}, app);
-						var boundActive = setActive.bind(this, FILTERIDX, result.Id);
-						return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
+                {app.filterResults.map((result, index) => {
+                    var boundClick = setFilter.bind(this, FILTERIDX, {wmslc: result.Id}, app);
+                    var boundActive = setActive.bind(this, FILTERIDX, result.Id);
+                    return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
 
-					})}
-
-
+                })}
 			</div>
 		)
 	}

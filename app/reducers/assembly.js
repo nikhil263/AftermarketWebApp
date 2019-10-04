@@ -60,7 +60,8 @@ export const assembly = (state = defaultState, action) => {
         return {...state, compare: {...state.compare, results: Results, differentProperties}, isFetching: false};
       }
 
-      return Object.assign({}, state, {isFetching: false});
+      // return Object.assign({}, state, {isFetching: false});
+        return Object.assign({}, {...state, compare: {...state.compare, results: []},isFetching: false});
     }
     default:
       return state

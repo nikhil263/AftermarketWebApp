@@ -95,7 +95,7 @@ class HubSingleResult extends Component {
   }
 
   addLinks(str, links) {
-    if (str === undefined) {
+    if (str === undefined || links === undefined) {
       return null
     }
     let matches = str.match(/{{(.*?)}}/g) || []
@@ -139,6 +139,7 @@ class HubSingleResult extends Component {
   render() {
     let {idx, total, item, spindleNut, short_studs, selectedHubAssemblyNumber} = this.props;
     const selectedNumber = selectedHubAssemblyNumber ? selectedHubAssemblyNumber.split(" ")[1] : '';
+    const selectedConmet = selectedHubAssemblyNumber ? selectedHubAssemblyNumber.split(" ")[0] : '';
     const {isFetching, shortStuds} = this.state;
     let studs = null;
 
@@ -160,8 +161,10 @@ class HubSingleResult extends Component {
 
     return (
       <div>
-        <h2>Success! The following hub is recommended</h2>
-        {selectedHubAssemblyNumber ? <p className="text-center">for {selectedHubAssemblyNumber}</p> : ''}
+        {/*<h2>Success! The following hub is recommended</h2>*/}
+          <h2>{item.PartStatus === 'Active' || item.PartStatus === 'Service Only' ? 'The following hub is recommended' : 'This hub is no longer available'}</h2>
+        {selectedHubAssemblyNumber ? <p className="text-center" style={selectedConmet === 'ConMet' ? {marginBottom: 0} : null}>for {selectedHubAssemblyNumber}</p> : ''}
+        {/*{selectedConmet === 'ConMet' && item.PartStatus === 'Active' ? <div className="serviceComponent"><Link to={'/parts/search/' +  selectedNumber} className="general-button">Looking for service components for {selectedNumber}?</Link></div> : ''}*/}
         <div className="result">
           <PreviousButton
             idx={idx}
@@ -190,8 +193,12 @@ class HubSingleResult extends Component {
               {item.HubAssemblyNumber}<br/>
               {studs && `${studs} (Long stud version)`}
             </h2>
-            {spindleNut &&
+            {item.PartStatus !== "Terminated" && spindleNut &&
             <div className="optional-spindle">Optional Spindle nut: {spindleNut} (Aftermarket PreSet Hubs Only)</div>}
+               {(item.IsAftermarket === false && item.PartStatus === "Active") || (item.PartStatus === "Service Only") ?
+              <div className="optional-spindle">This hub is made-to-order only. Please contact ConMet Customer Service for availability</div> : ''}
+              {item.PartStatus === "Terminated" ?
+                  <div className="optional-spindle">This hub is no longer available. Please contact ConMet Customer Service for options</div> : ''}
             {note}
             {
               item.Images.map((image, index) => {

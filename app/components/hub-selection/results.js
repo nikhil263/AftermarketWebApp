@@ -123,7 +123,7 @@ class Results extends Component {
 
                         <div className="row">
                             <img
-                                src={require('../../images/figure15.jpg')}
+                                src={require('../../images/figure15.png')}
                                 alt="Unitized"
                                 width="200"
                                 height="200"

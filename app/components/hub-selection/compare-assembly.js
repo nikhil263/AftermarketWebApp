@@ -6,6 +6,7 @@ import {IMAGE_CDN} from "config/constants";
 import CompareItem from "components/hub-selection/compare-item";
 
 const propertyLabels = {
+  "Status": "Status",
   "Material": 'Material',
   "AxlePosition": 'Axle Position',
   "Axle": 'Axle',
@@ -64,10 +65,11 @@ class CompareAssembly extends Component {
                        alt={item.HubAssemblyNumber}/>
                 )}
                 <div className="compare-part-number">{item.Description}</div>
-                <div className="compare-part-number">{item.PartNumber}</div>
+                <div className="compare-part-number italic">{item.PartNumber}</div>
               </div>
             )
           })}
+            <div className="small-12 note-compare">Below rows are expanded to highlight differences. Collapsed rows are the same between the two hubs.</div>
 
           {results.map((item, index) => {
             const keys = Object.keys(propertyLabels);
@@ -93,7 +95,7 @@ class CompareAssembly extends Component {
           })}
         </div>
         <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="general-button">Return to
-          results</a>
+          Comparison</a>
       </div>
     )
   }

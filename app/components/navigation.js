@@ -27,9 +27,26 @@ class Navigation extends Component {
             isOpen: false
 		});
 	}
+	goCompareHub() {
+		const{dispatch} = this.props;
+        dispatch(resetFilters());
+		dispatch(pushPath('/hub-selection/compare-hub'));
+        this.setState({
+            isOpen: false
+        });
+	}
 
+    // goNotification() {
+    //     const {dispatch} = this.props;
+    //     dispatch(resetFilters())
+    //     dispatch(pushPath('/notification'))
+    //     this.setState({
+    //         isOpen: false
+    //     });
+    // }
 
 	render() {
+        // let count = localStorage.getItem('seenNotificationsCount') || 'en';
 		return (
 			<div>
 				<Menu className="global-navigation" right isOpen={this.state.isOpen}>
@@ -40,7 +57,9 @@ class Navigation extends Component {
 						<li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
 						<li><a href="http://www.conmet.com/general/literature/">Service Literature</a></li>
 						<li><a href="http://calculator.conmetwheelends.com/">Calculators</a></li>
+						{/*<li><a onClick={this.goCompareHub.bind(this)}>Compare Hubs</a></li>*/}
 						<li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
+                        {/*<li><a onClick={this.goNotification.bind(this)}>Notification <span className="note-count">{count}</span></a></li>*/}
 						<li><a href="https://www.conmet.com/training">Hub Training 2.0</a></li>
 						<li><a href="https://conmet.com/privacy/" target="_blank">Privacy Policy</a></li>
 					</ul>

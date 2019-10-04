@@ -48,6 +48,11 @@ class ChoosePath extends Component {
 						<em>No</em>Proceed without the number.
 					</button>
 				</div>
+                <div className="conmet-button">
+                    <button onClick={this.handleClick.bind(this, '/hub-selection/compare-hub')} className="yes-no-button">
+                        <em>Yes</em>I want to compare two assemblies.
+                    </button>
+                </div>
 			</div>
 		)
 	}

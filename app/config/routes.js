@@ -6,12 +6,14 @@ import App from 'containers/app'
 import Splash from 'components/splash'
 import HubSelectionWrapper from 'components/hub-selection'
 import HubSelectionStart from 'components/hub-selection/start'
+import CompareHub from 'components/hub-selection/compare-hub'
 import HubSelectionChoosePath from 'components/hub-selection/choose-path'
 import ReplacementDrum from 'components/hub-selection/replacement-drum'
 import ReplacementRotor from 'components/hub-selection/replacement-rotor'
 import ReplacementDrumFilter from 'components/hub-selection/replacement-drum-filter'
 import ReplacementRotorFilter from 'components/hub-selection/replacement-rotor-filter'
 import StudFilter from 'components/hub-selection/stud-filter'
+import StudFilters from 'components/hub-selection/stud-filters'
 import ReplacementDrumSearch from 'components/hub-selection/replacement-drum-search'
 import ReplacementRotorSearch from 'components/hub-selection/replacement-rotor-search'
 import ReplacementDrumResult from 'components/hub-selection/replacement-drum-result'
@@ -22,6 +24,7 @@ import HubSelectionFindAssembly from 'components/hub-selection/find-assembly'
 import HubSelectionFindAssemblyDetail from 'components/hub-selection/find-assembly-detail'
 import HubSelectionSearch from 'components/hub-selection/search'
 import Filters from 'components/hub-selection/filters'
+import NotAvailableHub from 'components/hub-selection/not-available-hub'
 import CompareAssembly from 'components/hub-selection/compare-assembly'
 import HubSelectionResults from 'components/hub-selection/results'
 import HubSelectionDetails from 'components/hub-selection/details'
@@ -65,6 +68,7 @@ module.exports = (
         <Route path='replacement-rotor/filter' component={ReplacementRotorFilter}/>
         <Route path='stud/filter' component={StudFilter}/>
         <Route path='stud/filter/:currentFilter' component={StudFilter}/>
+        <Route path='stud/filters/:currentFilter' component={StudFilters}/>
         <Route path='stud/filter/:currentFilter/:filters' component={StudFilter}/>
         <Route path='replacement-rotor/filter/:currentFilter/:filters' component={ReplacementRotorFilter}/>
         <Route path='replacement-rotor/filter/:currentFilter' component={ReplacementRotorFilter}/>
@@ -81,6 +85,7 @@ module.exports = (
         <Route path='choose-path' component={HubSelectionChoosePath}/>
         <Route path='search' component={HubSelectionSearch}/>
         <Route path='filters/:filters' component={Filters}/>
+        <Route path='not-available/:id' component={NotAvailableHub}/>
         <Route path='compare/:assembly/:compareAssembly' component={CompareAssembly}/>
         <Route path='results' component={HubSelectionResults}/>
         <Route path='details/:id' component={HubSelectionDetails}/>
@@ -99,6 +104,7 @@ module.exports = (
         <Route path='brake-rotor-type' component={BrakeRotorType}/>
         <Route path='find-assembly' component={HubSelectionFindAssembly}/>
         <Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail}/>
+        <Route path='compare-hub' component={CompareHub}/>
         <Route path='no-results' component={NoResults}/>
       </Route>
       <Route path='parts' component={PartsWrapper}>
