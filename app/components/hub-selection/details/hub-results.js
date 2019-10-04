@@ -14,7 +14,7 @@ class HubResults extends React.Component {
             <li>Extended Warranty</li>
             <li>Less Downtime</li>
             <li>Simplified Process</li>
-            <li>Liability Protection</li>
+            {/*<li>Liability Protection</li>*/}
           </ul>
         </div>
       )
