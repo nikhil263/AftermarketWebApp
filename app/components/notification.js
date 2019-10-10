@@ -39,22 +39,24 @@ export default class Notification extends Component {
                 <Modal
                     isOpen={openNotesModal}
                     onRequestClose={this.closeDetailModal}
-                    shouldCloseOnOverlayClick={false}
+                    shouldCloseOnOverlayClick={true}
                     className="notification-modal notification-detail"
                 >
                     <div>
                         <div className="modal-content">
-                            <div className="grid-block small-12">
-                                <div className="text-center small-11">
+                            <div className="grid-block">
+                                <div className="text-center small-12">
                                     <h2>{notification.Title}</h2>
-                                    <h4>{notification.Message}</h4>
-                                    {Array.isArray(notification.Link) ? notification.Link.map((l,i)=>{
-                                        return(<h4 key={i}><li style={{textAlign: 'left'}}><a href={l}>{l}</a></li></h4>)
+                                    <h4 style={{padding:'15px 0'}}>{notification.Message}</h4>
+                                    <ul>
+                                        {Array.isArray(notification.Link) ? notification.Link.map((l,i)=>{
+                                            return(<li key={i}><h4 style={{textAlign: 'left'}}><a href={l}>{l}</a></h4></li>)
 
-                                    }) : (<h4><li style={{textAlign: 'left'}}><a href={notification.Link}>{notification.Link}</a></li></h4>)}
+                                        }) : (<li><h4 style={{textAlign: 'left'}}><a href={notification.Link}>{notification.Link}</a></h4></li>)}
+                                    </ul>
                                 </div>
-                                <div className="text-right small-1" onClick={this.closeDetailModal}>
-                                    <h3 style={{cursor: 'pointer', marginTop:'-10px', padding: '5px'}}>&times;</h3>
+                                <div className="small-12 close" onClick={this.closeDetailModal}>
+                                    <h3>&times;</h3>
                                 </div>
                             </div>
                         </div>

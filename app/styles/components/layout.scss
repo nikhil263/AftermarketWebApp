@@ -222,11 +222,12 @@ img.brake-rotor-flange {
 
 .notification-modal{
 	width: 25%;
-	margin: 18% auto;
+	margin: 10% auto;
 	border: 1px solid #cccccc;
 	background: #fff;
 	outline: none;
 	overflow-y: hidden;
+	word-break: break-word;
 
 	.modal-content{
 		min-height: 300px;
@@ -259,6 +260,7 @@ img.brake-rotor-flange {
 		}
 		.note{
 			outline: none;
+			h2{padding-bottom: 20px}
 			.conmet-button{
 				width: 50%;
 				margin-left: 25%;
@@ -279,15 +281,16 @@ img.brake-rotor-flange {
 }
 .notification-detail {
 	margin: 10% auto;
-	h2{text-transform: uppercase;color: rgb(65, 64, 66);font-family: myriad-pro-condensed, sans-serif;}
-	h4{color: rgb(65, 64, 66);;font-family: myriad-pro-condensed, sans-serif; text-align: center}
+	h2{text-transform: uppercase;color: rgb(65, 64, 66);font-family: myriad-pro-condensed, sans-serif;line-height: 37px}
+	h4{color: rgba(0, 0, 0, 0.7);font-family: myriad-pro-condensed, sans-serif; text-align: center; line-height: 23px}
 	li{font-family: myriad-pro-condensed, sans-serif;}
+	.close{cursor: pointer; position: absolute; right: 0; top: -15px}
 }
 
 @media only screen and (max-width: 1680px) {
 	.notification-modal{
 		width: 25%;
-		margin: 22% auto;
+		margin: 15% auto;
 	}
 	.notification-detail {
 		margin: 12% auto;
@@ -296,7 +299,7 @@ img.brake-rotor-flange {
 @media only screen and (max-width: 1200px) {
 	.notification-modal{
 		width: 40%;
-		margin: 30% auto;
+		margin: 20% auto;
 	}
 	.notification-detail {
 		margin: 22% auto;
@@ -305,7 +308,7 @@ img.brake-rotor-flange {
 @media only screen and (max-width: 767px) {
 	.notification-modal{
 		width: 85%;
-		margin: 45% auto;
+		margin: 30% auto;
 	}
 	.notification-detail {
 		margin: 35% auto;
