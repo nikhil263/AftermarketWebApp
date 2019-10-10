@@ -65,7 +65,7 @@ class Navigation extends Component {
 						<li><a href="https://conmet.com/support/">Contact ConMet</a></li>
 						<li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
 						<li><a href="http://www.conmet.com/general/literature/">Service Literature</a></li>
-						<li><a href="http://calculator.conmetwheelends.com/">Replace Calculator</a></li>
+						<li><a href="http://calculator.conmetwheelends.com/">Calculators</a></li>
 						{/*<li><a onClick={this.goCompareHub.bind(this)}>Compare Hubs</a></li>*/}
 						<li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
                         <li><a onClick={this.goNotification.bind(this)}>Notification {count > 0 ? <span className="note-count">{count}</span> : null}</a></li>
