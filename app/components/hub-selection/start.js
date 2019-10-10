@@ -190,7 +190,7 @@ class Start extends Component {
                                     }) : (<h4><li style={{textAlign: 'left'}}><a href={notification.Link}>{notification.Link}</a></li></h4>)}
                                 </div>
                                 <div className="text-right small-1" onClick={this.closeDetailModal}>
-                                    <h3 style={{cursor: 'pointer', marginTop:'-15px'}}>&times;</h3>
+                                    <h3 style={{cursor: 'pointer', marginTop:'-15px', padding: '5px'}}>&times;</h3>
                                 </div>
                             </div>
                         </div>
