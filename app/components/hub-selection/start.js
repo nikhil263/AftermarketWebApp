@@ -20,177 +20,185 @@ class Start extends Component {
             partNumber: [],
             loading: false,
             url: '',
-            // openModel: false,
-            // openDetailModal: false,
-            // notificationId: null,
-            // data: null,
-            // currentIndex:0,
-            // closeModal: false
+            openModel: false,
+            openDetailModal: false,
+            notificationId: null,
+            data: null,
+            currentIndex:0,
+            closeModal: false
         };
 
-        // this.closeModal = this.closeModal.bind(this);
-        // this.closeDetailModal = this.closeDetailModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.closeDetailModal = this.closeDetailModal.bind(this);
     }
   static contextTypes = {
     store: PropTypes.object,
     history: PropTypes.object
   };
 
-    // componentWillMount(){
-    //     const {dispatch} = this.props;
-    //     dispatch(fetchNotificationResult());
-    //     Modal.setAppElement('body');
-    // }
-    // componentDidMount() {
-    //     const {results} = this.props;
-    //     let notifications = JSON.parse(localStorage.getItem('notifications'));
-    //     let notIgnore = notifications.filter(a => !a.ignore || a.ignore < 3);
-    //     let data = notIgnore && notIgnore.length ? notIgnore : results.notifications;
-    //     if(data && data.length){
-    //         let notification = data.find(a => a.Id === data[0].Id);
-    //         let index = notifications.findIndex(item => item.Id === notification.Id);
-    //         if(index > -1){
-    //             notifications[index] = {...notifications[index], ignore: (notifications[index].ignore ? notifications[index].ignore : 0 ) + 1}
-    //         }
-    //         localStorage.setItem('notifications', JSON.stringify(notifications));
-    //     }
-    //     // const {dispatch} = this.props;
-    //     // dispatch(fetchNotificationResult());
-    //     // Modal.setAppElement('body');
-    // }
+    componentWillMount(){
+        // localStorage.removeItem('notifications');
+        // localStorage.removeItem('unseenNotificationsCount');
+        const {dispatch} = this.props;
+        dispatch(fetchNotificationResult());
+        Modal.setAppElement('body');
+    }
+    componentDidMount() {
+        const {results} = this.props;
+        let notifications = JSON.parse(localStorage.getItem('notifications'));
+        if(notifications && notifications.length){
+            let notIgnore = notifications.filter(a => !a.ignore || a.ignore < 3);
+            let data = notIgnore && notIgnore.length ? notIgnore : results.notifications;
+            if(data && data.length){
+                let notification = data.find(a => a.Id === data[0].Id);
+                let index = notifications.findIndex(item => item.Id === notification.Id);
+                if(index > -1){
+                    notifications[index] = {...notifications[index], ignore: (notifications[index].ignore ? notifications[index].ignore : 0 ) + (notifications[index].ignore < 3 ? 1 : 0)}
+                }
+                localStorage.setItem('notifications', JSON.stringify(notifications));
+            }
+        }
 
-    // componentWillReceiveProps(newProps) {
-    //     const { results, app } = newProps;
-    //     const { closeModal } = this.state;
-    //     if(results.notifications && results.notifications.length && !app.goingBack && !closeModal ){
-    //         // localStorage.setItem('notifications', JSON.stringify(results.notifications));
-    //         this.setState({openModel: true});
-    //     }
-    // }
-    //
-    // closeModal() {
-    //     this.setState({openModel: false, closeModal: true});
-    // }
-    //
-    // closeDetailModal() {
-    //     this.setState({openDetailModal: false, openModel: true});
-    // }
+    }
 
-    // openDetailModal (id) {
-    //     let notifications = JSON.parse(localStorage.getItem('notifications'));
-    //     this.setState({openModel: false, openDetailModal: true, notificationId: id});
-    //     const index = notifications.findIndex(a => a.Id === id);
-    //     if(index > -1){
-    //         notifications[index] = { ...notifications[index], seen: true};
-    //     }
-    //     localStorage.setItem('notifications', JSON.stringify(notifications));
-    // }
-    //
-    // onNextAction (nextSlide, slidesToShow, currentSlide, slideCount, data) {
-    //     console.log(nextSlide, slidesToShow, currentSlide, slideCount, data)
-    //     if(slidesToShow + currentSlide >= slideCount){
-    //         this.closeModal();
-    //     }
-    //     let notifications = JSON.parse(localStorage.getItem('notifications'));
-    //     let notification = data.find(a => a.Id === data[currentSlide].Id);
-    //     let index = notifications.findIndex(item => item.Id === notification.Id);
-    //     if(index > -1){
-    //         notifications[index] = {...notifications[index], ignore: (notifications[index].ignore ? notifications[index].ignore  : 0) + 1 };
-    //     }
-    //     localStorage.setItem('notifications', JSON.stringify(notifications));
-    //     nextSlide();
-    // }
+    componentWillReceiveProps(newProps) {
+        const { results, app } = newProps;
+        const { closeModal } = this.state;
+        if(results.notifications && results.notifications.length && !app.goingBack && !closeModal ){
+            localStorage.setItem('notifications', JSON.stringify(results.notifications));
+            this.setState({openModel: true});
+        }
+    }
 
-    // notificationDialogs() {
-    //     const {results} = this.props;
-    //     const { openModel, currentIndex, openDetailModal, notificationId, closeModal } = this.state;
-    //     let notes = JSON.parse(localStorage.getItem('notifications'));
-    //     let seen = notes.filter(a => a.seen === true || a.ignore > 2);
-    //     let notesWithoutSeen = notes.filter(item => !seen.includes(item));
-    //     localStorage.setItem('seenNotificationsCount', seen.length);
-    //     let data = notesWithoutSeen && notesWithoutSeen.length ? notesWithoutSeen : results.notifications;
-    //     if(openModel && seen.length < results.notifications.length){
-    //         return (
-    //             <Modal
-    //                 isOpen={openModel}
-    //                 onRequestClose={this.closeModal}
-    //                 shouldCloseOnOverlayClick={false}
-    //                 className="notification-modal"
-    //                 aria-labelledby="contained-modal-title-vcenter"
-    //                 centered
-    //             >
-    //                 <div>
-    //                     <div className="modal-content">
-    //                         <div className="notification-slider">
-    //                             <Carousel
-    //                                 slideIndex={currentIndex}
-    //                                 renderBottomCenterControls={null}
-    //                                 renderCenterLeftControls={({ previousSlide, currentSlide }) => (
-    //                                     <button
-    //                                         onClick={previousSlide}
-    //                                         className={`slick-arrow slick-prev ${currentSlide > 0 ? '' : 'disabled'}`}
-    //                                     />
-    //                                 )}
-    //                                 renderCenterRightControls={({ nextSlide, slidesToShow, currentSlide, slideCount }) => (
-    //                                     <button
-    //                                         onClick={() => this.onNextAction(nextSlide, slidesToShow, currentSlide, slideCount, data )}
-    //                                         className={`slick-arrow slick-next`}
-    //                                     />
-    //                                 )}
-    //                                 afterSlide={index => this.setState({ currentIndex: index })}
-    //                             >
-    //                                 {data.map((d,i) => (
-    //                                     <div key={i} className="note">
-    //                                         <h2 className="text-center">{d.Title}</h2>
-    //                                         <div className="btn-no-description conmet-button">
-    //                                             <button onClick={() => this.openDetailModal(d.Id)}>
-    //                                                 <h4>LEARN MORE</h4>
-    //                                             </button>
-    //                                         </div>
-    //                                         <div className="btn-no-description conmet-button">
-    //                                             <button onClick={this.closeModal}>
-    //                                                 <h4>LATER</h4>
-    //                                             </button>
-    //                                         </div>
-    //                                     </div>
-    //                                 ))}
-    //                             </Carousel>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </Modal>
-    //         )
-    //     }
-    //     if(openDetailModal) {
-    //         let notification = results.notifications.find(n => n.Id === notificationId);
-    //         return (
-    //             <Modal
-    //                 isOpen={openDetailModal}
-    //                 onRequestClose={this.closeDetailModal}
-    //                 shouldCloseOnOverlayClick={false}
-    //                 className="notification-modal notification-detail"
-    //             >
-    //                 <div>
-    //                     <div className="modal-content ">
-    //                         <div className="grid-block small-12">
-    //                             <div className="text-center">
-    //                                 <h2>{notification.Title}</h2>
-    //                             </div>
-    //                             <div className="text-right" onClick={this.closeDetailModal}>
-    //                                 <h3 style={{cursor: 'pointer', marginTop:'-15px'}}>&times;</h3>
-    //                             </div>
-    //                         </div>
-    //                         <h4>{notification.Message}</h4>
-    //                         {notification.Link.map((l,i)=>{
-    //                             return(<h4 key={i}><li style={{textAlign: 'left', paddingLeft: '10%'}}>{l}</li></h4>)
-    //
-    //                         })}
-    //                     </div>
-    //                 </div>
-    //             </Modal>
-    //         )
-    //     }
-    // };
+    closeModal() {
+        this.setState({openModel: false, closeModal: true});
+    }
+
+    closeDetailModal() {
+        this.setState({openDetailModal: false, openModel: true});
+        let count = JSON.parse(localStorage.getItem('unseenNotificationsCount'));
+        if(count === this.state.currentIndex){
+            this.closeModal();
+        }
+    }
+
+    openDetailModal (id) {
+        let notifications = JSON.parse(localStorage.getItem('notifications'));
+        this.setState({openModel: false, openDetailModal: true, notificationId: id});
+        const index = notifications.findIndex(a => a.Id === id);
+        if(index > -1){
+            notifications[index] = { ...notifications[index], seen: true};
+        }
+        localStorage.setItem('notifications', JSON.stringify(notifications));
+    }
+
+    onNextAction (nextSlide, slidesToShow, currentSlide, slideCount, data) {
+        if(slidesToShow + currentSlide >= slideCount){
+            this.closeModal();
+        }
+        let notifications = JSON.parse(localStorage.getItem('notifications'));
+        let notification = data.find(a => a.Id === data[currentSlide].Id);
+        let index = notifications.findIndex(item => item.Id === notification.Id);
+        if(index > -1){
+            notifications[index] = {...notifications[index], ignore: (notifications[index].ignore ? notifications[index].ignore  : 0) + 1 };
+        }
+        localStorage.setItem('notifications', JSON.stringify(notifications));
+        nextSlide();
+    }
+
+    notificationDialogs() {
+        const {results} = this.props;
+        const { openModel, currentIndex, openDetailModal, notificationId } = this.state;
+        let notes = JSON.parse(localStorage.getItem('notifications'));
+        let seenIgnore = notes.filter(a => a.seen === true || a.ignore > 2);
+        let unseen = notes.filter(a => a.seen === false || !a.seen);
+        let notesWithoutSeenIgnore = notes.filter(item => !seenIgnore.includes(item));
+        localStorage.setItem('unseenNotificationsCount', unseen ? unseen.length : notes.length);
+        let data = notesWithoutSeenIgnore && notesWithoutSeenIgnore.length ? notesWithoutSeenIgnore : results.notifications;
+        if(openModel && seenIgnore.length < results.notifications.length){
+            return (
+                <Modal
+                    isOpen={openModel}
+                    onRequestClose={this.closeModal}
+                    shouldCloseOnOverlayClick={false}
+                    className="notification-modal"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <div>
+                        <div className="modal-content">
+                            <div className="notification-slider">
+                                <Carousel
+                                    slideIndex={currentIndex}
+                                    renderBottomCenterControls={null}
+                                    renderCenterLeftControls={({ previousSlide, currentSlide }) => (
+                                        data.length > 1 ?
+                                        <button
+                                            onClick={previousSlide}
+                                            className={`slick-arrow slick-prev ${currentSlide > 0 ? '' : 'disabled'}`}
+                                        /> : null
+                                    )}
+                                    renderCenterRightControls={({ nextSlide, slidesToShow, currentSlide, slideCount }) => (
+                                        data.length > 1 ?
+                                        <button
+                                            onClick={() => this.onNextAction(nextSlide, slidesToShow, currentSlide, slideCount, data )}
+                                            className={`slick-arrow slick-next ${slidesToShow + currentSlide < slideCount ? '' : 'disabled'}`}
+                                        /> : null
+                                    )}
+                                    afterSlide={index => this.setState({ currentIndex: index })}
+                                >
+                                    {data.map((d,i) => (
+                                        <div key={i} className="note">
+                                            <h2 className="text-center">{d.Title}</h2>
+                                            <div className="btn-no-description conmet-button">
+                                                <button onClick={() => this.openDetailModal(d.Id)}>
+                                                    <h4>LEARN MORE</h4>
+                                                </button>
+                                            </div>
+                                            <div className="btn-no-description conmet-button">
+                                                <button onClick={this.closeModal}>
+                                                    <h4>LATER</h4>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </Carousel>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
+            )
+        }
+        if(openDetailModal) {
+            let notification = results.notifications.find(n => n.Id === notificationId);
+            return (
+                <Modal
+                    isOpen={openDetailModal}
+                    onRequestClose={this.closeDetailModal}
+                    shouldCloseOnOverlayClick={false}
+                    className="notification-modal notification-detail"
+                >
+                    <div>
+                        <div className="modal-content">
+                            <div className="grid-block small-12">
+                                <div className="text-center small-11">
+                                    <h2>{notification.Title}</h2>
+                                    <h4>{notification.Message}</h4>
+                                    {Array.isArray(notification.Link) ? notification.Link.map((l,i)=>{
+                                        return(<h4 key={i}><li style={{textAlign: 'left'}}><a href={l}>{l}</a></li></h4>)
+
+                                    }) : (<h4><li style={{textAlign: 'left'}}><a href={notification.Link}>{notification.Link}</a></li></h4>)}
+                                </div>
+                                <div className="text-right small-1" onClick={this.closeDetailModal}>
+                                    <h3 style={{cursor: 'pointer', marginTop:'-15px'}}>&times;</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
+            )
+        }
+    };
 
   handleClick(path) {
     const {dispatch} = this.props;
@@ -247,9 +255,10 @@ class Start extends Component {
     }
 
   render() {
+      let notes = JSON.parse(localStorage.getItem('notifications'));
     return (
       <div className="grid-container main-content">
-          {/*{this.notificationDialogs()}*/}
+          {notes ? this.notificationDialogs() : null}
         <h2>What are you looking for?</h2>
           {/*<form id="autoComplete">*/}
               {/*<Autocomplete*/}

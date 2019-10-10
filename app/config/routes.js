@@ -44,6 +44,7 @@ import HubFinder from 'components/hub-selection/finder'
 import About from 'components/about'
 import Contact from 'components/contact'
 import Disclaimer from 'components/disclaimer'
+import Notification from 'components/notification'
 import NoResults from '../components/global/no-result';
 
 
@@ -62,6 +63,7 @@ module.exports = (
       <Route path='about' component={About}/>
       <Route path='contact' component={Contact}/>
       <Route path='disclaimer' component={Disclaimer}/>
+      <Route path='notification' component={Notification}/>
       <Route path='hub-selection' component={HubSelectionWrapper}>
         <IndexRoute component={HubSelectionStart}/>
         <Route path='replacement-rotor' component={ReplacementRotor}/>
