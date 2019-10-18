@@ -18,6 +18,11 @@ class Navigation extends Component {
         this.setState({count})
 	}
 
+    componentWillReceiveProps(newProps) {
+        let count = JSON.parse(localStorage.getItem('unseenNotificationsCount'));
+        this.setState({count});
+    }
+
 	goHome() {
 		const {dispatch} = this.props;
 		dispatch(resetFilters());
@@ -61,12 +66,10 @@ class Navigation extends Component {
 				<Menu className="global-navigation" right isOpen={this.state.isOpen} onStateChange={(state)=>this.handleStateChange(state)}>
 					<p>More Information</p>
 					<ul>
-						{/*<li><a href="http://www.conmet.com/contact-us/">Contact ConMet</a></li>*/}
 						<li><a href="https://conmet.com/support/">Contact ConMet</a></li>
 						<li><a href="http://www.conmet.com/">Visit ConMet.com</a></li>
 						<li><a href="http://www.conmet.com/general/literature/">Service Literature</a></li>
 						<li><a href="http://calculator.conmetwheelends.com/">Calculators</a></li>
-						{/*<li><a onClick={this.goCompareHub.bind(this)}>Compare Hubs</a></li>*/}
 						<li><a onClick={this.goDisclaimer.bind(this)}>Disclaimer</a></li>
                         <li><a onClick={this.goNotification.bind(this)}>Notification {count > 0 ? <span className="note-count">{count}</span> : null}</a></li>
 						<li><a href="https://www.conmet.com/training">Hub Training 2.0</a></li>
@@ -91,5 +94,10 @@ class Navigation extends Component {
 
 		);
 	}
-};
-export default connect()(Navigation)
+}
+function select(state) {
+    return {
+        notifications: state.results.notifications
+    }
+}
+export default connect(select)(Navigation)

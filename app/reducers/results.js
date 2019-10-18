@@ -135,6 +135,7 @@ export function results(state = RESULTS, action) {
               localStorage.setItem('notifications', JSON.stringify(lsData));
           }else {
               localStorage.setItem('notifications', JSON.stringify(apiData));
+              localStorage.setItem('unseenNotificationsCount', apiData.length);
           }
 
           return Object.assign({}, state, {

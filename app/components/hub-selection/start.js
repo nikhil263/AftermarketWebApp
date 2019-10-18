@@ -65,7 +65,6 @@ class Start extends Component {
         const { results, app } = newProps;
         const { closeModal } = this.state;
         if(results.notifications && results.notifications.length && !app.goingBack && !closeModal ){
-            localStorage.setItem('notifications', JSON.stringify(results.notifications));
             this.setState({openModel: true});
         }
     }
@@ -83,13 +82,17 @@ class Start extends Component {
     }
 
     openDetailModal (id) {
+        const{dispatch} = this.props;
+        dispatch(pushPath('/hub-selection/notification-detail/' + id));
         let notifications = JSON.parse(localStorage.getItem('notifications'));
-        this.setState({openModel: false, openDetailModal: true, notificationId: id});
+        this.setState({openModel: false});
         const index = notifications.findIndex(a => a.Id === id);
         if(index > -1){
             notifications[index] = { ...notifications[index], seen: true};
         }
         localStorage.setItem('notifications', JSON.stringify(notifications));
+        let unseen = notifications.filter(a => a.seen === false || !a.seen);
+        localStorage.setItem('unseenNotificationsCount', JSON.stringify(unseen ? unseen.length : notifications.length));
     }
 
     onNextAction (nextSlide, slidesToShow, currentSlide, slideCount, data) {
@@ -108,7 +111,7 @@ class Start extends Component {
 
     notificationDialogs() {
         const {results} = this.props;
-        const { openModel, currentIndex, openDetailModal, notificationId } = this.state;
+        const { openModel, currentIndex } = this.state;
         let notes = JSON.parse(localStorage.getItem('notifications'));
         let seenIgnore = notes.filter(a => a.seen === true || a.ignore > 2);
         let unseen = notes.filter(a => a.seen === false || !a.seen);
@@ -163,37 +166,6 @@ class Start extends Component {
                                         </div>
                                     ))}
                                 </Carousel>
-                            </div>
-                        </div>
-                    </div>
-                </Modal>
-            )
-        }
-        if(openDetailModal) {
-            let notification = results.notifications.find(n => n.Id === notificationId);
-            return (
-                <Modal
-                    isOpen={openDetailModal}
-                    onRequestClose={this.closeDetailModal}
-                    shouldCloseOnOverlayClick={true}
-                    className="notification-modal notification-detail"
-                >
-                    <div>
-                        <div className="modal-content">
-                            <div className="grid-block">
-                                <div className="text-center small-12">
-                                    <h2>{notification.Title}</h2>
-                                    <h4 style={{padding:'15px 0'}}>{notification.Message}</h4>
-                                    <ul>
-                                        {Array.isArray(notification.Link) ? notification.Link.map((l,i)=>{
-                                            return(<li key={i}><h4 style={{textAlign: 'left'}}><a href={l}>{l}</a></h4></li>)
-
-                                        }) : (<li><h4 style={{textAlign: 'left'}}><a href={notification.Link}>{notification.Link}</a></h4></li>)}
-                                    </ul>
-                                </div>
-                                <div className="small-12 close" onClick={this.closeDetailModal}>
-                                    <h3>&times;</h3>
-                                </div>
                             </div>
                         </div>
                     </div>
