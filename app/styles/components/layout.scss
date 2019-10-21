@@ -319,12 +319,12 @@ img.brake-rotor-flange {
 }
 
 .notification-menu {
+	background: initial;
 	.grid-block{
 		width: 100%;
 		.splash-title{
-			//max-width: 56.25rem;
-			//width: 110%;
-			//margin: 0 auto!important;
+			margin: 0;
+			background: initial;
 			.notification-list{
 				padding-top: 10px;
 			}
@@ -528,7 +528,7 @@ h2.partsSubHead {
   }
 }
 
-#disclaimer, #notification {
+#disclaimer {
 	background: #fff;
 	.splash-title{
 		margin: 0;
