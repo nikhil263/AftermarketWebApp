@@ -48,7 +48,7 @@ class Notification extends Component {
                     <Step history={history} dispatch={dispatch} app={app} onClick={backClick}></Step>
                     <div className="grid-container">
                         <div className="grid-content splash-title">
-                            <h2>ConMet App Notifications</h2>
+                            <h2>Notifications</h2>
                             <div className="notification-list">
                                 {notifications.map((item, i) => (
                                     <div className="grid-block small-12" key={i} onClick={() => this.openDetailModal(item.Id)} style={{cursor: 'pointer'}}>

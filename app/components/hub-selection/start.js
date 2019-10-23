@@ -71,6 +71,7 @@ class Start extends Component {
 
     closeModal() {
         this.setState({openModel: false, closeModal: true});
+        sessionStorage.setItem('ignoreNotifications', JSON.stringify(true));
     }
 
     closeDetailModal() {
@@ -118,7 +119,8 @@ class Start extends Component {
         let notesWithoutSeenIgnore = notes.filter(item => !seenIgnore.includes(item));
         localStorage.setItem('unseenNotificationsCount', unseen ? unseen.length : notes.length);
         let data = notesWithoutSeenIgnore && notesWithoutSeenIgnore.length ? notesWithoutSeenIgnore : results.notifications;
-        if(openModel && seenIgnore.length < results.notifications.length){
+        let ignoreNotes = JSON.parse(sessionStorage.getItem("ignoreNotifications"));
+        if(openModel && seenIgnore.length < results.notifications.length && !ignoreNotes){
             return (
                 <Modal
                     isOpen={openModel}
