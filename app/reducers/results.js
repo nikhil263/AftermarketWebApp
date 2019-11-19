@@ -29,6 +29,7 @@ import {
   DRUM_FILTER_CATEGORIES,
   SELECTED_ROTOR_NUMBER,
   FETCH_HUB_STUDS,
+  NOTIFICATIONS_RESULT,
   INVALIDATE_HUB_STUDS,
   REQUEST_OPTIONAL_SPINDLE_NUT,
   STUD_FILTER_VALUES
@@ -114,6 +115,33 @@ export function results(state = RESULTS, action) {
         assemblyNumber: assemblyNumber,
         isFetching: false
       });
+      case NOTIFICATIONS_RESULT:
+          let lsData = JSON.parse(localStorage.getItem('notifications'));
+          let apiData = action.data;
+          if(lsData){
+              apiData.map(item => {
+                  if(lsData.filter(a => a.Id === item.Id).length === 0){
+                      lsData.push(item);
+                  }
+              });
+              lsData.map(item => {
+                  if(apiData.filter(a => a.Id === item.Id).length === 0){
+                      let index = lsData.indexOf(item);
+                      if(index > -1){
+                          lsData.splice(index, 1);
+                      }
+                  }
+              });
+              localStorage.setItem('notifications', JSON.stringify(lsData));
+          }else {
+              localStorage.setItem('notifications', JSON.stringify(apiData));
+              localStorage.setItem('unseenNotificationsCount', apiData.length);
+          }
+
+          return Object.assign({}, state, {
+              notifications: lsData ? lsData : apiData,
+              isFetching: false
+          });
     case PART_NUMBER_DATA:
       let partNumber = action.partNumber;
       return Object.assign({}, state, {

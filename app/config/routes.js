@@ -44,6 +44,8 @@ import HubFinder from 'components/hub-selection/finder'
 import About from 'components/about'
 import Contact from 'components/contact'
 import Disclaimer from 'components/disclaimer'
+import Notification from 'components/notification'
+import NotificationDetail from 'components/notification-detail'
 import NoResults from '../components/global/no-result';
 
 
@@ -62,6 +64,7 @@ module.exports = (
       <Route path='about' component={About}/>
       <Route path='contact' component={Contact}/>
       <Route path='disclaimer' component={Disclaimer}/>
+      <Route path='notification' component={Notification}/>
       <Route path='hub-selection' component={HubSelectionWrapper}>
         <IndexRoute component={HubSelectionStart}/>
         <Route path='replacement-rotor' component={ReplacementRotor}/>
@@ -106,6 +109,7 @@ module.exports = (
         <Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail}/>
         <Route path='compare-hub' component={CompareHub}/>
         <Route path='no-results' component={NoResults}/>
+        <Route path='notification-detail/:id' component={NotificationDetail}/>
       </Route>
       <Route path='parts' component={PartsWrapper}>
         <Route path='choose-path' component={PartsChoosePath}/>

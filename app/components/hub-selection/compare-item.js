@@ -53,7 +53,7 @@ class CompareItem extends Component {
     const {active} = this.state;
 
     return (
-      <div className={`accordion-item ${active ? 'is-active' : ''} compare-item`}
+      <div className={`accordion-item ${active ? 'is-active' : ''} compare-item ${property === 'AbsRingNumber' ? 'hide' : ''}`}
            style={{order: (isDifferent || property === 'Status') ? (40 - index) : '-1'}}>
         <div className="accordion-title" onClick={this.toggleActive}>
           {label}

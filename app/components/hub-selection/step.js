@@ -44,6 +44,9 @@ export default class extends Component {
 		if ((pathName.indexOf('/help') > -1) || (pathName.indexOf('/disclaimer') > -1) || (pathName.indexOf('/filters') > -1)) {
 			link = <a href="javascript:void(0)" onClick={history.goBack.bind(this)} className="back-btn"><i className="icon-angle-left"></i>Back</a>
 		}
+        if (pathName.indexOf('/hub-selection/notification-detail/') > -1){
+            link = <Link to="/notification" className="back-btn"><i className="icon-angle-left"></i>Back</Link>
+        }
 
 
 

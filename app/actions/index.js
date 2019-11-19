@@ -567,6 +567,30 @@ export const fetchFilterValues = (filtername,filters) =>{
     }
 };
 
+export const fetchNotificationResult = () => {
+    return dispatch => {
+        dispatch(requestHubs('123'));
+        return fetch(constants.API+'/aftermarketnotification', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': constants.V2KEY
+            }
+        }).then(
+            response => response.json(),
+            err => {
+                // console.log('API Error', err);
+            })
+            .then(json => {
+                dispatch({
+                    type: constants.NOTIFICATIONS_RESULT,
+                    data: json,
+                })
+            })
+    }
+};
+
 export function invalidateHubStuds() {
   return dispatch => dispatch({ type: constants.INVALIDATE_HUB_STUDS });
 }

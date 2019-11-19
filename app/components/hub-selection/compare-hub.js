@@ -25,7 +25,7 @@ class CompareHub extends Component {
 							<h2>Hub Comparision Tool</h2>
                                 <h2>Enter ConMet Hub Assembly Part Numbers</h2>
 								<div className="grid-block">
-									<div className="grid-content medium-6 small-12"><h3>Assembly#1</h3></div>
+									<div className="grid-content medium-6 small-12" style={{marginTop: '-10px'}}><h3>Assembly #1</h3></div>
 									<div className="grid-content medium-4 small-12" id="autoComplete">
                                         <Autocomplete
                                             value={this.state.assembly1}
@@ -67,7 +67,7 @@ class CompareHub extends Component {
                                             )}
                                         />
 									</div>
-                                    <div className="grid-content medium-6 small-12"><h3>Assembly#2</h3></div>
+                                    <div className="grid-content medium-6 small-12" style={{marginTop: '-10px'}}><h3>Assembly #2</h3></div>
                                     <div className="grid-content medium-4 small-12" id="autoComplete">
                                         <Autocomplete
                                             value={this.state.assembly2}
@@ -112,7 +112,7 @@ class CompareHub extends Component {
 								</div>
 								<Link
                                     to={`/hub-selection/compare/${this.state.assembly1}/${this.state.assembly2}`}
-									className="general-button"
+									className="general-button" style={{marginTop: 0}}
 								>
 									Compare
 								</Link>
