@@ -309,7 +309,7 @@ class Start extends Component {
             {/*<h2>STUD SEARCH <i className="icon-angle-right" title="Right Arrow" /></h2>*/}
           {/*</button>*/}
         {/*</div>*/}
-        <p className="terms-and-conditions">In using this application you are acknowledging that you have read and understand ConMet's <a href={`${window.location.origin}/ConMet-Terms-And-Conditions.pdf`}>terms and conditions</a></p>
+        <p className="terms-and-conditions">In using this application you are acknowledging that you have read and understand ConMet's <a href={`${window.location.origin}/ConMet-Terms-And-Conditions.pdf`} target='_blank'>terms and conditions</a></p>
       </div>
     )
   }
