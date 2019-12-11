@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Waiting from 'components/global/waiting'
 import {MATERIAL_ALL, MATERIAL_ALUMINUM, MATERIAL_IRON} from 'config/constants'
 import {fetchAssembly, getAppSearchParams} from 'actions/assembly'
+import { pushFilterHistory } from 'actions/filters';
 import {materialFilter, fetchHubs, fetchHubsSpindleNut, fetchHubsCrossApi, invalidateHubStuds} from 'actions'
 import {Link} from 'react-router';
 import NoResults from '../global/no-result'
@@ -70,6 +71,8 @@ class Results extends Component {
         dispatch(fetchHubsCrossApi(searchParams, true));
       }
     }
+
+    dispatch(pushFilterHistory("/hub-selection/results"));
   }
 
   componentWillUnmount() {

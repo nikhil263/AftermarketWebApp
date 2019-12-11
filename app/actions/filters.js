@@ -1,5 +1,5 @@
 import {
-	API,
+	APIV13,
 		V2KEY,
 		ZERO_RESULTS,
 		RECIEVE_FILTERS,
@@ -8,6 +8,8 @@ import {
 		UPDATE_FILTER_ID,
 		UPDATE_FILTER_VALUE,
 		PREVIOUS_FILTER_INDEX,
+		PUSH_FILTER_HISTORY,
+		POP_FILTER_HISTORY,
 		FINDER_START,
 		STEP_NAVIGATION,
   	ROTOT_SPLINED,
@@ -63,7 +65,13 @@ export const setVal = (idx, filterState) => {
 
 export const nextFilter = (idx, state) => {
 	console.log('currentINDEX', idx);
-	const nextIndex = (STEP_NAVIGATION.length > idx+1) ? idx+1 : idx
+	let nextIndex;
+	if(state.currentIndex === undefined){
+		nextIndex = STEP_NAVIGATION.map(x => x.path).indexOf(state);
+	}
+	else{
+		nextIndex = (STEP_NAVIGATION.length > idx+1) ? idx+1 : idx
+	}
 	console.log('nextINDEX', nextIndex, STEP_NAVIGATION.length);
 	const url = STEP_NAVIGATION[nextIndex].path
 	return dispatch => {
@@ -75,15 +83,25 @@ export const nextFilter = (idx, state) => {
 
 
 export const previousFilter = (state) => {
+	if(state.filterHistory === undefined || state.filterHistory.length == 0 || state.filterHistory.length == 1){
 
-	const idx = state.currentIndex;
-	let newIdx = (-1 !== state.currentIndex) ? state.currentIndex - 1 : -1;
-	newIdx = (newIdx === 1) ? 0 : newIdx;
-	const url = STEP_NAVIGATION[newIdx].path
+		const idx = state.currentIndex;
+		let newIdx = (-1 !== state.currentIndex) ? state.currentIndex - 1 : -1;
+		newIdx = (newIdx === 1) ? 0 : newIdx;
+		const url = STEP_NAVIGATION[newIdx].path
 
-	return dispatch => {
-		dispatch(decreaseIndex(newIdx))
-		dispatch(pushPath(url))
+		return dispatch => {
+			dispatch(decreaseIndex(newIdx))
+			dispatch(pushPath(url))
+		}
+	}
+	else{
+		return dispatch => {
+			let newFilterHistory = state.filterHistory;
+			newFilterHistory.pop();
+			dispatch(popFilterHistory(newFilterHistory, state))
+			dispatch(pushPath(state.filterHistory[state.filterHistory.length - 1]))
+		}
 	}
 }
 
@@ -118,7 +136,12 @@ export const receiveFilters = (idx, json, state) => {
 			}
 
 		} else {
-			dispatch(recieve)
+			if(state.filterHistory[state.filterHistory.length - 1] != STEP_NAVIGATION[idx].path )
+			{
+				dispatch(pushFilterHistory(STEP_NAVIGATION[idx].path, state));
+			}
+
+			dispatch(recieve);
 		}
 
 	}
@@ -134,6 +157,22 @@ export const requestFilters = (id) => {
 export const invalidateFilters = () => {
 	return {
 		type: INVALIDATE_FILTERS
+	}
+}
+
+export const pushFilterHistory = (url) => {
+	return {
+		type: PUSH_FILTER_HISTORY,
+		filterHistory: url
+	}
+}
+
+export const popFilterHistory = (newFilterHistory, state) => {
+	let newFilterIndex = STEP_NAVIGATION.map(x => x.path).indexOf(state.filterHistory[state.filterHistory.length - 1])
+	return {
+		type: POP_FILTER_HISTORY,
+		filterHistory: newFilterHistory,
+		idx: newFilterIndex
 	}
 }
 
@@ -183,7 +222,7 @@ export const fetchFilters = (idx, state) => {
 
 			let searchParams = searchFilterState.join('&');
 
-			let url = API+'/hubassembly/filtervalues/'+filterName+'?'+searchParams;
+			let url = APIV13+'/hubassembly/filtervalues/'+filterName+'?'+searchParams;
 			return fetch(url, {
 				method: 'get',
 				headers: {

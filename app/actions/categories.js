@@ -1,5 +1,5 @@
 import {
-	API,
+	APIV13,
 	V2KEY,
 	RECIEVE_CATEGORIES,
 	REQUEST_CATEGORIES,
@@ -32,7 +32,7 @@ export const invalidateCategories = () => {
 export const fetchCategories = () => {
   return dispatch => {
     dispatch(requestCategories())
-    let url = API+'/hubassembly/filtercategories/';
+    let url = APIV13+'/hubassembly/filtercategories/';
     return fetch(url, {
       method: 'get',
       headers: {

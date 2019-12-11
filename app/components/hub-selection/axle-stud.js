@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=7
+const FILTERIDX=12
 const NEXT_FILTER_PATH = '/hub-selection/wheel-type'
 
 class Result extends Component {

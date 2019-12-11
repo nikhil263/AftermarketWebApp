@@ -1,8 +1,12 @@
 // API
+//export const APIV13 = 'https://api.conmetwheelends.com/aftermarket-staging/v13'; //STAGING
+export const APIV13 = 'https://api.conmetwheelends.com/aftermarket/v13';
 export const API = 'https://api.conmetwheelends.com/aftermarket/v11';
+//export const API = 'https://api.conmetwheelends.com/aftermarket-staging/v11'; //STAGING
 export const API1 = 'https://api.conmetwheelends.com/aftermarket1/v11';
 export const APIV10 = 'https://api.conmetwheelends.com/aftermarket/v10';
-export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d';
+export const SUBSCRIPTION_KEY='afde8a71a2084efeb617d4533c98d02d'; 
+//export const SUBSCRIPTION_KEY='40400730311b4ac589f011db461901e0'; //STAGING
 export const IMAGE_CDN = 'https://conmetaftermarketimages.azureedge.net/images/';
 export const V2KEY='40400730311b4ac589f011db461901e0';
 export const V2KEY1='38946196ffaa4dd19ebaf3a930a75778';
@@ -74,6 +78,8 @@ export const UPDATE_FILTER='UPDATE_FILTER';
 export const REMOVE_FILTER='REMOVE_FILTER';
 export const UPDATE_FILTER_VALUE='UPDATE_FILTER_VALUE';
 export const PREVIOUS_FILTER_INDEX='PREVIOUS_FILTER_INDEX';
+export const PUSH_FILTER_HISTORY='PUSH_FILTER_HISTORY';
+export const POP_FILTER_HISTORY='POP_FILTER_HISTORY';
 export const RESET_FILTER='RESET_FILTER';
 export const RESET_DRUM_FILTER='RESET_DRUM_FILTER';
 export const RECIEVE_FILTERS='RECIEVE_FILTERS'
@@ -116,14 +122,22 @@ export const STEP_NAVIGATION = [
 	{ id: 2, path: '/hub-selection/truck-type'}, //2
 	{ id: 5, path: '/hub-selection/truck-make'}, //3
 	{ id: 7, path: '/hub-selection/axle-type'}, //4
-	{ id: 14, path: '/hub-selection/hub-mounting-system'}, //5
-	{ id: 8, path: '/hub-selection/gawr'}, //6
-	{ id: 12, path: '/hub-selection/axle-stud'},//7
-	{ id: 9, path: '/hub-selection/wheel-type'},//8
-	{ id: 10, path: '/hub-selection/material'},//9
-	{ id: 16, path: '/hub-selection/brake-rotor-flange'},//10
-	{ id: 17, path: '/hub-selection/brake-rotor-type'},//11
-	{ id: 11, path: '/hub-selection/results'}
+	{ id: 23, path: '/hub-selection/wheel-pilot-system'},//5
+	{ id: 29, path: '/hub-selection/wheel-stud-standout'}, //6
+	{ id: 26, path: '/hub-selection/stud-pilot-type'},//7
+	{ id: 25, path: '/hub-selection/hub-pilot-type'},//8
+	{ id: 24, path: '/hub-selection/thread-orientation'}, //9
+	{ id: 14, path: '/hub-selection/hub-mounting-system'}, //10
+	{ id: 8, path: '/hub-selection/gawr'}, //11
+	{ id: 12, path: '/hub-selection/axle-stud'},//12
+	{ id: 9, path: '/hub-selection/wheel-type'},//13
+	{ id: 10, path: '/hub-selection/material'},//14
+	{ id: 16, path: '/hub-selection/brake-rotor-flange'},//15
+	{ id: 17, path: '/hub-selection/brake-rotor-type'},//16
+	{ id: 11, path: '/hub-selection/results'},
+	{ id: 30, path: '/hub-selection/abs-offset-inches'},
+	{ id: 31, path: '/hub-selection/hub-cap-bolt-circle-diameter-inches'},
+	{ id: 32, path: '/hub-selection/drum-pilot-diameter-inches'}
 ];
 
 export const STUD_FILTERS = ['stldp', 'stdia', 'thrdt', 'dimA', 'dimB', 'dimC', 'dimD', 'sdnum'];
@@ -174,15 +188,21 @@ export const APPSTATE = {
 	categories: [],
 	currentIndex: 1,
 	filterResults: [],
+	filterHistory: [],
 	lastChoice: {},
   isRotorSplined: false,
 	filterState: {
 		brkty: null, // brakeType,
 		hatyp: null, // hubAssemblyType
 		hcmty: null, // hubCastingMaterialType
-		wmslc: null,  // wheelMaterialStudLengthClass
-		axthd: null,  // axleStudThreadDiameter
+		wmslc: null, // wheelMaterialStudLengthClass
+		axthd: null, // axleStudThreadDiameter
 		gawrr: null, // grossAxleWeightRatingRange
+		whlps: null, // wheelPilotSystem
+		wssdi: null,
+		hubps: null, //	hub pilot type
+		stdps: null, // stud pilot type
+		strdo: null, // threadOrienation
 		hamnt: null, // hubMountingSystem
 		aaxna: null, // aftermarketAxleName
 		tmake: null, // truckMake
@@ -190,6 +210,9 @@ export const APPSTATE = {
 		brdia: null, // brake flange type
 		abrty: null, // brake rotor type
 		hanum: null, // hubAssemlySummary
+		abcoi: null,
+		hcbdi: null,
+		dpidi: null,
 		srcht: ''
 	}
 }

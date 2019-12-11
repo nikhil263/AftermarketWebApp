@@ -6,7 +6,7 @@ import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
 const FILTERIDX=3
-const NEXT_FILTER_PATH = '/hub-selection/axle-type'
+const NEXT_OTHER_NOT_LISTED_FILTER_PATH = '/hub-selection/abs-offset-inches'
 
 class Result extends Component {
 
@@ -47,6 +47,12 @@ class TruckMakes extends Component {
 						var boundActive = setActive.bind(this, FILTERIDX, result.Id, 'general-button truck-make');
 						return <Result key={index} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}
+
+{/* 					<div className="grid-content small-6">
+							<button className='general-button truck-make' onClick={setFilter.bind(this, FILTERIDX, null, app.NEXT_FILTER_PATH = NEXT_OTHER_NOT_LISTED_FILTER_PATH)}>
+								Other/Not Listed
+							</button>
+					</div> */}
 				</div>
 			</div>
 		)
