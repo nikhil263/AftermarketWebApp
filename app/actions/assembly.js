@@ -1,5 +1,6 @@
 import {
   API,
+  APIV13,
   APIV10,
   V2KEY,
   ZERO_RESULTS,
@@ -168,7 +169,7 @@ export const fetchAssembly = (state) => {
     dispatch(requestAssembly(state));
 		let searchParams = getAppSearchParams(state);
 
-    let url = API+'/hubassembly/filtervalues/hanum?'+searchParams;
+    let url = APIV13+'/hubassembly/filtervalues/hanum?'+searchParams;
     return fetch(url, {
       method: 'get',
       headers: {

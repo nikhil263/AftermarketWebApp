@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "rm -rf public/index.html && webpack-dev-server --config webpack.config.js --port 3005 --colors --hot",
+    "dev": "webpack-dev-server --config webpack.config.js --port 3005 --colors --hot",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "deploy": "webpack -p --config webpack.production.config.js"

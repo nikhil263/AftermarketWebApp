@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=5
+const FILTERIDX=10
 const NEXT_FILTER_PATH = '/hub-selection/gawr'
 
 class Result extends Component {
@@ -49,23 +49,6 @@ class HubMountingSystem extends Component {
 						return <Result key={index} app={app} result={result} active={boundActive} onClick={boundClick}/>
 					})}
 				</div>
-                {/*<div className="grid-block">*/}
-                    {/*<div className="grid-content small-6">*/}
-                        {/*<h4>Stud Piloted Wheel Mounting</h4>*/}
-                        {/*<p>Also known as Ball Seat Nut. Uses the spherical seat of the nut to locate the wheels. Dual wheels use a double cap nut system.</p>*/}
-                    {/*</div>*/}
-                    {/*<div className="grid-content small-6">*/}
-                        {/*<h4>Hub Piloted Wheel Mounting</h4>*/}
-                        {/*<p>Also known as Uni-Mount-10 ™. Uses the pilots on the hub to locate the wheels. Single two-piece flange nut on each wheel stud.</p>*/}
-                    {/*</div>*/}
-                    {/*<div className="grid-content small-6">*/}
-                        {/*<img src={require('../../images/SERV_106822a_NoNumber.png')} alt="SERV_106822a_NoNumber"/>*/}
-                    {/*</div>*/}
-                    {/*<div className="grid-content small-6">*/}
-                        {/*<img src={require('../../images/SERV_106821a_NoNumber.png')} alt="SERV_106821a_NoNumber"/>*/}
-                    {/*</div>*/}
-                
-                {/*</div>*/}
 			</div>
 		)
 	}

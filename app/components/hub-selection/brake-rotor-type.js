@@ -4,7 +4,7 @@ import Spinner from 'components/global/spinner';
 import { fetchFilters } from 'actions/filters';
 import { IMAGE_CDN } from 'config/constants';
 import { setRotorSpilned } from "../../actions/filters";
-const FILTERIDX = 11;
+const FILTERIDX = 16;
 
 class Result extends Component {
   render() {

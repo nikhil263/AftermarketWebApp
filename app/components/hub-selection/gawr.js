@@ -4,7 +4,7 @@ import { pushPath } from 'redux-simple-router';
 import Spinner from 'components/global/spinner';
 import { fetchFilters } from 'actions/filters';
 
-const FILTERIDX = 6;
+const FILTERIDX = 11;
 
 class Result extends Component {
 
