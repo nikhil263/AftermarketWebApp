@@ -43,7 +43,7 @@ class AxelType extends Component {
         <h2>Choose the Hub by Axle Type or Bearing Number:</h2>
         {
           app.filterResults.map((result, index) => {
-            if(result.AftermarketAxleId == 10 || result.AftermarketAxleId == 11) {
+            if((result.AftermarketAxleId == 10 || result.AftermarketAxleId == 11) && app.filterState.brkty == 1) {
               var boundClick = setFilter.bind(this, FILTERIDX, {aaxna: result.Id || result.AftermarketAxleId}, app);
             }
             else {
