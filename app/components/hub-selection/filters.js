@@ -56,11 +56,11 @@ class Filters extends Component {
     let j = 0;
 
     Object.keys(categories).forEach((key) => {
-      if (result.hasOwnProperty(categories[key].QueryParameterName) === false && categories[key].QueryParameterName !== 'tmake' && categories[key].QueryParameterName !== 'gawrr') {
+      if (result.hasOwnProperty(categories[key].QueryParameterName) === false && categories[key].QueryParameterName !== 'tmake' && categories[key].QueryParameterName !== 'gawrr' && categories[key].QueryParameterName !== 'wssdi' ) {
         this.state.filter_name[j] = categories[key].QueryParameterName;
         j++;
       }
-    });
+    }); 
 
     this.getFilterValues();
   }
