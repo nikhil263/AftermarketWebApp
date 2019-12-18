@@ -7,7 +7,7 @@ import {fetchAssembly} from 'actions/assembly'
 import Spinner from 'components/global/spinner'
 import { setActiveFilterValue, fetchFilters } from 'actions/filters'
 
-const FILTERIDX=8
+const FILTERIDX=13
 const NEXT_FILTER_PATH='/hub-selection/material'
 const STEEL = 1
 const ALUMINUM = 2

@@ -8,7 +8,7 @@ export const updateFilters = (obj) => {
 
 export const resetFilters = (obj) => {
   return {
-      type: constants.RESET_FILTER
+      type: constants.INVALIDATE_FILTERS
     }
 }
 
@@ -546,7 +546,7 @@ export const fetchHubAssemblyFilters = (id) =>{
 
 export const fetchFilterValues = (filtername,filters) =>{
     return dispatch => {
-        return fetch(constants.API+"/hubassembly/filtervalues/"+filtername+"?"+filters, {
+        return fetch(constants.APIV13+"/hubassembly/filtervalues/"+filtername+"?"+filters, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -597,7 +597,7 @@ export function invalidateHubStuds() {
 
 export const fetchHubsCrossApi = (filters, isShortStud = false) =>{
     return dispatch => {
-        return fetch(constants.API+'/hubassembly/filtervalues/hanum?'+filters, {
+        return fetch(constants.APIV13+'/hubassembly/filtervalues/hanum?'+filters, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',

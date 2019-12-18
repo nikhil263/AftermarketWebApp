@@ -236,54 +236,54 @@ class Start extends Component {
       <div className="grid-container main-content">
           {notes ? this.notificationDialogs() : null}
         <h2>What are you looking for?</h2>
-          {/*<form id="autoComplete">*/}
-              {/*<Autocomplete*/}
-                  {/*value={this.state.value}*/}
-                  {/*inputProps={{ placeholder: 'Please enter a valid ConMet or Competitor part number',className: 'assembly-number', id:'assemblyNumber',type:'text' }}*/}
-                  {/*wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}*/}
-                  {/*items={this.state.partNumber}*/}
-                  {/*getItemValue={(item) => item.CompetitorName+' '+item.CompetitorPartNumber}*/}
-                  {/*onSelect={(value, state) => {*/}
-                      {/*this.props.results.selectedHubAssemblyNumber = state.CompetitorName+' '+state.CompetitorPartNumber;*/}
-                      {/*this.hubAssemblyFilters(state);*/}
-                      {/*this.setState({ value, partNumber: [state] })*/}
-                  {/*}}*/}
-                  {/*onChange={(event, value) => {*/}
-                      {/*this.setState({value, partNumber : [], loading: true });*/}
-                      {/*if(value !== ''){*/}
-                          {/*this.props.dispatch(unifiedSearch(value)).then(() => {*/}
-                              {/*let results = this.props.results.partNumber.Results;*/}
-                              {/*if(results){*/}
-                                  {/*this.setState({ partNumber: this.props.results.partNumber.Results, loading: false });*/}
-                              {/*}else{*/}
-                                  {/*this.setState({ partNumber: [], loading: false });*/}
-                              {/*}*/}
-                          {/*});*/}
-                      {/*}*/}
-                  {/*}}*/}
-                  {/*renderItem={(item, isHighlighted) =>*/}
-                      {/*<div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.CompetitorInterchangesId}>*/}
-                          {/*{item.CompetitorName}  {item.CompetitorPartNumber}*/}
-                      {/*</div>*/}
-                  {/*}*/}
-                  {/*renderMenu={(items, value) => (*/}
-                      {/*<div className="menu">*/}
-                          {/*{value === '' ? (*/}
-                              {/*<div className="item">Type ConMet or Competitor assembly number</div>*/}
-                          {/*) : this.state.loading ? (*/}
-                              {/*<div className="item">Loading...</div>*/}
-                          {/*) : items.length === 0 ? (*/}
-                              {/*<div className="item">No matches for {value}</div>*/}
-                          {/*) : items}*/}
-                      {/*</div>*/}
-                  {/*)}*/}
-              {/*/>*/}
-              {/*<div className="help">Some examples: “104444”, “ConMet 10031065”, “Gunite 5669‑1”, “Webb 20231‑‑1T‑71”</div>*/}
-              {/*<div className="btn-no-description conmet-button">*/}
-                  {/*<button type="submit" onClick={this.doSearch}><h2 style={{textAlign: 'center'}}>Continue</h2></button>*/}
-              {/*</div>*/}
-          {/*</form>*/}
-          {/*<hr/>*/}
+          <form id="autoComplete">
+              <Autocomplete
+                  value={this.state.value}
+                  inputProps={{ placeholder: 'Please enter a valid ConMet or Competitor part number',className: 'assembly-number', id:'assemblyNumber',type:'text' }}
+                  wrapperStyle={{ position: 'relative',display: 'block', margin: '0 0 1rem 0' }}
+                  items={this.state.partNumber}
+                  getItemValue={(item) => item.CompetitorName+' '+item.CompetitorPartNumber}
+                  onSelect={(value, state) => {
+                      this.props.results.selectedHubAssemblyNumber = state.CompetitorName+' '+state.CompetitorPartNumber;
+                      this.hubAssemblyFilters(state);
+                      this.setState({ value, partNumber: [state] })
+                  }}
+                  onChange={(event, value) => {
+                      this.setState({value, partNumber : [], loading: true });
+                      if(value !== ''){
+                          this.props.dispatch(unifiedSearch(value)).then(() => {
+                              let results = this.props.results.partNumber.Results;
+                              if(results){
+                                  this.setState({ partNumber: this.props.results.partNumber.Results, loading: false });
+                              }else{
+                                  this.setState({ partNumber: [], loading: false });
+                              }
+                          });
+                      }
+                  }}
+                  renderItem={(item, isHighlighted) =>
+                      <div className="menu-item" style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.CompetitorInterchangesId}>
+                          {item.CompetitorName}  {item.CompetitorPartNumber}
+                      </div>
+                  }
+                  renderMenu={(items, value) => (
+                      <div className="menu">
+                          {value === '' ? (
+                              <div className="item">Type ConMet or Competitor assembly number</div>
+                          ) : this.state.loading ? (
+                              <div className="item">Loading...</div>
+                          ) : items.length === 0 ? (
+                              <div className="item">No matches for {value}</div>
+                          ) : items}
+                      </div>
+                  )}
+              />
+              <div className="help">Some examples: “104444”, “ConMet 10031065”, “Gunite 5669‑1”, “Webb 20231‑‑1T‑71”</div>
+              <div className="btn-no-description conmet-button">
+                  <button type="submit" onClick={this.doSearch}><h2 style={{textAlign: 'center'}}>Continue</h2></button>
+              </div>
+          </form>
+          <hr/>
         <div className="btn-no-description conmet-button">
           <button onClick={this.handleClick.bind(this, '/hub-selection/choose-path')} store={this.context.store}>
             <h2>HUBS <i className="icon-angle-right" /></h2>
@@ -304,12 +304,12 @@ class Start extends Component {
             <h2>BRAKE ROTORS <i className="icon-angle-right" title="Right Arrow" /></h2>
           </button>
         </div>
-        {/*<div className="btn-no-description conmet-button">*/}
-          {/*<button onClick={this.handleClick.bind(this, '/hub-selection/stud/filter')} store={this.context.store}>*/}
-            {/*<h2>STUD SEARCH <i className="icon-angle-right" title="Right Arrow" /></h2>*/}
-          {/*</button>*/}
-        {/*</div>*/}
-        {/*<p className="terms-and-conditions">In using this application you are acknowledging that you have read and understand ConMet's <a href={`${window.location.origin}/ConMet-Terms-And-Conditions.pdf`} target='_blank'>terms and conditions</a></p>*/}
+{/*         <div className="btn-no-description conmet-button">
+          <button onClick={this.handleClick.bind(this, '/hub-selection/stud/filter')} store={this.context.store}>
+            <h2>STUD SEARCH <i className="icon-angle-right" title="Right Arrow" /></h2>
+          </button>
+        </div> */}
+        <p className="terms-and-conditions">In using this application you are acknowledging that you have read and understand ConMet's <a href={`${window.location.origin}/ConMet-Terms-And-Conditions.pdf`} target='_blank'>terms and conditions</a></p>
       </div>
     )
   }

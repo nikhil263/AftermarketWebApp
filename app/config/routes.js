@@ -32,12 +32,20 @@ import HubSelectionEmail from 'components/hub-selection/email'
 import HubSelectionTruckType from 'components/hub-selection/truck-type'
 import HubSelectionTruckMake from 'components/hub-selection/truck-make'
 import HubSelectionAxelType from 'components/hub-selection/axel-type'
+import HubSelectionWheelPilotSystem from 'components/hub-selection/wheel-pilot-system'
+import HubSelectionHubPilotType from 'components/hub-selection/hub-pilot-type'
+import HubSelectionStudPilotType from 'components/hub-selection/stud-pilot-type'
+import HubSelectionWheelStudStandoutInches from 'components/hub-selection/wheel-stud-standout-inches'
+import HubSelectionThreadOrientation from 'components/hub-selection/thread-orientation'
 import HubSelectionMountingSystem from 'components/hub-selection/hub-mounting-system'
 import HubSelectionGAWR from 'components/hub-selection/gawr'
 import HubSelectionWheelType from 'components/hub-selection/wheel-type'
 import HubSelectionAxleStud from 'components/hub-selection/axle-stud'
 import HubSelectionMaterial from 'components/hub-selection/material'
 import HubSelectionType from 'components/hub-selection/hub-type'
+import HubSelectionABSOffsetInches from '../components/hub-selection/abs-offset-inches';
+import HubSelectionHubCapBoltCircleDiameterInches from '../components/hub-selection/hub-cap-bolt-circle-diameter-inches';
+import HubSelectionDrumPilotDiameterInches from '../components/hub-selection/drum-pilot-diameter-inches';
 import BrakeRotorFlange from 'components/hub-selection/brake-rotor-flange'
 import BrakeRotorType from 'components/hub-selection/brake-rotor-type'
 import HubFinder from 'components/hub-selection/finder'
@@ -98,6 +106,11 @@ module.exports = (
         <Route path='truck-make' component={HubSelectionTruckMake}/>
         <Route path='axle-type' component={HubSelectionAxelType}/>
         <Route path='hub-mounting-system' component={HubSelectionMountingSystem}/>
+        <Route path='wheel-pilot-system' component={HubSelectionWheelPilotSystem}/>
+        <Route path='hub-pilot-type' component={HubSelectionHubPilotType}/>
+        <Route path='stud-pilot-type' component={HubSelectionStudPilotType}/>
+        <Route path='wheel-stud-standout' component={HubSelectionWheelStudStandoutInches}/>
+        <Route path='thread-orientation' component={HubSelectionThreadOrientation}/>
         <Route path='gawr' component={HubSelectionGAWR}/>
         <Route path='axle-stud' component={HubSelectionAxleStud}/>
         <Route path='wheel-type' component={HubSelectionWheelType}/>
@@ -105,6 +118,9 @@ module.exports = (
         <Route path='hub-type' component={HubSelectionType}/>
         <Route path='brake-rotor-flange' component={BrakeRotorFlange}/>
         <Route path='brake-rotor-type' component={BrakeRotorType}/>
+        <Route path='abs-offset-inches' component={HubSelectionABSOffsetInches}/>
+        <Route path='hub-cap-bolt-circle-diameter-inches' component={HubSelectionHubCapBoltCircleDiameterInches}/>
+        <Route path='drum-pilot-diameter-inches' component={HubSelectionDrumPilotDiameterInches}/>
         <Route path='find-assembly' component={HubSelectionFindAssembly}/>
         <Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail}/>
         <Route path='compare-hub' component={CompareHub}/>

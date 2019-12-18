@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Spinner from 'components/global/spinner'
 import { fetchFilters } from 'actions/filters'
 
-const FILTERIDX=9;
+const FILTERIDX=14;
 
 class Result extends Component {
   render () {

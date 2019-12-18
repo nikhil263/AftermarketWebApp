@@ -8,6 +8,7 @@ require('babel-polyfill');
 
 
 module.exports = {
+    //devtool: 'source-map',
     entry: [
         'babel-polyfill',
         'webpack/hot/dev-server',

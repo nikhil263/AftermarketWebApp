@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Spinner from 'components/global/spinner';
 import { fetchFilters } from 'actions/filters';
 const FILTERIDX=4;
+const NEXT_GAWR_FILTER_PATH = '/hub-selection/gawr'
 
 class Result extends Component {
 
@@ -42,7 +43,12 @@ class AxelType extends Component {
         <h2>Choose the Hub by Axle Type or Bearing Number:</h2>
         {
           app.filterResults.map((result, index) => {
-            var boundClick = setFilter.bind(this, FILTERIDX, {aaxna: result.Id || result.AftermarketAxleId}, app);
+            if((result.AftermarketAxleId == 10 || result.AftermarketAxleId == 11) && app.filterState.brkty == 1) {
+              var boundClick = setFilter.bind(this, FILTERIDX, {aaxna: result.Id || result.AftermarketAxleId}, app);
+            }
+            else {
+              var boundClick = setFilter.bind(this, FILTERIDX, {aaxna: result.Id || result.AftermarketAxleId}, app.NEXT_FILTER_PATH = NEXT_GAWR_FILTER_PATH);
+            }
             var boundActive = setActive.bind(this, FILTERIDX, result.Id || result.AftermarketAxleId);
             return <Result key={index} result={result} onClick={boundClick} active={boundActive} />
           })
