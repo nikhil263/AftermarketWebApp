@@ -27,6 +27,15 @@ body,html{
 		}
 	}
 }
+.grid-content{
+	.terms-and-conditions{
+		text-align: center;
+		font-family: myriad-pro-condensed, sans-serif;
+		a{
+			text-decoration-line: underline;
+		}
+	}
+}
 h2,h3,h4,h5,h6{
 	//font-family: myriad-pro-condensed, sans-serif;
 	letter-spacing: 0.02rem;

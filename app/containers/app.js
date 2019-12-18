@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 
 
 import Navigation from 'components/navigation'
+import Footer from 'components/footer'
 
 class App extends Component {
 
@@ -37,7 +38,12 @@ class App extends Component {
 		return (
 			<div className="grid-frame vertical">
 			<Navigation />
-			{childrenWithProps}
+				<div className="grid-content">
+					{childrenWithProps}
+					<Footer />
+				</div>
+
+
 			</div>
 			)
 	}
