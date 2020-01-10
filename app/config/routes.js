@@ -46,6 +46,7 @@ import HubSelectionType from 'components/hub-selection/hub-type'
 import HubSelectionABSOffsetInches from '../components/hub-selection/abs-offset-inches';
 import HubSelectionHubCapBoltCircleDiameterInches from '../components/hub-selection/hub-cap-bolt-circle-diameter-inches';
 import HubSelectionDrumPilotDiameterInches from '../components/hub-selection/drum-pilot-diameter-inches';
+import HubSelectionOverallRotorLength from '../components/hub-selection/overall-rotor-length';
 import BrakeRotorFlange from 'components/hub-selection/brake-rotor-flange'
 import BrakeRotorType from 'components/hub-selection/brake-rotor-type'
 import HubFinder from 'components/hub-selection/finder'
@@ -118,6 +119,7 @@ module.exports = (
         <Route path='hub-type' component={HubSelectionType}/>
         <Route path='brake-rotor-flange' component={BrakeRotorFlange}/>
         <Route path='brake-rotor-type' component={BrakeRotorType}/>
+        <Route path='overall-rotor-length' component={HubSelectionOverallRotorLength}/>
         <Route path='abs-offset-inches' component={HubSelectionABSOffsetInches}/>
         <Route path='hub-cap-bolt-circle-diameter-inches' component={HubSelectionHubCapBoltCircleDiameterInches}/>
         <Route path='drum-pilot-diameter-inches' component={HubSelectionDrumPilotDiameterInches}/>
