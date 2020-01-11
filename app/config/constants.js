@@ -134,6 +134,7 @@ export const STEP_NAVIGATION = [
 	{ id: 10, path: '/hub-selection/material'},//14
 	{ id: 16, path: '/hub-selection/brake-rotor-flange'},//15
 	{ id: 17, path: '/hub-selection/brake-rotor-type'},//16
+	{ id: 37, path: '/hub-selection/overall-rotor-length'}, //17
 	{ id: 11, path: '/hub-selection/results'},
 	{ id: 30, path: '/hub-selection/abs-offset-inches'},
 	{ id: 31, path: '/hub-selection/hub-cap-bolt-circle-diameter-inches'},
@@ -209,6 +210,7 @@ export const APPSTATE = {
 		tcomp: null, // truckCompartment
 		brdia: null, // brake flange type
 		abrty: null, // brake rotor type
+		ovlgt: null, // overall rotor length
 		hanum: null, // hubAssemlySummary
 		abcoi: null,
 		hcbdi: null,

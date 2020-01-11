@@ -1,4 +1,4 @@
-body.rotate {
+body.rate {
   -webkit-transform: rotate(90deg);
 }
 body {
@@ -19,6 +19,15 @@ body,html{
 	.conmet-button h2{
 	font-family: myriad-pro-condensed, sans-serif;
 	}
+	.terms-and-conditions{
+		text-align: center;
+		font-family: myriad-pro-condensed, sans-serif;
+		a{
+			text-decoration-line: underline;
+		}
+	}
+}
+.grid-main{
 	.terms-and-conditions{
 		text-align: center;
 		font-family: myriad-pro-condensed, sans-serif;
