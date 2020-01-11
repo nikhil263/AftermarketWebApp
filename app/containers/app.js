@@ -38,7 +38,7 @@ class App extends Component {
 		return (
 			<div className="grid-frame vertical">
 			<Navigation />
-				<div className="grid-content">
+				<div className="grid-main">
 					{childrenWithProps}
 					<Footer />
 				</div>
