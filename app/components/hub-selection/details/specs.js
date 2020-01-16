@@ -121,6 +121,10 @@ export default class extends Component {
             result.WheelMaterial && result.WheelMaterial !== '—' ?
               <tr><td>Wheel Material</td><td>{result.WheelMaterial}</td></tr> : null
           }
+          {
+            result.AxleStudThread !== '—' ?
+              <tr><td>Axle Stud Thread</td><td>{result.AxleStudThread}</td></tr> : null
+          }
           <tr>
             <td>Flange Offset (in.)</td>
             <td>{result.FlangeOffsetInch}</td>
