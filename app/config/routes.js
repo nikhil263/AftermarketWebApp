@@ -28,6 +28,7 @@ import NotAvailableHub from 'components/hub-selection/not-available-hub'
 import CompareAssembly from 'components/hub-selection/compare-assembly'
 import HubSelectionResults from 'components/hub-selection/results'
 import HubSelectionDetails from 'components/hub-selection/details'
+import HubSelectionMeritorExclusive from '../components/hub-selection/meritor-exclusive';
 import HubSelectionEmail from 'components/hub-selection/email'
 import HubSelectionTruckType from 'components/hub-selection/truck-type'
 import HubSelectionTruckMake from 'components/hub-selection/truck-make'
@@ -127,6 +128,7 @@ module.exports = (
         <Route path='find-assembly-detail' component={HubSelectionFindAssemblyDetail}/>
         <Route path='compare-hub' component={CompareHub}/>
         <Route path='no-results' component={NoResults}/>
+        <Route path='meritor-exclusive' component={HubSelectionMeritorExclusive}/>
         <Route path='notification-detail/:id' component={NotificationDetail}/>
       </Route>
       <Route path='parts' component={PartsWrapper}>
