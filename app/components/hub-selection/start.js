@@ -189,6 +189,8 @@ class Start extends Component {
     hubAssemblyFilters(data){
         if(data.PartTypeId === 115){
             this.getResult(data.CompetitorInterchangesId);
+        }else if(data.PartTypeId === 1115){
+            this.props.dispatch(pushPath('/hub-selection/meritor-exclusive'));
         }else if(data.PartTypeId === 5){
             this.props.dispatch(pushPath('/hub-selection/stud/filters/sdnum?inclv=1&sdnum='+data.CompetitorPartNumber));
         }else if(data.PartTypeId === 23){
