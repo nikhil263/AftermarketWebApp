@@ -58,7 +58,7 @@
     "foundation-apps": "^1.2.0",
     "history": "^1.13.1",
     "isomorphic-fetch": "^2.2.0",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.13",
     "nuka-carousel": "^4.5.11",
     "object-assign": "^2.1.1",
     "open-iconic": "^1.1.1",
